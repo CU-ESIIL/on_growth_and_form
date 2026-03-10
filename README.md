@@ -1,6 +1,6 @@
 # On Growth and Form: NSF Proposal Workspace
 
-This repository is organized as a working space for an NSF proposal on fire, growth, and form. It combines proposal writing, funder guidance, literature management, simulations, figures, and a lightweight project website.
+This repository is organized as a working space for an NSF FIRE-MODEL proposal on fire, growth, and form. It combines proposal writing, funder guidance, literature management, simulations, figures, and a lightweight project website.
 
 ## Repository layout
 
@@ -18,6 +18,15 @@ This repository is organized as a working space for an NSF proposal on fire, gro
 3. Run exploratory models from `simulations/scripts/` with reusable parameter files in `simulations/config/`.
 4. Build visuals from `figures/source/` and publish candidate outputs to `figures/drafts/` or `figures/final/`.
 5. Keep the website in `docs/` synchronized with proposal milestones and repository structure.
+
+## Current solicitation anchor
+
+The repository is currently oriented around the 2026 NSF FIRE-MODEL cycle described in:
+
+- `funder/solicitation/fire_model_2026_briefing.md`
+- `funder/review_criteria/fire_model_requirements_checklist.md`
+
+These are working summaries built from collected program information and should be checked against the official NSF solicitation, updates page, and webinar materials before final submission drafting.
 
 ## Website
 

@@ -2,7 +2,7 @@
 
 ## Working sequence
 
-1. Add NSF solicitation and sponsor guidance to `funder/`.
+1. Add NSF solicitation and sponsor guidance to `funder/`, starting from the current FIRE-MODEL briefing and replacing summaries with official source files whenever possible.
 2. Draft the narrative and compliance documents in `proposal/`.
 3. Save literature PDFs locally in `citations/pdfs/` and capture reusable notes in `citations/notes/`.
 4. Run exploratory or supporting analyses from `simulations/scripts/`.
@@ -48,3 +48,8 @@
 ## Git policy
 
 Keep text, scripts, parameter files, and notes in version control. Avoid committing article PDFs or bulky generated outputs unless there is a specific archival reason.
+
+## FIRE-MODEL-specific reminder
+
+- Treat `funder/solicitation/fire_model_2026_briefing.md` as a working summary, not a substitute for the official NSF call.
+- Check submission dates, track definitions, page and formatting rules, and required documents against the authoritative NSF materials before final drafting.

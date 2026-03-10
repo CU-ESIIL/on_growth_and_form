@@ -119,3 +119,27 @@ Review the next CI failure, which reported `404 https://api.github.com/repos/CU-
 
 ### Open questions and follow-up
 - If external requests become important later, we can add an allowlist or explicit assertions for specific integrations instead of failing all third-party responses indiscriminately.
+
+### Prompt
+Add the collected FIRE-MODEL solicitation information to the repository and website.
+
+### Files and folders inspected
+- `README.md`
+- `mkdocs.yml`
+- `docs/index.md`
+- `docs/workflow.md`
+- `funder/`
+
+### Actions taken
+- Added a repository briefing in `funder/solicitation/fire_model_2026_briefing.md`.
+- Added a working requirements checklist in `funder/review_criteria/fire_model_requirements_checklist.md`.
+- Added website pages for the FIRE-MODEL briefing and checklist.
+- Updated the homepage, workflow page, navigation, and README so the repo is explicitly anchored to the 2026 FIRE-MODEL cycle.
+- Marked the new materials as working summaries that still need verification against official NSF source documents.
+
+### Verification
+- Confirmed the new funder files and website pages were written into the repository.
+- Confirmed the site navigation now exposes the FIRE-MODEL briefing and checklist pages.
+
+### Open questions and follow-up
+- The repository still needs the official solicitation PDF or full text captured under `funder/` so the working summary can be cross-checked line by line.
