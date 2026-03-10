@@ -6,6 +6,7 @@ import subprocess
 import threading
 from pathlib import Path
 from urllib.parse import urljoin
+from urllib.parse import urlparse
 
 import pytest
 from playwright.sync_api import sync_playwright
@@ -74,6 +75,7 @@ def new_page(browser):
     page_errors = []
     failed_responses = []
     request_failures = []
+    allowed_external_failures = []
 
     page.on(
         "console",
@@ -84,11 +86,11 @@ def new_page(browser):
     page.on("pageerror", lambda err: page_errors.append(str(err)))
     page.on(
         "response",
-        lambda response: failed_responses.append(
-            f"{response.status} {response.url}"
-        )
-        if response.status >= 400
-        else None,
+        lambda response: record_response_failure(
+            response,
+            failed_responses,
+            allowed_external_failures,
+        ),
     )
     page.on(
         "requestfailed",
@@ -96,11 +98,38 @@ def new_page(browser):
             f"{request.failure} {request.url}"
         ),
     )
-    return page, console_errors, page_errors, failed_responses, request_failures
+    return (
+        page,
+        console_errors,
+        page_errors,
+        failed_responses,
+        request_failures,
+        allowed_external_failures,
+    )
+
+
+def record_response_failure(response, failed_responses, allowed_external_failures) -> None:
+    if response.status < 400:
+        return
+
+    parsed = urlparse(response.url)
+    is_local = parsed.hostname in {"127.0.0.1", "localhost"}
+    target = f"{response.status} {response.url}"
+    if is_local:
+        failed_responses.append(target)
+    else:
+        allowed_external_failures.append(target)
 
 
 def test_expected_pages_render(site_server: str, browser) -> None:
-    page, console_errors, page_errors, failed_responses, request_failures = new_page(browser)
+    (
+        page,
+        console_errors,
+        page_errors,
+        failed_responses,
+        request_failures,
+        allowed_external_failures,
+    ) = new_page(browser)
 
     for route, heading in EXPECTED_PAGES:
         response = page.goto(urljoin(site_server, route), wait_until="networkidle")
@@ -116,7 +145,7 @@ def test_expected_pages_render(site_server: str, browser) -> None:
 
 
 def test_homepage_internal_links_resolve(site_server: str, browser) -> None:
-    page, _, _, _, _ = new_page(browser)
+    page, _, _, _, _, _ = new_page(browser)
     page.goto(site_server, wait_until="networkidle")
 
     hrefs = []
