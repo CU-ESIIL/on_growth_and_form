@@ -1,59 +1,86 @@
 # AGENTS.md
 
-## Core Operating Contract
-- Treat this repository as the source of truth.
-- Treat the website as a rendered view of repository state.
-- Prefer small, additive, traceable edits.
-- Keep documentation synchronized with code and project structure.
-- Keep the repository minimalist by default.
+## Mission
+- Treat this repository as a working environment for an NSF proposal on fire, growth, and form.
+- Optimize for proposal quality, traceability, and compliance rather than generic software output.
+- Treat the solicitation, program description, and any NSF-issued guidance in `funder/` as the controlling documents for writing decisions.
+- Write directly to the call for proposals. If repository content conflicts with the solicitation, the solicitation wins.
 
-## Default Workflow
-- Inspect repository structure before editing.
-- Make the smallest diff that solves the request.
-- Update related docs when behavior, workflows, or outputs change.
-- Update changelog, dev log, or equivalent history files for meaningful changes.
-- Preserve existing structure and historical context.
-- Do not perform destructive rewrites unless explicitly requested.
+## Primary Priorities
+- Keep all work aligned with NSF review criteria, required sections, page limits, formatting constraints, and submission instructions.
+- Make small, auditable edits that preserve proposal history and reasoning.
+- Keep proposal text, supporting analyses, figures, and website documentation synchronized.
+- Surface uncertainty explicitly. Do not fill gaps with invented facts, invented requirements, or invented citations.
+
+## Expected Agent Behavior
+- Read the relevant funder materials before drafting or revising proposal content.
+- Identify which solicitation requirement a draft section is trying to satisfy.
+- Prefer improving the proposal against NSF criteria over making stylistic changes with no review value.
+- Preserve the distinction between source material, analysis artifacts, and polished proposal prose.
+- When asked to write, revise, or review, state assumptions clearly in the repository artifacts you update.
+- Flag missing required documents, unresolved compliance issues, and unsupported claims.
+
+## Required Workflow
+- Inspect repository structure and relevant proposal files before editing.
+- Check `funder/` first when the task involves proposal language, section requirements, formatting, or submission strategy.
+- Update related docs when structure, workflow, or outputs change.
+- Record each meaningful user prompt and resulting agent action in `PROMPT_ACTION_LOG.md`.
+- Run `bash scripts/review_site.sh` after website-facing changes to `docs/`, `mkdocs.yml`, website assets, or site workflows whenever the local environment supports it.
+- Preserve historical context; avoid destructive rewrites unless explicitly requested.
+
+## Prompt and Action Logging
+- `PROMPT_ACTION_LOG.md` is required project memory for agent activity.
+- For each meaningful task, add a new dated entry with:
+  - the user prompt or a concise paraphrase,
+  - the files or folders inspected,
+  - the actions taken,
+  - any verification performed,
+  - open questions, assumptions, or follow-up needs.
+- Keep entries brief, factual, and chronological.
+- If no file changes were made, log the analysis outcome when it materially affects proposal direction.
+
+## Citation Policy
+- Never invent citations, author lists, publication years, titles, journal names, volume numbers, page ranges, DOIs, URLs, or bibliographic endings.
+- Verify citation details against the original paper, publisher page, Crossref record, or another primary bibliographic source whenever possible.
+- Prefer obtaining and storing the original PDF in `citations/pdfs/` whenever possible and permitted.
+- If only secondary citation data is available, say so explicitly in notes or draft text.
+- Keep literature synthesis and claim support in tracked files under `citations/notes/` or other appropriate repository locations.
+- Do not cite a paper in proposal prose unless the citation has been checked or is clearly marked as needing verification.
+
+## Proposal Writing Policy
+- Write to NSF’s required and implicit questions: why this work matters, why now, why this team, why this approach, and what broader impacts and intellectual merit it delivers.
+- Anchor section structure to the solicitation and NSF templates rather than generic grant-writing conventions.
+- Respect NSF formatting requirements when drafting text intended for submission.
+- Keep claims specific, evidence-based, and proportionate to the available support.
+- When using simulation results or figures to support an argument, make the provenance of those outputs clear.
+
+## Funder Documents Policy
+- Store sponsor-provided PDFs, templates, review criteria, and guidance in `funder/`.
+- Do not paraphrase a requirement when quoting or closely interpreting the solicitation would be safer.
+- When summarizing funder requirements, preserve the original meaning and point back to the relevant source document.
+- If a requirement is ambiguous, note the ambiguity and avoid overcommitting the proposal to an unverified interpretation.
+
+## Simulations and Figures Policy
+- Keep reusable code in `simulations/scripts/` and reusable parameters in `simulations/config/`.
+- Treat `simulations/results/`, `simulations/logs/`, `figures/drafts/`, and `figures/final/` as generated output areas.
+- Document enough context that a future contributor can understand what a simulation or figure was intended to support in the proposal.
+- Do not let exploratory outputs silently become proposal evidence without clear provenance and review.
 
 ## Documentation and Website Policy
-- Treat `docs/` as project-level documentation and website source.
-- Update docs whenever code, workflows, or outputs change.
-- Amend existing docs when possible; do not replace whole files without need.
-- Preserve navigation, readability, and consistency in website changes.
-- Keep default website behavior clean and minimal unless the user asks for more expressive design.
+- Treat `docs/` as the proposal website and process documentation.
+- Update the site when repository structure, workflow, or proposal framing materially changes.
+- Keep the website accurate, concise, and aligned with the actual state of the proposal workspace.
 
-## Testing Policy
-- Assume `tests/` may exist before a full testing framework is defined.
-- Do not invent domain-specific tests when expected behavior is unclear.
-- Add the smallest meaningful tests when behavior is known.
-- Prefer early-stage checks such as smoke tests, import tests, CLI tests, schema checks, or example-based checks.
-- If tests are deferred, document the gap; do not imply coverage that does not exist.
+## Review Policy
+- For reviews, prioritize compliance risks, unsupported claims, missing evidence, citation problems, and mismatches with NSF requirements.
+- Call out where text appears to answer the wrong question or misses the solicitation’s framing.
+- Distinguish clearly between confirmed issues and hypotheses that still require checking against funder documents.
 
-## Package and Structure Separation Policy
-- Keep website structure and package structure clearly separated.
-- Do not automatically repurpose `docs/` for package-native docs or build artifacts.
-- For Python packaging requests, prefer standard Python layout, typically `src/`.
-- For R packaging requests, follow standard R conventions (`R/`, `man/`, `DESCRIPTION`, `NAMESPACE`, optional `vignettes/`).
-- For other ecosystems, follow ecosystem conventions.
-- If structural conflicts arise, choose a durable long-term structure and document the decision.
-
-## Data Discovery and Data Use Policy
-- Prefer open and FAIR data when possible.
-- Prefer streaming or lazy-access workflows over bulk downloads when feasible.
-- Use standards-based discovery systems (for example STAC) when relevant.
-- When relevant, consider streaming-friendly tooling such as xarray, zarr, GDAL, rasterio, pystac-client, stackstac, gdalcubes, terra, stars, cubo, or equivalent tools.
-- When introducing data, document source, access method, format, license, and citation requirements.
-- Do not silently ingest external data into the project.
-
-## Data Sovereignty and Intellectual Property Policy
-- Consider licensing, copyright, privacy, Indigenous data sovereignty, and related restrictions for all data and content.
-- If rights or permissions are unclear, document uncertainty and avoid assuming open reuse.
-
-## Design and Usability Policy
-- Keep the website simple, readable, and easy to extend by default.
-- When design improvements are requested, prioritize system-level improvements (layout, spacing, typography, hierarchy, navigation, consistency).
-- Do not use scattered one-off styling hacks.
-- If direct site inspection is possible, verify readability, navigation, link integrity, and that docs still reflect repository state.
+## Data, Rights, and Research Integrity
+- Document data provenance, access constraints, licensing, and citation requirements for any dataset introduced into the proposal workflow.
+- Respect copyright, licensing, privacy, and Indigenous data sovereignty constraints.
+- Do not silently ingest external content into the repo.
 
 ## Decision Logging
-- Reflect meaningful structural, architectural, documentation, data-source, or design decisions in changelog, dev log, roadmap, or equivalent history files when appropriate.
+- Record meaningful structural, strategic, citation, and compliance decisions in repository documentation.
+- When in doubt, prefer leaving a short traceable note over relying on memory.

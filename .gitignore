@@ -49,6 +49,7 @@ rsconnect/
 
 # macOS
 .DS_Store
+.pytest_cache/
 
 # Proposal library and generated research assets
 citations/pdfs/*

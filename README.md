@@ -30,6 +30,18 @@ mkdocs serve
 
 Then open [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
+## Website checks
+
+The repository includes Playwright-based smoke tests for the built MkDocs site. These tests are intended to catch broken pages, failed asset loads, browser-side errors, and obvious navigation regressions before a pull request fails.
+
+```bash
+pip install -r requirements-dev.txt
+python -m playwright install chromium
+bash scripts/review_site.sh
+```
+
+The GitHub workflow runs these checks automatically when website-related files change. The deploy workflow also runs the same validation before publishing to GitHub Pages.
+
 ## Git behavior
 
 - `citations/pdfs/` is ignored so article libraries do not get committed.
