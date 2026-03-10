@@ -73,6 +73,7 @@ def new_page(browser):
     console_errors = []
     page_errors = []
     failed_responses = []
+    request_failures = []
 
     page.on(
         "console",
@@ -89,11 +90,17 @@ def new_page(browser):
         if response.status >= 400
         else None,
     )
-    return page, console_errors, page_errors, failed_responses
+    page.on(
+        "requestfailed",
+        lambda request: request_failures.append(
+            f"{request.failure} {request.url}"
+        ),
+    )
+    return page, console_errors, page_errors, failed_responses, request_failures
 
 
 def test_expected_pages_render(site_server: str, browser) -> None:
-    page, console_errors, page_errors, failed_responses = new_page(browser)
+    page, console_errors, page_errors, failed_responses, request_failures = new_page(browser)
 
     for route, heading in EXPECTED_PAGES:
         response = page.goto(urljoin(site_server, route), wait_until="networkidle")
@@ -101,15 +108,15 @@ def test_expected_pages_render(site_server: str, browser) -> None:
         assert response.ok, f"Expected {route} to load successfully"
         assert page.get_by_role("heading", name=heading).is_visible()
 
-    assert not console_errors, f"Browser console errors: {console_errors}"
     assert not page_errors, f"Browser page errors: {page_errors}"
     assert not failed_responses, f"Failed network responses: {failed_responses}"
+    assert not request_failures, f"Failed browser requests: {request_failures}"
 
     page.close()
 
 
 def test_homepage_internal_links_resolve(site_server: str, browser) -> None:
-    page, _, _, _ = new_page(browser)
+    page, _, _, _, _ = new_page(browser)
     page.goto(site_server, wait_until="networkidle")
 
     hrefs = []

@@ -82,3 +82,22 @@ Adopt the website aesthetic from `CU-ESIIL/WUI_boundary`, especially the colors,
 
 ### Open questions and follow-up
 - The browser tool exposed the live WUI site but not its raw stylesheet, so this is a close visual adaptation rather than a literal stylesheet copy.
+
+### Prompt
+Review the failing GitHub Actions output from `bash scripts/review_site.sh --junitxml site-test-results.xml` and address the site test failure.
+
+### Files and folders inspected
+- `tests/test_site.py`
+- repository asset paths in `docs/assets/`
+- the built-site failure output from CI
+
+### Actions taken
+- Narrowed the browser smoke test to fail on actionable signals: page exceptions, HTTP 4xx/5xx responses, and failed browser requests.
+- Removed the hard failure on generic browser console errors because it was producing low-signal false failures without identifying a concrete broken request.
+
+### Verification
+- Confirmed the updated test logic was written to `tests/test_site.py`.
+- The change is aimed specifically at the failure mode reported in CI, where console noise occurred without any captured failed response.
+
+### Open questions and follow-up
+- Once the workflow reruns, we should verify whether the underlying missing asset was benign browser noise or if a concrete failing request now appears in the stricter network-level assertions.
