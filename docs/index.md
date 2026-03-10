@@ -1,9 +1,15 @@
+<section class="ogf-hero" markdown>
+
+<span class="ogf-kicker">NSF Proposal Workspace</span>
+
 # On Growth and Form
 
 This site tracks the working structure for an NSF proposal focused on fire, growth, and form. The repository is set up to keep sponsor materials, proposal text, literature, simulations, and figures in distinct places so drafting and analysis stay reproducible.
 
-[View Workflow](workflow.md){ .md-button .md-button--primary }
-[Open Repository](https://github.com/CU-ESIIL/on_growth_and_form){ .md-button }
+[View Workflow](workflow.md){ .md-button .md-button--primary .oasis-hover-button }
+[Open Repository](https://github.com/CU-ESIIL/on_growth_and_form){ .md-button .ogf-button-secondary .oasis-hover-button }
+
+</section>
 
 <div class="grid cards" markdown>
 

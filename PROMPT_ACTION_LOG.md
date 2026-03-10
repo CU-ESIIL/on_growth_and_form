@@ -62,3 +62,23 @@ Point to `CU-ESIIL/WUI_boundary` as an example repository for website testing wo
 
 ### Open questions and follow-up
 - This repo still uses Python Playwright rather than the example repo's Node-based Playwright setup because local Node tooling is not currently installed here.
+
+### Prompt
+Adopt the website aesthetic from `CU-ESIIL/WUI_boundary`, especially the colors, animated buttons, and overall visual feel instead of the starter template look.
+
+### Files and folders inspected
+- `docs/stylesheets/extra.css`
+- `docs/index.md`
+- `mkdocs.yml`
+- the live `WUI_boundary` site for visual comparison
+
+### Actions taken
+- Added a custom Material palette to move the site away from the starter theme colors.
+- Reworked `docs/stylesheets/extra.css` with a darker field-inspired header, warm accent colors, animated button shimmer, elevated cards, and a more deliberate hero treatment.
+- Updated the homepage content structure to use a styled hero section and animated call-to-action buttons.
+
+### Verification
+- Confirmed the theme config, homepage markup, and stylesheet changes were written to the repository.
+
+### Open questions and follow-up
+- The browser tool exposed the live WUI site but not its raw stylesheet, so this is a close visual adaptation rather than a literal stylesheet copy.

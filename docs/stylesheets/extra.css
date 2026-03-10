@@ -1,41 +1,178 @@
-/* Central extension point for lightweight, reusable visual tweaks. */
-
 :root {
-  --oasis-accent: #135d7f;
+  --md-primary-fg-color: #21312a;
+  --md-primary-fg-color--light: #31483c;
+  --md-primary-fg-color--dark: #16211c;
+  --md-accent-fg-color: #d96c31;
+  --md-accent-fg-color--transparent: rgba(217, 108, 49, 0.14);
+  --ogf-ink: #1a241f;
+  --ogf-moss: #21312a;
+  --ogf-sand: #f4efe6;
+  --ogf-clay: #cf6532;
+  --ogf-gold: #e8ab4f;
+  --ogf-shadow: rgba(20, 28, 24, 0.16);
+  --ogf-shadow-strong: rgba(20, 28, 24, 0.24);
 }
 
-/* Keep homepage hero content a bit more breathable. */
+body {
+  background:
+    radial-gradient(circle at top right, rgba(232, 171, 79, 0.12), transparent 24rem),
+    linear-gradient(180deg, #fbf7f0 0%, #f7f1e7 100%);
+}
+
+.md-header {
+  background:
+    linear-gradient(90deg, rgba(33, 49, 42, 0.98), rgba(27, 41, 35, 0.94));
+  box-shadow: 0 0.5rem 1.4rem rgba(20, 28, 24, 0.18);
+}
+
+.md-tabs {
+  background-color: rgba(22, 33, 28, 0.92);
+}
+
+.md-main__inner {
+  margin-top: 1.2rem;
+}
+
 .md-content h1 {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.65rem;
+  color: var(--ogf-ink);
+  letter-spacing: -0.02em;
 }
 
 .md-content > p:first-of-type {
-  font-size: 1.05rem;
+  font-size: 1.08rem;
   max-width: 68ch;
+  color: rgba(26, 36, 31, 0.88);
 }
 
-/* Subtle polish for Material buttons used across docs. */
+.ogf-hero {
+  position: relative;
+  overflow: hidden;
+  margin: 0 0 1.5rem;
+  padding: 2rem 2rem 1.75rem;
+  border: 1px solid rgba(33, 49, 42, 0.08);
+  border-radius: 1.35rem;
+  background:
+    radial-gradient(circle at 85% 20%, rgba(232, 171, 79, 0.18), transparent 16rem),
+    linear-gradient(135deg, rgba(33, 49, 42, 0.98), rgba(52, 74, 63, 0.94));
+  color: #f8f2e9;
+  box-shadow: 0 1.2rem 2.6rem var(--ogf-shadow);
+}
+
+.ogf-hero::after {
+  content: "";
+  position: absolute;
+  inset: auto -10% -35% auto;
+  width: 16rem;
+  height: 16rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(217, 108, 49, 0.24), transparent 70%);
+  pointer-events: none;
+}
+
+.ogf-kicker {
+  display: inline-block;
+  margin-bottom: 0.65rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(232, 171, 79, 0.16);
+  color: #f2c46e;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ogf-hero h1,
+.ogf-hero p {
+  color: #f8f2e9;
+}
+
+.ogf-hero p {
+  max-width: 42rem;
+}
+
 .md-button {
   border-radius: 999px;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    background-color 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.md-button--primary,
+.ogf-button {
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--ogf-clay), #e0843f);
+  box-shadow: 0 0.85rem 1.8rem rgba(217, 108, 49, 0.28);
+}
+
+.md-button--primary:hover,
+.ogf-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 1.1rem 2rem rgba(217, 108, 49, 0.34);
+}
+
+.ogf-button-secondary {
+  border-color: rgba(248, 242, 233, 0.28);
+  color: #f8f2e9 !important;
+  background: rgba(248, 242, 233, 0.06);
 }
 
 .oasis-hover-button {
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.oasis-hover-button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 0.3rem 0.9rem rgba(19, 93, 127, 0.22);
+.oasis-hover-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.28) 48%,
+    transparent 76%
+  );
+  transform: translateX(-140%);
+  transition: transform 0.55s ease;
 }
 
-/* Reusable responsive embed wrapper for iframes and maps. */
+.oasis-hover-button:hover::after {
+  transform: translateX(140%);
+}
+
+.grid.cards > ul > li {
+  border-radius: 1rem;
+  border: 1px solid rgba(33, 49, 42, 0.08);
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0.75rem 1.6rem var(--ogf-shadow);
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.grid.cards > ul > li:hover {
+  transform: translateY(-4px);
+  border-color: rgba(217, 108, 49, 0.24);
+  box-shadow: 0 1rem 2rem var(--ogf-shadow-strong);
+}
+
+.md-typeset .admonition.note,
+.md-typeset details.note {
+  border-color: rgba(217, 108, 49, 0.26);
+  background: rgba(255, 249, 241, 0.92);
+}
+
 .oasis-embed {
   position: relative;
   width: 100%;
   padding-top: 56.25%;
   border-radius: 0.5rem;
   overflow: hidden;
-  box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.12);
+  box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.12);
 }
 
 .oasis-embed iframe {
@@ -44,4 +181,10 @@
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+@media screen and (max-width: 76.2344em) {
+  .ogf-hero {
+    padding: 1.6rem 1.25rem 1.4rem;
+  }
 }
