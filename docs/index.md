@@ -1,31 +1,31 @@
-# basic_OASIS
+# On Growth and Form
 
-`basic_OASIS` is a lightweight MkDocs + Material starter for clear project documentation. It is designed to stay minimal, readable, and easy to extend.
+This site tracks the working structure for an NSF proposal focused on fire, growth, and form. The repository is set up to keep sponsor materials, proposal text, literature, simulations, and figures in distinct places so drafting and analysis stay reproducible.
 
-[Explore Examples](examples.md){ .md-button .md-button--primary }
-[View Repository](https://github.com/CU-ESIIL/basic_OASIS){ .md-button }
+[View Workflow](workflow.md){ .md-button .md-button--primary }
+[Open Repository](https://github.com/CU-ESIIL/on_growth_and_form){ .md-button }
 
 <div class="grid cards" markdown>
 
-- **Code**
+- **Funder Materials**
 
   ---
 
-  Capture setup steps, scripts, and reproducible snippets in one place.
+  Keep solicitations, templates, and review guidance in `funder/`.
 
-- **Data**
-
-  ---
-
-  Document data access, formats, and provenance so work stays transparent.
-
-- **Docs**
+- **Literature**
 
   ---
 
-  Write concise guides that future contributors can quickly understand.
+  Store citation notes in Git and keep article PDFs local under `citations/pdfs/`.
+
+- **Analysis**
+
+  ---
+
+  Separate simulation code, configs, and outputs so figures can be regenerated cleanly.
 
 </div>
 
-!!! note "Template-first by design"
-    This site is intentionally minimal. Start simple, then extend only what your project needs.
+!!! note "Proposal-first organization"
+    The repository favors tracked source material and reproducible scripts, while heavy PDFs and generated outputs stay out of Git by default.

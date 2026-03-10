@@ -1,15 +1,15 @@
-site_name: "basic_OASIS"
-site_description: "Minimal project website"
-site_url: "https://cu-esiil.github.io/basic_OASIS/"
+site_name: "On Growth and Form"
+site_description: "NSF proposal workspace for fire, growth, and form"
+site_url: "https://cu-esiil.github.io/on_growth_and_form/"
 
-repo_name: "CU-ESIIL/basic_OASIS"
-repo_url: "https://github.com/CU-ESIIL/basic_OASIS"
+repo_name: "CU-ESIIL/on_growth_and_form"
+repo_url: "https://github.com/CU-ESIIL/on_growth_and_form"
 edit_uri: "edit/main/docs/"
 
 nav:
-  - Site:
-      - Home: index.md
-      - Examples: examples.md
+  - Home: index.md
+  - Proposal Workflow: workflow.md
+  - Repository Map: repository-map.md
 
 theme:
   name: material
