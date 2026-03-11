@@ -143,3 +143,24 @@ Add the collected FIRE-MODEL solicitation information to the repository and webs
 
 ### Open questions and follow-up
 - The repository still needs the official solicitation PDF or full text captured under `funder/` so the working summary can be cross-checked line by line.
+
+### Prompt
+Add the new FIRE-MODEL background/context material to the repo, and create a dedicated folder for background and contextualization separate from funder-provided information.
+
+### Files and folders inspected
+- repository directory structure
+- `docs/repository-map.md`
+- `funder/solicitation/fire_model_2026_briefing.md`
+
+### Actions taken
+- Created `background_context/` with a `program_briefings/` subfolder for interpretive program notes.
+- Added `background_context/program_briefings/fire_model_2026_background.md` as a contextual framing document.
+- Added `docs/background-context.md` and updated site navigation and homepage links.
+- Updated `README.md`, `docs/workflow.md`, `docs/repository-map.md`, and `AGENTS.md` to distinguish sponsor-controlled material from background/context synthesis.
+
+### Verification
+- Confirmed the new folder, contextual briefing, and website page were written into the repository.
+- Confirmed the repository docs now distinguish `funder/` from `background_context/`.
+
+### Open questions and follow-up
+- As more contextual notes accumulate, we may want additional subfolders inside `background_context/` such as `landscape_reviews/`, `positioning_notes/`, or `concept_memos/`.

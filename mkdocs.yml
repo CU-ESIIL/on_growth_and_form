@@ -9,6 +9,7 @@ edit_uri: "edit/main/docs/"
 nav:
   - Home: index.md
   - FIRE-MODEL Briefing: fire-model-briefing.md
+  - Background and Context: background-context.md
   - Requirements Checklist: requirements-checklist.md
   - Proposal Workflow: workflow.md
   - Repository Map: repository-map.md

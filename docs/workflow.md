@@ -16,6 +16,11 @@
 - `templates/`: sponsor-provided templates and formatting examples.
 - `review_criteria/`: merit review guidance and checklist material.
 
+### `background_context/`
+
+- `program_briefings/`: contextual summaries and strategic framing notes derived from official materials.
+- Keep this separate from `funder/` so official sponsor text and working interpretation never get mixed together.
+
 ### `proposal/`
 
 - `narrative/`: project summary, project description, and section drafts.
@@ -52,4 +57,5 @@ Keep text, scripts, parameter files, and notes in version control. Avoid committ
 ## FIRE-MODEL-specific reminder
 
 - Treat `funder/solicitation/fire_model_2026_briefing.md` as a working summary, not a substitute for the official NSF call.
+- Treat `background_context/` as the place for contextualization and positioning notes that help shape the proposal argument.
 - Check submission dates, track definitions, page and formatting rules, and required documents against the authoritative NSF materials before final drafting.

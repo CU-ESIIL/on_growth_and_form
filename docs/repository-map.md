@@ -4,6 +4,8 @@ The current repository structure is organized around proposal development and su
 
 ```text
 on_growth_and_form/
+├── background_context/
+│   └── program_briefings/
 ├── citations/
 │   ├── exports/
 │   ├── notes/
@@ -35,5 +37,6 @@ on_growth_and_form/
 ## Notes
 
 - The website under `docs/` documents the proposal process rather than serving as a generic project template.
+- `funder/` is for sponsor-provided and solicitation-adjacent material; `background_context/` is for our own synthesis and contextual framing.
 - Ignored folders are still useful locally; they are intentionally present so the working layout is clear from the start.
 - If some generated figures or outputs need to be preserved in Git later, the ignore rules can be narrowed to specific file types or subfolders.

@@ -56,6 +56,7 @@
 
 ## Funder Documents Policy
 - Store sponsor-provided PDFs, templates, review criteria, and guidance in `funder/`.
+- Store interpretive summaries, contextualization notes, proposal positioning, and working background briefs in `background_context/`, not in `funder/`.
 - Do not paraphrase a requirement when quoting or closely interpreting the solicitation would be safer.
 - When summarizing funder requirements, preserve the original meaning and point back to the relevant source document.
 - If a requirement is ambiguous, note the ambiguity and avoid overcommitting the proposal to an unverified interpretation.

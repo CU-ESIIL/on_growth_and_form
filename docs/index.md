@@ -7,6 +7,7 @@
 This site tracks the working structure for an NSF proposal focused on fire, growth, and form. The repository is set up to keep sponsor materials, proposal text, literature, simulations, and figures in distinct places so drafting and analysis stay reproducible.
 
 [Review FIRE-MODEL Briefing](fire-model-briefing.md){ .md-button .md-button--primary .oasis-hover-button }
+[Background and Context](background-context.md){ .md-button .ogf-button-secondary .oasis-hover-button }
 [Check Required Components](requirements-checklist.md){ .md-button .ogf-button-secondary .oasis-hover-button }
 [Open Repository](https://github.com/CU-ESIIL/on_growth_and_form){ .md-button .ogf-button-secondary .oasis-hover-button }
 
@@ -37,6 +38,12 @@ This site tracks the working structure for an NSF proposal focused on fire, grow
   ---
 
   Track the proposal window, program goals, required sections, and source documents for this cycle.
+
+- **Background Framing**
+
+  ---
+
+  Separate sponsor-controlled guidance from our own contextualization, positioning, and strategic synthesis.
 
 </div>
 

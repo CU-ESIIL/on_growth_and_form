@@ -5,6 +5,7 @@ This repository is organized as a working space for an NSF FIRE-MODEL proposal o
 ## Repository layout
 
 - `funder/`: solicitation PDFs, templates, review criteria, and other sponsor-provided material.
+- `background_context/`: working interpretation, contextualization, and program-briefing material derived from source documents.
 - `proposal/`: proposal narrative and supporting components such as budget text, biosketches, and plans.
 - `citations/`: tracked citation notes and exports, plus a local `pdfs/` folder for article PDFs that is ignored by Git.
 - `simulations/`: scripts, configs, and generated model outputs for analysis supporting the proposal.
@@ -25,6 +26,7 @@ The repository is currently oriented around the 2026 NSF FIRE-MODEL cycle descri
 
 - `funder/solicitation/fire_model_2026_briefing.md`
 - `funder/review_criteria/fire_model_requirements_checklist.md`
+- `background_context/program_briefings/fire_model_2026_background.md`
 
 These are working summaries built from collected program information and should be checked against the official NSF solicitation, updates page, and webinar materials before final submission drafting.
 
