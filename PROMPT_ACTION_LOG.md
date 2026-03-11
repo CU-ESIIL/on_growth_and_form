@@ -164,3 +164,21 @@ Add the new FIRE-MODEL background/context material to the repo, and create a ded
 
 ### Open questions and follow-up
 - As more contextual notes accumulate, we may want additional subfolders inside `background_context/` such as `landscape_reviews/`, `positioning_notes/`, or `concept_memos/`.
+
+### Prompt
+The white buttons on the homepage animate but do not open their linked pages.
+
+### Files and folders inspected
+- `docs/stylesheets/extra.css`
+- `docs/index.md`
+
+### Actions taken
+- Fixed the animated shimmer overlay on homepage buttons so it no longer intercepts clicks.
+- Left the animation in place while restoring normal anchor behavior.
+
+### Verification
+- Confirmed the homepage buttons are still normal Markdown links in `docs/index.md`.
+- Confirmed `.oasis-hover-button::after` now uses `pointer-events: none`.
+
+### Open questions and follow-up
+- The next site build should restore click-through behavior for the hero buttons without changing their appearance.
