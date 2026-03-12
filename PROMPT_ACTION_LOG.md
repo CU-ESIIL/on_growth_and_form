@@ -1,5 +1,30 @@
 # Prompt Action Log
 
+## 2026-03-12
+
+### Prompt
+Rework the documentation website so it uses the existing long-form markdown documents directly as rendered pages, avoids replacing them with thin summaries, and keeps the homepage and section pages narrative and proposal-oriented.
+
+### Files and folders inspected
+- `mkdocs.yml`
+- `docs/`
+- `background_context/`
+- `citations/notes/wildfire_scaling_bibliography.md`
+- `citations/exports/wildfire_scaling_bibliography.bib`
+
+### Actions taken
+- Confirmed that the major theory, systems, and research-program pages in `docs/` now mirror the full long-form documents from `background_context/` instead of short summary substitutes.
+- Kept the section landing pages lightweight and oriented them toward navigation rather than content replacement.
+- Strengthened `docs/index.md` so the homepage more clearly explains the project's scientific motivation, the role of *On Growth and Form*, and how `FIRED` plus `CubeDynamics` support the work.
+- Expanded `docs/literature/index.md` and `docs/literature/bibliography.md` so the literature section points readers to the real in-repo bibliography workflow rather than reading like a placeholder.
+
+### Verification
+- Confirmed the long-form docs are directly included in `mkdocs.yml` navigation.
+- Confirmed the theory, data/infrastructure, and research-program pages in `docs/` match the full-length source documents where those source documents exist.
+
+### Open questions and follow-up
+- A full MkDocs and Playwright review should still be run in an environment with the site dependencies installed to verify rendering and link integrity after the structural changes.
+
 ## 2026-03-10
 
 ### Prompt

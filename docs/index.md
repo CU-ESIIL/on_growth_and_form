@@ -46,9 +46,17 @@ This site documents a developing NSF wildfire-scaling research concept centered 
 
 The project asks whether wildfire growth can be understood as an emergent geometric process, with rough expanding fronts, fractal perimeter structure, and regime-specific scaling behavior. If those patterns are real, they would help connect wildfire science to broader theories of interface growth, percolation, and complex systems.
 
+## Why "On Growth and Form"
+
+The site takes its title from D'Arcy Wentworth Thompson's *On Growth and Form*, not as a historical ornament but as an intellectual starting point. Thompson argued that living form cannot be explained only by history or adaptation; it must also be understood through geometry, mechanics, and the constraints imposed by physical processes. This project extends that sensibility into wildfire science by asking whether fire growth also exhibits lawful large-scale form.
+
 ## Why this matters
 
 Wildfire science already has strong traditions in fire behavior physics and fire regime statistics. What remains less developed is the intermediate scale: how individual fires grow through space and time as geometric objects. Daily fire perimeters derived from satellite observations now make that question tractable.
+
+## How FIRED and CubeDynamics support the work
+
+`FIRED` reconstructs coherent wildfire events from burned-area observations, turning pixels into time-resolved fire histories. `CubeDynamics` provides the computational language for aligning those event histories with weather, vegetation, climate, and landscape data in a shared spatiotemporal analysis framework. Together they make it possible to study wildfire growth as a measurable Earth system process rather than as an after-the-fact burn scar.
 
 ## How the site is organized
 
