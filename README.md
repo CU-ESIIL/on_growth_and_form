@@ -43,6 +43,7 @@ The repository is currently oriented around the 2026 NSF FIRE-MODEL cycle descri
 - `background_context/systems_frameworks/environmental_data_science_stack_2030.md`
 - `background_context/systems_frameworks/fired_cubedynamics_event_based_earth_system_analysis.md`
 - `background_context/research_programs/wildfire_scaling_research_program_work_plan.md`
+- `background_context/research_programs/wildfire_scaling_rationale_deliverables_users_impact.md`
 
 The `funder/` files are the working home for funder-oriented material and requirement tracking. The `background_context/` files are interpretive notes used to frame the proposal scientifically.
 

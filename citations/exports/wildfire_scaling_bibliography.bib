@@ -1,0 +1,407 @@
+% ==================================================
+% WILDFIRE SCALING BIBLIOGRAPHY
+% Curated for the wildfire scaling proposal
+% Imported from a user-provided working list on 2026-03-11.
+% Verification against original sources is still pending unless noted elsewhere.
+% ==================================================
+
+% ==================================================
+% FIRE SPREAD PHYSICS AND MODELING
+% ==================================================
+
+@article{rothermel1972,
+title={A mathematical model for predicting fire spread in wildland fuels},
+author={Rothermel, Richard C.},
+journal={USDA Forest Service Research Paper INT-115},
+year={1972},
+url={https://www.fs.usda.gov/rm/pubs_int/int_rp115.pdf},
+note={Foundational wildfire spread model providing the rate-of-spread equations used in most operational fire simulators.}
+}
+
+@techreport{albini1976spotting,
+title={Estimating wildfire behavior and effects},
+author={Albini, Frank A.},
+institution={USDA Forest Service},
+year={1976},
+number={INT-30},
+url={https://www.fs.usda.gov/rm/pubs_int/int_gtr030.pdf},
+note={Classic report describing spotting and ember transport. Spotting is a candidate mechanism for super-diffusive wildfire spread.}
+}
+
+@article{finney1998,
+title={FARSITE: Fire Area Simulator---model development and evaluation},
+author={Finney, Mark A.},
+journal={USDA Forest Service Research Paper RMRS-RP-4},
+year={1998},
+url={https://www.fs.usda.gov/rm/pubs/rmrs_rp004.pdf},
+note={Introduces FARSITE, a widely used operational fire simulator that propagates fire perimeters using Rothermel spread rates.}
+}
+
+@article{sullivan2009review,
+title={Wildland surface fire spread modelling, 1990--2007: 1. Physical and quasi-physical models},
+author={Sullivan, Andrew L.},
+journal={International Journal of Wildland Fire},
+year={2009},
+volume={18},
+pages={349--368},
+doi={10.1071/WF06143},
+url={https://doi.org/10.1071/WF06143},
+note={Comprehensive review of wildfire spread models, providing context for evaluating scaling approaches alongside existing fire behavior models.}
+}
+
+@article{mell2007wfds,
+title={Numerical simulation of wildland fire behavior with the Wildland--Urban Interface Fire Dynamics Simulator (WFDS)},
+author={Mell, William and Jenkins, Michael and Gould, Jeff and Cheney, Phil},
+journal={International Journal of Wildland Fire},
+year={2007},
+volume={16},
+pages={179--197},
+doi={10.1071/WF06037},
+url={https://doi.org/10.1071/WF06037},
+note={Physics-based wildfire model coupling combustion and fluid dynamics. Useful for evaluating whether detailed fire models reproduce scaling geometry.}
+}
+
+@article{coen2013wrffire,
+title={WRF-Fire: Coupled weather--wildland fire modeling with the Weather Research and Forecasting model},
+author={Coen, Janice L. and Schroeder, Wilfrid},
+journal={Journal of Applied Meteorology and Climatology},
+year={2013},
+volume={52},
+pages={16--38},
+doi={10.1175/JAMC-D-12-023.1},
+url={https://doi.org/10.1175/JAMC-D-12-023.1},
+note={Describes the WRF-Fire coupled atmosphere--fire model used for high-resolution fire behavior simulations.}
+}
+
+@article{linn2002firetec,
+title={Studying wildfire behavior using FIRETEC},
+author={Linn, Rodman and Reisner, Jon and Colman, John and Winterkamp, Jodi},
+journal={International Journal of Wildland Fire},
+year={2002},
+volume={11},
+pages={233--246},
+doi={10.1071/WF02007},
+url={https://doi.org/10.1071/WF02007},
+note={Introduces FIRETEC, a physics-based wildfire simulator resolving combustion and atmospheric dynamics.}
+}
+
+% ==================================================
+% FIRE DATASETS AND SATELLITE OBSERVATION
+% ==================================================
+
+@article{giglio2018modis,
+title={Collection 6 MODIS burned area product (MCD64A1) burned area mapping algorithm and product description},
+author={Giglio, Louis and Boschetti, Luigi and Roy, David and Humber, Marie-Louise and Justice, Christopher},
+journal={Remote Sensing of Environment},
+year={2018},
+volume={217},
+pages={72--85},
+doi={10.1016/j.rse.2018.08.005},
+url={https://doi.org/10.1016/j.rse.2018.08.005},
+note={Describes the MODIS burned-area product used widely in global fire analysis.}
+}
+
+@article{schroeder2014viirs,
+title={The VIIRS active fire detection data product: Algorithm description and initial assessment},
+author={Schroeder, Wilfrid and Oliva, Paulo and Giglio, Louis and Csiszar, Ivan},
+journal={Remote Sensing of Environment},
+year={2014},
+volume={143},
+pages={85--96},
+doi={10.1016/j.rse.2013.12.008},
+url={https://doi.org/10.1016/j.rse.2013.12.008},
+note={Describes the VIIRS satellite fire detection product used for high-resolution fire monitoring.}
+}
+
+@article{chuvieco2018firecci,
+title={Generation and analysis of a new global burned area product based on MODIS 250 m reflectance bands and thermal anomalies},
+author={Chuvieco, Emilio and Pettinari, Maria Luisa and Lizundia-Loiola, Javier and others},
+journal={Earth System Science Data},
+year={2018},
+volume={10},
+pages={2015--2031},
+doi={10.5194/essd-10-2015-2018},
+url={https://doi.org/10.5194/essd-10-2015-2018},
+note={Describes the ESA FireCCI burned-area dataset used in global fire regime analysis.}
+}
+
+@article{eidenshink2007mtbs,
+title={A project for monitoring trends in burn severity},
+author={Eidenshink, Jeff and Schwind, Brian and Brewer, Ken and Zhu, Zhi-Liang and Quayle, Brad and Howard, Sharon},
+journal={Fire Ecology},
+year={2007},
+volume={3},
+pages={3--21},
+doi={10.4996/fireecology.0301003},
+url={https://doi.org/10.4996/fireecology.0301003},
+note={Describes the Monitoring Trends in Burn Severity (MTBS) dataset used widely in U.S. wildfire research.}
+}
+
+@article{andela2019fireatlas,
+title={The Global Fire Atlas of individual fire size, duration, speed and direction},
+author={Andela, Niels and Morton, Douglas C. and Giglio, Louis and others},
+journal={Earth System Science Data},
+year={2019},
+volume={11},
+pages={529--552},
+doi={10.5194/essd-11-529-2019},
+url={https://doi.org/10.5194/essd-11-529-2019},
+note={Global dataset reconstructing fire progression trajectories from satellite observations.}
+}
+
+@article{stdenis2021fired,
+title={FIREDpy: An open-source algorithm for reconstructing wildfire events from satellite burned-area products},
+author={St Denis, Laura and others},
+journal={Scientific Data},
+year={2021},
+volume={8},
+doi={10.1038/s41597-021-00954-4},
+url={https://doi.org/10.1038/s41597-021-00954-4},
+note={Introduces the FIRED algorithm and dataset used to reconstruct fire event trajectories from satellite observations.}
+}
+
+@misc{cubedynamics,
+title={CubeDynamics: A grammar of cubes for spatiotemporal environmental data},
+author={Environmental Data Science Innovation & Impact Lab (ESIIL)},
+year={2023},
+url={https://github.com/cu-esiil/cubedynamics},
+note={Computational framework for analyzing environmental data as spatiotemporal cubes.}
+}
+
+% ==================================================
+% FIRE REGIME SCALING AND STATISTICAL ANALYSIS
+% ==================================================
+
+@article{malamud1998,
+title={Forest fires: an example of self-organized critical behavior},
+author={Malamud, Bruce D. and Morein, Gila and Turcotte, Donald L.},
+journal={Science},
+year={1998},
+volume={281},
+pages={1840--1842},
+doi={10.1126/science.281.5384.1840},
+url={https://doi.org/10.1126/science.281.5384.1840},
+note={Seminal paper demonstrating power-law distributions in wildfire sizes.}
+}
+
+@article{pueyo2010soc,
+title={Self-organised criticality and the response of wildland fires to climate change},
+author={Pueyo, Salvador},
+journal={Climatic Change},
+year={2010},
+volume={102},
+pages={131--161},
+doi={10.1007/s10584-009-9748-2},
+url={https://doi.org/10.1007/s10584-009-9748-2},
+note={Explores wildfire regimes as systems exhibiting self-organized criticality.}
+}
+
+@article{telesca2005fires,
+title={Power-law behaviour in forest-fire sequences},
+author={Telesca, Luciano and Lasaponara, Rosa and Lovallo, Michele},
+journal={Ecological Modelling},
+year={2005},
+volume={185},
+pages={531--544},
+doi={10.1016/j.ecolmodel.2005.01.019},
+url={https://doi.org/10.1016/j.ecolmodel.2005.01.019},
+note={Demonstrates power-law behavior in wildfire occurrence sequences.}
+}
+
+@article{clauset2009powerlaw,
+title={Power-law distributions in empirical data},
+author={Clauset, Aaron and Shalizi, Cosma Rohilla and Newman, Mark EJ},
+journal={SIAM Review},
+year={2009},
+volume={51},
+pages={661--703},
+doi={10.1137/070710111},
+url={https://doi.org/10.1137/070710111},
+note={Standard statistical methodology for identifying power-law distributions in empirical datasets.}
+}
+
+% ==================================================
+% FRACTAL GEOMETRY AND SPATIAL PATTERN ANALYSIS
+% ==================================================
+
+@article{mandelbrot1967coast,
+title={How long is the coast of Britain? Statistical self-similarity and fractional dimension},
+author={Mandelbrot, Benoit B.},
+journal={Science},
+year={1967},
+volume={156},
+pages={636--638},
+doi={10.1126/science.156.3775.636},
+url={https://doi.org/10.1126/science.156.3775.636},
+note={Introduces fractal dimension using coastline geometry.}
+}
+
+@book{mandelbrot1982fractal,
+title={The Fractal Geometry of Nature},
+author={Mandelbrot, Benoit B.},
+publisher={W. H. Freeman},
+year={1982},
+isbn={9780716711865},
+url={https://books.google.com/books?id=0R2LkE3N7-oC},
+note={Foundational text on fractal geometry of natural forms.}
+}
+
+@article{ricotta1999fractal,
+title={Fractal analysis of wildfire patterns},
+author={Ricotta, Carlo and Avena, Giancarlo and Marchetti, Mauro},
+journal={Ecological Modelling},
+year={1999},
+volume={119},
+pages={73--77},
+doi={10.1016/S0304-3800(99)00057-7},
+url={https://doi.org/10.1016/S0304-3800(99)00057-7},
+note={Early application of fractal geometry to wildfire spatial patterns.}
+}
+
+@article{plotnick1996lacunarity,
+title={Lacunarity analysis: A general technique for the analysis of spatial patterns},
+author={Plotnick, Roy E. and Gardner, Robert H. and Hargrove, William W. and Prestegaard, Karen and Perlmutter, Mark},
+journal={Physical Review E},
+year={1996},
+volume={53},
+pages={5461--5468},
+doi={10.1103/PhysRevE.53.5461},
+url={https://doi.org/10.1103/PhysRevE.53.5461},
+note={Introduces lacunarity as a measure of spatial heterogeneity.}
+}
+
+@book{turcotte1997fractals,
+title={Fractals and Chaos in Geology and Geophysics},
+author={Turcotte, Donald L.},
+publisher={Cambridge University Press},
+year={1997},
+doi={10.1017/CBO9780511629518},
+url={https://doi.org/10.1017/CBO9780511629518},
+note={Demonstrates scaling and fractal structure in geophysical processes.}
+}
+
+% ==================================================
+% INTERFACE GROWTH AND STATISTICAL PHYSICS
+% ==================================================
+
+@article{kardar1986kpz,
+title={Dynamic scaling of growing interfaces},
+author={Kardar, Mehran and Parisi, Giorgio and Zhang, Yi-Cheng},
+journal={Physical Review Letters},
+year={1986},
+volume={56},
+pages={889--892},
+doi={10.1103/PhysRevLett.56.889},
+url={https://doi.org/10.1103/PhysRevLett.56.889},
+note={Introduces the KPZ equation describing rough interface growth.}
+}
+
+@article{family1985scaling,
+title={Scaling of rough surfaces: effects of surface diffusion},
+author={Family, Fereydoon and Vicsek, Tamas},
+journal={Journal of Physics A},
+year={1985},
+volume={18},
+pages={L75--L81},
+doi={10.1088/0305-4470/18/2/005},
+url={https://doi.org/10.1088/0305-4470/18/2/005},
+note={Introduces scaling collapse methods for growing interfaces.}
+}
+
+@book{barabasi1995surface,
+title={Fractal Concepts in Surface Growth},
+author={Barabasi, Albert-Laszlo and Stanley, H. Eugene},
+publisher={Cambridge University Press},
+year={1995},
+doi={10.1017/CBO9780511599798},
+url={https://doi.org/10.1017/CBO9780511599798},
+note={Classic text on rough interface growth and scaling laws.}
+}
+
+@book{meakin1998fractals,
+title={Fractals, Scaling and Growth Far from Equilibrium},
+author={Meakin, Paul},
+publisher={Cambridge University Press},
+year={1998},
+isbn={9780521452533},
+url={https://archive.org/details/fractalsscalingg0000meak},
+note={Comprehensive treatment of fractal growth processes far from equilibrium.}
+}
+
+% ==================================================
+% COMPLEX SYSTEMS AND SCALING THEORY
+% ==================================================
+
+@article{west1997scaling,
+title={A general model for the origin of allometric scaling laws in biology},
+author={West, Geoffrey B. and Brown, James H. and Enquist, Brian J.},
+journal={Science},
+year={1997},
+volume={276},
+pages={122--126},
+doi={10.1126/science.276.5309.122},
+url={https://doi.org/10.1126/science.276.5309.122},
+note={Seminal work on universal scaling laws in biological systems.}
+}
+
+@article{kolmogorov1941,
+title={The local structure of turbulence in incompressible viscous fluid for very large Reynolds numbers},
+author={Kolmogorov, Andrey N.},
+journal={Doklady Akademii Nauk SSSR},
+year={1941},
+volume={30},
+pages={301--305},
+url={https://ui.adsabs.harvard.edu/abs/1941DoSSR..30..301K/abstract},
+note={Foundational turbulence scaling theory introducing cascade scaling laws.}
+}
+
+@book{sethna2006statistical,
+title={Statistical Mechanics: Entropy, Order Parameters, and Complexity},
+author={Sethna, James P.},
+publisher={Oxford University Press},
+year={2006},
+doi={10.1093/acprof:oso/9780198566773.001.0001},
+url={https://doi.org/10.1093/acprof:oso/9780198566773.001.0001},
+note={Reference text explaining scaling laws and critical phenomena.}
+}
+
+% ==================================================
+% LANDSCAPE ECOLOGY AND DISTURBANCE DYNAMICS
+% ==================================================
+
+@article{turner1989disturbance,
+title={The effect of pattern on process: landscape ecology and disturbance dynamics},
+author={Turner, Monica G.},
+journal={Annual Review of Ecology and Systematics},
+year={1989},
+volume={20},
+pages={171--197},
+doi={10.1146/annurev.es.20.110189.001131},
+url={https://doi.org/10.1146/annurev.es.20.110189.001131},
+note={Foundational landscape ecology paper describing how spatial structure influences disturbance propagation.}
+}
+
+@article{peters2004crossscale,
+title={Cross-scale interactions, nonlinearities, and forecasting catastrophic events},
+author={Peters, Debra PC and others},
+journal={Proceedings of the National Academy of Sciences},
+year={2004},
+volume={101},
+pages={15130--15135},
+doi={10.1073/pnas.0403822101},
+url={https://doi.org/10.1073/pnas.0403822101},
+note={Discusses cross-scale ecological interactions driving large disturbance events.}
+}
+
+% ==================================================
+% HISTORICAL FOUNDATIONS OF NATURAL FORM
+% ==================================================
+
+@book{thompson1917growth,
+title={On Growth and Form},
+author={Thompson, D'Arcy Wentworth},
+publisher={Cambridge University Press},
+year={1917},
+url={https://archive.org/details/ongrowthform00thom},
+note={Classic work arguing that natural forms emerge from physical and mathematical constraints.}
+}

@@ -6,7 +6,7 @@ The current repository structure is organized around proposal development and su
 on_growth_and_form/
 ├── background_context/
 │   ├── intellectual_foundations/
-│   └── program_briefings/
+│   ├── program_briefings/
 │   ├── research_programs/
 │   ├── scaling_and_geometry/
 │   └── systems_frameworks/
@@ -15,6 +15,15 @@ on_growth_and_form/
 │   ├── notes/
 │   └── pdfs/               # gitignored local library
 ├── docs/
+│   ├── data-infrastructure/
+│   ├── literature/
+│   ├── methods/
+│   ├── models/
+│   ├── project-overview/
+│   ├── research-program/
+│   ├── theory/
+│   ├── assets/
+│   └── stylesheets/
 ├── figures/
 │   ├── drafts/             # gitignored generated figures
 │   ├── final/              # gitignored generated figures
@@ -40,7 +49,7 @@ on_growth_and_form/
 
 ## Notes
 
-- The website under `docs/` documents the proposal process rather than serving as a generic project template.
+- The website under `docs/` is now organized around the project narrative: overview, theory, data, methods, models, research program, and literature.
 - `funder/` is for the call, requirement tracking, and funder-oriented guides.
 - `background_context/` is grouped into program context, intellectual foundations, scaling/geometry, systems frameworks, and research-program notes.
 - Ignored folders are still useful locally; they are intentionally present so the working layout is clear from the start.

@@ -1,4 +1,4 @@
-# Fire Modeling and Scaling
+# Fire Modeling Frameworks
 
 This page summarizes how major wildfire modeling frameworks look when viewed through a scaling and interface-growth lens.
 

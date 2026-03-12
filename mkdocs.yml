@@ -8,28 +8,52 @@ edit_uri: "edit/main/docs/"
 
 nav:
   - Home: index.md
-  - Funder Materials:
-      - Overview: funder-materials.md
-      - FIRE-MODEL Briefing: fire-model-briefing.md
-      - Requirements Checklist: requirements-checklist.md
-  - Background and Context:
-      - Overview: background-context.md
-      - Program Context: program-context.md
-      - Intellectual Foundations:
-          - On Growth and Form Overview: on-growth-and-form-overview.md
-      - Scaling and Geometry:
-          - Diffusion and 1/2 Scaling: diffusion-half-scaling.md
-          - Non-1/2 Scaling Signatures: non-half-scaling-signatures.md
-          - Wildfire Scaling and Dimensionality: wildfire-scaling-dimensionality.md
-          - Superdiffusive Wildfire Perimeters: superdiffusive-wildfire-perimeters.md
-          - Fire Modeling and Scaling: fire-modeling-scaling.md
-          - Wildfire Scaling Regime Hypothesis: wildfire-scaling-regime-hypothesis.md
-          - Wildfire Scaling Research Agenda: wildfire-scaling-research-agenda.md
-      - Systems and Infrastructure:
-          - Environmental Data Science Stack: environmental-data-science-stack.md
-          - FIRED and CubeDynamics: fired-cubedynamics.md
-      - Research Programs:
-          - Wildfire Scaling Work Plan: wildfire-scaling-work-plan.md
+  - Project Overview:
+      - Overview: project-overview/index.md
+      - Funder Materials: project-overview/funder-materials.md
+      - FIRE-MODEL Briefing: project-overview/fire-model-briefing.md
+      - Requirements Checklist: project-overview/requirements-checklist.md
+      - Program Context: project-overview/program-context.md
+  - Theory:
+      - Overview: theory/index.md
+      - On Growth and Form: theory/on-growth-and-form.md
+      - Wildfire Scaling Hypothesis: theory/wildfire-scaling-hypothesis.md
+      - Scaling Regimes in Fire Growth: theory/wildfire-scaling-regime-hypothesis.md
+      - Open Questions: theory/wildfire-scaling-research-agenda.md
+      - Technical Background:
+          - Diffusion and 1/2 Scaling: theory/diffusion-half-scaling.md
+          - Non-1/2 Scaling Signatures: theory/non-half-scaling-signatures.md
+          - Wildfire Scaling and Dimensionality: theory/wildfire-scaling-dimensionality.md
+          - Superdiffusive Wildfire Perimeters: theory/superdiffusive-wildfire-perimeters.md
+  - Data and Infrastructure:
+      - Overview: data-infrastructure/index.md
+      - FIRED: data-infrastructure/fired.md
+      - CubeDynamics: data-infrastructure/cubedynamics.md
+      - FIRED and CubeDynamics: data-infrastructure/fired-cubedynamics.md
+      - Environmental Data Science Stack: data-infrastructure/environmental-data-science-stack.md
+      - Satellite Fire Datasets: data-infrastructure/satellite-fire-datasets.md
+  - Methods:
+      - Overview: methods/index.md
+      - Fire Growth Trajectories: methods/fire-growth-trajectories.md
+      - Scaling Diagnostics: methods/scaling-diagnostics.md
+      - Fractal Dimension Estimation: methods/fractal-dimension-estimation.md
+      - Scaling Collapse: methods/scaling-collapse.md
+  - Models:
+      - Overview: models/index.md
+      - Fire Modeling Frameworks: models/fire-modeling-frameworks.md
+      - Generative Models: models/generative-models.md
+      - Benchmarking Existing Fire Models: models/benchmarking-existing-fire-models.md
+  - Research Program:
+      - Overview: research-program/index.md
+      - Work Plan: research-program/work-plan.md
+      - Gantt / Timeline: research-program/gantt-timeline.md
+      - Deliverables: research-program/deliverables.md
+      - Users and Impact: research-program/users-impact.md
+      - Rationale, Deliverables, and Impact: research-program/rationale-impact.md
+  - Literature:
+      - Overview: literature/index.md
+      - Bibliography: literature/bibliography.md
+      - Literature Map: literature/literature-map.md
   - Proposal Workflow: workflow.md
   - Repository Map: repository-map.md
 

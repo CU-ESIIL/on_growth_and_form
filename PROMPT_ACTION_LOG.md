@@ -429,3 +429,66 @@ Add a background/context document for the wildfire scaling research program narr
 
 ### Open questions and follow-up
 - If more project-design notes are added, the new `research_programs/` group may need its own narrative landing page rather than a single page in the nav.
+
+### Prompt
+Add a work-plan section document on wildfire scaling rationale, deliverables, users, and impact.
+
+### Files and folders inspected
+- `background_context/research_programs/`
+- `docs/background-context.md`
+- `mkdocs.yml`
+
+### Actions taken
+- Added `background_context/research_programs/wildfire_scaling_rationale_deliverables_users_impact.md`.
+- Added a website page at `docs/wildfire-scaling-rationale-impact.md`.
+- Updated the background/context overview, README, and navigation to expose the new rationale-and-impact document within the research-program grouping.
+
+### Verification
+- Confirmed the new rationale-and-impact markdown files were written to the repository.
+- Confirmed the MkDocs navigation now includes the rationale-and-impact page under Background and Context.
+
+### Open questions and follow-up
+- The `research_programs/` section is now substantial enough that a dedicated landing page would likely read better than listing individual pages alone.
+
+### Prompt
+Add a curated list of wildfire scaling citations into the citations section.
+
+### Files and folders inspected
+- `citations/`
+- `citations/README.md`
+
+### Actions taken
+- Added a BibTeX export at `citations/exports/wildfire_scaling_bibliography.bib`.
+- Added a provenance and verification note at `citations/notes/wildfire_scaling_bibliography.md`.
+- Updated `citations/README.md` to describe the difference between notes and export files and to mark imported citations as unverified until checked.
+
+### Verification
+- Confirmed the bibliography files were written into the citations section.
+- Preserved the entries as provided rather than silently modifying bibliographic details without source verification.
+
+### Open questions and follow-up
+- The bibliography still needs source-by-source verification against original papers, DOI records, or PDFs before it should be treated as final.
+
+### Prompt
+Reorganize the MkDocs site so it reflects the project's intellectual structure and future direction, with an idea-driven architecture instead of a file-driven note dump.
+
+### Files and folders inspected
+- `docs/`
+- `mkdocs.yml`
+- current docs navigation and section pages
+
+### Actions taken
+- Reorganized `docs/` into section folders: `project-overview/`, `theory/`, `data-infrastructure/`, `methods/`, `models/`, `research-program/`, and `literature/`.
+- Moved existing pages into those folders and preserved their substantive content.
+- Added new landing pages and bridging pages so the site reads as a coherent research program.
+- Rewrote the homepage as a project landing page explaining the wildfire scaling concept, why it matters, how FIRED and CubeDynamics enable it, and how the site is organized.
+- Replaced the flat navigation with an idea-driven MkDocs nav organized around overview, theory, data, methods, models, research program, literature, workflow, and repository structure.
+- Added pages so all relevant markdown content in the docs tree is represented in the navigation.
+
+### Verification
+- Confirmed the docs tree now maps onto the intended research architecture instead of a flat list of files.
+- Confirmed the new MkDocs nav explicitly references the section landing pages and the moved content pages.
+- Updated internal links in the new section pages to match the folder-based docs layout.
+
+### Open questions and follow-up
+- A later pass could tighten cross-linking between theory, methods, and model pages even further once the proposal narrative stabilizes.
