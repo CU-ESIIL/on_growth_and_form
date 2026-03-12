@@ -4,8 +4,13 @@ This repository is organized as a working space for an NSF FIRE-MODEL proposal o
 
 ## Repository layout
 
-- `funder/`: solicitation PDFs, templates, review criteria, and other sponsor-provided material.
-- `background_context/`: working interpretation, contextualization, and program-briefing material derived from source documents.
+- `funder/`: official materials, requirement summaries, and funder-facing research guides for the FIRE call.
+- `background_context/`: scientific framing, contextualization, and synthesis that support proposal argumentation.
+  - `program_briefings/`: program-specific context notes
+  - `intellectual_foundations/`: broader conceptual grounding
+  - `scaling_and_geometry/`: scaling, fractal, diffusion, and wildfire-geometry notes
+  - `systems_frameworks/`: event-based and data-system architecture notes
+  - `research_programs/`: proposal-shaping research agendas and narrative work plans
 - `proposal/`: proposal narrative and supporting components such as budget text, biosketches, and plans.
 - `citations/`: tracked citation notes and exports, plus a local `pdfs/` folder for article PDFs that is ignored by Git.
 - `simulations/`: scripts, configs, and generated model outputs for analysis supporting the proposal.
@@ -27,8 +32,19 @@ The repository is currently oriented around the 2026 NSF FIRE-MODEL cycle descri
 - `funder/solicitation/fire_model_2026_briefing.md`
 - `funder/review_criteria/fire_model_requirements_checklist.md`
 - `background_context/program_briefings/fire_model_2026_background.md`
+- `background_context/intellectual_foundations/on_growth_and_form_intellectual_overview.md`
+- `background_context/scaling_and_geometry/diffusion_across_space_half_scaling_signature.md`
+- `background_context/scaling_and_geometry/non_half_scaling_signatures_spatial_spread.md`
+- `background_context/scaling_and_geometry/scaling_dimensionality_power_laws_wildfire_science.md`
+- `background_context/scaling_and_geometry/superdiffusive_scaling_fractal_geometry_wildfire_perimeter_growth.md`
+- `background_context/scaling_and_geometry/fire_modeling_frameworks_scaling_perspectives.md`
+- `background_context/scaling_and_geometry/wildfire_scaling_regime_hypothesis.md`
+- `background_context/scaling_and_geometry/wildfire_scaling_open_questions_hypotheses_empirical_tests.md`
+- `background_context/systems_frameworks/environmental_data_science_stack_2030.md`
+- `background_context/systems_frameworks/fired_cubedynamics_event_based_earth_system_analysis.md`
+- `background_context/research_programs/wildfire_scaling_research_program_work_plan.md`
 
-These are working summaries built from collected program information and should be checked against the official NSF solicitation, updates page, and webinar materials before final submission drafting.
+The `funder/` files are the working home for funder-oriented material and requirement tracking. The `background_context/` files are interpretive notes used to frame the proposal scientifically.
 
 ## Website
 

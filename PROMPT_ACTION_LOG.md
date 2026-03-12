@@ -182,3 +182,250 @@ The white buttons on the homepage animate but do not open their linked pages.
 
 ### Open questions and follow-up
 - The next site build should restore click-through behavior for the hero buttons without changing their appearance.
+
+### Prompt
+Add the "Environmental Data Science Stack (2030)" material as markdown and expand the background/context section with it.
+
+### Files and folders inspected
+- `background_context/`
+- `docs/background-context.md`
+- `mkdocs.yml`
+
+### Actions taken
+- Created `background_context/conceptual_frameworks/` for reusable scientific framing documents.
+- Added `background_context/conceptual_frameworks/environmental_data_science_stack_2030.md`.
+- Added a website page at `docs/environmental-data-science-stack.md`.
+- Updated the background/context hub, repository map, README, and site navigation to expose the new conceptual framework.
+
+### Verification
+- Confirmed the new conceptual framework files were written to the repository.
+- Confirmed the website navigation now includes the Environmental Data Science Stack page.
+
+### Open questions and follow-up
+- If more conceptual architecture notes are added, we may eventually want a dedicated background/context landing page with grouped subsections for program briefs, conceptual frameworks, and positioning notes.
+
+### Prompt
+Add a new background/context markdown document on *On Growth and Form* and link it into the website.
+
+### Files and folders inspected
+- `background_context/conceptual_frameworks/`
+- `docs/background-context.md`
+- `mkdocs.yml`
+
+### Actions taken
+- Added `background_context/conceptual_frameworks/on_growth_and_form_intellectual_overview.md`.
+- Added a website page at `docs/on-growth-and-form-overview.md`.
+- Updated the background/context hub, README, and site navigation so the new conceptual framework is discoverable.
+
+### Verification
+- Confirmed the new markdown documents were written to the repository.
+- Confirmed the MkDocs navigation now includes the On Growth and Form overview page.
+
+### Open questions and follow-up
+- If the project starts citing Thompson directly in proposal text, we should add a citation note and verified bibliographic entry under `citations/`.
+
+### Prompt
+Add a background/context markdown document on diffusion across space and the `1/2` scaling signature, and link it into the website.
+
+### Files and folders inspected
+- `background_context/conceptual_frameworks/`
+- `docs/background-context.md`
+- `mkdocs.yml`
+
+### Actions taken
+- Added `background_context/conceptual_frameworks/diffusion_across_space_half_scaling_signature.md`.
+- Added a website page at `docs/diffusion-half-scaling.md`.
+- Updated the background/context hub, README, and site navigation to expose the new conceptual framework.
+
+### Verification
+- Confirmed the new diffusion markdown files were written to the repository.
+- Confirmed the MkDocs navigation now includes the diffusion overview page.
+
+### Open questions and follow-up
+- If this framework becomes important to the proposal argument, we may want a figure or note showing how the `1/2` scaling baseline relates to wildfire spread regimes of interest.
+
+### Prompt
+Add a background/context document on non-`1/2` scaling signatures in spatial spread and link it into the website.
+
+### Files and folders inspected
+- `background_context/conceptual_frameworks/`
+- `docs/background-context.md`
+- `mkdocs.yml`
+
+### Actions taken
+- Added `background_context/conceptual_frameworks/non_half_scaling_signatures_spatial_spread.md`.
+- Added a website page at `docs/non-half-scaling-signatures.md`.
+- Updated the background/context hub, README, and site navigation to expose the anomalous-transport note.
+
+### Verification
+- Confirmed the new non-`1/2` scaling markdown files were written to the repository.
+- Confirmed the MkDocs navigation now includes the non-`1/2` scaling overview page.
+
+### Open questions and follow-up
+- The diffusion-related notes are now a small cluster; a future cleanup could group them explicitly as a scaling-and-transport subsection in the website.
+
+### Prompt
+Add a background/context note on scaling, dimensionality, and power laws in wildfire science, and link it into the website.
+
+### Files and folders inspected
+- `background_context/conceptual_frameworks/`
+- `docs/background-context.md`
+- `mkdocs.yml`
+
+### Actions taken
+- Added `background_context/conceptual_frameworks/scaling_dimensionality_power_laws_wildfire_science.md`.
+- Added a website page at `docs/wildfire-scaling-dimensionality.md`.
+- Updated the background/context hub, README, and site navigation to expose the wildfire scaling note.
+
+### Verification
+- Confirmed the new wildfire scaling markdown files were written to the repository.
+- Confirmed the MkDocs navigation now includes the wildfire scaling overview page.
+
+### Open questions and follow-up
+- The conceptual framework library is now large enough that the website nav would benefit from grouped sections rather than a flat list of pages.
+
+### Prompt
+Add a background/context note on superdiffusive scaling and fractal geometry in wildfire perimeter growth, and link it into the website.
+
+### Files and folders inspected
+- `background_context/conceptual_frameworks/`
+- `docs/background-context.md`
+- `mkdocs.yml`
+
+### Actions taken
+- Added `background_context/conceptual_frameworks/superdiffusive_scaling_fractal_geometry_wildfire_perimeter_growth.md`.
+- Added a website page at `docs/superdiffusive-wildfire-perimeters.md`.
+- Updated the background/context hub, README, and site navigation to expose the new wildfire geometry note.
+
+### Verification
+- Confirmed the new superdiffusive wildfire markdown files were written to the repository.
+- Confirmed the MkDocs navigation now includes the superdiffusive wildfire perimeter page.
+
+### Open questions and follow-up
+- The scaling and wildfire-geometry notes are now an explicit cluster and would benefit from grouped navigation or a dedicated theory landing page.
+
+### Prompt
+Add a background/context note on fire modeling frameworks and scaling perspectives, and link it into the website.
+
+### Files and folders inspected
+- `background_context/conceptual_frameworks/`
+- `docs/background-context.md`
+- `mkdocs.yml`
+
+### Actions taken
+- Added `background_context/conceptual_frameworks/fire_modeling_frameworks_scaling_perspectives.md`.
+- Added a website page at `docs/fire-modeling-scaling.md`.
+- Updated the background/context hub, README, and site navigation to expose the fire modeling frameworks note.
+
+### Verification
+- Confirmed the new fire modeling markdown files were written to the repository.
+- Confirmed the MkDocs navigation now includes the fire modeling and scaling page.
+
+### Open questions and follow-up
+- The wildfire theory pages now form a coherent cluster and should eventually be grouped under a dedicated navigation section rather than a flat top-level menu.
+
+### Prompt
+Add a background/context note on FIRED and CubeDynamics as a system for event-based Earth system analysis, and link it into the website.
+
+### Files and folders inspected
+- `background_context/conceptual_frameworks/`
+- `docs/background-context.md`
+- `mkdocs.yml`
+
+### Actions taken
+- Added `background_context/conceptual_frameworks/fired_cubedynamics_event_based_earth_system_analysis.md`.
+- Added a website page at `docs/fired-cubedynamics.md`.
+- Updated the background/context hub, README, and site navigation to expose the FIRED/CubeDynamics systems note.
+
+### Verification
+- Confirmed the new FIRED/CubeDynamics markdown files were written to the repository.
+- Confirmed the MkDocs navigation now includes the FIRED and CubeDynamics page.
+
+### Open questions and follow-up
+- The background/context library now mixes conceptual theory and analytical infrastructure notes; a future reorganization could split those into separate grouped sections.
+
+### Prompt
+Audit the repo organization, keep funder-oriented content in `funder/`, group the background material more clearly, and make the website read more narratively.
+
+### Files and folders inspected
+- `funder/`
+- `background_context/`
+- `docs/`
+- `mkdocs.yml`
+- `README.md`
+
+### Actions taken
+- Grouped the background library into `program_briefings/`, `intellectual_foundations/`, `scaling_and_geometry/`, and `systems_frameworks/`.
+- Kept the FIRE-MODEL briefing in `funder/` and clarified that it functions as a funder guide.
+- Added a narrative `docs/funder-materials.md` page and rewrote the background overview page to read as grouped sections instead of a raw file list.
+- Reworked MkDocs navigation so funder material and background/context appear as separate grouped sections.
+- Updated repository docs and page references to match the new structure.
+
+### Verification
+- Confirmed the reorganized background files exist in their new grouped folders.
+- Confirmed the website navigation now nests funder and background content instead of listing all pages flat.
+- Confirmed the moved-file references in the website pages were updated to the new paths.
+
+### Open questions and follow-up
+- The next useful cleanup would be a second-pass rewrite of individual theory pages so they cross-link more explicitly within the new grouped structure.
+
+### Prompt
+Add a background/context note on the wildfire scaling regime hypothesis and link it into the website.
+
+### Files and folders inspected
+- `background_context/scaling_and_geometry/`
+- `docs/background-context.md`
+- `mkdocs.yml`
+
+### Actions taken
+- Added `background_context/scaling_and_geometry/wildfire_scaling_regime_hypothesis.md`.
+- Added a website page at `docs/wildfire-scaling-regime-hypothesis.md`.
+- Updated the background/context overview, README, and site navigation to expose the new regime-hypothesis note.
+
+### Verification
+- Confirmed the new wildfire scaling regime markdown files were written to the repository.
+- Confirmed the MkDocs navigation now includes the wildfire scaling regime hypothesis page.
+
+### Open questions and follow-up
+- This note is a strong candidate to cross-link with the superdiffusive wildfire perimeter and fire modeling pages in a later narrative pass.
+
+### Prompt
+Add a background/context note on wildfire scaling open questions, hypotheses, and empirical tests, and link it into the website.
+
+### Files and folders inspected
+- `background_context/scaling_and_geometry/`
+- `docs/background-context.md`
+- `mkdocs.yml`
+
+### Actions taken
+- Added `background_context/scaling_and_geometry/wildfire_scaling_open_questions_hypotheses_empirical_tests.md`.
+- Added a website page at `docs/wildfire-scaling-research-agenda.md`.
+- Updated the background/context overview, README, and site navigation to expose the wildfire scaling research-agenda note.
+
+### Verification
+- Confirmed the new wildfire scaling research-agenda markdown files were written to the repository.
+- Confirmed the MkDocs navigation now includes the wildfire scaling research agenda page.
+
+### Open questions and follow-up
+- This note now acts as a natural hub for the wildfire scaling cluster and could later be linked directly from the homepage or a theory landing page.
+
+### Prompt
+Add a background/context document for the wildfire scaling research program narrative Gantt and work plan.
+
+### Files and folders inspected
+- `background_context/`
+- `docs/background-context.md`
+- `mkdocs.yml`
+
+### Actions taken
+- Created a new `background_context/research_programs/` group for structured work-plan and research-program notes.
+- Added `background_context/research_programs/wildfire_scaling_research_program_work_plan.md`.
+- Added a website page at `docs/wildfire-scaling-work-plan.md`.
+- Updated the background/context overview, README, repository map, workflow page, and site navigation to include the new research-program grouping.
+
+### Verification
+- Confirmed the new research-program markdown files were written to the repository.
+- Confirmed the MkDocs navigation now includes the wildfire scaling work plan page under Background and Context.
+
+### Open questions and follow-up
+- If more project-design notes are added, the new `research_programs/` group may need its own narrative landing page rather than a single page in the nav.

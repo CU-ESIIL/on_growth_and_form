@@ -18,8 +18,12 @@
 
 ### `background_context/`
 
-- `program_briefings/`: contextual summaries and strategic framing notes derived from official materials.
-- Keep this separate from `funder/` so official sponsor text and working interpretation never get mixed together.
+- `program_briefings/`: context notes tied to the program itself.
+- `intellectual_foundations/`: broader conceptual framing.
+- `scaling_and_geometry/`: wildfire scaling, transport, and perimeter-geometry notes.
+- `systems_frameworks/`: analytical and data-system frameworks.
+- `research_programs/`: proposal-shaping research agendas and work-plan narratives.
+- Keep this separate from `funder/` so funder-facing guidance and scientific framing do not get mixed together.
 
 ### `proposal/`
 
@@ -56,6 +60,6 @@ Keep text, scripts, parameter files, and notes in version control. Avoid committ
 
 ## FIRE-MODEL-specific reminder
 
-- Treat `funder/solicitation/fire_model_2026_briefing.md` as a working summary, not a substitute for the official NSF call.
+- Treat `funder/solicitation/fire_model_2026_briefing.md` as a funder guide and orientation aid, not a substitute for the official NSF call.
 - Treat `background_context/` as the place for contextualization and positioning notes that help shape the proposal argument.
 - Check submission dates, track definitions, page and formatting rules, and required documents against the authoritative NSF materials before final drafting.

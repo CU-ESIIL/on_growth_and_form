@@ -1,6 +1,6 @@
 # FIRE-MODEL Briefing
 
-This page summarizes the current working understanding of the 2026 NSF `FIRE-MODEL` cycle for proposal planning. It is based on collected notes and source links now stored in the repository.
+This page is the website view of the working FIRE-MODEL briefing kept in `funder/`. It is meant to help orient proposal work around the program itself: what the track is trying to fund, what kind of projects it appears to reward, and which official sources need to stay in view.
 
 !!! warning "Working summary, not controlling text"
     Use this page to orient the proposal, but verify all final requirements against the official NSF solicitation, updates page, webinar materials, and the current PAPPG.
@@ -13,9 +13,9 @@ This page summarizes the current working understanding of the 2026 NSF `FIRE-MOD
 - Proposal window in the collected briefing: April 1 to April 7, 2026
 - Deadline time in the collected briefing: 5:00 PM local time of the submitting organization
 
-## Why this call matters for this repo
+## Why this page belongs with funder materials
 
-The `FIRE-MODEL` track is described as supporting next-generation coupled fire models that link theory, computation, and empirical validation. That fits the structure of this repository: sponsor guidance in `funder/`, draft text in `proposal/`, literature in `citations/`, analysis in `simulations/`, and visuals in `figures/`.
+This briefing is not background theory. It is a guide to understanding the call and locating the right funder information quickly. It sits alongside the checklist because both are meant to keep proposal work pointed at the funder rather than drifting into generic grant language.
 
 ## Working interpretation of a competitive proposal
 
@@ -52,3 +52,4 @@ The collected briefing suggests that strong `FIRE-MODEL` proposals usually combi
 
 - Repository briefing: `funder/solicitation/fire_model_2026_briefing.md`
 - Working checklist: `funder/review_criteria/fire_model_requirements_checklist.md`
+- Background/context companion: `background_context/program_briefings/fire_model_2026_background.md`

@@ -8,9 +8,28 @@ edit_uri: "edit/main/docs/"
 
 nav:
   - Home: index.md
-  - FIRE-MODEL Briefing: fire-model-briefing.md
-  - Background and Context: background-context.md
-  - Requirements Checklist: requirements-checklist.md
+  - Funder Materials:
+      - Overview: funder-materials.md
+      - FIRE-MODEL Briefing: fire-model-briefing.md
+      - Requirements Checklist: requirements-checklist.md
+  - Background and Context:
+      - Overview: background-context.md
+      - Program Context: program-context.md
+      - Intellectual Foundations:
+          - On Growth and Form Overview: on-growth-and-form-overview.md
+      - Scaling and Geometry:
+          - Diffusion and 1/2 Scaling: diffusion-half-scaling.md
+          - Non-1/2 Scaling Signatures: non-half-scaling-signatures.md
+          - Wildfire Scaling and Dimensionality: wildfire-scaling-dimensionality.md
+          - Superdiffusive Wildfire Perimeters: superdiffusive-wildfire-perimeters.md
+          - Fire Modeling and Scaling: fire-modeling-scaling.md
+          - Wildfire Scaling Regime Hypothesis: wildfire-scaling-regime-hypothesis.md
+          - Wildfire Scaling Research Agenda: wildfire-scaling-research-agenda.md
+      - Systems and Infrastructure:
+          - Environmental Data Science Stack: environmental-data-science-stack.md
+          - FIRED and CubeDynamics: fired-cubedynamics.md
+      - Research Programs:
+          - Wildfire Scaling Work Plan: wildfire-scaling-work-plan.md
   - Proposal Workflow: workflow.md
   - Repository Map: repository-map.md
 
