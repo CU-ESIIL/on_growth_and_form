@@ -135,7 +135,7 @@ def test_expected_pages_render(site_server: str, browser) -> None:
         response = page.goto(urljoin(site_server, route), wait_until="networkidle")
         assert response is not None
         assert response.ok, f"Expected {route} to load successfully"
-        assert page.get_by_role("heading", name=heading).is_visible()
+        assert page.get_by_role("heading", name=heading, exact=True).is_visible()
 
     assert not page_errors, f"Browser page errors: {page_errors}"
     assert not failed_responses, f"Failed network responses: {failed_responses}"

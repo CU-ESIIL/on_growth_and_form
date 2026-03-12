@@ -23,7 +23,7 @@ The scaling questions in this repository depend on time-resolved, spatially expl
 
 ## Relationship to the literature
 
-The working bibliography in the repository already includes several of the key data references. See [Literature](../literature/) for the current bibliography and thematic map.
+The working bibliography in the repository already includes several of the key data references. See [Literature](../literature/index.md) for the current bibliography and thematic map.
 
 ## Related pages
 

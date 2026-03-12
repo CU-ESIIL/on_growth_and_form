@@ -29,7 +29,7 @@ That distinction matters because strong proposals need both:
 
 - Start with [Funder Materials](funder-materials.md) if the immediate question is about the FIRE-MODEL call itself.
 - Read [Program Context](program-context.md) if the question is how the call shapes the scientific story.
-- Move to [Theory](../theory/) if the goal is to understand the main scaling and growth ideas.
+- Move to [Theory](../theory/index.md) if the goal is to understand the main scaling and growth ideas.
 
 ## Section contents
 

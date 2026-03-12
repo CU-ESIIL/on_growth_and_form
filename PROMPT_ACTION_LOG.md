@@ -25,6 +25,26 @@ Rework the documentation website so it uses the existing long-form markdown docu
 ### Open questions and follow-up
 - A full MkDocs and Playwright review should still be run in an environment with the site dependencies installed to verify rendering and link integrity after the structural changes.
 
+### Prompt
+Review and fix the next website CI failure, which reported MkDocs relative-link warnings and a Playwright strict-mode selector failure on the homepage heading.
+
+### Files and folders inspected
+- `tests/test_site.py`
+- `docs/index.md`
+- `docs/project-overview/index.md`
+- `docs/data-infrastructure/satellite-fire-datasets.md`
+
+### Actions taken
+- Updated the homepage and section links to use explicit `index.md` targets so MkDocs no longer reports ambiguous relative links during strict builds.
+- Updated the Playwright heading assertion to use `exact=True`, preventing the homepage test from failing when a later subsection heading partially matches the page title.
+
+### Verification
+- Confirmed the affected links now point to explicit page targets recognized by MkDocs.
+- Confirmed the test logic now distinguishes the page title from the subsection heading `Why "On Growth and Form"`.
+
+### Open questions and follow-up
+- The next CI run should confirm that the previous MkDocs warnings are cleared and that the homepage render test no longer fails on selector ambiguity.
+
 ## 2026-03-10
 
 ### Prompt

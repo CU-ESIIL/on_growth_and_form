@@ -6,10 +6,10 @@
 
 This site documents a developing NSF wildfire-scaling research concept centered on growth, form, scaling, geometry, and event-based Earth system analysis. It is designed to support proposal writing while also functioning as a coherent map of the project's scientific architecture.
 
-[Project Overview](project-overview/){ .md-button .md-button--primary .oasis-hover-button }
-[Theory](theory/){ .md-button .ogf-button-secondary .oasis-hover-button }
-[Data and Infrastructure](data-infrastructure/){ .md-button .ogf-button-secondary .oasis-hover-button }
-[Research Program](research-program/){ .md-button .ogf-button-secondary .oasis-hover-button }
+[Project Overview](project-overview/index.md){ .md-button .md-button--primary .oasis-hover-button }
+[Theory](theory/index.md){ .md-button .ogf-button-secondary .oasis-hover-button }
+[Data and Infrastructure](data-infrastructure/index.md){ .md-button .ogf-button-secondary .oasis-hover-button }
+[Research Program](research-program/index.md){ .md-button .ogf-button-secondary .oasis-hover-button }
 [Open Repository](https://github.com/CU-ESIIL/on_growth_and_form){ .md-button .ogf-button-secondary .oasis-hover-button }
 
 </section>
