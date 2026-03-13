@@ -37,3 +37,4 @@ That distinction matters because strong proposals need both:
 - [FIRE-MODEL Briefing](fire-model-briefing.md)
 - [Requirements Checklist](requirements-checklist.md)
 - [Program Context](program-context.md)
+- [Review Resubmission Strategy](review-resubmission-strategy.md)

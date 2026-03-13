@@ -537,3 +537,29 @@ Reorganize the MkDocs site so it reflects the project's intellectual structure a
 
 ### Open questions and follow-up
 - A later pass could tighten cross-linking between theory, methods, and model pages even further once the proposal narrative stabilizes.
+
+## 2026-03-13
+
+### Prompt
+Add a summary of first-submission review feedback and resubmission strategy to the repository and website.
+
+### Files and folders inspected
+- `AGENTS.md`
+- `funder/solicitation/fire_model_2026_briefing.md`
+- `funder/review_criteria/fire_model_requirements_checklist.md`
+- `background_context/README.md`
+- `docs/project-overview/index.md`
+- `mkdocs.yml`
+
+### Actions taken
+- Added `background_context/program_briefings/fire_model_first_submission_review_resubmission_strategy.md` to capture reviewer concerns, concrete response strategies, narrative reframing, and open assumptions.
+- Added website page `docs/project-overview/review-resubmission-strategy.md` to expose the review synthesis in the Project Overview section.
+- Updated `mkdocs.yml` navigation and `docs/project-overview/index.md` links to include the new resubmission-strategy page.
+- Updated `background_context/README.md` wording so `program_briefings/` explicitly includes review-to-resubmission synthesis notes.
+
+### Verification
+- Confirmed the new repository memo and website page were written and linked in navigation.
+- Planned to run `bash scripts/review_site.sh` per website-change workflow requirement.
+
+### Open questions and follow-up
+- The review summary reflects user-provided feedback text; if official panel text includes additional compliance comments, those should be appended as separate action items before final drafting.
