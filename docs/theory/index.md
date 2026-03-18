@@ -15,9 +15,10 @@ The theory section is organized around a simple progression:
 
 - [On Growth and Form](on-growth-and-form.md)
 - [Wildfire Scaling Hypothesis](wildfire-scaling-hypothesis.md)
+- [Scale-Conditioned WUI Geometry](scale-conditioned-wui-geometry.md)
 - [Scaling Regimes in Fire Growth](wildfire-scaling-regime-hypothesis.md)
 - [Open Questions](wildfire-scaling-research-agenda.md)
 
 ## Supporting theory
 
-The section also includes supporting pages on diffusion, anomalous transport, wildfire dimensionality, and superdiffusive perimeter growth. Those pages give the main hypothesis technical depth without forcing the reader to start there.
+The section also includes supporting pages on diffusion, anomalous transport, wildfire dimensionality, superdiffusive perimeter growth, and scale-conditioned WUI geometry. Those pages give the main hypothesis technical depth and connect the fire-perimeter argument to adjacent interface systems without forcing the reader to start there.
