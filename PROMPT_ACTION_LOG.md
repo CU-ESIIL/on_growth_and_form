@@ -619,3 +619,31 @@ Add the new scale-conditioned WUI geometry background material and connect it to
 
 ### Open questions and follow-up
 - The new note is a conceptual framing document; any literature claims or proposal prose derived from it should still be checked against verified primary sources before submission use.
+
+## 2026-03-18
+
+### Prompt
+Add another document capturing the FIRE-MODEL rebid context, pitch, and scientific program, and treat it as proposal strategy.
+
+### Files and folders inspected
+- `AGENTS.md`
+- `funder/solicitation/fire_model_2026_briefing.md`
+- `funder/review_criteria/fire_model_requirements_checklist.md`
+- `proposal/README.md`
+- `proposal/narrative/fire_model_resubmission_strategy.md`
+- `docs/project-overview/index.md`
+- `docs/project-overview/review-resubmission-strategy.md`
+- `mkdocs.yml`
+
+### Actions taken
+- Added `proposal/narrative/fire_model_rebid_context_pitch_scientific_program.md` as a proposal-strategy memo organizing the rebid around scale-conditioned interfaces, three research aims, geometry-based validation, and cyberinfrastructure integration.
+- Added `docs/project-overview/rebid-context-pitch-scientific-program.md` so the website reflects the new strategy memo and its role in shaping the rebid.
+- Updated `mkdocs.yml`, `docs/project-overview/index.md`, and `proposal/README.md` so the new strategy material is linked and correctly categorized under proposal narrative work.
+
+### Verification
+- Reviewed edited markdown and navigation changes locally.
+- Ran `bash scripts/review_site.sh`; the MkDocs build completed successfully, while the pytest site check could not run because the `playwright` Python package is not installed in the environment.
+
+### Open questions and follow-up
+- The new memo is a strategy artifact built from user-provided framing and existing repository context; any proposal prose derived from it should still be checked against official FIRE wording and submission constraints before reuse.
+

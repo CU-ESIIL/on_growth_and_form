@@ -38,3 +38,4 @@ That distinction matters because strong proposals need both:
 - [Requirements Checklist](requirements-checklist.md)
 - [Program Context](program-context.md)
 - [Review Resubmission Strategy](review-resubmission-strategy.md)
+- [Rebid Context, Pitch, and Scientific Program](rebid-context-pitch-scientific-program.md)
