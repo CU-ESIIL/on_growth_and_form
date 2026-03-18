@@ -563,3 +563,30 @@ Add a summary of first-submission review feedback and resubmission strategy to t
 
 ### Open questions and follow-up
 - The review summary reflects user-provided feedback text; if official panel text includes additional compliance comments, those should be appended as separate action items before final drafting.
+
+## 2026-03-18
+
+### Prompt
+Add a new document summarizing first-submission reviews and resubmission strategy, and treat it as proposal strategy rather than only background context.
+
+### Files and folders inspected
+- `AGENTS.md`
+- `funder/README.md`
+- `background_context/README.md`
+- `background_context/program_briefings/fire_model_first_submission_review_resubmission_strategy.md`
+- `proposal/README.md`
+- `docs/project-overview/review-resubmission-strategy.md`
+- `mkdocs.yml`
+
+### Actions taken
+- Added `proposal/narrative/fire_model_resubmission_strategy.md` as the primary strategic memo translating prior-review feedback into concrete resubmission actions.
+- Updated `docs/project-overview/review-resubmission-strategy.md` so the website now explains why the review memo is a strategy document and points readers to the proposal-space source file.
+- Updated `proposal/README.md` to document that proposal-strategy materials belong in `proposal/narrative/`.
+- Preserved the earlier `background_context/` review synthesis as historical context rather than deleting or overwriting it.
+
+### Verification
+- Ran `bash scripts/review_site.sh`. The MkDocs build completed successfully, but the pytest site check could not run because `playwright` is not installed in the environment.
+- Confirmed the new strategic memo is stored under `proposal/narrative/`, consistent with its role in shaping proposal revisions.
+
+### Open questions and follow-up
+- The strategic memo is based on user-provided review text and the earlier repository synthesis; if fuller panel documentation becomes available, the strategy should be expanded accordingly.

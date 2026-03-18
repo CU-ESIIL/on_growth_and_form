@@ -1,12 +1,22 @@
 # First-Submission Review Summary and Resubmission Strategy
 
-This page summarizes internal notes from the first FIRE-MODEL proposal review cycle and captures the resulting resubmission strategy.
+This page summarizes the strategic implications of the first FIRE-MODEL review cycle for the next submission.
 
-> Status note: this is an internal planning synthesis, not sponsor-issued guidance. Use this page with the solicitation and checklist materials under [Funder Materials](funder-materials.md).
+> Status note: this is an internal strategy synthesis, not sponsor-issued guidance. Use it alongside the solicitation and checklist materials under [Funder Materials](funder-materials.md).
+
+## Why this document is strategic, not just background
+
+The first-round reviews are not merely contextual notes. They directly shape how the next proposal should be framed, scoped, validated, and justified. In repository terms, that makes them part of proposal strategy.
+
+The primary working memo now lives in:
+
+- `proposal/narrative/fire_model_resubmission_strategy.md`
+
+That placement reflects its role in guiding the next draft of the proposal narrative and associated supporting documents.
 
 ## High-level interpretation
 
-Reviewer feedback was directionally positive about the conceptual core, but raised concerns about execution clarity.
+Reviewer feedback was directionally positive about the conceptual core, but raised concerns about execution clarity and research-plan credibility.
 
 ### Strengths reviewers emphasized
 
@@ -26,8 +36,8 @@ Reviewer feedback was directionally positive about the conceptual core, but rais
 
 | Concern | Resubmission action |
 | --- | --- |
-| 2/3 scaling could be a sampling artifact | Reframe scaling as a hypothesis and test it across sensors/temporal resolutions. |
-| Meteorology is missing | Introduce wind/humidity/VPD as external forcing terms. |
+| 2/3 scaling could be a sampling artifact | Reframe scaling as a hypothesis and test it across sensors and temporal resolutions. |
+| Meteorology is missing | Introduce wind, humidity, and VPD as external forcing terms. |
 | Methods are too conceptual | Add algorithm blocks, pseudo-code, and architecture diagrams. |
 | Validation is unclear | Define explicit perimeter, spread-rate, and geometry metrics. |
 | Stage-of-fire applicability is ambiguous | State targeted fire-growth regimes and explicit out-of-scope regimes. |
@@ -49,6 +59,7 @@ Reviewer feedback was directionally positive about the conceptual core, but rais
 
 This shift is intended to improve reviewer confidence in scientific rigor.
 
-## Source file in repository
+## Repository source files
 
-- `background_context/program_briefings/fire_model_first_submission_review_resubmission_strategy.md`
+- Strategic memo: `proposal/narrative/fire_model_resubmission_strategy.md`
+- Earlier contextual synthesis retained for history: `background_context/program_briefings/fire_model_first_submission_review_resubmission_strategy.md`
