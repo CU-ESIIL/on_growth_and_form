@@ -590,3 +590,27 @@ Add a new document summarizing first-submission reviews and resubmission strateg
 
 ### Open questions and follow-up
 - The strategic memo is based on user-provided review text and the earlier repository synthesis; if fuller panel documentation becomes available, the strategy should be expanded accordingly.
+
+
+### Prompt
+Add another planning-section document that reframes the proposal around scale-conditioned interfaces, a generative interface model, multi-scale validation, WUI comparison, and a three-aim scientific program.
+
+### Files and folders inspected
+- `AGENTS.md`
+- `funder/solicitation/fire_model_2026_briefing.md`
+- `funder/review_criteria/fire_model_requirements_checklist.md`
+- `docs/research-program/`
+- `background_context/research_programs/`
+
+### Actions taken
+- Reworked the research-program work-plan narrative in both the website and background-context copies so the project is framed around scale-conditioned interfaces, `L_d(ε)` geometry functions, WUI calibration, generative interface modeling, and geometry-based model validation.
+- Reworked the rationale/impact narrative in both the website and background-context copies so the proposal case now emphasizes ambiguous boundary definitions, fragile scaling claims, and the need for a stronger validation paradigm aligned with `FIRE-MODEL`.
+- Preserved an explicit planning assumption that staffing mix and project duration remain provisional pending final budget and solicitation interpretation.
+
+### Verification
+- Reviewed the updated markdown files locally after writing them.
+- Ran `bash scripts/review_site.sh`; the MkDocs build succeeded, but the pytest site check stopped at collection because `playwright` is not installed in the environment.
+
+### Open questions and follow-up
+- The final proposal narrative should still be checked against the official NSF solicitation text once that source is stored in `funder/` in a more authoritative form.
+- The repository may still need a separate project-description outline that maps these planning elements directly onto NSF section structure and page constraints.

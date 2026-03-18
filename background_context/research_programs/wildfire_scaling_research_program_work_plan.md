@@ -2,107 +2,156 @@
 
 ## Overview
 
-This project investigates whether wildfire growth follows reproducible geometric scaling laws and, if so, what mechanisms generate them. Recent satellite observations suggest that wildfire perimeters may grow according to non-diffusive scaling relationships, potentially following:
+This planning draft reframes the wildfire scaling project around a central proposal claim: wildfire perimeters are **scale-conditioned environmental interfaces** whose observed geometry depends both on how the interface is defined and on the scale at which it is measured. In this framing, perimeter geometry is not a cosmetic by-product of fire spread. It is a primary observable that encodes the coupled dynamics of fuel structure, transport, weather forcing, and landscape heterogeneity.
 
-```text
-P(t) ~ t^(2/3)
-```
+The project responds to three persistent weaknesses in wildfire science that are especially relevant to a competitive `FIRE-MODEL` proposal:
 
-with an associated fractal boundary dimension near:
+1. **Ambiguous geometric objects**. Fire perimeters differ across sensors and products, and cross-study comparisons often mix incompatible definitions.
+2. **Fragile scaling claims**. Reported exponents may reflect measurement artifacts as much as physical mechanisms.
+3. **Weak validation paradigms**. Many models are still judged by single end-state metrics rather than by whether they reproduce the observed multi-scale geometry of fire growth.
 
-```text
-D ~ 4/3
-```
+The resulting research program asks a more general question than whether wildfire perimeter growth follows one particular exponent:
 
-If this pattern is real, it implies that wildfire spread may behave as a rough propagating interface moving through heterogeneous landscapes rather than as a purely diffusive or purely deterministic front. However, the existence, timing, and mechanism of this scaling regime remain open scientific questions.
+> How do coupled transport and resource constraints generate scale-dependent interface geometry in environmental systems, and how can that geometry be used to infer and predict wildfire dynamics?
 
-This research program is designed to answer those questions through a coordinated combination of empirical analysis, mechanistic modeling, and model evaluation. The project leverages two key pieces of existing infrastructure:
+This framing aligns with the working `FIRE-MODEL` emphasis on conceptual innovation, computational implementation, and empirical validation. Here, the conceptual advance is a formal theory of wildfire boundaries as scale-conditioned interfaces; the computational advance is a generative modeling and analysis workflow centered on multi-scale interface geometry; and the validation advance is a geometry-based benchmarking framework for simulated and observed fires.
 
-- `FIRED`, a dataset and algorithm for reconstructing wildfire events and daily progression from satellite observations
-- `CubeDynamics`, a computational framework that treats environmental data as spatiotemporal cubes and provides scalable analysis tools
+Two existing infrastructure elements make the program tractable:
 
-Together, these resources allow the research team to reconstruct the geometry and dynamics of many fires and analyze them using consistent methods.
+- `FIRED`, for reconstructing wildfire events and daily progression from satellite observations
+- `CubeDynamics`, for organizing spatiotemporal data cubes and supporting scalable geometry analysis
 
-Personnel involved include:
+A planning assumption for this draft is that the new interface-geometry framing should be integrated into the existing multi-year project scaffold already under discussion in the repository. Team size, exact staffing mix, and project duration therefore remain provisional and should be synchronized later with budget strategy and the final solicitation interpretation.
 
-- Principal Investigator (50% effort) providing conceptual leadership and synthesis
-- Postdoctoral Researcher 1 focusing on empirical scaling measurement and satellite analysis
-- Postdoctoral Researcher 2 developing generative models and theoretical interpretation
-- Graduate student assisting with data processing, model experiments, and integration
+Personnel currently assumed in the work plan are:
+
+- Principal Investigator providing conceptual leadership, theory integration, and project synthesis
+- Postdoctoral Researcher 1 focusing on data harmonization, interface extraction, and empirical geometry analysis
+- Postdoctoral Researcher 2 focusing on generative modeling, mechanism mapping, and validation diagnostics
+- Graduate student or equivalent research support assisting with data processing, experiments, and workflow integration
 
 ## Project timeline
 
 | Task | Year 1 | Year 2 | Year 3 | Year 4 |
 | --- | --- | --- | --- | --- |
-| Data integration and perimeter reconstruction | ███████ |  |  |  |
-| Fire growth trajectory dataset | ███████ | ███ |  |  |
-| Scaling measurement tools | ███ | ███████ |  |  |
-| Scaling regime detection |  | ███████ |  |  |
-| Environmental regime analysis |  | ███████ | ███ |  |
-| Generative modeling experiments |  | ███ | ███████ |  |
-| Mechanism comparison |  |  | ███████ |  |
-| Fire model evaluation |  |  | ███ | ███████ |
-| CubeDynamics scaling toolkit |  |  | ███ | ███████ |
-| Synthesis and theory development |  |  |  | ███████ |
+| Multi-sensor perimeter harmonization and interface definitions | ███████ | ███ |  |  |
+| Interface geometry dataset and `L_d(ε)` measurement workflows | ███████ | ███ |  |  |
+| Cross-scale scaling diagnostics and equivalence tests | ███ | ███████ | ███ |  |
+| WUI calibration and comparative interface analysis | ███ | ███████ |  |  |
+| Generative interface modeling experiments |  | ███ | ███████ |  |
+| Process-to-geometry regime mapping |  | ███ | ███████ |  |
+| Fire-model geometric benchmarking |  |  | ███ | ███████ |
+| `CubeDynamics` geometry toolkit and dashboards |  |  | ███ | ███████ |
+| Synthesis, theory development, and proposal-ready integration |  |  |  | ███████ |
 
-## Phase 1: Establishing the measurement system (Year 1)
+## Phase 1: Define the object and establish the measurement system (Year 1)
 
-The first phase focuses on establishing a robust empirical foundation for wildfire scaling analysis. Although large volumes of satellite fire data exist, they are rarely organized into consistent trajectories describing how individual fires grow through time. The primary objective of this phase is therefore to construct a standardized dataset of wildfire growth trajectories that can support large-scale geometric analysis.
+The first phase addresses the most basic but often under-specified issue in wildfire geometry studies: what boundary is actually being measured? Rather than assuming that a fire perimeter is a single stable object, the project will construct boundary ensembles across multiple datasets and extraction rules. Candidate sources include products derived from `MODIS`, `VIIRS`, `GOES`, and higher-resolution imagery where appropriate and feasible.
 
-The team will integrate `FIRED` fire progression data into the `CubeDynamics` framework. Using these tools, researchers will reconstruct daily perimeter evolution for many fires across multiple regions and ecosystems. Each fire will be represented as a time series describing key geometric properties including perimeter length, burned area, and shape metrics.
+The key empirical object in this phase is the scale-conditioned boundary length function:
 
-A significant portion of the work during this phase involves establishing reliable measurement methods. Satellite-derived fire perimeters are sensitive to spatial resolution, pixel connectivity rules, and smoothing procedures. To ensure that geometric measurements are scientifically meaningful, the team will develop standardized perimeter extraction and smoothing algorithms and evaluate how measurement resolution influences estimates of perimeter length and fractal dimension.
+```text
+L_d(ε)
+```
 
-At the same time, the team will implement several complementary estimators of wildfire geometry, including perimeter-area scaling relationships and fractal dimension estimators such as box-counting and divider methods. These tools will allow the researchers to quantify how complex wildfire boundaries become as fires grow.
+where `d` denotes the boundary definition and `ε` denotes the measurement scale. This reframes boundary geometry from a single number to a function that can be compared across sensors, products, smoothing rules, and resolutions.
 
-By the end of the first year, the project will produce a dataset of wildfire growth trajectories derived from satellite observations. This dataset will include perimeter and area time series for many fires and will be made available through `CubeDynamics` as a reusable research resource.
+Work in this phase includes:
 
-## Phase 2: Identifying the scaling regime (Year 2)
+- harmonizing cross-sensor perimeter representations
+- documenting how detection thresholds, temporal aggregation, and pixel connectivity alter boundary geometry
+- implementing multi-scale perimeter measurement methods, including divider- and box-based approaches where appropriate
+- organizing the resulting interface products inside `CubeDynamics` as reusable geometry cubes
 
-With the empirical dataset established, the second phase addresses the central question of whether wildfire perimeter growth exhibits a reproducible scaling regime.
+A parallel calibration activity will use wildland-urban interface boundaries as a quasi-static comparison system. WUI boundaries provide a valuable test case because they can be generated under multiple definitions without the added complication of rapidly changing fire dynamics. This allows the team to separate issues of measurement and definition from issues of front propagation.
 
-For each fire trajectory, researchers will analyze the relationship between perimeter and time using log-log scaling diagnostics. Instead of assuming that a single exponent applies throughout the entire lifetime of a fire, the analysis will search for intervals in which power-law relationships appear stable. These intervals may represent the expansion phase of wildfire growth, during which the fire front behaves as a statistically rough interface spanning many fuel patches.
+By the end of Phase 1, the project should deliver a formal definition workflow for wildfire boundary objects, a harmonized multi-scale perimeter dataset, and a documented analysis pipeline for computing `L_d(ε)` curves reproducibly.
 
-The team will apply segmented regression and breakpoint detection techniques to identify transitions between different growth regimes. These analyses will help determine whether wildfire growth can be described by a three-phase lifecycle consisting of ignition, expansion, and termination phases.
+## Phase 2: Identify scaling regimes and explain the form (Year 2)
 
-An especially powerful diagnostic used in this phase will be scaling collapse. In this approach, individual fire trajectories are normalized by characteristic time and perimeter scales so that fires of different durations and sizes can be compared directly. If fires share a common underlying growth process, their normalized trajectories should collapse onto a common curve during the expansion phase.
+Once the measurement framework is established, the second phase asks what kinds of scaling behavior the observed interfaces actually exhibit and what those behaviors imply about process.
 
-In addition to identifying the scaling regime, researchers will examine how scaling behavior varies across environmental gradients. Fires will be stratified by ecosystem type, climate regime, and wind conditions to determine whether the exponent is universal or varies systematically with environmental forcing.
+The project will evaluate whether and when observed interfaces show approximate power-law behavior of the form:
 
-By the end of this phase, the project will produce a large-scale empirical characterization of wildfire perimeter growth scaling.
+```text
+L(ε) ∝ ε^(1−D)
+```
 
-## Phase 3: Mechanistic modeling experiments (Year 3)
+where `D` is an effective fractal dimension or roughness indicator. Rather than treating `D` as a universal constant, the analysis will test whether scaling behavior changes with sensor definition, fire regime, ecosystem setting, or stage of fire growth.
 
-Once empirical scaling patterns are established, the next phase investigates what physical processes produce those patterns. Rather than attempting to replicate the full complexity of wildfire behavior, this phase focuses on developing simplified generative models that isolate key mechanisms of fire spread.
+Empirical tasks in this phase include:
 
-Researchers will construct a series of minimal models representing different classes of processes. These models will include diffusion-like spread, spread through heterogeneous fuel networks similar to percolation systems, anisotropic spread driven by wind, and models incorporating occasional long-distance ignition events representing spotting.
+- estimating slopes, curvature, and stability ranges for `L_d(ε)` curves
+- identifying regimes in which interfaces behave as smooth fronts versus rough or fractal boundaries
+- testing whether different definitions become equivalent under scale transformation
+- comparing geometry across environmental gradients and observation systems
 
-Each model will generate synthetic fire growth trajectories that can be analyzed using the same geometric diagnostics applied to satellite data. By comparing the scaling exponents and boundary dimensions produced by each model with those observed in real fires, the researchers can determine which mechanisms are capable of producing the observed geometric patterns.
+This phase also develops the project's mechanistic interpretation. The team will build minimal coupled models that link interface form to candidate generative processes, including:
 
-This comparative modeling approach allows the project to move beyond empirical description toward mechanistic explanation.
+- diffusion-like spread
+- heterogeneous fuel connectivity and percolation-like behavior
+- anisotropic transport under wind or topographic forcing
+- threshold-based ignition and resource-limited propagation
+- occasional nonlocal spread processes such as spotting, where justified
 
-## Phase 4: Evaluating fire models and synthesizing theory (Year 4)
+The goal is not to recreate all wildfire complexity immediately. It is to determine which process combinations produce distinct geometric signatures and which conditions generate transitions between smoother and rougher interface regimes.
 
-The final phase connects the findings back to the broader wildfire modeling community. Operational wildfire simulators are widely used to predict fire spread under different weather and fuel conditions, but they are rarely evaluated based on the emergent geometric properties of the fires they produce.
+By the end of Phase 2, the project should have a defensible empirical characterization of scale dependence, a first map from process parameters to geometric signatures, and a clearer statement of which scaling claims are robust versus measurement-induced.
 
-In this phase, the research team will analyze fire perimeters generated by existing wildfire models and apply the same scaling diagnostics used in earlier phases. This comparison will determine whether current fire models reproduce the same perimeter growth exponents and boundary roughness observed in satellite data.
+## Phase 3: Develop the Generative Interface Model and compare regimes (Year 3)
 
-If discrepancies are found, the results will highlight which physical processes may be missing or simplified in current models. Conversely, if models reproduce the observed scaling behavior, this provides validation for their underlying spread mechanisms.
+The third phase formalizes the central modeling contribution: a **Generative Interface Model (GIM)** for wildfire boundaries.
 
-At the same time, the scaling diagnostics developed throughout the project will be integrated into `CubeDynamics` as a reusable module. This will allow researchers and fire modelers to evaluate the geometric realism of future simulations using the same analytical tools developed during the project.
+In this model class, the primary output is not only burned area or final perimeter overlap. The principal target is the evolving geometry of the interface itself. A generic state description includes:
 
-The final year will also focus on synthesizing the empirical and modeling results into a coherent theoretical framework describing how local fire spread processes generate large-scale wildfire geometry.
+- `V(x,t)`: fuel availability or resource field
+- `F(x,t)`: fire state or combustion field
+- `W(x,t)`: environmental forcing field
+
+These fields interact through transport, energy transfer, threshold dynamics, and landscape heterogeneity to generate evolving interfaces whose geometric properties can be measured with the same `L_d(ε)` diagnostics used for observations.
+
+Core tasks in this phase include:
+
+- implementing and comparing minimal GIM variants
+- calibrating synthetic interfaces against observed geometry curves rather than only final states
+- mapping parameter changes to shifts in roughness, curvature, and effective fractal dimension
+- evaluating whether distinct fire regimes produce distinct geometric signatures
+
+This phase is where the proposal's theory and computation components become tightly coupled. The model experiments provide a way to test competing explanations for observed interface forms and to identify which mechanisms appear necessary to reproduce the empirical geometry.
+
+## Phase 4: Validate wildfire models using geometry and synthesize the framework (Year 4)
+
+The final phase shifts model evaluation from single-metric comparison toward functional geometric validation.
+
+Observed and simulated fires will be compared using full multi-scale geometry curves and related diagnostics, including:
+
+- `L_d(ε)` curve shape
+- slope and intercept comparisons across scale ranges
+- curvature and regime-break diagnostics
+- sensitivity to subsampling and observational degradation
+- stability of inferred exponents across datasets and model outputs
+
+This framework can then be applied both to the project's own GIM variants and to external wildfire models where simulation outputs are available. The resulting benchmark asks a stronger question than whether a model reaches the correct final footprint: does it reproduce the observed geometry of wildfire interfaces across scales?
+
+At the same time, the geometry diagnostics will be packaged into `CubeDynamics` and related workflows as reusable tools for:
+
+- time-indexed geometry cubes
+- streaming perimeter analysis
+- model-observation comparison dashboards
+- reproducible cross-sensor interface studies
+
+The final synthesis will articulate a broader theory of wildfire and related environmental boundaries as members of a more general class of generative interfaces. This provides a conceptual bridge between wildfire perimeters, WUI edges, and other environmental boundaries shaped by coupled transport, growth, and resource constraints.
 
 ## Expected scientific outcomes
 
-By the end of the project, the research team will have produced several major advances in wildfire science.
+By the end of the project, the research team should have produced several proposal-relevant advances.
 
-First, the project will provide a systematic measurement of wildfire perimeter growth scaling across many fires using satellite observations.
+First, the project will provide a formal framework for defining and measuring wildfire perimeters as scale-conditioned interfaces rather than assuming a single invariant boundary object.
 
-Second, it will determine when during the fire lifetime scaling appears, addressing a major conceptual uncertainty about wildfire dynamics.
+Second, it will generate harmonized multi-scale perimeter datasets and documented geometry workflows that support more defensible comparisons across sensors and studies.
 
-Third, the modeling experiments will identify which mechanisms are capable of generating the observed geometric patterns, connecting wildfire science with broader theories of interface growth and landscape connectivity.
+Third, it will establish a mechanism-oriented interpretation of interface roughness and scaling behavior, clarifying when apparent scaling reflects process and when it reflects observation.
 
-Finally, the project will introduce a new scaling-based diagnostic framework for wildfire models, enabling researchers to evaluate whether simulations reproduce the emergent geometry of real fires.
+Fourth, it will introduce a validation framework in which wildfire models are evaluated against observed multi-scale geometry rather than only endpoint overlap or coarse summary statistics.
 
-Together, these advances help bridge a longstanding gap in wildfire science: understanding how local spread processes produce the large-scale spatial geometry of wildfire growth across landscapes.
+Finally, it will position wildfire science within a broader theory of generative environmental interfaces, giving the proposal a stronger conceptual identity that answers the `FIRE-MODEL` call for an explicit scientific and computational advance.
