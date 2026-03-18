@@ -674,3 +674,30 @@ User shared a first draft of the FIRE-MODEL proposal narrative and requested hel
 ### Open questions and follow-up
 - The review is based on working repository summaries of FIRE-MODEL requirements; final proposal wording still needs to be checked against the authoritative NSF solicitation and current PAPPG.
 - If desired, the next step should be a direct rewrite of the draft into an aims-structured Project Description opening with explicit Intellectual Merit and Broader Impacts transitions.
+
+
+## 2026-03-18
+
+### Prompt
+Add the provided FIRE-MODEL comprehensive work plan into the draft section.
+
+### Files and folders inspected
+- `AGENTS.md`
+- `funder/solicitation/fire_model_2026_briefing.md`
+- `funder/review_criteria/fire_model_requirements_checklist.md`
+- `docs/research-program/work-plan.md`
+- `background_context/research_programs/wildfire_scaling_research_program_work_plan.md`
+- `PROMPT_ACTION_LOG.md`
+
+### Actions taken
+- Replaced the prior four-year narrative work plan with a synchronized three-year FIRE-MODEL work plan in both the website-facing and background-context copies.
+- Reframed the document around the user-provided central hypothesis, three linked hypotheses, three interlocking research arcs, coordinated team structure, annual benchmarks, and outcome-contingent risk logic.
+- Added explicit proposal-role language so the work plan ties back to the repository's working FIRE-MODEL framing of conceptual advance, computational framework, and validation pathway.
+
+### Verification
+- Reviewed the synchronized markdown updates locally.
+- Ran `bash scripts/review_site.sh`; the MkDocs build completed successfully, while the pytest site check was blocked during collection because the `playwright` Python package is not installed in the environment.
+
+### Open questions and follow-up
+- This work plan is aligned to the repository's working FIRE-MODEL briefing and checklist, but final proposal submission language should still be checked against the authoritative NSF solicitation and current PAPPG.
+

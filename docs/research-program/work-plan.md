@@ -1,108 +1,265 @@
-# Wildfire Scaling Research Program: Narrative Gantt and Work Plan
+# Wildfire Scaling Research Program: Comprehensive Work Plan
 
-## Overview
+## Role in the FIRE-MODEL proposal
 
-This project investigates whether wildfire growth follows reproducible geometric scaling laws and, if so, what mechanisms generate them. Recent satellite observations suggest that wildfire perimeters may grow according to non-diffusive scaling relationships, potentially following:
+This work plan is a repository-ready program document for the `FIRE-MODEL` concept. It is intended to strengthen the project description's treatment of research strategy, team structure, milestones, and deliverables in a way that supports the proposal's conceptual advance, computational framework, and validation pathway described in the working FIRE briefing and checklist.
 
-```text
-P(t) ~ t^(2/3)
-```
+## Purpose of this document
 
-with an associated fractal boundary dimension near:
+This document captures the full execution logic for the wildfire scaling research program. It is not only draft proposal prose. It is also a working reference for collaborators and future contributors that records:
 
-```text
-D ~ 4/3
-```
+- the scientific motivation and linked hypotheses,
+- the execution strategy across the project period,
+- the team structure and why that structure is necessary,
+- benchmarked deliverables, and
+- the logical flow from measurement to mechanism to model evaluation.
 
-If this pattern is real, it implies that wildfire spread may behave as a rough propagating interface moving through heterogeneous landscapes rather than as a purely diffusive or purely deterministic front. However, the existence, timing, and mechanism of this scaling regime remain open scientific questions.
+## Core scientific framing
 
-This research program is designed to answer those questions through a coordinated combination of empirical analysis, mechanistic modeling, and model evaluation. The project leverages two key pieces of existing infrastructure:
+The project is motivated by a central hypothesis:
 
-- `FIRED`, a dataset and algorithm for reconstructing wildfire events and daily progression from satellite observations
-- `CubeDynamics`, a computational framework that treats environmental data as spatiotemporal cubes and provides scalable analysis tools
+> Wildfire growth exhibits regime-dependent geometric scaling that constrains its evolution, and this structure is either intrinsic to fire dynamics or imposed by environmental forcing.
 
-Together, these resources allow the research team to reconstruct the geometry and dynamics of many fires and analyze them using consistent methods.
+This framing reflects a broader conceptual shift in how wildfire behavior is studied. In this project, fire is not treated only as a local spread process. It is treated as a **spatiotemporal growth system with emergent geometry**.
 
-Personnel involved include:
+The work plan is organized to test three linked hypotheses.
 
-- Principal Investigator (50% effort) providing conceptual leadership and synthesis
-- Postdoctoral Researcher 1 focusing on empirical scaling measurement and satellite analysis
-- Postdoctoral Researcher 2 developing generative models and theoretical interpretation
-- Graduate student assisting with data processing, model experiments, and integration
+### H1 — Existence of structure
 
-## Project timeline
+Wildfire growth trajectories exhibit consistent scaling relationships and identifiable regime structure across events.
 
-| Task | Year 1 | Year 2 | Year 3 | Year 4 |
-| --- | --- | --- | --- | --- |
-| Data integration and perimeter reconstruction | ███████ |  |  |  |
-| Fire growth trajectory dataset | ███████ | ███ |  |  |
-| Scaling measurement tools | ███ | ███████ |  |  |
-| Scaling regime detection |  | ███████ |  |  |
-| Environmental regime analysis |  | ███████ | ███ |  |
-| Generative modeling experiments |  | ███ | ███████ |  |
-| Mechanism comparison |  |  | ███████ |  |
-| Fire model evaluation |  |  | ███ | ███████ |
-| CubeDynamics scaling toolkit |  |  | ███ | ███████ |
-| Synthesis and theory development |  |  |  | ███████ |
+### H2 — Origin of structure
 
-## Phase 1: Establishing the measurement system (Year 1)
+Observed scaling behavior arises either:
 
-The first phase focuses on establishing a robust empirical foundation for wildfire scaling analysis. Although large volumes of satellite fire data exist, they are rarely organized into consistent trajectories describing how individual fires grow through time. The primary objective of this phase is therefore to construct a standardized dataset of wildfire growth trajectories that can support large-scale geometric analysis.
+- from intrinsic perimeter dynamics and coupled growth, or
+- from externally imposed structure such as wind, fuels, and topography.
 
-The team will integrate `FIRED` fire progression data into the `CubeDynamics` framework. Using these tools, researchers will reconstruct daily perimeter evolution for many fires across multiple regions and ecosystems. Each fire will be represented as a time series describing key geometric properties including perimeter length, burned area, and shape metrics.
+### H3 — Model implication
 
-A significant portion of the work during this phase involves establishing reliable measurement methods. Satellite-derived fire perimeters are sensitive to spatial resolution, pixel connectivity rules, and smoothing procedures. To ensure that geometric measurements are scientifically meaningful, the team will develop standardized perimeter extraction and smoothing algorithms and evaluate how measurement resolution influences estimates of perimeter length and fractal dimension.
+If such structure exists, current fire models fail to capture it in ways that are not detectable using standard evaluation metrics alone.
 
-At the same time, the team will implement several complementary estimators of wildfire geometry, including perimeter-area scaling relationships and fractal dimension estimators such as box-counting and divider methods. These tools will allow the researchers to quantify how complex wildfire boundaries become as fires grow.
+## Why this requires a coordinated team
 
-By the end of the first year, the project will produce a dataset of wildfire growth trajectories derived from satellite observations. This dataset will include perimeter and area time series for many fires and will be made available through `CubeDynamics` as a reusable research resource.
+The central question cannot be answered through a single analytical pathway.
 
-## Phase 2: Identifying the scaling regime (Year 2)
+- Empirical analysis alone cannot decisively distinguish intrinsic from environmentally forced structure.
+- Generative modeling alone cannot establish whether any proposed mechanism is relevant to real wildfire trajectories.
+- Model evaluation alone cannot reveal missing organizing principles unless the empirical and generative work have already identified what to test.
 
-With the empirical dataset established, the second phase addresses the central question of whether wildfire perimeter growth exhibits a reproducible scaling regime.
+For that reason, the project is structured around three tightly coupled components that must remain aligned through shared observables and diagnostics:
 
-For each fire trajectory, researchers will analyze the relationship between perimeter and time using log-log scaling diagnostics. Instead of assuming that a single exponent applies throughout the entire lifetime of a fire, the analysis will search for intervals in which power-law relationships appear stable. These intervals may represent the expansion phase of wildfire growth, during which the fire front behaves as a statistically rough interface spanning many fuel patches.
+1. empirical detection of structure,
+2. generative testing of mechanism, and
+3. translation into model evaluation.
 
-The team will apply segmented regression and breakpoint detection techniques to identify transitions between different growth regimes. These analyses will help determine whether wildfire growth can be described by a three-phase lifecycle consisting of ignition, expansion, and termination phases.
+Each component is substantial enough to function as a research program in its own right. Running them in parallel is what makes the central hypothesis test decisive rather than suggestive.
 
-An especially powerful diagnostic used in this phase will be scaling collapse. In this approach, individual fire trajectories are normalized by characteristic time and perimeter scales so that fires of different durations and sizes can be compared directly. If fires share a common underlying growth process, their normalized trajectories should collapse onto a common curve during the expansion phase.
+### Team structure and justification
 
-In addition to identifying the scaling regime, researchers will examine how scaling behavior varies across environmental gradients. Fires will be stratified by ecosystem type, climate regime, and wind conditions to determine whether the exponent is universal or varies systematically with environmental forcing.
+This work plan assumes the following minimum team structure:
 
-By the end of this phase, the project will produce a large-scale empirical characterization of wildfire perimeter growth scaling.
+- **Postdoctoral Researcher 1** leads empirical trajectory construction, quality control, and scaling analysis.
+- **Postdoctoral Researcher 2** leads generative modeling, mechanism testing, and model-space exploration.
+- **Principal Investigator** leads integration, cross-arc synthesis, and translation into wildfire model evaluation and open-science products.
 
-## Phase 3: Mechanistic modeling experiments (Year 3)
+This structure is justified because the project must deliver a conceptual advance, a computational modeling framework, and a validation pathway, all of which are emphasized in the repository's current FIRE-MODEL planning materials.
 
-Once empirical scaling patterns are established, the next phase investigates what physical processes produce those patterns. Rather than attempting to replicate the full complexity of wildfire behavior, this phase focuses on developing simplified generative models that isolate key mechanisms of fire spread.
+## Project architecture: three interlocking arcs
 
-Researchers will construct a series of minimal models representing different classes of processes. These models will include diffusion-like spread, spread through heterogeneous fuel networks similar to percolation systems, anisotropic spread driven by wind, and models incorporating occasional long-distance ignition events representing spotting.
+### Arc 1 — Empirical growth structure
 
-Each model will generate synthetic fire growth trajectories that can be analyzed using the same geometric diagnostics applied to satellite data. By comparing the scaling exponents and boundary dimensions produced by each model with those observed in real fires, the researchers can determine which mechanisms are capable of producing the observed geometric patterns.
+**Goal:** Determine whether scaling and regime structure exist in wildfire growth trajectories.
 
-This comparative modeling approach allows the project to move beyond empirical description toward mechanistic explanation.
+### Arc 2 — Generative mechanism testing
 
-## Phase 4: Evaluating fire models and synthesizing theory (Year 4)
+**Goal:** Determine what classes of processes can generate the observed structure.
 
-The final phase connects the findings back to the broader wildfire modeling community. Operational wildfire simulators are widely used to predict fire spread under different weather and fuel conditions, but they are rarely evaluated based on the emergent geometric properties of the fires they produce.
+### Arc 3 — Evaluation and translation
 
-In this phase, the research team will analyze fire perimeters generated by existing wildfire models and apply the same scaling diagnostics used in earlier phases. This comparison will determine whether current fire models reproduce the same perimeter growth exponents and boundary roughness observed in satellite data.
+**Goal:** Use discovered structure to diagnose and improve wildfire models.
 
-If discrepancies are found, the results will highlight which physical processes may be missing or simplified in current models. Conversely, if models reproduce the observed scaling behavior, this provides validation for their underlying spread mechanisms.
+These three arcs run in parallel, but they converge at defined annual benchmarks so that each year produces both scientific output and decision-relevant evidence.
 
-At the same time, the scaling diagnostics developed throughout the project will be integrated into `CubeDynamics` as a reusable module. This will allow researchers and fire modelers to evaluate the geometric realism of future simulations using the same analytical tools developed during the project.
+## Three-year execution logic
 
-The final year will also focus on synthesizing the empirical and modeling results into a coherent theoretical framework describing how local fire spread processes generate large-scale wildfire geometry.
+- **Year 1:** Build the system to measure wildfire growth as geometry.
+- **Year 2:** Determine whether scaling structure exists and identify candidate mechanisms.
+- **Year 3:** Translate the findings into a diagnostic framework for evaluating and improving wildfire models.
 
-## Expected scientific outcomes
+## Year 1 — Build the measurement system
 
-By the end of the project, the research team will have produced several major advances in wildfire science.
+### Scientific objective
 
-First, the project will provide a systematic measurement of wildfire perimeter growth scaling across many fires using satellite observations.
+Establish a validated system for measuring wildfire growth geometry from empirical trajectories.
 
-Second, it will determine when during the fire lifetime scaling appears, addressing a major conceptual uncertainty about wildfire dynamics.
+### Empirical work (Postdoctoral Researcher 1)
 
-Third, the modeling experiments will identify which mechanisms are capable of generating the observed geometric patterns, connecting wildfire science with broader theories of interface growth and landscape connectivity.
+- Construct `FIRED`-based wildfire trajectories with synchronized area and perimeter histories.
+- Develop a QA/QC framework for trajectory reliability, resolution sensitivity, and measurement provenance.
+- Implement first-generation scaling diagnostics, including:
+  - local exponent estimation,
+  - normalization strategies for cross-fire comparison, and
+  - collapse detection workflows.
 
-Finally, the project will introduce a new scaling-based diagnostic framework for wildfire models, enabling researchers to evaluate whether simulations reproduce the emergent geometry of real fires.
+### Generative work (Postdoctoral Researcher 2)
 
-Together, these advances help bridge a longstanding gap in wildfire science: understanding how local spread processes produce the large-scale spatial geometry of wildfire growth across landscapes.
+- Build a minimal model hierarchy spanning:
+  - stochastic growth,
+  - percolation-like spread, and
+  - cellular automata with environmental forcing.
+- Align model outputs with the same observables and diagnostics used for empirical trajectories.
+
+### Integration and translation (PI)
+
+- Define the shared observables that connect data, minimal models, and later model evaluation.
+- Ensure that empirical and synthetic outputs are comparable through common diagnostics and metadata conventions.
+
+### Year 1 deliverables
+
+- validated trajectory dataset,
+- QA/QC documentation,
+- scaling diagnostics pipeline (`v1`),
+- generative modeling framework (`v1`),
+- initial dissemination through a conference or workshop contribution, and
+- NSF annual reporting materials.
+
+### Year 1 benchmark
+
+By the end of Year 1, the team can reliably measure wildfire growth as a geometric process and detect candidate structure beyond null expectations.
+
+## Year 2 — Detect structure and identify mechanism
+
+### Scientific objective
+
+Test whether regime-dependent scaling exists across fires and determine what mechanisms can or cannot generate it.
+
+### Empirical work (Postdoctoral Researcher 1)
+
+- Conduct ensemble scaling analysis across wildfire trajectories.
+- Apply change-point or related regime-detection methods to identify shifts in growth behavior.
+- Perform collapse analysis across normalized trajectories to test whether diverse fires share common structure.
+
+### Environmental conditioning
+
+- Integrate wind, fuels, and topographic context into the empirical analysis.
+- Compare observed results against null and surrogate datasets.
+- Test whether candidate scaling structure persists, weakens, or disappears after conditioning on environmental forcing.
+
+### Generative work (Postdoctoral Researcher 2)
+
+- Run parameter sweeps across the minimal model hierarchy.
+- Conduct forcing-ablation experiments to isolate which ingredients are necessary for stable or transient scaling behavior.
+
+### Key output: phase diagram
+
+A central Year 2 synthesis product is a phase diagram mapping scaling behavior as a function of:
+
+- forcing intensity, such as wind or advection strength, and
+- spatial connectivity, such as fuel continuity or percolation state.
+
+The phase diagram will identify regions associated with:
+
+- stable scaling,
+- no scaling, and
+- transient or regime-switching behavior.
+
+### Integration and interpretation (PI)
+
+- Align empirical and generative results using the shared diagnostics established in Year 1.
+- Interpret whether the evidence supports intrinsic organization, environmental imposition, or mixed causation.
+
+### Year 2 deliverables
+
+- ensemble scaling results,
+- robustness and null-model tests,
+- empirical manuscript in preparation or submission,
+- generative manuscript in preparation or submission,
+- conference dissemination, and
+- NSF annual reporting materials.
+
+### Year 2 benchmark
+
+By the end of Year 2, the team determines whether regime-dependent scaling exists across fires and identifies minimal mechanisms capable of producing or failing to produce it.
+
+## Year 3 — Translate to model evaluation and application
+
+### Scientific objective
+
+Convert the empirical and generative findings into a framework for diagnosing wildfire models.
+
+### Evaluation work (PI-led with full team support)
+
+- Apply the developed diagnostics to existing wildfire models.
+- Evaluate model behavior in terms of:
+  - regime-detection accuracy,
+  - scaling fidelity, and
+  - trajectory geometry.
+
+### Key insight sought
+
+The project is designed to identify model failure modes that are difficult to detect with standard performance metrics alone, including:
+
+- models that reproduce an average rate of spread while producing incorrect geometry, and
+- models that miss or blur regime transitions visible in observed fire trajectories.
+
+### Toolkit development (team)
+
+- Package the diagnostics into `CubeDynamics`.
+- Build reproducible workflows so the evaluation system can be reused by future researchers and model developers.
+
+### Open-science deliverables
+
+- curated data release,
+- code release,
+- workflow documentation, and
+- reusable benchmarking materials.
+
+### Synthesis
+
+- Integrate the empirical, generative, and evaluation results into a unified framework for wildfire growth as a structured spatiotemporal process.
+- Translate the findings into practical guidance for diagnosing and improving next-generation wildfire models.
+
+### Year 3 deliverables
+
+- model benchmarking results,
+- operational diagnostics toolkit,
+- open-source data and workflows,
+- benchmarking and synthesis manuscripts,
+- final dissemination products, and
+- NSF final reporting materials.
+
+### Year 3 benchmark
+
+By the end of Year 3, the project delivers a practical and scientific framework for diagnosing and improving wildfire models based on growth structure.
+
+## Risk structure and outcome logic
+
+The project is designed to produce useful outcomes under multiple scientific scenarios.
+
+### Case 1 — No scaling found
+
+- Establish limits of predictability in wildfire growth geometry.
+- Provide null benchmarks that future wildfire models should not overinterpret.
+
+### Case 2 — Scaling found but primarily forced
+
+- Show how strongly wildfire growth structure depends on environmental organization.
+- Motivate improved representation of forcing fields and landscape structure in models.
+
+### Case 3 — Intrinsic scaling found
+
+- Identify a new organizing principle for wildfire growth.
+- Create a strong basis for rethinking wildfire model design and evaluation around emergent geometry.
+
+Each of these outcomes is scientifically meaningful, publishable, and useful for the `FIRE-MODEL` objective of advancing wildfire prediction frameworks.
+
+## Final perspective
+
+This work plan is structured so that:
+
+- each year produces meaningful scientific output,
+- each project arc can stand on its own, and
+- all arcs contribute to a decisive test of the central hypothesis.
+
+The combination of empirical data analysis, generative experimentation, and wildfire model evaluation is what makes the program both feasible and scientifically powerful. As a repository artifact, this document should function both as a roadmap for execution and as a reference explaining how each component contributes to the broader scientific goal.
