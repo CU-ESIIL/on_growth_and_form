@@ -590,3 +590,32 @@ Add a new document summarizing first-submission reviews and resubmission strateg
 
 ### Open questions and follow-up
 - The strategic memo is based on user-provided review text and the earlier repository synthesis; if fuller panel documentation becomes available, the strategy should be expanded accordingly.
+
+## 2026-03-18
+
+### Prompt
+Add the new scale-conditioned WUI geometry background material and connect it to the fire-modeling proposal framing.
+
+### Files and folders inspected
+- `AGENTS.md`
+- `funder/README.md`
+- `funder/solicitation/fire_model_2026_briefing.md`
+- `funder/review_criteria/fire_model_requirements_checklist.md`
+- `background_context/README.md`
+- `background_context/scaling_and_geometry/`
+- `docs/theory/`
+- `docs/methods/scaling-diagnostics.md`
+- `docs/models/benchmarking-existing-fire-models.md`
+- `mkdocs.yml`
+
+### Actions taken
+- Added a new background framing note on scale-conditioned WUI geometry under `background_context/scaling_and_geometry/`.
+- Added a matching theory page to the documentation site and linked it into the Theory navigation.
+- Updated the scaling diagnostics and benchmarking pages so they explicitly distinguish definition scale from measurement scale and frame validation in terms of `L_d(ε)` curves.
+
+### Verification
+- Reviewed the edited markdown and navigation diff locally.
+- Ran `bash scripts/review_site.sh`; the MkDocs build completed successfully, while the pytest Playwright check remained blocked because the `playwright` Python package could not be installed in this environment due repository proxy restrictions.
+
+### Open questions and follow-up
+- The new note is a conceptual framing document; any literature claims or proposal prose derived from it should still be checked against verified primary sources before submission use.
