@@ -8,13 +8,14 @@ edit_uri: "edit/main/docs/"
 
 nav:
   - Home: index.md
+  - Strategy Document: project-overview/review-resubmission-strategy.md
   - Project Overview:
       - Overview: project-overview/index.md
       - Funder Materials: project-overview/funder-materials.md
       - FIRE-MODEL Briefing: project-overview/fire-model-briefing.md
       - Requirements Checklist: project-overview/requirements-checklist.md
       - Program Context: project-overview/program-context.md
-      - Review Resubmission Strategy: project-overview/review-resubmission-strategy.md
+      - Structured Response Plan: project-overview/review-resubmission-strategy.md
       - Rebid Context, Pitch, and Scientific Program: project-overview/rebid-context-pitch-scientific-program.md
   - Theory:
       - Overview: theory/index.md

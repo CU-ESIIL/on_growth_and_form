@@ -792,3 +792,33 @@ Add a new draft titled `On Growth and Form: A Generative Theory of Fire` to the 
 - The draft is now stored as planning prose, but it may still need later condensation into submission-length Project Description text.
 - A later pass may want to crosswalk specific subsections of this draft to Intellectual Merit, Broader Impacts, and the formal NSF section structure.
 - Full browser-based site smoke tests remain pending until the environment can install Playwright and its browser dependencies.
+
+## 2026-03-19
+
+### Prompt
+Promote a new structured FIRE-MODEL revision strategy document to a privileged position on the website and give it its own shareable link for collaborator use.
+
+### Files and folders inspected
+- `AGENTS.md`
+- `funder/solicitation/fire_model_2026_briefing.md`
+- `funder/review_criteria/fire_model_requirements_checklist.md`
+- `proposal/narrative/fire_model_resubmission_strategy.md`
+- `docs/project-overview/review-resubmission-strategy.md`
+- `docs/project-overview/index.md`
+- `docs/index.md`
+- `mkdocs.yml`
+- `PROMPT_ACTION_LOG.md`
+
+### Actions taken
+- Replaced the prior resubmission strategy memo in `proposal/narrative/` with the new structured response plan so the repository has a single current strategy document for revision work.
+- Rebuilt the website version of the strategy page as a collaborator-facing sendable memo with the full structured response plan.
+- Elevated the strategy document in the site navigation by adding a top-level `Strategy Document` link and updated the Project Overview labels to reflect its new role.
+- Updated the homepage hero, note, and cards so the strategy document is the primary entry point for revision planning.
+
+### Verification
+- Ran `python3 -m mkdocs build --strict --clean --site-dir dist`; the site built successfully after the navigation and page updates.
+- Ran `bash scripts/review_site.sh`; the MkDocs build passed, but the pytest site check failed during collection because the local environment does not have the `playwright` package installed.
+
+### Open questions and follow-up
+- The strategy document is now the primary collaborator-facing memo, but the proposal text may still need a later pass to map each benchmark and deliverable into submission-length Project Description language.
+- Browser-based screenshot capture was not attempted because no browser-container tool was available in this session.
