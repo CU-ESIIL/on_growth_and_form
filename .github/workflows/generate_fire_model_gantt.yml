@@ -1,0 +1,40 @@
+name: Generate FIRE-MODEL Gantt assets
+
+on:
+  pull_request:
+    paths:
+      - scripts/generate_fire_model_gantt.py
+      - docs/planning/gantt_chart.md
+      - .github/workflows/generate_fire_model_gantt.yml
+  push:
+    branches:
+      - main
+    paths:
+      - scripts/generate_fire_model_gantt.py
+      - docs/planning/gantt_chart.md
+      - .github/workflows/generate_fire_model_gantt.yml
+  workflow_dispatch:
+
+jobs:
+  build-gantt-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Generate FIRE-MODEL Gantt assets
+        run: python scripts/generate_fire_model_gantt.py
+
+      - name: Upload FIRE-MODEL Gantt assets
+        uses: actions/upload-artifact@v4
+        with:
+          name: fire-model-gantt-assets
+          path: |
+            docs/assets/figures/fire_model_gantt_ESIIL_minimal.png
+            docs/assets/figures/fire_model_gantt_ESIIL_minimal.svg
+          if-no-files-found: error

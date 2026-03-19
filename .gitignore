@@ -63,3 +63,6 @@ figures/drafts/*
 !figures/drafts/.gitkeep
 figures/final/*
 !figures/final/.gitkeep
+
+# Generated local preview asset for FIRE-MODEL planning chart
+docs/assets/figures/fire_model_gantt_ESIIL_minimal.png

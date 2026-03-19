@@ -701,3 +701,61 @@ Add the provided FIRE-MODEL comprehensive work plan into the draft section.
 ### Open questions and follow-up
 - This work plan is aligned to the repository's working FIRE-MODEL briefing and checklist, but final proposal submission language should still be checked against the authoritative NSF solicitation and current PAPPG.
 
+
+## 2026-03-19
+
+### Prompt
+Add an ESIIL-style FIRE-MODEL Gantt chart script, generate PNG/SVG outputs, publish the figure on a standalone website page with the provided legend text, and link it into the MkDocs navigation.
+
+### Files and folders inspected
+- `AGENTS.md`
+- `funder/solicitation/fire_model_2026_briefing.md`
+- `docs/research-program/work-plan.md`
+- `docs/research-program/gantt-timeline.md`
+- `mkdocs.yml`
+- `scripts/review_site.sh`
+- `PROMPT_ACTION_LOG.md`
+
+### Actions taken
+- Added `scripts/generate_fire_model_gantt.py` to generate repository-tracked FIRE-MODEL Gantt chart assets with matplotlib and write them into `docs/assets/figures/`.
+- Added `docs/planning/gantt_chart.md` using the user's requested page structure and legend text.
+- Updated `mkdocs.yml` to expose the new page under a `Planning` navigation section.
+- Generated the PNG and SVG outputs locally from the new script.
+
+### Verification
+- Ran `python scripts/generate_fire_model_gantt.py` to create the figure assets; the environment lacked `matplotlib`, so the script used its built-in pure-Python fallback renderer and still produced both requested files.
+- Ran `python -m mkdocs build --strict --clean --site-dir dist`; the site built successfully with the new page and assets.
+- Ran `timeout 15s mkdocs serve --dev-addr 127.0.0.1:8000`; the local server started successfully before the intentional timeout stopped it.
+- Ran `bash scripts/review_site.sh`; the MkDocs build passed, while the pytest site check failed during collection because the `playwright` Python package is not installed in the environment.
+
+### Open questions and follow-up
+- The prompt referenced a previously provided full Python script, but that source code was not present in the visible session context; the added script is therefore a fresh matplotlib implementation matching the requested FIRE-MODEL/ESIIL-style output and repository paths.
+
+
+## 2026-03-19
+
+### Prompt
+Address PR feedback that binary assets should be generated from code in GitHub Actions rather than attached directly in the review diff.
+
+### Files and folders inspected
+- `AGENTS.md`
+- `funder/solicitation/fire_model_2026_briefing.md`
+- `scripts/generate_fire_model_gantt.py`
+- `docs/planning/gantt_chart.md`
+- `mkdocs.yml`
+- `PROMPT_ACTION_LOG.md`
+
+### Actions taken
+- Removed the tracked PNG output from version control so the review no longer depends on a committed binary asset.
+- Updated the planning page to embed the generated SVG instead of the PNG while preserving the requested legend and interpretation text.
+- Added `.github/workflows/generate_fire_model_gantt.yml` so GitHub can regenerate and publish both PNG and SVG outputs as workflow artifacts from code.
+- Added a note in `scripts/generate_fire_model_gantt.py` documenting the repository/CI split between the tracked SVG and generated binary output.
+
+### Verification
+- Ran `python scripts/generate_fire_model_gantt.py` after the workflow-oriented changes; the script still generated both requested outputs locally.
+- Ran `python -m mkdocs build --strict --clean --site-dir dist`; the site built successfully with the SVG-based planning page.
+- Ran `timeout 15s mkdocs serve --dev-addr 127.0.0.1:8000`; the local server started successfully before the intentional timeout stopped it.
+- Ran `bash scripts/review_site.sh`; the MkDocs build passed, while the pytest site check still failed during collection because the `playwright` Python package is not installed in the environment.
+
+### Open questions and follow-up
+- The repository does not currently include a site deployment workflow in scope here, so the new action uploads generated assets as artifacts; if Pages deployment is later automated in-repo, that workflow should call the same generator before `mkdocs build`.
