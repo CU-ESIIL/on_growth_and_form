@@ -1,164 +1,370 @@
-# FIRE-MODEL Resubmission Strategy from First-Submission Reviews
+# FIRE-MODEL Resubmission — Structured Response Plan
 
 ## Status and purpose
 
-This memo captures reviewer and panel feedback from the previous FIRE-MODEL submission and translates that feedback into proposal-development strategy for the next submission. It belongs in `proposal/narrative/` because it is guiding rewrite priorities, framing choices, work-package design, validation language, and staffing-risk mitigation for the resubmission.
+This memo is the current working strategy document for the FIRE-MODEL resubmission. It translates reviewer feedback into a falsifiable research program, clarifies what will be measured and tested, and identifies what would count as success or failure.
 
 This is an internal strategy document, not sponsor-issued guidance. Final proposal decisions should still be checked against the current solicitation, NSF review criteria, and any submission instructions in `funder/`.
 
-## Core interpretation of the reviews
+## Overview
 
-The reviews indicate that the conceptual core of the proposal was well received, but that reviewers lacked confidence in how the research program would be operationalized and validated.
+The central revision is a shift away from presenting wildfire growth as a single settled scaling law. The resubmission instead proposes a testable multi-regime framework in which fire behavior changes as growth proceeds and as transport constraints are relaxed or enforced.
 
-Working interpretation:
+The goal is to make the proposal legible as a discovery program with explicit benchmarks:
 
-- reviewers responded positively to the conceptual novelty;
-- reviewers wanted substantially more confidence in execution detail;
-- the resubmission should convert enthusiasm about the idea into confidence in feasibility, rigor, and validation.
+- what is observed;
+- what is derived from those observations;
+- what the models are expected to reproduce; and
+- what evidence would support or challenge the framework.
 
-## Executive summary of panel outcome
+## I. Narrative restructuring
 
-### Strengths noted by reviewers
+We replace a scaling-centric narrative with a regime-based description: wildfire does not necessarily obey a single governing law across all stages of growth. Instead, it may transition between regimes that differ in effective dimensionality and in the balance between combustion demand and atmospheric transport.
 
-- Highly novel conceptual framework.
-- Potentially transformative perspective on wildfire dynamics.
-- Strong empirical motivation from the global satellite fire record.
-- Compelling integration of geometric and dynamical modeling.
+We organize the science around three observable stages:
 
-### Primary concerns raised by reviewers
+- **Pre-emergent:** patchy, ignition-limited, spatially sparse spread.
+- **Transition / emergence:** increasing connectivity and ventilation, with the onset of a coherent front.
+- **Post-emergent:** boundary-governed growth in which geometry dominates and scaling relations stabilize.
 
-- Insufficient technical detail about implementation.
-- Limited discussion of satellite sampling limitations.
-- Lack of explicit meteorological inputs.
-- Validation strategy was unclear.
-- Scope of work was unclear relative to the proposed budget.
+This restructuring also clarifies model roles:
 
-Bottom-line interpretation: reviewers liked the idea but lacked confidence in execution clarity.
+- **Wave model:** local spread, coupling, and conditions for achieving a coherent front in the pre-emergent and transition regimes.
+- **Manifold / geometric model:** reduced description once a coherent front exists in the post-emergent regime.
 
-## Reviewer feedback summary table
+Meteorology is treated as a primary control through transport, mixing, and ventilation rather than as an auxiliary add-on.
 
-| Reviewer concern | What reviewers meant | Strategy for resubmission |
-| --- | --- | --- |
-| Satellite-derived 2/3 scaling may be biased by sampling | MODIS and VIIRS revisit intervals can miss rapid fire spread dynamics and may create artifacts in scaling estimates | Explicitly discuss temporal sampling limitations. Add a research objective to test scaling robustness using higher-frequency or complementary data sources such as GOES, VIIRS active fire detections, and reconstructed perimeter products. Frame the scaling relationship as a hypothesis to be tested rather than an assumed truth. |
-| Meteorological drivers missing | Wind, humidity, and atmospheric conditions strongly affect fire spread, so excluding them suggested an incomplete process model | Introduce meteorology as external forcing variables rather than internal drivers. Integrate wind fields, humidity, and VPD as boundary conditions or forcing terms within the wave model. Emphasize the interaction between internal fire dynamics and external forcing. |
-| Insufficient technical detail | The conceptual framework was clearer than the algorithmic and computational plan | Add explicit algorithm descriptions, pseudo-code blocks, and clearer model architecture diagrams. Specify how the wave model updates nodes, how ignition probabilities are calculated, and how manifolds are reconstructed. |
-| Validation plan unclear | Reviewers could not see how a first-principles model would be quantitatively validated against real fires | Introduce explicit validation metrics such as perimeter error, Hausdorff distance, curvature similarity, spread-rate error, and ignition-density comparison. Include cross-validation across case-study fires. |
-| Stage of fire applicability unclear | It was not clear whether the model targets ignition, early spread, extreme growth, or full fire lifecycle behavior | Clarify applicability explicitly. For example, target mesoscale fire expansion phases after ignition networks form, rather than ignition physics or suppression modeling. |
-| Dependence on postdoc hiring | The project timeline appeared to depend heavily on quickly hiring two specialized postdocs | Add contingency planning. Explain how early development can begin with the PI and collaborators if hiring is delayed, and emphasize modular task structure that allows parallel progress. |
-| Scope relative to budget unclear | The technical workload and infrastructure effort were not legible enough to justify the requested funding | Expand the task descriptions for simulations, validation campaigns, data engineering, software infrastructure, and research coordination so the workload is auditable. |
-| Comparisons to existing models insufficient | Reviewers wanted a clearer explanation of how this approach improves on existing wildfire models such as FARSITE or WRF-Fire | Add a subsection explicitly comparing modeling paradigms, including reaction-diffusion and operational spread models versus the proposed generative or metabolic framing. Give concrete examples such as perimeter fusion, nonlinear expansion, and jump behavior. |
-| Mechanistic link between metabolism and fire unclear | The metabolic framing risked reading as analogy rather than physical mechanism | Expand the mechanistic section to explain energy transport networks, combustion coupling, ignition propagation, and thermodynamic constraints as more than metaphor. |
-| Broader impacts metrics vague | Interviews and stakeholder engagement were mentioned, but evaluation criteria were not concrete | Provide measurable broader-impacts metrics such as workshop participation, software adoption, survey instruments, and documented use cases. |
-| Diversity recruitment strategy vague | Diversity goals were stated, but recruitment pathways were underspecified | Name specific partner organizations and recruitment pathways, such as tribal colleges, fire-management agencies, minority-serving institutions, and targeted outreach networks. |
+## II. Physical foundation
 
-## Recommended structural changes to the proposal
+We introduce a feasibility condition that can be operationalized with observations and models: a continuous fire front requires oxygen supply and atmospheric transport capacity to meet or exceed combustion demand at the leading edge.
 
-### 1. Reframe the scaling discovery
+We therefore define:
 
-Instead of presenting 2/3 scaling as a fixed empirical result, present it as a testable hypothesis.
+- **Ventilation capacity (`V`)** as a proxy family for transport support.
+- **Combustion demand (`D`)** as a proxy family for energetic and fuel constraints at the advancing front.
 
-Suggested framing:
+### Ventilation capacity proxy family
 
-> Satellite records suggest that fire perimeters may scale with time to the two-thirds power. However, this pattern has not yet been systematically tested across sensors with different temporal resolutions. This project will evaluate whether the observed scaling reflects intrinsic fire dynamics or observational artifacts.
+Candidate ingredients for `V` include:
 
-This directly addresses the strongest reviewer criticism and places the proposal on firmer scientific ground.
+- near-surface wind speed `U` from reanalysis or stations;
+- boundary-layer height `H` from reanalysis-derived products;
+- stability or turbulence proxy `S`, such as Richardson-number class or gustiness index; and
+- coupling factor `C`, terrain- and canopy-adjusted through empirical calibration.
 
-### 2. Introduce meteorology as boundary forcing
+Working example:
 
-Add a subsection that explains how environmental drivers interact with internal fire dynamics.
+`V ∝ U × H × f(S) × C`
 
-A useful conceptual structure is:
+### Combustion demand proxy family
 
-- fire spread rate = internal propagation dynamics × environmental forcing.
+Candidate ingredients for `D` include:
 
-Environmental forcing variables to name explicitly:
+- fuel load and fuel type from LANDFIRE-class products or equivalent sources;
+- effective burn-layer thickness at the head, conditioned on fuel class; and
+- heat of combustion or effective heat-release assumptions by fuel class.
 
-- wind fields;
-- vapor pressure deficit;
-- relative humidity;
-- atmospheric stability.
+Working example:
 
-This resolves the reviewer concern without giving up the proposal's core focus on endogenous fire-growth structure.
+`D ∝ fuel_load × burn_depth × heat_release_rate`
 
-### 3. Add explicit model algorithms
+### Working hypothesis
 
-Include short technical descriptions or pseudo-code blocks such as the following.
+Regime transitions should cluster near `V ≈ D`.
 
-#### Wave model algorithm
+Predictions:
 
-1. Represent the landscape as a graph.
-2. Assign resistance or conductance weights to edges.
-3. Calculate ignition probability using a logistic or related transition function.
-4. Update node states at each timestep.
-5. Track energy propagation and ignition cascades through time.
+- `V < D`: intermittent spread, larger variance, fragmented fronts.
+- `V ≈ D`: rapid changes in continuity and acceleration, indicating onset of coherence.
+- `V > D`: continuous fronts, smoother perimeters, and more stable perimeter-area relations.
 
-#### Manifold reconstruction workflow
+Because `V` and `D` are constructed from proxies, the resubmission should explicitly commit to evaluating multiple formulations and conducting sensitivity analyses.
 
-1. Extract sequential fire perimeters.
-2. Convert them into a spatiotemporal point cloud.
-3. Reconstruct a continuous surface through interpolation or related geometric methods.
-4. Compute curvature, entropy, directionality, and related geometry diagnostics.
+## III. From narrative to tests
 
-These additions help reviewers see a concrete computational research plan rather than a conceptual theory alone.
+### A. Decisive hypothesis test (Benchmark 0)
 
-### 4. Add a quantitative validation framework
+The resubmission should explicitly discriminate between:
 
-Suggested metric families include the following.
+- **H1, single-law framing:** a single scaling relation such as `P ~ A^α` holds across conditions.
+- **H2, multi-regime framing:** scaling and geometry change across regimes, with transitions governed by transport constraints.
 
-#### Perimeter similarity
+Test design:
 
-- Hausdorff distance;
-- Jaccard overlap.
+- compare single-law against piecewise or regime-based models using information criteria such as AIC and BIC;
+- use cross-validation to test predictive robustness; and
+- evaluate whether change points in geometry or continuity align with transitions in `V / D`.
 
-#### Spread dynamics
+Deliverable:
 
-- radial spread error;
-- growth exponent comparison.
+- a model-selection report and decisive figure showing whether observed fire behavior is better represented by a single regime or multiple regimes.
 
-#### Geometry
+### B. Observable quantities
 
-- curvature distribution similarity;
-- topological or persistence-based similarity metrics.
+From FIRED and auxiliary datasets, estimate:
 
-These metrics should be connected directly to claims in the proposal so reviewers can see how success or failure will be evaluated.
+- perimeter `P(t)` and area `A(t)`;
+- scaling relation `P ~ A^α`;
+- time-varying exponent `α(t)`;
+- local spread rates along the head and flanks;
+- continuity metrics such as connected-front fraction, gap frequency, and filamentation;
+- boundary curvature and roughness; and
+- meteorological drivers such as `U`, `H`, and stability proxies.
 
-### 5. Expand the research tasks section
+Derived quantities include:
 
-Suggested work packages:
+- variance and intermittency metrics; and
+- `V`, `D`, and their ratio `V / D`.
 
-1. **Scaling validation:** test scaling relationships across multiple sensors and temporal resolutions.
-2. **Wave model development:** implement metabolic propagation algorithms and resistance-surface dynamics.
-3. **Meteorological coupling:** integrate wind and atmospheric drivers as external forcing variables.
-4. **Manifold reconstruction:** generate spatiotemporal fire surfaces from perimeter and satellite products.
-5. **Model validation:** compare simulations against real fire case studies.
-6. **Community platform:** release an open-source toolkit and interactive simulation interface.
+### C. Regime classification as a product
 
-## Strategic narrative adjustment
+Develop a reproducible, uncertainty-aware regime classifier that labels fire states as pre-emergent, transition, or post-emergent using:
 
-The proposal narrative should shift from:
+- continuity metrics such as connected-front fraction;
+- stability and change in `α(t)`; and
+- thresholds or transition behavior in `V / D` proxies.
 
-- "We discovered the scaling law and built a model to reproduce it."
+Deliverable:
 
-To:
+- versioned regime-classification datasets and code applicable to both observations and model outputs.
 
-- "We discovered a potential scaling law and propose testing whether it reflects fundamental fire dynamics."
+### D. Tests of the ventilation boundary
 
-This shift aligns the resubmission more closely with hypothesis-driven science and should improve panel confidence.
+Test whether observed regime transitions align with `V ≈ D` by:
 
-## Proposal-development implications
+- computing `V` and `D` proxies through time for each fire;
+- detecting change points in geometry and continuity, including Bayesian change-point detection where useful; and
+- evaluating temporal alignment between observed transitions and crossings of `V / D ≈ 1`.
 
-This review memo should inform at least the following proposal components:
+Evaluation metrics:
 
-- Project Description framing and hypothesis statements;
-- research objectives and work packages;
-- validation and evaluation subsections;
-- staffing and management-plan contingency language;
-- budget justification detail;
-- broader impacts evaluation plan;
-- recruitment and partnership language.
+- precision and recall of transition detection;
+- temporal offset between `V / D` crossing and observed transition; and
+- sensitivity to proxy definitions.
 
-## Open questions and follow-up needs
+### E. Model experiments as falsifiable contrasts
 
-- Confirm whether the reviewer summary here fully captures all panel concerns from the prior submission materials.
-- Map each strategy item to specific sections of the next Project Description and supporting documents.
-- Check all resulting proposal text against the current FIRE-MODEL solicitation and NSF guidance in `funder/` before treating any strategic recommendation as final.
+#### 1. Wave-model experiments
+
+- Sweep parameters over `U`, `H`, `C`, and fuel parameters.
+- Output continuity, `α(t)`, and transition timing.
+- Test whether the model reproduces observed regime transitions and their dependence on `V / D`.
+
+#### 2. Geometric / manifold model experiments
+
+- Initialize coherent fronts and evolve boundary-driven growth.
+- Test whether the reduced model reproduces post-emergent scaling and geometry without detailed local ignition physics.
+
+Falsifiable claim:
+
+- If post-emergent behavior is geometry-dominated, a reduced geometric model should reproduce observed scaling independently of local ignition detail within stated uncertainty.
+
+#### 3. Cross-model comparison
+
+- Identify conditions under which both models agree in the post-emergent regime.
+- Identify conditions under which local spread physics remains necessary in the pre-emergent and transition regimes.
+
+### F. Benchmarking against existing models
+
+Apply the same diagnostics to existing model outputs to ask:
+
+- do current models reproduce regime transitions;
+- do they predict continuous fronts when `V < D`, producing false positives; and
+- do they miss transitions when `V > D`, producing false negatives.
+
+Deliverable:
+
+- a reusable benchmark suite for evaluating any fire model against regime transitions and geometry diagnostics.
+
+## IV. Reviewer critiques mapped to actions
+
+| Reviewer concern | Action in resubmission |
+| --- | --- |
+| Scaling and data limitations | Estimate `α(t)`, compare piecewise and single-law fits, and quantify sensitivity to temporal resolution, suppression, and detection limits. |
+| Meteorology underdeveloped | Incorporate `U`, `H`, and stability proxies directly into `V` and test predictive power for regime transitions. |
+| Validation unclear | Define success in terms of correct regime labels, transition timing, and post-emergent geometry rather than final area alone. |
+| Technical implementation too conceptual | Implement a modular pipeline: data ingestion → feature extraction → regime classification → model experiments → benchmarking. |
+| Differentiation from existing models weak | Provide diagnostics that evaluate existing models rather than claiming to replace them outright. |
+| Feasibility concerns | Organize Years 1-2 as parallel workstreams with independently evaluable deliverables. |
+| Broader impacts underspecified | Release datasets, code, dashboards, and tutorials through ESIIL / OASIS-aligned channels. |
+
+## V. Resulting position
+
+The resubmission should present a testable framework for when and why wildfire transitions between growth regimes, grounded in transport constraints and evaluated with explicit benchmarks.
+
+Key product-oriented outputs:
+
+- regime classification system with uncertainty for observations and model outputs;
+- `V / D` proxy datasets linking meteorology and fuels to fire behavior; and
+- benchmark suite for evaluating model ability to reproduce regime transitions and extreme behavior.
+
+Conceptual anchor:
+
+- a phase diagram of fire behavior in `(V / D, connectivity)` space that maps fragmented, transitional, and continuous spread.
+
+## VI. Benchmarks, milestones, and deliverables
+
+### Core benchmarks
+
+#### 0. Single-law vs multi-regime discrimination
+
+- **Metric:** AIC / BIC comparison of single-law and regime-based models.
+- **Test:** cross-validated fits plus alignment of change points with `V / D`.
+- **Deliverable:** decisive figure and report demonstrating whether regime structure is supported.
+
+#### 1. Regime detection accuracy
+
+- **Metric:** precision, recall, and F1 score against independently derived continuity transitions.
+- **Test:** cross-validation plus uncertainty quantification.
+- **Deliverable:** versioned regime labels and evaluation report.
+
+#### 2. Ventilation-demand boundary validity
+
+- **Metric:** hit rate and time offset for alignment between `V / D ≈ 1` and observed transitions.
+- **Test:** bootstrap and sensitivity analyses across proxy definitions.
+- **Deliverable:** `V / D` datasets, code, and validation figures.
+
+#### 3. Geometry and scaling in post-emergent fires
+
+- **Metric:** stability of `α(t)`, cross-fire distributions, and boundary roughness statistics.
+- **Test:** piecewise vs single-law fits plus robustness to sampling resolution.
+- **Deliverable:** `α(t)` time series, summary tables, and methods notebook.
+
+#### 4. Model fidelity to regimes
+
+- **Metric:** accuracy of transition timing, continuity metrics, and post-emergent geometry.
+- **Test:** side-by-side diagnostics comparing observations with wave and geometric models.
+- **Deliverable:** standardized benchmark suite.
+
+#### 5. Discrimination versus existing models
+
+- **Metric:** false positive and false negative rates for continuity under `V < D` and `V > D`.
+- **Test:** apply the diagnostics to available model outputs.
+- **Deliverable:** comparative evaluation report and reusable toolkit.
+
+### Milestones and work plan
+
+#### Year 1 — Measurement and labeling
+
+- Build feature extraction for `P(t)`, `A(t)`, `α(t)`, continuity, and curvature.
+- Implement initial `V` and `D` proxies plus a sensitivity-analysis plan.
+- Develop regime classifier and change-point detection.
+
+Outputs:
+
+- v1 features dataset;
+- v1 regime labels; and
+- preliminary `V / D` time series.
+
+#### Year 2 — Testing and model experiments
+
+- Validate regime labels and refine `V / D` definitions.
+- Conduct wave-model parameter sweeps and compute diagnostics.
+- Quantify alignment of observed transitions with the `V / D` boundary.
+
+Outputs:
+
+- validated regime dataset v2;
+- experiment library; and
+- transition-alignment report.
+
+#### Year 3 — Geometry, benchmarking, and release
+
+- Validate the geometric model in the post-emergent regime.
+- Assemble and apply the cross-model benchmark suite.
+- Package datasets, code, and dashboards for public use through ESIIL / OASIS pathways.
+
+Outputs:
+
+- benchmark suite;
+- comparative evaluation report; and
+- public releases for data, code, and documentation.
+
+### Deliverables as artifacts
+
+- reproducible pipeline from raw data to features, regimes, and benchmarks;
+- versioned datasets for features, `α(t)`, regime labels, and `V / D` proxies;
+- model experiment library with standardized diagnostics;
+- benchmark suite for evaluating any fire model; and
+- public documentation and example notebooks.
+
+Each project year should yield independently evaluable artifacts so progress remains cumulative and auditable.
+
+## VII. Data, methods, and reproducibility
+
+### Data sources
+
+- **FIRED event time series:** reconstructed wildfire perimeters through time derived from satellite observations, supporting all geometry and scaling analyses.
+- **Meteorology from reanalysis and stations:** wind speed, boundary-layer height, and stability-related diagnostics for transport proxies, with station data used where available for local validation.
+- **Fuels from LANDFIRE or equivalent products:** amount and type of burnable material used to estimate combustion demand.
+
+### Quality control and uncertainty
+
+- **Perimeter uncertainty:** quantify uncertainty in boundary location and propagate it into perimeter, area, and exponent estimates.
+- **Temporal sampling limits:** test how observation frequency affects inferred growth rates and scaling relationships.
+- **Regime classification uncertainty:** assign probabilities rather than hard labels near regime transitions.
+- **Sensitivity analyses:** test multiple `V` and `D` formulations and report how conclusions depend on those choices.
+
+### Reproducibility commitments
+
+- fully scripted pipeline from raw data to figures;
+- versioned processed datasets;
+- controlled computational environments; and
+- public notebooks for key figures and statistics.
+
+## VIII. Risks and mitigations
+
+### Risk: `V` and `D` proxies are too noisy to align with transitions
+
+- Possible cause: atmospheric or fuel data are too coarse to capture the relevant processes.
+- Mitigation: test multiple proxy families, aggregate over time windows, and use ensemble estimates rather than relying on a single formulation.
+
+### Risk: regime boundaries are not sharp
+
+- Possible cause: fire behavior changes continuously rather than through clear change points.
+- Mitigation: use probabilistic classification and continuous metrics instead of forcing binary categories.
+
+### Risk: geometric model fails in the post-emergent regime
+
+- Possible cause: local physics still matters even after coherence emerges.
+- Mitigation: refine boundary dynamics with anisotropy or curvature-dependent terms and treat failure as a scientific result that narrows the model's valid scope.
+
+### Risk: limited access to external model outputs
+
+- Possible cause: comparison models are difficult to obtain or standardize.
+- Mitigation: design benchmarks that require minimal inputs such as perimeter time series and pursue targeted collaborations where needed.
+
+## IX. Governance and roles
+
+- **Empirical lead (Postdoc 1):** data ingestion, feature extraction, regime labeling, and uncertainty quantification.
+- **Modeling lead (Postdoc 2):** wave simulations, geometric model development, parameter sweeps, and comparable diagnostics.
+- **PI / Co-PIs:** integration across empirical and modeling results, benchmark design, meteorology-fuels interpretation, and external model comparisons.
+
+Parallel workstreams are meant to ensure that delays in one component do not halt overall progress.
+
+## X. Figures and outputs
+
+### Planned core figures
+
+1. Decisive test: single-law versus multi-regime behavior.
+2. Phase diagram in `(V / D, connectivity)` space with observed fire trajectories.
+3. Regime-classification example time series with uncertainty.
+4. Transition-alignment figure comparing `V / D` crossings with detected change points.
+5. Model-comparison panel contrasting observations, wave-model outputs, and geometric-model outputs across regimes.
+
+### Public outputs
+
+- versioned datasets for features, `α(t)`, regimes, and `V / D`;
+- benchmark suite with scripts and expected outputs; and
+- documentation and tutorials integrated with the project website and OASIS-facing materials.
+
+## XI. Acceptance criteria
+
+The framework is supported if:
+
+- evidence favors multi-regime over single-law models in a majority of tested fires;
+- regime transitions align with `V / D` within a defined temporal tolerance across datasets;
+- post-emergent geometry is reproducible by a reduced geometric model within uncertainty bounds; and
+- the benchmark suite meaningfully differentiates model performance on regime transitions and extreme behavior.
+
+If any of these criteria are not met, the result is still informative and should be reported as evidence about which assumptions fail and how the framework should be revised.

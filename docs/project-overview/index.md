@@ -27,6 +27,7 @@ That distinction matters because strong proposals need both:
 
 ## What to read first
 
+- Start with the [Resubmission Strategy Document](review-resubmission-strategy.md) if the immediate need is collaborator alignment on how the proposal is being revised.
 - Start with [Funder Materials](funder-materials.md) if the immediate question is about the FIRE-MODEL call itself.
 - Read [Program Context](program-context.md) if the question is how the call shapes the scientific story.
 - Move to [Theory](../theory/index.md) if the goal is to understand the main scaling and growth ideas.
@@ -37,5 +38,5 @@ That distinction matters because strong proposals need both:
 - [FIRE-MODEL Briefing](fire-model-briefing.md)
 - [Requirements Checklist](requirements-checklist.md)
 - [Program Context](program-context.md)
-- [Review Resubmission Strategy](review-resubmission-strategy.md)
+- [Resubmission Strategy Document](review-resubmission-strategy.md)
 - [Rebid Context, Pitch, and Scientific Program](rebid-context-pitch-scientific-program.md)

@@ -6,15 +6,24 @@
 
 This site documents a developing NSF wildfire-scaling research concept centered on growth, form, scaling, geometry, and event-based Earth system analysis. It is designed to support proposal writing while also functioning as a coherent map of the project's scientific architecture.
 
-[Project Overview](project-overview/index.md){ .md-button .md-button--primary .oasis-hover-button }
+[Strategy Document](project-overview/review-resubmission-strategy.md){ .md-button .md-button--primary .oasis-hover-button }
+[Project Overview](project-overview/index.md){ .md-button .ogf-button-secondary .oasis-hover-button }
 [Theory](theory/index.md){ .md-button .ogf-button-secondary .oasis-hover-button }
-[Data and Infrastructure](data-infrastructure/index.md){ .md-button .ogf-button-secondary .oasis-hover-button }
 [Research Program](research-program/index.md){ .md-button .ogf-button-secondary .oasis-hover-button }
 [Open Repository](https://github.com/CU-ESIIL/on_growth_and_form){ .md-button .ogf-button-secondary .oasis-hover-button }
 
 </section>
 
+!!! note "Start here for the resubmission"
+    The [FIRE-MODEL Resubmission Strategy Document](project-overview/review-resubmission-strategy.md) is now the primary shareable memo for collaborator alignment on the revision plan.
+
 <div class="grid cards" markdown>
+
+- **Strategy document**
+
+  ---
+
+  The resubmission plan now has a privileged landing page that summarizes the narrative shift, benchmark structure, deliverables, and acceptance criteria for the next FIRE-MODEL submission.
 
 - **Why Wildfire Scaling**
 
@@ -27,12 +36,6 @@ This site documents a developing NSF wildfire-scaling research concept centered 
   ---
 
   FIRED reconstructs fire events from burned pixels, and CubeDynamics provides the spatiotemporal analysis framework needed to study trajectories, scaling, and geometry.
-
-- **How The Site Works**
-
-  ---
-
-  The documentation is organized around the research narrative: problem, hypothesis, data, methods, models, research program, and literature.
 
 - **Where The Proposal Lives**
 
@@ -60,6 +63,7 @@ Wildfire science already has strong traditions in fire behavior physics and fire
 
 ## How the site is organized
 
+- `Strategy Document` is the current collaborator-facing memo for the FIRE-MODEL resubmission.
 - `Project Overview` keeps the funder, the call, and the proposal framing in view.
 - `Theory` develops the ideas around growth, form, scaling, and wildfire geometry.
 - `Data and Infrastructure` explains how FIRED, CubeDynamics, and satellite datasets make the work possible.
