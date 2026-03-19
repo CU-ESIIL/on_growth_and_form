@@ -759,3 +759,36 @@ Address PR feedback that binary assets should be generated from code in GitHub A
 
 ### Open questions and follow-up
 - The repository does not currently include a site deployment workflow in scope here, so the new action uploads generated assets as artifacts; if Pages deployment is later automated in-repo, that workflow should call the same generator before `mkdocs build`.
+
+## 2026-03-19
+
+### Prompt
+Add a new draft titled `On Growth and Form: A Generative Theory of Fire` to the repository's drafting and planning materials, and surface it in the website's research-program section.
+
+### Files and folders inspected
+- `AGENTS.md`
+- `funder/README.md`
+- `funder/solicitation/fire_model_2026_briefing.md`
+- `funder/review_criteria/fire_model_requirements_checklist.md`
+- `mkdocs.yml`
+- `proposal/README.md`
+- `proposal/narrative/`
+- `docs/research-program/`
+- `docs/workflow.md`
+- `PROMPT_ACTION_LOG.md`
+
+### Actions taken
+- Added `proposal/narrative/on_growth_and_form_generative_theory_of_fire_draft.md` to preserve the user-provided long-form draft in the proposal drafting workspace, with a short status note tying it to current `FIRE-MODEL` proposal needs.
+- Added `docs/research-program/generative-theory-of-fire.md` so the same draft logic is visible from the website's research-program section.
+- Updated `docs/research-program/index.md` and `mkdocs.yml` so the new draft appears in the website navigation.
+- Standardized the draft's formula formatting into Markdown-friendly code blocks and inline notation for the repository and MkDocs site.
+
+### Verification
+- Reviewed the new and updated Markdown files with `sed` and `git diff` to confirm placement, headings, and navigation wiring.
+- Ran `bash scripts/review_site.sh`; `mkdocs build --strict` succeeded, but the Playwright pytest step failed because the local Python environment does not currently include the `playwright` package.
+- Attempted `python3 -m pip install -r requirements-dev.txt`, but installation failed at the `playwright` dependency because the environment's package index/proxy could not resolve that package.
+
+### Open questions and follow-up
+- The draft is now stored as planning prose, but it may still need later condensation into submission-length Project Description text.
+- A later pass may want to crosswalk specific subsections of this draft to Intellectual Merit, Broader Impacts, and the formal NSF section structure.
+- Full browser-based site smoke tests remain pending until the environment can install Playwright and its browser dependencies.

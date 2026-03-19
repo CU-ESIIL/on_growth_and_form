@@ -48,6 +48,7 @@ nav:
       - Benchmarking Existing Fire Models: models/benchmarking-existing-fire-models.md
   - Research Program:
       - Overview: research-program/index.md
+      - Generative Theory of Fire: research-program/generative-theory-of-fire.md
       - Work Plan: research-program/work-plan.md
       - Gantt / Timeline: research-program/gantt-timeline.md
       - Deliverables: research-program/deliverables.md

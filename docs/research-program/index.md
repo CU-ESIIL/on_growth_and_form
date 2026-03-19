@@ -8,6 +8,7 @@ The rest of the site explains the ideas. This section explains how those ideas b
 
 ## What this section covers
 
+- [Generative Theory of Fire](generative-theory-of-fire.md)
 - [Work Plan](work-plan.md)
 - [Gantt / Timeline](gantt-timeline.md)
 - [Deliverables](deliverables.md)
