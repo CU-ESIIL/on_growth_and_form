@@ -57,6 +57,8 @@ nav:
       - Overview: literature/index.md
       - Bibliography: literature/bibliography.md
       - Literature Map: literature/literature-map.md
+  - Planning:
+      - Gantt Chart: planning/gantt_chart.md
   - Proposal Workflow: workflow.md
   - Repository Map: repository-map.md
 
