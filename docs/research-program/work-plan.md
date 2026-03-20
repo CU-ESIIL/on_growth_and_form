@@ -14,6 +14,8 @@ This document captures the full execution logic for the wildfire scaling researc
 - benchmarked deliverables, and
 - the logical flow from measurement to mechanism to model evaluation.
 
+The newer integration document reframes this same arc as a `detect -> explain -> apply` sequence, which is useful shorthand when drafting high-level proposal narrative.
+
 ## Core scientific framing
 
 The project is motivated by a central hypothesis:
@@ -83,9 +85,9 @@ These three arcs run in parallel, but they converge at defined annual benchmarks
 
 ## Three-year execution logic
 
-- **Year 1:** Build the system to measure wildfire growth as geometry.
-- **Year 2:** Determine whether scaling structure exists and identify candidate mechanisms.
-- **Year 3:** Translate the findings into a diagnostic framework for evaluating and improving wildfire models.
+- **Year 1 / Detect:** Build the system to measure wildfire growth as geometry and determine whether robust scaling relationships exist across datasets.
+- **Year 2 / Explain:** Determine what minimal mechanisms can reproduce the observed geometric structure.
+- **Year 3 / Apply:** Translate the findings into a diagnostic framework for evaluating and improving wildfire models.
 
 ## Year 1 — Build the measurement system
 

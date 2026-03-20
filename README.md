@@ -12,6 +12,7 @@ This repository is organized as a working space for an NSF FIRE-MODEL proposal o
   - `systems_frameworks/`: event-based and data-system architecture notes
   - `research_programs/`: proposal-shaping research agendas and narrative work plans
 - `proposal/`: proposal narrative and supporting components such as budget text, biosketches, and plans.
+  - `proposal/narrative/`: active strategy, integration, and proposal-framing documents
 - `citations/`: tracked citation notes and exports, plus a local `pdfs/` folder for article PDFs that is ignored by Git.
 - `simulations/`: scripts, configs, and generated model outputs for analysis supporting the proposal.
 - `figures/`: source assets plus draft and final figure outputs.

@@ -851,3 +851,34 @@ Add a second prose draft for the proposal, create a draft-to-draft change report
 
 ### Open questions and follow-up
 - Draft 02's 3/4 and 4/3 references, and its oxygen-ventilation mechanism, remain hypothesis-level framing and should continue to be checked carefully against verified citation support before submission prose hardens.
+
+## 2026-03-19
+
+### Prompt
+Add a FIRE-MODEL proposal integration document to the repository and website, treating it as drafting material that fills narrative gaps rather than background/context.
+
+### Files and folders inspected
+- `AGENTS.md`
+- `proposal/README.md`
+- `proposal/narrative/`
+- `docs/drafts/`
+- `docs/research-program/`
+- `docs/repository-map.md`
+- `README.md`
+- `mkdocs.yml`
+- `PROMPT_ACTION_LOG.md`
+
+### Actions taken
+- Added `proposal/narrative/fire_model_proposal_integration_document.md` as a labeled consolidation document covering the core claim, geometry-first benchmark logic, GIM framing, deliverables, work-plan structure, user workflow, and remaining gaps.
+- Added `docs/drafts/integration-document.md` so the integration layer is visible from the website as a drafting artifact.
+- Updated `docs/drafts/index.md` and `mkdocs.yml` so the new page is discoverable in the Drafts section.
+- Updated `docs/research-program/index.md`, `docs/research-program/work-plan.md`, and `docs/research-program/deliverables.md` to cross-link the integration layer and reflect its detect-explain-apply framing and sharpened deliverables.
+- Updated `proposal/README.md`, `README.md`, and `docs/repository-map.md` so repository documentation reflects the new narrative-integration role of `proposal/narrative/`.
+
+### Verification
+- Reviewed the new and updated Markdown files locally after editing.
+- Ran `python3 -m mkdocs build --strict --clean --site-dir dist` and `bash scripts/review_site.sh`; both failed immediately because the local Python environment does not currently include the `mkdocs` package.
+
+### Open questions and follow-up
+- The integration document is now accessible, but later proposal passes may still want a draft-to-draft memo explaining exactly which current proposal sections absorb which labeled blocks.
+- The benchmark thresholds and acceptable metric ranges remain explicitly identified as unfinished and should be developed before submission prose claims them too concretely.
