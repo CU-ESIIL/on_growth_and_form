@@ -32,6 +32,9 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r requirements-dev.txt
 
+      - name: Generate wildfire phylogeny figure
+        run: python scripts/figures/generate_wildfire_modeling_phylogeny.py
+
       - name: Install Playwright browser
         run: python -m playwright install --with-deps chromium
 
@@ -70,6 +73,9 @@ jobs:
           else
             python -m pip install mkdocs
           fi
+
+      - name: Generate wildfire phylogeny figure
+        run: python scripts/figures/generate_wildfire_modeling_phylogeny.py
 
       - name: Build MkDocs site
         run: mkdocs build --strict --clean --site-dir dist

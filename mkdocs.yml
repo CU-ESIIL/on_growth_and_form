@@ -61,6 +61,7 @@ nav:
       - Literature Map: literature/literature-map.md
   - Planning:
       - Gantt Chart: planning/gantt_chart.md
+      - Wildfire Modeling Phylogeny: planning/wildfire-modeling-phylogeny.md
   - Drafts:
       - Overview: drafts/index.md
       - Draft 01 Summary: drafts/draft-01.md

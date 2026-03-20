@@ -1,0 +1,3004 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="NSF proposal workspace for fire, growth, and form">
+      
+      
+      
+        <link rel="canonical" href="https://cu-esiil.github.io/on_growth_and_form/theory/scale-conditioned-wui-geometry/">
+      
+      
+        <link rel="prev" href="../wildfire-scaling-hypothesis/">
+      
+      
+        <link rel="next" href="../wildfire-scaling-regime-hypothesis/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/esiil_content/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Scale-Conditioned WUI Geometry - On Growth and Form</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#scale-conditioned-geometry-of-the-wildland-urban-interface-wui" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="On Growth and Form" class="md-header__button md-logo" aria-label="On Growth and Form" data-md-component="logo">
+      <a class="md-header__button md-logo" href="https://cu-esiil.github.io/home/" title="On Growth and Form">
+  
+    <img src="../../assets/esiil_content/esiil_oasis_logo.png" alt="On Growth and Form" />
+  
+</a>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            On Growth and Form
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Scale-Conditioned WUI Geometry
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/CU-ESIIL/on_growth_and_form" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    CU-ESIIL/on_growth_and_form
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="On Growth and Form" class="md-nav__button md-logo" aria-label="On Growth and Form" data-md-component="logo">
+      <a class="md-header__button md-logo" href="https://cu-esiil.github.io/home/" title="On Growth and Form">
+  
+    <img src="../../assets/esiil_content/esiil_oasis_logo.png" alt="On Growth and Form" />
+  
+</a>
+
+    </a>
+    On Growth and Form
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/CU-ESIIL/on_growth_and_form" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    CU-ESIIL/on_growth_and_form
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project-overview/review-resubmission-strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strategy Document
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project Overview
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Project Overview
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project-overview/funder-materials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Funder Materials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project-overview/fire-model-briefing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FIRE-MODEL Briefing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project-overview/requirements-checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requirements Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project-overview/program-context/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Program Context
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project-overview/review-resubmission-strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strategy Document
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project-overview/rebid-context-pitch-scientific-program/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rebid Context, Pitch, and Scientific Program
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Theory
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Theory
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../on-growth-and-form/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    On Growth and Form
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wildfire-scaling-hypothesis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wildfire Scaling Hypothesis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scale-Conditioned WUI Geometry
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scale-Conditioned WUI Geometry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#status-and-use-in-this-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status and use in this repository
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-core-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The core problem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#two-independent-sources-of-scale-dependence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Two independent sources of scale dependence
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Two independent sources of scale dependence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-definition-scale-object-construction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Definition scale: object construction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-measurement-scale-geometric-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Measurement scale: geometric resolution
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#from-scalars-to-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From scalars to functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scaling-behavior-and-fractal-geometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scaling behavior and fractal geometry
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wui-as-a-generative-anthropogenic-ecological-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WUI as a generative anthropogenic-ecological interface
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimal-dynamical-interpretation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimal dynamical interpretation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-this-matters-for-analysis-and-decision-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why this matters for analysis and decision support
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Why this matters for analysis and decision support">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comparability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transparency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transparency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpretation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interpretation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dynamics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimum-reporting-standard-suggested-by-this-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimum reporting standard suggested by this framework
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extension-to-the-fire-modeling-proposal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extension to the fire modeling proposal
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Extension to the fire modeling proposal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-linking-wui-scaling-to-fire-perimeter-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Linking WUI scaling to fire perimeter scaling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-observational-constraints-as-measurement-scale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Observational constraints as measurement scale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-definition-scale-in-fire-modeling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Definition scale in fire modeling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-validation-as-curve-matching-rather-than-point-matching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D. Validation as curve matching rather than point matching
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e-generative-interpretation-of-fire-as-interface-dynamics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        E. Generative interpretation of fire as interface dynamics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-minimal-coupled-system-interpretation-for-the-proposal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F. Minimal coupled-system interpretation for the proposal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#g-testable-hypotheses-enabled-by-the-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        G. Testable hypotheses enabled by the framework
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h-cyberinfrastructure-implications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H. Cyberinfrastructure implications
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-positioning-relative-to-existing-fire-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I. Positioning relative to existing fire models
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proposal-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proposal takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-issues-to-keep-explicit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open issues to keep explicit
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wildfire-scaling-regime-hypothesis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scaling Regimes in Fire Growth
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wildfire-scaling-research-agenda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Open Questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Technical Background
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Technical Background
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../diffusion-half-scaling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diffusion and 1/2 Scaling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../non-half-scaling-signatures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Non-1/2 Scaling Signatures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wildfire-scaling-dimensionality/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wildfire Scaling and Dimensionality
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../superdiffusive-wildfire-perimeters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Superdiffusive Wildfire Perimeters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data and Infrastructure
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data and Infrastructure
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data-infrastructure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data-infrastructure/fired/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FIRED
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data-infrastructure/cubedynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CubeDynamics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data-infrastructure/fired-cubedynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FIRED and CubeDynamics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data-infrastructure/environmental-data-science-stack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environmental Data Science Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data-infrastructure/satellite-fire-datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Satellite Fire Datasets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Methods
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Methods
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../methods/fire-growth-trajectories/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fire Growth Trajectories
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../methods/scaling-diagnostics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scaling Diagnostics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../methods/fractal-dimension-estimation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fractal Dimension Estimation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../methods/scaling-collapse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scaling Collapse
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Models
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Models
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/fire-modeling-frameworks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fire Modeling Frameworks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/generative-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generative Models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/benchmarking-existing-fire-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Benchmarking Existing Fire Models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Research Program
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Research Program
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research-program/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research-program/generative-theory-of-fire/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generative Theory of Fire
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research-program/work-plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Work Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research-program/gantt-timeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gantt / Timeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research-program/deliverables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deliverables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research-program/users-impact/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Users and Impact
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research-program/rationale-impact/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rationale, Deliverables, and Impact
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Literature
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Literature
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/bibliography/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bibliography
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/literature-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Literature Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Planning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Planning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../planning/gantt_chart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gantt Chart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../planning/wildfire-modeling-phylogeny/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wildfire Modeling Phylogeny
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Drafts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Drafts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../drafts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../drafts/draft-01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Draft 01 Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../drafts/draft-02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Draft 02
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../drafts/change-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Draft 01 to Draft 02 Change Report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../drafts/integration-document/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proposal Integration Document
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../drafts/agenda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agenda
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proposal Workflow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../repository-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repository Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="scale-conditioned-geometry-of-the-wildland-urban-interface-wui">Scale-Conditioned Geometry of the Wildland-Urban Interface (WUI)</h1>
+<h2 id="status-and-use-in-this-repository">Status and use in this repository</h2>
+<p>This note is a scientific framing document for proposal development. It is not a funder requirement document. Its purpose is to sharpen how the proposal talks about wildfire perimeters, WUI structure, and multi-scale validation in ways that are consistent with the FIRE-MODEL emphasis on conceptual advance, computational implementation, and empirical validation.</p>
+<h2 id="overview">Overview</h2>
+<p>The wildland-urban interface (WUI) is a critical spatial configuration where human settlements and flammable vegetation intersect. It is often characterized using derived quantities such as boundary length to assess wildfire exposure, planning risk, and policy outcomes. However, treating WUI boundary length as a single, intrinsic scalar obscures a fundamental geometric reality: <strong>boundary length is inherently scale-dependent</strong>.</p>
+<p>This framework recasts WUI boundary length from a fixed quantity into a <strong>scale-conditioned estimand</strong>, making explicit how both analytical assumptions and measurement resolution shape the observed value. In doing so, it connects wildfire science with established ideas from fractal geometry, landscape ecology, and complex systems.</p>
+<h2 id="the-core-problem">The core problem</h2>
+<p>A seemingly simple question—<em>How long is the WUI boundary?</em>—does not have a unique answer. The length of an irregular boundary depends on two distinct choices:</p>
+<ol>
+<li><strong>How the boundary is defined</strong>: the analytical rules used to construct the object.</li>
+<li><strong>How the boundary is measured</strong>: the observation scale or geometric resolution used to estimate its length.</li>
+</ol>
+<p>Recognizing this changes the scientific task. Instead of reporting one number, the analysis should characterize <strong>how boundary length changes with scale</strong>.</p>
+<h2 id="two-independent-sources-of-scale-dependence">Two independent sources of scale dependence</h2>
+<h3 id="1-definition-scale-object-construction">1. Definition scale: object construction</h3>
+<p>Definition scale refers to the assumptions used to construct the WUI boundary. Relevant choices can include:</p>
+<ul>
+<li>housing density thresholds</li>
+<li>vegetation classification rules</li>
+<li>adjacency criteria</li>
+<li>neighborhood radius</li>
+<li>representation of settlements, such as building points versus aggregated units</li>
+</ul>
+<p>Different choices produce different boundary geometries. These are not necessarily errors. They are often <strong>alternative, defensible model specifications</strong>, and each specification defines a different boundary object.</p>
+<h3 id="2-measurement-scale-geometric-resolution">2. Measurement scale: geometric resolution</h3>
+<p>Measurement scale refers to the resolution at which a fixed boundary is measured. As the ruler or sampling scale becomes finer, more local detail is resolved and the estimated boundary length typically increases.</p>
+<p>This is the same basic logic as the coastline paradox and is what one should expect for irregular, fractal-like boundaries.</p>
+<h2 id="from-scalars-to-functions">From scalars to functions</h2>
+<p>To keep both kinds of scale dependence explicit, boundary length should be written as a function:</p>
+<div class="highlight"><pre><span></span><code>L_d(ε)
+</code></pre></div>
+<p>where:</p>
+<ul>
+<li><code>d</code> denotes the delineation or definition bundle that produced the boundary object</li>
+<li><code>ε</code> denotes the measurement scale used to estimate its length</li>
+</ul>
+<p>This reframing has several consequences:</p>
+<ul>
+<li>reported differences between studies may be expected outcomes of different delineation bundles or resolutions</li>
+<li>boundary length becomes an <strong>estimand</strong>, not a fixed geographic constant</li>
+<li>interpretation should focus on scaling curves and diagnostics rather than single summary values</li>
+</ul>
+<h2 id="scaling-behavior-and-fractal-geometry">Scaling behavior and fractal geometry</h2>
+<p>Irregular boundaries often follow power-law relationships of the form:</p>
+<div class="highlight"><pre><span></span><code>L(ε) ∝ ε^(1−D)
+</code></pre></div>
+<p>where <code>D</code> is an effective roughness or fractal dimension. In this view, boundary complexity persists across scales rather than disappearing at finer resolution.</p>
+<p>This matters because geometry can carry information about process. Similar scaling behavior has been studied for:</p>
+<ul>
+<li>coastlines</li>
+<li>river networks</li>
+<li>vegetation patch boundaries</li>
+<li>wildfire perimeters</li>
+</ul>
+<p>The WUI boundary can therefore be interpreted not only as a mapped line, but also as a spatial trace of coupled human and ecological dynamics.</p>
+<h2 id="wui-as-a-generative-anthropogenic-ecological-interface">WUI as a generative anthropogenic-ecological interface</h2>
+<p>Rather than treating WUI boundaries as static cartographic artifacts, this framework interprets them as <strong>emergent interfaces produced by interacting processes</strong>. At minimum, those processes include:</p>
+<ol>
+<li><strong>Settlement expansion</strong>, often mediated by infrastructure networks and clustered development</li>
+<li><strong>Vegetation mosaics</strong>, shaped by ecological gradients, disturbance, and land management</li>
+<li><strong>Wildfire dynamics</strong>, which both respond to and reshape landscape structure over time</li>
+</ol>
+<p>The resulting boundary is therefore a process signature, not merely a line on a map.</p>
+<h2 id="minimal-dynamical-interpretation">Minimal dynamical interpretation</h2>
+<p>A compact way to formalize this idea is to work with coupled spatial fields such as:</p>
+<ul>
+<li>settlement density <code>S(x,t)</code></li>
+<li>vegetation biomass or cover <code>V(x,t)</code></li>
+<li>fire activity <code>F(x,t)</code></li>
+</ul>
+<p>The WUI boundary then emerges as the contour or interface where settlement and vegetation intersect under chosen thresholds. This provides a conceptual bridge to reaction-diffusion systems, percolation theory, and spatial ecology.</p>
+<h2 id="why-this-matters-for-analysis-and-decision-support">Why this matters for analysis and decision support</h2>
+<p>Treating WUI boundary length as <code>L_d(ε)</code> resolves several recurring problems.</p>
+<h3 id="comparability">Comparability</h3>
+<p>Differences in reported WUI boundary lengths often reflect different delineation assumptions or measurement scales rather than contradictory substantive findings.</p>
+<h3 id="transparency">Transparency</h3>
+<p>Rigorous reporting requires the delineation bundle and the measurement protocol to be stated explicitly.</p>
+<h3 id="interpretation">Interpretation</h3>
+<p>Boundary geometry should be analyzed through scale-dependent curves, log-log diagnostics, and sensitivity analysis, not only through a single scalar.</p>
+<h3 id="dynamics">Dynamics</h3>
+<p>WUI boundaries change through time as settlement, vegetation, and disturbance co-evolve.</p>
+<h2 id="minimum-reporting-standard-suggested-by-this-framework">Minimum reporting standard suggested by this framework</h2>
+<p>A scale-aware WUI analysis should, at minimum, report:</p>
+<ul>
+<li>the delineation specification <code>d</code></li>
+<li>the measurement protocol and scale interval <code>ε</code></li>
+<li>perimeter-by-scale curves</li>
+<li>log-log scaling diagnostics</li>
+<li>sensitivity analyses across alternative definitions</li>
+</ul>
+<h2 id="extension-to-the-fire-modeling-proposal">Extension to the fire modeling proposal</h2>
+<p>This WUI framing is useful in the repository because it sharpens how wildfire perimeter scaling should be described in the proposal.</p>
+<h3 id="a-linking-wui-scaling-to-fire-perimeter-scaling">A. Linking WUI scaling to fire perimeter scaling</h3>
+<p>WUI boundaries and wildfire perimeters are both irregular interfaces generated by interacting processes. The WUI is relatively slow-moving and shaped by settlement plus vegetation patterns, while fire perimeters are dynamic interfaces shaped by combustion, transport, weather, and fuels. Even so, both systems show:</p>
+<ul>
+<li>multi-scale geometric roughness</li>
+<li>sensitivity to observation resolution</li>
+<li>emergent structure from coupled processes</li>
+</ul>
+<p>For proposal framing, this means observed fire scaling should be treated as a <strong>scale-conditioned phenomenon</strong> rather than as a single universal exponent to be asserted without qualification.</p>
+<h3 id="b-observational-constraints-as-measurement-scale">B. Observational constraints as measurement scale</h3>
+<p>Satellite products such as MODIS, VIIRS, and GOES impose implicit measurement scales through:</p>
+<ul>
+<li>spatial resolution</li>
+<li>temporal resolution</li>
+<li>detection thresholds and masking rules</li>
+</ul>
+<p>In this framework, these are not just nuisances; they are formal parts of <code>ε</code>, the measurement scale.</p>
+<p>Operationally, that suggests:</p>
+<ul>
+<li>treating each dataset as a different sampling of <code>L(ε)</code></li>
+<li>constructing perimeter-by-scale curves for each sensing regime</li>
+<li>testing whether inferred scaling exponents vary systematically with sampling structure</li>
+</ul>
+<p>A defensible claim for the proposal is therefore:</p>
+<blockquote>
+<p>observed fire scaling relationships are functions of both physical dynamics and observational structure</p>
+</blockquote>
+<h3 id="c-definition-scale-in-fire-modeling">C. Definition scale in fire modeling</h3>
+<p>Fire perimeters also depend on definition choices, such as:</p>
+<ul>
+<li>burn severity thresholds</li>
+<li>active-fire detection criteria</li>
+<li>temporal aggregation windows</li>
+<li>interpolation or smoothing procedures</li>
+</ul>
+<p>These choices define the boundary object itself. In proposal terms, model-data comparison should therefore align not only on physics, but also on boundary definition.</p>
+<h3 id="d-validation-as-curve-matching-rather-than-point-matching">D. Validation as curve matching rather than point matching</h3>
+<p>A key implication for FIRE-MODEL framing is that validation should move beyond single end-state metrics. The more informative comparison is functional and multi-scale:</p>
+<ol>
+<li>compute <code>L_d(ε)</code> curves for observed fires</li>
+<li>compute <code>L_d(ε)</code> curves for simulated fires</li>
+<li>compare slope, intercept, and stability across scale ranges</li>
+</ol>
+<p>Additional diagnostics can include:</p>
+<ul>
+<li>curvature distributions</li>
+<li>roughness statistics</li>
+<li>fractal-dimension estimates across scales</li>
+<li>sensitivity to temporal thinning or spatial subsampling</li>
+</ul>
+<p>This turns validation into comparison of <strong>functions across scales</strong>, not only overlap at one chosen resolution.</p>
+<h3 id="e-generative-interpretation-of-fire-as-interface-dynamics">E. Generative interpretation of fire as interface dynamics</h3>
+<p>The same perspective also strengthens the proposal's theoretical positioning. Fire perimeter geometry can be interpreted as an emergent trace of:</p>
+<ul>
+<li>fuel structure and continuity</li>
+<li>weather forcing</li>
+<li>topographic constraints</li>
+<li>local spread and long-range spotting</li>
+</ul>
+<p>That keeps the argument grounded in process while still using geometric observables as diagnostics.</p>
+<h3 id="f-minimal-coupled-system-interpretation-for-the-proposal">F. Minimal coupled-system interpretation for the proposal</h3>
+<p>The proposal can specialize the coupled-field idea toward fire-focused variables such as:</p>
+<ul>
+<li><code>V(x,t)</code>: fuel availability and structure</li>
+<li><code>F(x,t)</code>: fire state or intensity</li>
+<li><code>W(x,t)</code>: weather forcing</li>
+</ul>
+<p>A minimal system then takes the form of coupled growth, transport, ignition, consumption, and extinction terms. The value of this abstraction is not that it replaces operational fire models, but that it clarifies how measurable geometry can emerge from interacting physical and ecological processes.</p>
+<h3 id="g-testable-hypotheses-enabled-by-the-framework">G. Testable hypotheses enabled by the framework</h3>
+<p>This scale-conditioned perspective supports hypotheses that are suitable for the proposal's validation agenda:</p>
+<ol>
+<li><strong>Scale invariance hypothesis</strong>: inferred exponents remain stable across sensors and resolutions over identifiable scale ranges.</li>
+<li><strong>Sampling artifact hypothesis</strong>: exponents vary systematically with temporal or spatial aggregation.</li>
+<li><strong>Regime dependence hypothesis</strong>: wind-driven and fuel-limited fires produce different scaling signatures.</li>
+<li><strong>Process signature hypothesis</strong>: changes in fuel continuity or meteorology alter curvature and roughness statistics.</li>
+</ol>
+<p>These hypotheses translate an abstract geometric idea into a structured empirical program.</p>
+<h3 id="h-cyberinfrastructure-implications">H. Cyberinfrastructure implications</h3>
+<p>The framework also aligns with the repository's FIRED and CubeDynamics direction:</p>
+<ul>
+<li>represent perimeters as time-indexed geometries</li>
+<li>compute <code>L_d(ε)</code> over data cubes and trajectories</li>
+<li>expose scaling diagnostics as first-class analytical products</li>
+</ul>
+<p>Potential outputs include multi-scale perimeter datasets, scaling dashboards, and cross-fire comparative libraries.</p>
+<h3 id="i-positioning-relative-to-existing-fire-models">I. Positioning relative to existing fire models</h3>
+<p>Traditional frameworks such as FARSITE- or WRF-Fire-style modeling emphasize forward simulation under prescribed conditions. The scale-conditioned interface perspective does not replace those approaches. Instead, it adds:</p>
+<ul>
+<li>scale-aware diagnostics</li>
+<li>geometry-based validation</li>
+<li>process inference from boundary structure</li>
+</ul>
+<p>That additional layer is well aligned with the FIRE-MODEL expectation that projects articulate a conceptual advance, a computational implementation path, and an empirical validation strategy.</p>
+<h2 id="proposal-takeaways">Proposal takeaways</h2>
+<p>For proposal framing, the main takeaways are:</p>
+<ul>
+<li>fire and WUI boundaries can be treated as members of a shared class of scale-dependent interfaces</li>
+<li>observed scaling should be interpreted through <code>L_d(ε)</code>, not only through one reported exponent</li>
+<li>remote-sensing products and preprocessing pipelines define measurement and definition scales</li>
+<li>validation should compare scale-conditioned functions, not only single outputs</li>
+<li>boundary geometry provides a tractable window into coupled underlying dynamics</li>
+</ul>
+<h2 id="open-issues-to-keep-explicit">Open issues to keep explicit</h2>
+<p>Several pieces still need explicit empirical support before they should be elevated from framing to proposal claim:</p>
+<ul>
+<li>which WUI or fire interfaces actually exhibit stable power-law scaling over meaningful scale ranges</li>
+<li>how sensitive estimated roughness dimensions are to preprocessing choices</li>
+<li>whether the same scaling language is equally informative across different fire regimes and sensor products</li>
+</ul>
+<p>Those uncertainties should remain visible in proposal drafting so the narrative stays evidence-based and reviewable.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

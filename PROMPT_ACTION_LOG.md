@@ -1,5 +1,73 @@
 # Prompt Action Log
 
+## 2026-03-20
+
+### Prompt
+Convert a user-provided wildfire modeling bibliography into a repository Markdown reference note under the citations area, preserving the dense citation, identity, summary, and example-citation structure for later proposal use.
+
+### Files and folders inspected
+- `citations/README.md`
+- `citations/notes/wildfire_scaling_bibliography.md`
+- `docs/literature/bibliography.md`
+
+### Actions taken
+- Added `citations/notes/wildfire_modeling_master_bibliography.md` as a dense imported reference note under the existing citations workflow.
+- Preserved the provided citation details, author identity links, summaries, and example citation sentences in Markdown form.
+- Marked the file as imported working material that still requires verification against original sources because verbatim details matter.
+
+### Verification
+- Confirmed the note was written into `citations/notes/` and matches the repository's existing bibliography-note structure.
+
+### Open questions and follow-up
+- If these entries become proposal-critical, the next step should be to verify each record against the original paper, DOI metadata, and available PDFs.
+
+### Prompt
+Add a historical context section to the top of the wildfire modeling master bibliography without deleting any existing content.
+
+### Files and folders inspected
+- `citations/notes/wildfire_modeling_master_bibliography.md`
+
+### Actions taken
+- Added a new `Historical context` section at the top of `citations/notes/wildfire_modeling_master_bibliography.md`.
+- Kept the existing bibliography content intact beneath the new framing section.
+
+### Verification
+- Confirmed the new context appears at the top of the document and that the prior bibliography entries remain unchanged below it.
+
+### Open questions and follow-up
+- The contextual framing now cites milestone lineages in prose; if the file becomes a public-facing source, those milestone claims should also be verified entry by entry.
+
+### Prompt
+Add a reproducible, script-generated figure showing a time-calibrated conceptual phylogeny of wildfire modeling, publish it as its own MkDocs page under planning/background materials, and regenerate the figure automatically during the GitHub Pages build.
+
+### Files and folders inspected
+- `mkdocs.yml`
+- `requirements.txt`
+- `requirements-dev.txt`
+- `.github/workflows/pages.yml`
+- `.github/workflows/website-checks.yml`
+- `.github/workflows/generate_fire_model_gantt.yml`
+- `docs/planning/gantt_chart.md`
+- `docs/stylesheets/extra.css`
+- `scripts/generate_fire_model_gantt.py`
+
+### Actions taken
+- Added `scripts/figures/generate_wildfire_modeling_phylogeny.py` to generate a deterministic publication-style PNG for the wildfire modeling phylogeny.
+- Generated `docs/assets/figures/wildfire_phylogeny_publication.png` from code and tuned the layout for legibility at website width.
+- Added `docs/planning/wildfire-modeling-phylogeny.md` with introductory context, prose legend, and an explicit note that the diagram is a conceptual time-calibrated phylogeny rather than a strict software dependency tree.
+- Updated `mkdocs.yml` so the page appears under `Planning > Wildfire Modeling Phylogeny`.
+- Updated `.github/workflows/pages.yml` and `.github/workflows/website-checks.yml` so GitHub regenerates the figure before site validation and before the Pages build.
+- Added `matplotlib` to `requirements.txt` and added a targeted image style rule in `docs/stylesheets/extra.css`.
+
+### Verification
+- Ran `python3 scripts/figures/generate_wildfire_modeling_phylogeny.py`.
+- Confirmed `docs/assets/figures/wildfire_phylogeny_publication.png` was created successfully.
+- Ran `python3 -m mkdocs build --strict --clean --site-dir dist`.
+- Confirmed the built page exists at `dist/planning/wildfire-modeling-phylogeny/` and references the generated image asset in the built HTML.
+
+### Open questions and follow-up
+- The figure is intentionally conceptual and selective; if the proposal later requires a more exhaustive lineage, the current script can be extended with additional branches or annotations without changing the page structure.
+
 ## 2026-03-12
 
 ### Prompt
