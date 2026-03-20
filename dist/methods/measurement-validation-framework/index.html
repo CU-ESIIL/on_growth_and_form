@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://cu-esiil.github.io/on_growth_and_form/methods/fire-growth-trajectories/">
+        <link rel="canonical" href="https://cu-esiil.github.io/on_growth_and_form/methods/measurement-validation-framework/">
       
       
-        <link rel="prev" href="../">
+        <link rel="prev" href="../fire-growth-trajectories/">
       
       
-        <link rel="next" href="../measurement-validation-framework/">
+        <link rel="next" href="../scaling-diagnostics/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Fire Growth Trajectories - On Growth and Form</title>
+        <title>Measurement and Validation Framework - On Growth and Form</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#fire-growth-trajectories" class="md-skip">
+        <a href="#measurement-and-validation-framework" class="md-skip">
           Skip to content
         </a>
       
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Fire Growth Trajectories
+              Measurement and Validation Framework
             
           </span>
         </div>
@@ -1293,6 +1293,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../fire-growth-trajectories/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fire Growth Trajectories
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -1312,7 +1340,7 @@
   <span class="md-ellipsis">
     
   
-    Fire Growth Trajectories
+    Measurement and Validation Framework
   
 
     
@@ -1330,7 +1358,7 @@
   <span class="md-ellipsis">
     
   
-    Fire Growth Trajectories
+    Measurement and Validation Framework
   
 
     
@@ -1356,10 +1384,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-this-means" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What this means
+        Overview
       
     </span>
   </a>
@@ -1367,10 +1395,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#why-it-matters" class="md-nav__link">
+  <a href="#measurement-and-validation-workflow" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why it matters
+        Measurement and validation workflow
       
     </span>
   </a>
@@ -1378,21 +1406,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#data-sources" class="md-nav__link">
+  <a href="#inference-logic" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Data sources
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#related-pages" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Related pages
+        Inference logic
       
     </span>
   </a>
@@ -1403,34 +1420,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../measurement-validation-framework/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Measurement and Validation Framework
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -2512,36 +2501,21 @@
   
 
 
-<h1 id="fire-growth-trajectories">Fire Growth Trajectories</h1>
-<p>The first methodological task is to represent each fire as a trajectory rather than a final burn scar.</p>
-<h2 id="what-this-means">What this means</h2>
-<p>For each reconstructed fire event, the project aims to recover time series such as:</p>
-<ul>
-<li>perimeter through time</li>
-<li>burned area through time</li>
-<li>shape and anisotropy metrics through time</li>
-</ul>
-<p>This turns fire growth into something we can measure, compare, and model.</p>
-<h2 id="why-it-matters">Why it matters</h2>
-<p>Without trajectories, there is no way to ask:</p>
-<ul>
-<li>when scaling appears</li>
-<li>whether fires share a common growth regime</li>
-<li>how perimeter geometry changes as fires expand</li>
-</ul>
-<h2 id="data-sources">Data sources</h2>
-<p>The trajectory layer depends primarily on:</p>
-<ul>
-<li><code>FIRED</code> event reconstruction</li>
-<li>satellite burned-area products</li>
-<li>environmental alignment through <code>CubeDynamics</code></li>
-</ul>
-<h2 id="related-pages">Related pages</h2>
-<ul>
-<li><a href="../../data-infrastructure/fired/">FIRED</a></li>
-<li><a href="../scaling-diagnostics/">Scaling Diagnostics</a></li>
-<li><a href="../../research-program/work-plan/">Wildfire Scaling Work Plan</a></li>
-</ul>
+<h1 id="measurement-and-validation-framework">Measurement and Validation Framework</h1>
+<h2 id="overview">Overview</h2>
+<p>We frame measurement and validation as a sequential process of elimination, designed to determine whether an observed scaling relationship between wildfire perimeter and time reflects intrinsic fire dynamics or arises from artifacts of observation, representation, or generic spatial processes. Rather than assuming the validity of any single measurement, we systematically perturb the measurement system itself across space, time, topology, and data sources, and evaluate whether the inferred scaling relationship persists. Each stage of the analysis removes a class of alternative explanations. Only if the scaling relationship remains invariant across all perturbations do we interpret it as evidence of an underlying geometric structure in wildfire growth.</p>
+<h2 id="measurement-and-validation-workflow">Measurement and validation workflow</h2>
+<p>We begin by addressing the most immediate source of potential bias: how wildfire boundaries are measured from raster data. Fire perimeters are derived from cumulative burn masks <code>B(t)</code> using three independent estimators drawn from digital geometry: sub-pixel contour reconstruction via Marching Squares, raster-based Freeman chain code, and Crofton estimators from integral geometry. These methods differ in how they treat discretization and orientation bias. We compute perimeter time series <code>P(t)</code> under each method and estimate scaling exponents. If the inferred scaling depends on the estimator, the pattern is attributable to discretization artifacts and is rejected. If the estimates converge, we proceed, having ruled out estimator-induced bias.</p>
+<p>We then test whether the observed scaling arises from the scale at which the boundary is measured, following the Richardson-Mandelbrot coastline framework. Burn masks are systematically coarsened and resampled, and perimeter is recomputed across multiple spatial resolutions. If the scaling exponent shifts with resolution, the pattern is explained by scale-of-measurement effects and is rejected. If the exponent remains stable, we rule out the coastline artifact and retain the hypothesis that the structure is scale-consistent.</p>
+<p>Next, we evaluate the role of temporal sampling. Fire growth is observed discretely, and aggregation or subsampling can distort apparent dynamics. We therefore resample the time dimension by subsampling observations, aggregating intervals, and interpolating where appropriate, following the logic of the Modifiable Temporal Unit Problem. If the scaling exponent changes with temporal resolution, the pattern is an artifact of observation cadence and is rejected. If it remains stable, we conclude that the relationship is not imposed by temporal sampling.</p>
+<p>We then test whether the definition of a fire object itself produces the signal. Burned areas fragment and merge depending on connectivity rules and grouping thresholds. Using approaches from object-based image analysis, we vary connectivity, 4-neighbor versus 8-neighbor, gap-bridging thresholds, and persistence rules for components. We compare scaling behavior for aggregated fires and for collections of components. If results depend on segmentation, the pattern is a topological artifact and is rejected. If results are robust, we rule out object-definition bias.</p>
+<p>At this stage, we have established that the pattern is not a measurement artifact. We then ask whether it reflects dynamic growth or simply static patch geometry. We compare temporal scaling, <code>P(t) ~ t^beta</code>, with perimeter-area relationships, <code>P ~ A^(D/2)</code>, commonly used in landscape ecology. Agreement between these diagnostics supports a geometric interpretation of growth dynamics, while divergence suggests the pattern arises from static spatial structure rather than temporal evolution.</p>
+<p>We next test whether the observed scaling can be reproduced by generic spatial processes. We construct null models representing diffusion-limited growth, percolation-like cluster formation, random spatial accumulation, and temporally shuffled burn sequences. Each synthetic dataset is passed through the identical measurement pipeline. If these models reproduce the observed scaling exponent, the pattern is non-diagnostic and is rejected. If they do not, we rule out generic spatial explanations and constrain the space of plausible mechanisms.</p>
+<p>We then evaluate whether the result is specific to a particular dataset. The analysis is repeated across independent fire datasets, including alternative satellite products and higher-resolution perimeter sources where available. If scaling is inconsistent across datasets, it is attributed to sensor or processing artifacts and is rejected. If it persists, we support its generality.</p>
+<p>To further refine interpretation, we assess whether scaling is conditional on environmental context. Analyses are stratified by biome, fuel type, meteorological regime, and fire growth phase. If scaling varies systematically, we interpret it as regime-dependent and identify controlling factors. If it remains consistent, we support a more universal scaling behavior. In particular, we evaluate whether scaling persists within constrained meteorological conditions to distinguish geometric structure from weather-driven dynamics.</p>
+<p>Finally, we evaluate statistical robustness. Scaling exponents are estimated using log-log regression and validated using bootstrapping, hierarchical models, and goodness-of-fit diagnostics. If estimates are unstable or poorly supported, we reject strong claims. If they are consistent with tight uncertainty bounds, we support quantitative inference.</p>
+<h2 id="inference-logic">Inference logic</h2>
+<p>This sequence of tests progressively eliminates alternative explanations: measurement artifacts, scale dependence, temporal aliasing, segmentation effects, static geometry, generic spatial processes, dataset-specific biases, and regime dependence. If the scaling relationship remains invariant across all of these perturbations, the remaining explanation is that wildfire growth exhibits an intrinsic, scale-consistent geometric structure. This interpretation is not assumed, but reached by systematically ruling out competing hypotheses.</p>
 
 
 

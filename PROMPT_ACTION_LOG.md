@@ -88,6 +88,26 @@ Add a new background and context page to the website using a user-provided long-
 ### Open questions and follow-up
 - If this page becomes central to proposal framing, it may be worth cross-linking it from the wildfire modeling phylogeny page and related theory pages.
 
+### Prompt
+Add a new methods section page to the documentation using a user-provided measurement and validation framework for wildfire perimeter scaling.
+
+### Files and folders inspected
+- `docs/methods/index.md`
+- `docs/methods/scaling-diagnostics.md`
+- `mkdocs.yml`
+
+### Actions taken
+- Added `docs/methods/measurement-validation-framework.md` as a new long-form methods page.
+- Added the page to the Methods section index in `docs/methods/index.md`.
+- Updated `mkdocs.yml` so the page appears in the site navigation as `Methods > Measurement and Validation Framework`.
+
+### Verification
+- Ran `python3 -m mkdocs build --strict --clean --site-dir dist`.
+- Confirmed the site built successfully with the new page and nav entry.
+
+### Open questions and follow-up
+- This page now states the full elimination logic clearly; the next useful step may be to cross-link it from model benchmarking or theory pages that rely on the same validation argument.
+
 ## 2026-03-12
 
 ### Prompt

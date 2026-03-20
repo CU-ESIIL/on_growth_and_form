@@ -9,6 +9,7 @@ The proposal is not only about a theory of wildfire geometry. It is also about h
 ## What this section covers
 
 - [Fire Growth Trajectories](fire-growth-trajectories.md)
+- [Measurement and Validation Framework](measurement-validation-framework.md)
 - [Scaling Diagnostics](scaling-diagnostics.md)
 - [Fractal Dimension Estimation](fractal-dimension-estimation.md)
 - [Scaling Collapse](scaling-collapse.md)
