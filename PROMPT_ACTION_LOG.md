@@ -68,6 +68,26 @@ Add a reproducible, script-generated figure showing a time-calibrated conceptual
 ### Open questions and follow-up
 - The figure is intentionally conceptual and selective; if the proposal later requires a more exhaustive lineage, the current script can be extended with additional branches or annotations without changing the page structure.
 
+### Prompt
+Add a new background and context page to the website using a user-provided long-form document on the causal history of wildfire modeling.
+
+### Files and folders inspected
+- `mkdocs.yml`
+- `docs/project-overview/program-context.md`
+- `docs/project-overview/`
+
+### Actions taken
+- Added `docs/project-overview/causal-history-wildfire-modeling.md` as a new long-form background/context page.
+- Placed the page under the existing `Project Overview` section in `mkdocs.yml` as `Causal History of Wildfire Modeling`.
+- Preserved the document's core historical argument while formatting it as a readable MkDocs page with section headings and repository-consistent framing.
+
+### Verification
+- Ran `python3 -m mkdocs build --strict --clean --site-dir dist`.
+- Confirmed the site built successfully with the new page included in navigation.
+
+### Open questions and follow-up
+- If this page becomes central to proposal framing, it may be worth cross-linking it from the wildfire modeling phylogeny page and related theory pages.
+
 ## 2026-03-12
 
 ### Prompt
