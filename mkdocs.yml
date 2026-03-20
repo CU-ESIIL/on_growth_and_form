@@ -41,6 +41,10 @@ nav:
       - Overview: methods/index.md
       - Fire Growth Trajectories: methods/fire-growth-trajectories.md
       - Measurement and Validation Framework: methods/measurement-validation-framework.md
+      - Evaluating Velocity as a Descriptor of Fire Spread: methods/velocity-as-fire-spread-descriptor.md
+      - Model-Data Comparison and Scoring Framework: methods/model-data-comparison-scoring-framework.md
+      - Generative Modeling as a Mechanism Testing Framework: methods/generative-modeling-mechanism-testing.md
+      - Synthetic Validation, Uncertainty, and Identifiability: methods/synthetic-validation-uncertainty-identifiability.md
       - Scaling Diagnostics: methods/scaling-diagnostics.md
       - Fractal Dimension Estimation: methods/fractal-dimension-estimation.md
       - Scaling Collapse: methods/scaling-collapse.md

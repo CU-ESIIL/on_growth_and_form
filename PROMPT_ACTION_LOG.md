@@ -108,6 +108,89 @@ Add a new methods section page to the documentation using a user-provided measur
 ### Open questions and follow-up
 - This page now states the full elimination logic clearly; the next useful step may be to cross-link it from model benchmarking or theory pages that rely on the same validation argument.
 
+### Prompt
+Add a second methods section page that extends the measurement framework with a technical specification for generative modeling as a mechanism-testing framework.
+
+### Files and folders inspected
+- `docs/methods/measurement-validation-framework.md`
+- `docs/methods/index.md`
+- `mkdocs.yml`
+
+### Actions taken
+- Added `docs/methods/generative-modeling-mechanism-testing.md` as a companion methods page focused on generative mechanism testing.
+- Added the new page to `docs/methods/index.md` so it appears alongside the measurement framework.
+- Updated `mkdocs.yml` so the page appears in the site navigation as `Methods > Generative Modeling as a Mechanism Testing Framework`.
+
+### Verification
+- Ran `python3 -m mkdocs build --strict --clean --site-dir dist`.
+- Confirmed the site built successfully with the new page and navigation entry.
+
+### Open questions and follow-up
+- The measurement and mechanism-testing pages now form a two-part workflow; a later cleanup could add reciprocal links between them and to the benchmarking page.
+
+### Prompt
+Add a methods page evaluating velocity as a descriptor of fire spread, positioned between the measurement framework and the generative modeling framework.
+
+### Files and folders inspected
+- `docs/methods/index.md`
+- `docs/methods/measurement-validation-framework.md`
+- `docs/methods/generative-modeling-mechanism-testing.md`
+- `mkdocs.yml`
+
+### Actions taken
+- Added `docs/methods/velocity-as-fire-spread-descriptor.md` as the intermediate methods page on velocity definitions, scale dependence, and geometric breakdown.
+- Reordered the Methods section in `docs/methods/index.md` so the sequence now reads measurement, velocity, then generative modeling.
+- Updated `mkdocs.yml` so the page appears in navigation as `Methods > Evaluating Velocity as a Descriptor of Fire Spread`.
+
+### Verification
+- Ran `python3 -m mkdocs build --strict --clean --site-dir dist`.
+- Confirmed the site built successfully with the new page and reordered navigation.
+
+### Open questions and follow-up
+- The methods sequence now has a clearer conceptual progression; a later refinement could add direct cross-links at the end of each page to guide readers from 1a to 1b to the generative framework.
+
+### Prompt
+Add a methods 1c page on model-data comparison and scoring, positioned after the velocity page and before the generative modeling framework.
+
+### Files and folders inspected
+- `docs/methods/index.md`
+- `docs/methods/velocity-as-fire-spread-descriptor.md`
+- `docs/methods/generative-modeling-mechanism-testing.md`
+- `mkdocs.yml`
+
+### Actions taken
+- Added `docs/methods/model-data-comparison-scoring-framework.md` as the intermediate model evaluation and elimination page.
+- Updated `docs/methods/index.md` so the methods sequence now includes measurement, velocity, model-data comparison, and then generative modeling.
+- Updated `mkdocs.yml` so the page appears in navigation as `Methods > Model-Data Comparison and Scoring Framework`.
+
+### Verification
+- Ran `python3 -m mkdocs build --strict --clean --site-dir dist`.
+- Confirmed the site built successfully with the new page and updated ordering.
+
+### Open questions and follow-up
+- The methods stack now has a stronger bridge from measurement to mechanism testing; a later pass could add inline cross-links so readers can step through 1a, 1b, 1c, and methods 2 more explicitly.
+
+### Prompt
+Add a Methods 3 page on synthetic validation, uncertainty, and identifiability for testing the full model-versus-data framework.
+
+### Files and folders inspected
+- `docs/methods/index.md`
+- `docs/methods/generative-modeling-mechanism-testing.md`
+- `docs/methods/model-data-comparison-scoring-framework.md`
+- `mkdocs.yml`
+
+### Actions taken
+- Added `docs/methods/synthetic-validation-uncertainty-identifiability.md` as the validation and trustworthiness page for the end-to-end analytical pipeline.
+- Updated `docs/methods/index.md` so the Methods section now includes this page after the generative framework.
+- Updated `mkdocs.yml` so the page appears in navigation as `Methods > Synthetic Validation, Uncertainty, and Identifiability`.
+
+### Verification
+- Ran `python3 -m mkdocs build --strict --clean --site-dir dist`.
+- Confirmed the site built successfully with the new page and navigation entry.
+
+### Open questions and follow-up
+- The methods arc is now close to a full sequence; a future pass could group these pages more explicitly into Methods 1, Methods 2, and Methods 3 with short cross-references.
+
 ## 2026-03-12
 
 ### Prompt
