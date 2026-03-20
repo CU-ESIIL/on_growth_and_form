@@ -28,6 +28,7 @@
 ### `proposal/`
 
 - `narrative/`: project summary, project description, and section drafts.
+- `narrative/drafts/`: numbered draft snapshots and draft-to-draft change reports for proposal-memory tracking.
 - `budget/`: budget justifications and internal calculation notes.
 - `biosketches/`: team biosketch drafts.
 - `current_and_pending/`: current and pending support material.
