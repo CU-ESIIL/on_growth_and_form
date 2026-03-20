@@ -822,3 +822,32 @@ Promote a new structured FIRE-MODEL revision strategy document to a privileged p
 ### Open questions and follow-up
 - The strategy document is now the primary collaborator-facing memo, but the proposal text may still need a later pass to map each benchmark and deliverable into submission-length Project Description language.
 - Browser-based screenshot capture was not attempted because no browser-container tool was available in this session.
+
+## 2026-03-19
+
+### Prompt
+Add a second prose draft for the proposal, create a draft-to-draft change report, add the material to a drafts website section, and update the agenda so future agents compare drafts and flag important left-behind material on the drafts site.
+
+### Files and folders inspected
+- `AGENTS.md`
+- `funder/solicitation/fire_model_2026_briefing.md`
+- `funder/review_criteria/fire_model_requirements_checklist.md`
+- `proposal/README.md`
+- `proposal/narrative/`
+- `docs/`
+- `mkdocs.yml`
+- `PROMPT_ACTION_LOG.md`
+
+### Actions taken
+- Created `proposal/narrative/drafts/` and preserved the previously saved generative-theory narrative as Draft 01.
+- Added the new user-provided prose as Draft 02.
+- Wrote a Draft 01 → Draft 02 change report that records strengthened ideas, removed scaffolding, and important left-behind material.
+- Added a new `docs/drafts/` section to the website with overview, draft pages, change-report summary, and a draft-review agenda page.
+- Updated `mkdocs.yml`, `docs/workflow.md`, `docs/repository-map.md`, and `proposal/README.md` so the new draft-tracking workflow is visible in repository documentation.
+
+### Verification
+- Reviewed the new proposal and website draft-tracking files locally.
+- Ran `bash scripts/review_site.sh` after the website-facing changes.
+
+### Open questions and follow-up
+- Draft 02's 3/4 and 4/3 references, and its oxygen-ventilation mechanism, remain hypothesis-level framing and should continue to be checked carefully against verified citation support before submission prose hardens.
