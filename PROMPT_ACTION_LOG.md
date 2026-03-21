@@ -1389,3 +1389,27 @@ User asked for a human-centered refactor of the MkDocs website so it reads as a 
 ### Open questions and follow-up
 - The homepage and section indexes are now much more reader-guided, but `workflow.md` and `repository-map.md` still remain intentionally repository-facing and could receive the same lighter-framing treatment in a future pass if desired.
 - If browser-container support becomes available later, a visual screenshot check would be useful because this change materially affects homepage presentation and information hierarchy.
+
+## 2026-03-21
+
+### Prompt
+User asked to download the NSF FIRE proposal call into the repo and, if possible, also download the NSF Proposal & Award Policies & Procedures Guide (PAPPG) to use as proposal requirements.
+
+### Files and folders inspected
+- `AGENTS.md`
+- `funder/README.md`
+- `funder/`
+- `PROMPT_ACTION_LOG.md`
+
+### Actions taken
+- Downloaded the official NSF FIRE opportunity webpage from `https://www.nsf.gov/funding/opportunities/fire-fire-science-innovations-through-research-education` to `funder/solicitation/nsf_fire_fire_science_innovations_through_research_and_education.html`.
+- Verified via the NSF website that the current PAPPG page points to `NSF 24-1` as the active guide for proposals submitted or due on or after May 20, 2024.
+- Downloaded the printable PDF for `NSF 24-1` from NSF's official resource host to `funder/review_criteria/nsf_pappg_24-1.pdf`.
+
+### Verification
+- Confirmed the downloaded solicitation artifact is an HTML document and the PAPPG artifact is a PDF.
+- Confirmed file sizes after download: approximately `97K` for the FIRE opportunity page and `4.4M` for the PAPPG PDF.
+
+### Open questions and follow-up
+- The FIRE opportunity appears to be delivered by NSF as a live webpage rather than a standalone solicitation PDF at the provided URL, so the repo now stores the official HTML page for that call.
+- If desired, a next step would be to add a short repository note summarizing which sections of `nsf_pappg_24-1.pdf` most directly control this proposal's narrative, supplementary documents, and compliance checks.
