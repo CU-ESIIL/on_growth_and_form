@@ -1,4 +1,4 @@
-# Synthetic Validation, Uncertainty, and Identifiability
+# Method 3: Synthetic Validation, Uncertainty, and Identifiability
 
 ## Overview
 

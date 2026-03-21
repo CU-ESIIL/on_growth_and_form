@@ -1,4 +1,4 @@
-# Measurement and Validation Framework
+# Method 1: Measurement, Validation, and Fire-Environment Coupling
 
 ## Overview
 

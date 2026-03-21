@@ -40,11 +40,11 @@ nav:
   - Methods:
       - Overview: methods/index.md
       - Fire Growth Trajectories: methods/fire-growth-trajectories.md
-      - Measurement and Validation Framework: methods/measurement-validation-framework.md
-      - Evaluating Velocity as a Descriptor of Fire Spread: methods/velocity-as-fire-spread-descriptor.md
-      - Model-Data Comparison and Scoring Framework: methods/model-data-comparison-scoring-framework.md
-      - Generative Modeling as a Mechanism Testing Framework: methods/generative-modeling-mechanism-testing.md
-      - Synthetic Validation, Uncertainty, and Identifiability: methods/synthetic-validation-uncertainty-identifiability.md
+      - "Method 1: Measurement, Validation, and Fire-Environment Coupling": methods/measurement-validation-framework.md
+      - "Method 1B: Evaluating Velocity as a Descriptor of Fire Spread": methods/velocity-as-fire-spread-descriptor.md
+      - "Method 1C: Model-Data Comparison and Scoring Framework": methods/model-data-comparison-scoring-framework.md
+      - "Method 2: Generative Modeling and Experimental Design": methods/generative-modeling-mechanism-testing.md
+      - "Method 3: Synthetic Validation, Uncertainty, and Identifiability": methods/synthetic-validation-uncertainty-identifiability.md
       - Scaling Diagnostics: methods/scaling-diagnostics.md
       - Fractal Dimension Estimation: methods/fractal-dimension-estimation.md
       - Scaling Collapse: methods/scaling-collapse.md
@@ -67,6 +67,8 @@ nav:
       - Literature Map: literature/literature-map.md
   - Planning:
       - Gantt Chart: planning/gantt_chart.md
+      - Evaluation and Success Criteria: planning/evaluation-success-criteria.md
+      - Staffing Plan: planning/staffing-plan.md
       - Wildfire Modeling Phylogeny: planning/wildfire-modeling-phylogeny.md
   - Drafts:
       - Overview: drafts/index.md

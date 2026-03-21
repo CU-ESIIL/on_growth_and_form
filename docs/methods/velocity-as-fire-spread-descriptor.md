@@ -1,4 +1,4 @@
-# Evaluating Velocity as a Descriptor of Fire Spread
+# Method 1B: Evaluating Velocity as a Descriptor of Fire Spread
 
 ## Overview
 

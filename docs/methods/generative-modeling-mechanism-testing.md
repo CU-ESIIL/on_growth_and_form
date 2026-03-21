@@ -1,4 +1,4 @@
-# Generative Modeling as a Mechanism Testing Framework
+# Method 2: Generative Modeling and Experimental Design
 
 ## Overview
 

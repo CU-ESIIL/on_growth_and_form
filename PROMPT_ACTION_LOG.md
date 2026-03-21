@@ -191,6 +191,72 @@ Add a Methods 3 page on synthetic validation, uncertainty, and identifiability f
 ### Open questions and follow-up
 - The methods arc is now close to a full sequence; a future pass could group these pages more explicitly into Methods 1, Methods 2, and Methods 3 with short cross-references.
 
+### Prompt
+Add a unified methods-system summary at the beginning of the Methods section and relabel the core methods pages so their titles and navigation clearly reflect the canonical Methods 1, 1B, 1C, 2, and 3 sequence.
+
+### Files and folders inspected
+- `docs/methods/index.md`
+- `docs/methods/measurement-validation-framework.md`
+- `docs/methods/velocity-as-fire-spread-descriptor.md`
+- `docs/methods/model-data-comparison-scoring-framework.md`
+- `docs/methods/generative-modeling-mechanism-testing.md`
+- `docs/methods/synthetic-validation-uncertainty-identifiability.md`
+- `mkdocs.yml`
+
+### Actions taken
+- Added a methods-system summary and canonical section map to the top of `docs/methods/index.md`.
+- Updated the Methods landing-page links so they now use the canonical labels `Method 1`, `Method 1B`, `Method 1C`, `Method 2`, and `Method 3`.
+- Renamed the page titles in the five core methods documents to match the canonical sequence.
+- Updated `mkdocs.yml` so the Methods navigation uses the same canonical labels.
+- Fixed the MkDocs YAML navigation labels by quoting entries that contain colons.
+
+### Verification
+- Ran `python3 -m mkdocs build --strict --clean --site-dir dist`.
+- Confirmed the site built successfully with the new labels and methods summary.
+
+### Open questions and follow-up
+- The core methods sequence is now clearer in titles and navigation; a useful future step would be to add short reciprocal cross-links at the top of each page so readers can move directly through the 1 -> 1B -> 1C -> 2 -> 3 pipeline.
+
+### Prompt
+Add a FIRE-MODEL staffing plan covering two postdocs and the PI to the Planning section of the repository and website.
+
+### Files and folders inspected
+- `docs/planning/`
+- `docs/planning/gantt_chart.md`
+- `mkdocs.yml`
+
+### Actions taken
+- Added `docs/planning/staffing-plan.md` as a standalone planning page covering roles, annual timelines, milestones, conference outputs, deliverables, and integration cadence.
+- Updated `mkdocs.yml` so the page appears in the site navigation as `Planning > Staffing Plan`.
+- Preserved the role structure around Postdoc 1, Postdoc 2, and the PI while formatting the document for repository and website readability.
+
+### Verification
+- Ran `python3 -m mkdocs build --strict --clean --site-dir dist`.
+- Confirmed the site built successfully with the new staffing-plan page and planning nav entry.
+
+### Open questions and follow-up
+- This page pairs naturally with the existing Gantt chart; a future refinement could add direct cross-links between the staffing plan, work plan, and Gantt page so responsibilities and schedule are easier to traverse together.
+
+### Prompt
+Add an evaluation and success-criteria document to the Planning section of the repository and website.
+
+### Files and folders inspected
+- `docs/planning/`
+- `mkdocs.yml`
+- `docs/research-program/work-plan.md`
+
+### Actions taken
+- Added `docs/planning/evaluation-success-criteria.md` as a planning page covering scientific success, technical success, comparative advancement, training outcomes, and field-level impact.
+- Updated `mkdocs.yml` so the page appears in the site navigation as `Planning > Evaluation and Success Criteria`.
+- Consolidated repeated closing language into a cleaner final success statement while preserving the document's evaluation logic and success domains.
+
+### Verification
+- Ran `python3 -m mkdocs build --strict --clean --site-dir dist`.
+- Confirmed the site built successfully with the new evaluation page and planning nav entry.
+
+### Open questions and follow-up
+- This page now complements the staffing plan and work plan; a later pass could cross-link the success criteria to the specific milestones and deliverables that operationalize them.
+
 ## 2026-03-12
 
 ### Prompt
