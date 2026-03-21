@@ -1216,10 +1216,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-fired-does" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What FIRED does
+        Overview
       
     </span>
   </a>
@@ -1227,10 +1227,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#why-fired-matters-for-this-project" class="md-nav__link">
+  <a href="#the-core-problem" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why FIRED matters for this project
+        The core problem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-the-fired-algorithm-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How the FIRED algorithm works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output-structure-of-fired" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output structure of FIRED
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scientific-value-of-fired" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scientific value of FIRED
       
     </span>
   </a>
@@ -2787,25 +2820,62 @@
 
 
 <h1 id="fired">FIRED</h1>
-<p><code>FIRED</code> is the event-reconstruction layer of the project.</p>
-<h2 id="what-fired-does">What FIRED does</h2>
-<p>Satellite burned-area products tell us which pixels burned and when. <code>FIRED</code> asks the more useful event-level question: which of those burned pixels belong to the same fire?</p>
-<p>By clustering burned pixels through space and time, <code>FIRED</code> reconstructs:</p>
+<h2 id="overview">Overview</h2>
+<p>Satellite burned-area products provide global records of fire activity, but these datasets typically represent fire as individual burned pixels detected on specific days. While this is useful for monitoring, it does not directly reveal how individual fires grow, merge, or evolve through time.</p>
+<p>The purpose of <code>FIRED</code> is to convert these raw burned-area pixels into individual fire events with spatial and temporal structure.</p>
+<p>In other words, <code>FIRED</code> answers the question:</p>
+<p>Which burned pixels belong to the same fire?</p>
+<h2 id="the-core-problem">The core problem</h2>
+<p>Raw satellite fire products such as MODIS <code>MCD64A1</code> represent fire activity as a time series of burned pixels.</p>
+<p>For example:</p>
 <ul>
-<li>individual wildfire events</li>
+<li>Day 1: several burned pixels appear</li>
+<li>Day 2: additional burned pixels appear nearby</li>
+<li>Day 3: the burn scar expands</li>
+</ul>
+<p>Without additional analysis, it is unclear whether these pixels represent:</p>
+<ul>
+<li>one growing fire</li>
+<li>multiple nearby fires</li>
+<li>overlapping burn scars</li>
+</ul>
+<p><code>FIRED</code> reconstructs these observations into coherent fire events.</p>
+<h2 id="how-the-fired-algorithm-works">How the FIRED algorithm works</h2>
+<p><code>FIRED</code> uses a spatiotemporal clustering algorithm.</p>
+<p>The process typically follows these steps:</p>
+<ol>
+<li>Ingest burned-area data from satellite products such as MODIS burned-area grids.</li>
+<li>Identify burned pixels for each day using burn dates.</li>
+<li>Cluster pixels in space and time using adjacency and a defined temporal window.</li>
+<li>Construct fire events by aggregating clusters into single event histories.</li>
+</ol>
+<p>The output is a dataset where each fire includes:</p>
+<ul>
+<li>spatial footprint</li>
+<li>start date</li>
+<li>duration</li>
+<li>daily progression polygons</li>
+</ul>
+<h2 id="output-structure-of-fired">Output structure of FIRED</h2>
+<p>The resulting dataset transforms pixel observations into event-level information.</p>
+<p>Each fire event includes:</p>
+<ul>
+<li>unique fire identifier</li>
 <li>event start and end dates</li>
-<li>daily perimeter or progression structure</li>
+<li>daily burn progression</li>
+<li>final fire perimeter</li>
 <li>total burned area</li>
 </ul>
-<h2 id="why-fired-matters-for-this-project">Why FIRED matters for this project</h2>
-<p>The scaling questions in this repository depend on trajectories, not just end states. We need to know how fire perimeter and area change through time, not only where a burn scar ended up.</p>
-<p>That makes <code>FIRED</code> foundational for:</p>
+<p>This structure enables researchers to reconstruct the evolution of fires through time.</p>
+<h2 id="scientific-value-of-fired">Scientific value of FIRED</h2>
+<p><code>FIRED</code> converts satellite observations into a format that supports event-based fire analysis.</p>
+<p>This enables questions such as:</p>
 <ul>
-<li>fire growth trajectories</li>
-<li>perimeter-time scaling analysis</li>
-<li>scaling-regime detection</li>
-<li>comparison across many fires</li>
+<li>How quickly do fires grow?</li>
+<li>How do fire sizes vary across landscapes?</li>
+<li>What environmental conditions influence fire expansion?</li>
 </ul>
+<p>Most importantly, <code>FIRED</code> provides time-resolved fire perimeters, which allow researchers to study the geometry of wildfire growth.</p>
 <h2 id="related-pages">Related pages</h2>
 <ul>
 <li><a href="../fired-cubedynamics/">FIRED and CubeDynamics</a></li>

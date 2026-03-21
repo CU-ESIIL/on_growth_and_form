@@ -1244,10 +1244,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-cubedynamics-does" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What CubeDynamics does
+        Overview
       
     </span>
   </a>
@@ -1255,10 +1255,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#why-it-matters-here" class="md-nav__link">
+  <a href="#what-is-a-data-cube" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why it matters here
+        What is a data cube?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-grammar-of-cubes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The grammar of cubes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#computational-benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Computational benefits
       
     </span>
   </a>
@@ -2787,30 +2809,51 @@
 
 
 <h1 id="cubedynamics">CubeDynamics</h1>
-<p><code>CubeDynamics</code> is the analytical layer that makes event-based wildfire analysis scalable.</p>
-<h2 id="what-cubedynamics-does">What CubeDynamics does</h2>
-<p><code>CubeDynamics</code> treats environmental data as spatiotemporal cubes organized around:</p>
+<h2 id="overview">Overview</h2>
+<p>While <code>FIRED</code> defines individual fire events, environmental datasets often exist in many different formats and resolutions. Managing and analyzing these datasets consistently can be difficult.</p>
+<p><code>CubeDynamics</code> addresses this challenge by treating environmental data as spatiotemporal data cubes.</p>
+<p>The central idea is that Earth system data should be organized around three core dimensions:</p>
 <ul>
-<li>space</li>
-<li>time</li>
+<li>space (<code>x</code>, <code>y</code>)</li>
+<li>time (<code>t</code>)</li>
 <li>variables</li>
 </ul>
-<p>This creates a consistent way to:</p>
+<p>This structure forms a multidimensional array known as a data cube.</p>
+<h2 id="what-is-a-data-cube">What is a data cube?</h2>
+<p>A data cube is a structured dataset where each value corresponds to a location, time, and variable.</p>
+<p>For example, a cube may include:</p>
 <ul>
-<li>subset and align environmental datasets</li>
-<li>compute metrics across many events</li>
-<li>combine fire trajectories with climate, vegetation, and fuel context</li>
-<li>standardize analytical workflows</li>
+<li>latitude</li>
+<li>longitude</li>
+<li>date</li>
+<li>burned area</li>
+<li>vegetation index</li>
+<li>temperature</li>
+<li>wind speed</li>
 </ul>
-<h2 id="why-it-matters-here">Why it matters here</h2>
-<p>The wildfire scaling problem is not just about reconstructing individual fires. It is also about comparing many fires under many environmental conditions. <code>CubeDynamics</code> provides the computational grammar for that comparison.</p>
-<p>In this project, it supports:</p>
+<p>Each slice of the cube represents a spatial map at a given time.</p>
+<p>Each vertical column represents a time series at a specific location.</p>
+<p>This representation allows environmental processes to be analyzed systematically.</p>
+<h2 id="the-grammar-of-cubes">The grammar of cubes</h2>
+<p><code>CubeDynamics</code> proposes a structured set of operations for working with data cubes.</p>
+<p>This idea is inspired by concepts such as the grammar of graphics in data visualization.</p>
+<p>Typical cube operations include:</p>
 <ul>
-<li>cross-fire trajectory analysis</li>
-<li>environmental stratification</li>
-<li>scaling diagnostics at population scale</li>
-<li>reusable open-source analytical tooling</li>
+<li>subsetting a cube</li>
+<li>slicing a cube along spatial or temporal dimensions</li>
+<li>aggregating variables</li>
+<li>combining multiple cubes</li>
+<li>computing derived metrics</li>
 </ul>
+<p>By formalizing these operations, <code>CubeDynamics</code> creates a consistent framework for analyzing Earth system data.</p>
+<h2 id="computational-benefits">Computational benefits</h2>
+<p>The cube-based approach provides several advantages:</p>
+<ol>
+<li>Scalability: large satellite datasets can be processed efficiently because operations apply across entire arrays rather than individual files.</li>
+<li>Reproducibility: workflows become standardized and easier to reproduce.</li>
+<li>Interoperability: multiple environmental datasets can be combined consistently.</li>
+</ol>
+<p>For example, researchers can analyze relationships between fire activity and environmental drivers such as vegetation, climate, or topography in one structured framework.</p>
 <h2 id="related-pages">Related pages</h2>
 <ul>
 <li><a href="../fired-cubedynamics/">FIRED and CubeDynamics</a></li>

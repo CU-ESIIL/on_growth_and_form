@@ -2037,35 +2037,170 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#core-deliverables" class="md-nav__link">
+  <a href="#major-deliverables" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core deliverables
+        Major deliverables
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Major deliverables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-global-fire-growth-trajectory-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Global fire growth trajectory dataset
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Global fire growth trajectory dataset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-this-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why this matters
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#why-deliverables-matter" class="md-nav__link">
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-open-source-scaling-diagnostics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why deliverables matter
+        2. Open-source scaling diagnostics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Open-source scaling diagnostics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-this-matters_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why this matters
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#related-pages" class="md-nav__link">
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-empirical-characterization-of-wildfire-scaling" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related pages
+        3. Empirical characterization of wildfire scaling
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="3. Empirical characterization of wildfire scaling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-this-matters_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why this matters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-mechanistic-modeling-experiments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Mechanistic modeling experiments
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Mechanistic modeling experiments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-this-matters_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why this matters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-benchmark-analysis-of-existing-fire-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Benchmark analysis of existing fire models
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Benchmark analysis of existing fire models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-this-matters_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why this matters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-theoretical-framework-for-wildfire-growth-geometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Theoretical framework for wildfire growth geometry
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2787,27 +2922,72 @@
 
 
 <h1 id="deliverables">Deliverables</h1>
-<p>This page summarizes the major outputs the wildfire scaling project is designed to produce.</p>
-<h2 id="core-deliverables">Core deliverables</h2>
+<h2 id="major-deliverables">Major deliverables</h2>
+<h3 id="1-global-fire-growth-trajectory-dataset">1. Global fire growth trajectory dataset</h3>
+<p>The project will produce a standardized dataset describing how fires grow through time. Using satellite burned-area products and the <code>FIRED</code> event reconstruction system, the research team will reconstruct daily fire perimeters for many wildfire events.</p>
+<p>Each fire will include:</p>
 <ul>
-<li>a curated dataset of wildfire interfaces across scales</li>
-<li>a library of tools for computing geometric observables from observed and simulated fire perimeters</li>
-<li>a reference implementation of the Generative Interface Model</li>
-<li>a standardized benchmark suite for evaluating fire models against cross-scale interface geometry</li>
-<li>open-source scaling diagnostics integrated into <code>CubeDynamics</code></li>
-<li>empirical characterization of wildfire perimeter scaling across many fires</li>
-<li>model-benchmark analyses for existing fire simulators</li>
-<li>a theoretical framework for wildfire growth geometry</li>
+<li>perimeter length through time</li>
+<li>burned area through time</li>
+<li>geometric complexity metrics</li>
+<li>environmental metadata</li>
 </ul>
-<h2 id="why-deliverables-matter">Why deliverables matter</h2>
-<p>This project is not only a hypothesis test. It also builds reusable infrastructure, analytical methods, and conceptual tools that other researchers can use.</p>
-<p>The deliverables are designed to work together: data define the observed geometry, tools measure it, the GIM attempts to generate it, and the benchmark suite tests whether competing models reproduce it.</p>
-<h2 id="related-pages">Related pages</h2>
+<h4 id="why-this-matters">Why this matters</h4>
+<p>Most fire datasets record final burned area or ignition locations. Few datasets capture the dynamic geometry of fire growth. This dataset would provide a large-scale empirical foundation for studying wildfire expansion as a spatial process.</p>
+<p>It also becomes reusable infrastructure for research questions beyond the scaling hypothesis.</p>
+<h3 id="2-open-source-scaling-diagnostics">2. Open-source scaling diagnostics</h3>
+<p>The project will develop analytical tools for measuring geometric scaling relationships in wildfire growth.</p>
+<p>These tools will include methods for:</p>
 <ul>
-<li><a href="../work-plan/">Work Plan</a></li>
-<li><a href="../rationale-impact/">Rationale and Impact</a></li>
-<li><a href="../../drafts/integration-document/">Proposal Integration Document</a></li>
+<li>perimeter-time scaling analysis</li>
+<li>fractal dimension estimation</li>
+<li>scaling collapse diagnostics</li>
+<li>geometric comparison of fire trajectories</li>
 </ul>
+<p>The diagnostics will be released as modules within <code>CubeDynamics</code> so that other researchers can apply them to both observational data and model outputs.</p>
+<h4 id="why-this-matters_1">Why this matters</h4>
+<p>Current wildfire models are typically evaluated using local metrics such as spread rate or burn severity. Scaling diagnostics introduce a new way to test models: whether they reproduce the large-scale geometry of real fires.</p>
+<h3 id="3-empirical-characterization-of-wildfire-scaling">3. Empirical characterization of wildfire scaling</h3>
+<p>The project will analyze many fire trajectories to determine:</p>
+<ul>
+<li>whether a consistent perimeter growth exponent exists</li>
+<li>when scaling appears during a fire's lifetime</li>
+<li>how scaling varies across ecosystems and climates</li>
+</ul>
+<p>This work fills a gap between detailed fire behavior experiments and statistical studies of fire regimes.</p>
+<h4 id="why-this-matters_2">Why this matters</h4>
+<p>Understanding the geometry of wildfire expansion provides insight into how local spread processes scale up to landscape-scale fire behavior.</p>
+<h3 id="4-mechanistic-modeling-experiments">4. Mechanistic modeling experiments</h3>
+<p>The project will test candidate mechanisms capable of generating wildfire scaling patterns.</p>
+<p>Minimal models will represent processes such as:</p>
+<ul>
+<li>diffusion-like spread</li>
+<li>connectivity-driven spread across heterogeneous fuels</li>
+<li>anisotropic wind-driven propagation</li>
+<li>long-distance spotting</li>
+</ul>
+<p>Each model will generate synthetic fire trajectories that can be analyzed using the same scaling diagnostics applied to satellite observations.</p>
+<h4 id="why-this-matters_3">Why this matters</h4>
+<p>This approach connects empirical observations with underlying physical processes and helps identify which mechanisms shape wildfire growth geometry.</p>
+<h3 id="5-benchmark-analysis-of-existing-fire-models">5. Benchmark analysis of existing fire models</h3>
+<p>The scaling diagnostics will be applied to outputs from wildfire simulators such as:</p>
+<ul>
+<li><code>FARSITE</code></li>
+<li><code>WRF-Fire</code></li>
+<li><code>FIRETEC</code></li>
+</ul>
+<p>This will reveal whether current fire models reproduce the geometric scaling properties observed in real fires.</p>
+<h4 id="why-this-matters_4">Why this matters</h4>
+<p>This provides a new benchmark for wildfire model validation based on emergent system behavior rather than only local spread rates.</p>
+<h3 id="6-theoretical-framework-for-wildfire-growth-geometry">6. Theoretical framework for wildfire growth geometry</h3>
+<p>The final deliverable is a conceptual synthesis explaining how wildfire growth emerges from interactions among:</p>
+<ul>
+<li>fuel connectivity</li>
+<li>atmospheric forcing</li>
+<li>landscape heterogeneity</li>
+<li>fire spread physics</li>
+</ul>
+<p>This framework links wildfire science with broader theories of spatial dynamics and complex systems.</p>
 
 
 

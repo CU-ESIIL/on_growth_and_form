@@ -1,32 +1,64 @@
 # CubeDynamics
 
-`CubeDynamics` is the analytical layer that makes event-based wildfire analysis scalable.
+## Overview
 
-## What CubeDynamics does
+While `FIRED` defines individual fire events, environmental datasets often exist in many different formats and resolutions. Managing and analyzing these datasets consistently can be difficult.
 
-`CubeDynamics` treats environmental data as spatiotemporal cubes organized around:
+`CubeDynamics` addresses this challenge by treating environmental data as spatiotemporal data cubes.
 
-- space
-- time
+The central idea is that Earth system data should be organized around three core dimensions:
+
+- space (`x`, `y`)
+- time (`t`)
 - variables
 
-This creates a consistent way to:
+This structure forms a multidimensional array known as a data cube.
 
-- subset and align environmental datasets
-- compute metrics across many events
-- combine fire trajectories with climate, vegetation, and fuel context
-- standardize analytical workflows
+## What is a data cube?
 
-## Why it matters here
+A data cube is a structured dataset where each value corresponds to a location, time, and variable.
 
-The wildfire scaling problem is not just about reconstructing individual fires. It is also about comparing many fires under many environmental conditions. `CubeDynamics` provides the computational grammar for that comparison.
+For example, a cube may include:
 
-In this project, it supports:
+- latitude
+- longitude
+- date
+- burned area
+- vegetation index
+- temperature
+- wind speed
 
-- cross-fire trajectory analysis
-- environmental stratification
-- scaling diagnostics at population scale
-- reusable open-source analytical tooling
+Each slice of the cube represents a spatial map at a given time.
+
+Each vertical column represents a time series at a specific location.
+
+This representation allows environmental processes to be analyzed systematically.
+
+## The grammar of cubes
+
+`CubeDynamics` proposes a structured set of operations for working with data cubes.
+
+This idea is inspired by concepts such as the grammar of graphics in data visualization.
+
+Typical cube operations include:
+
+- subsetting a cube
+- slicing a cube along spatial or temporal dimensions
+- aggregating variables
+- combining multiple cubes
+- computing derived metrics
+
+By formalizing these operations, `CubeDynamics` creates a consistent framework for analyzing Earth system data.
+
+## Computational benefits
+
+The cube-based approach provides several advantages:
+
+1. Scalability: large satellite datasets can be processed efficiently because operations apply across entire arrays rather than individual files.
+2. Reproducibility: workflows become standardized and easier to reproduce.
+3. Interoperability: multiple environmental datasets can be combined consistently.
+
+For example, researchers can analyze relationships between fire activity and environmental drivers such as vegetation, climate, or topography in one structured framework.
 
 ## Related pages
 

@@ -1,32 +1,45 @@
 # Users and Impact
 
-This page summarizes who is most likely to use the project's outputs and how impact is expected to unfold.
+## Who will use these results?
 
-## Primary users
+The immediate users of the project outputs are primarily scientific and technical communities rather than frontline firefighting personnel.
 
-- fire model developers
-- remote sensing scientists
-- fire behavior researchers
-- Earth system scientists
+### Primary users
 
-## Secondary users
+#### Fire model developers
 
-- agency research groups
-- strategic planning and risk-assessment teams
+Researchers developing fire simulators can use scaling diagnostics to test whether their models reproduce realistic fire growth geometry.
 
-## Long-term downstream impact
+#### Remote sensing scientists
 
-The most likely path to operational relevance is indirect:
+Satellite fire analysts can use the dataset and methods to interpret fire expansion patterns across regions and ecosystems.
+
+#### Fire behavior researchers
+
+Scientists studying fire spread processes gain a new empirical framework for linking local physics with landscape-scale dynamics.
+
+#### Earth system scientists
+
+Researchers studying disturbance regimes can integrate fire growth scaling into models of ecosystem and climate interactions.
+
+### Secondary users
+
+#### Agency research groups
+
+Fire science groups within agencies such as USFS or NOAA may use the methods to evaluate forecasting tools and fire models.
+
+#### Risk assessment and planning teams
+
+Strategic planning teams studying fire risk across landscapes may use geometric growth indicators to classify fire regimes.
+
+### Long-term downstream users
+
+#### Operational fire decision systems
+
+Incident commanders are unlikely to use fractal or scaling analysis directly. However, improvements in wildfire models and forecasting tools may indirectly benefit operational decision making.
+
+The pathway to operational impact typically follows:
 
 ```text
-scientific insight -> improved models -> better forecasting tools -> operational benefit
+scientific insight -> improved models -> improved forecasting tools -> operational use
 ```
-
-## Why this matters
-
-This framing helps distinguish immediate scientific value from later practical impact. It keeps the proposal honest about who will use the work directly while still showing why the investment matters.
-
-## Related pages
-
-- [Rationale and Impact](rationale-impact.md)
-- [Deliverables](deliverables.md)

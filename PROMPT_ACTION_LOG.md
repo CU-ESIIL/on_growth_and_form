@@ -3,7 +3,7 @@
 ## 2026-03-20
 
 ### Prompt
-Convert a user-provided wildfire modeling bibliography into a repository Markdown reference note under the citations area, preserving the dense citation, identity, summary, and example-citation structure for later proposal use.
+User provided a document titled `Wildfire Modeling Master Bibliography (Full Integrated Storage)` and asked: "here is a literature search i did about the history of fire. it has citations and authors and the verbatim details are important. will you make this a markdown document in the citations area of the repo for future reference when we're doing citations".
 
 ### Files and folders inspected
 - `citations/README.md`
@@ -22,7 +22,7 @@ Convert a user-provided wildfire modeling bibliography into a repository Markdow
 - If these entries become proposal-critical, the next step should be to verify each record against the original paper, DOI metadata, and available PDFs.
 
 ### Prompt
-Add a historical context section to the top of the wildfire modeling master bibliography without deleting any existing content.
+User asked: "can you add this to the top of that document for context. don't delete, just add", followed by a multi-paragraph historical framing of wildfire modeling from Rothermel through spatial, probabilistic, physics-based, landscape, and machine-learning lineages.
 
 ### Files and folders inspected
 - `citations/notes/wildfire_modeling_master_bibliography.md`
@@ -38,7 +38,7 @@ Add a historical context section to the top of the wildfire modeling master bibl
 - The contextual framing now cites milestone lineages in prose; if the file becomes a public-facing source, those milestone claims should also be verified entry by entry.
 
 ### Prompt
-Add a reproducible, script-generated figure showing a time-calibrated conceptual phylogeny of wildfire modeling, publish it as its own MkDocs page under planning/background materials, and regenerate the figure automatically during the GitHub Pages build.
+User asked for a reproducible, script-generated figure showing "a time-calibrated conceptual phylogeny of wildfire modeling", with a Python script, generated PNG in docs assets, a dedicated MkDocs page, navigation placement in planning/background materials, and GitHub Actions regeneration during docs build or deploy.
 
 ### Files and folders inspected
 - `mkdocs.yml`
@@ -69,7 +69,7 @@ Add a reproducible, script-generated figure showing a time-calibrated conceptual
 - The figure is intentionally conceptual and selective; if the proposal later requires a more exhaustive lineage, the current script can be extended with additional branches or annotations without changing the page structure.
 
 ### Prompt
-Add a new background and context page to the website using a user-provided long-form document on the causal history of wildfire modeling.
+User provided a long-form document titled `A Causal History of Wildfire Modeling` and asked to "add this to the background and context section as a new page".
 
 ### Files and folders inspected
 - `mkdocs.yml`
@@ -89,7 +89,7 @@ Add a new background and context page to the website using a user-provided long-
 - If this page becomes central to proposal framing, it may be worth cross-linking it from the wildfire modeling phylogeny page and related theory pages.
 
 ### Prompt
-Add a new methods section page to the documentation using a user-provided measurement and validation framework for wildfire perimeter scaling.
+User provided a long-form document titled `Methods: Measurement and Validation Framework` and asked to add it to the documentation as Methods section 1.
 
 ### Files and folders inspected
 - `docs/methods/index.md`
@@ -109,7 +109,7 @@ Add a new methods section page to the documentation using a user-provided measur
 - This page now states the full elimination logic clearly; the next useful step may be to cross-link it from model benchmarking or theory pages that rely on the same validation argument.
 
 ### Prompt
-Add a second methods section page that extends the measurement framework with a technical specification for generative modeling as a mechanism-testing framework.
+User provided a long-form document titled `Methods: Generative Modeling as a Mechanism Testing Framework (Technical Specification)` and asked to add it as Methods section 2, explicitly as an additive follow-on to the measurement framework.
 
 ### Files and folders inspected
 - `docs/methods/measurement-validation-framework.md`
@@ -129,7 +129,7 @@ Add a second methods section page that extends the measurement framework with a 
 - The measurement and mechanism-testing pages now form a two-part workflow; a later cleanup could add reciprocal links between them and to the benchmarking page.
 
 ### Prompt
-Add a methods page evaluating velocity as a descriptor of fire spread, positioned between the measurement framework and the generative modeling framework.
+User provided a long-form document titled `Methods: Evaluating Velocity as a Descriptor of Fire Spread` and asked to place it as Methods section `1B`, between the measurement framework and the generative modeling framework.
 
 ### Files and folders inspected
 - `docs/methods/index.md`
@@ -150,7 +150,7 @@ Add a methods page evaluating velocity as a descriptor of fire spread, positione
 - The methods sequence now has a clearer conceptual progression; a later refinement could add direct cross-links at the end of each page to guide readers from 1a to 1b to the generative framework.
 
 ### Prompt
-Add a methods 1c page on model-data comparison and scoring, positioned after the velocity page and before the generative modeling framework.
+User provided a long-form document titled `Methods: Model-Data Comparison and Scoring Framework` and asked to place it as Methods section `1C`, after the velocity page and before the generative modeling framework.
 
 ### Files and folders inspected
 - `docs/methods/index.md`
@@ -171,7 +171,7 @@ Add a methods 1c page on model-data comparison and scoring, positioned after the
 - The methods stack now has a stronger bridge from measurement to mechanism testing; a later pass could add inline cross-links so readers can step through 1a, 1b, 1c, and methods 2 more explicitly.
 
 ### Prompt
-Add a Methods 3 page on synthetic validation, uncertainty, and identifiability for testing the full model-versus-data framework.
+User provided a long-form document titled `Methods: Synthetic Validation, Uncertainty, and Identifiability` and clarified that this was Methods section `3`, focused on testing how well generated fires compare to data and whether the full evaluation system is trustworthy.
 
 ### Files and folders inspected
 - `docs/methods/index.md`
@@ -192,7 +192,7 @@ Add a Methods 3 page on synthetic validation, uncertainty, and identifiability f
 - The methods arc is now close to a full sequence; a future pass could group these pages more explicitly into Methods 1, Methods 2, and Methods 3 with short cross-references.
 
 ### Prompt
-Add a unified methods-system summary at the beginning of the Methods section and relabel the core methods pages so their titles and navigation clearly reflect the canonical Methods 1, 1B, 1C, 2, and 3 sequence.
+User provided a summary document titled `FIRE-MODEL Methods System: Narrative Summary for Discovery` and asked to add it to the beginning of the methods section, then relabel the component pages so their titles clearly show `Method 1`, `Method 1B`, `Method 1C`, `Method 2`, and `Method 3`.
 
 ### Files and folders inspected
 - `docs/methods/index.md`
@@ -218,7 +218,7 @@ Add a unified methods-system summary at the beginning of the Methods section and
 - The core methods sequence is now clearer in titles and navigation; a useful future step would be to add short reciprocal cross-links at the top of each page so readers can move directly through the 1 -> 1B -> 1C -> 2 -> 3 pipeline.
 
 ### Prompt
-Add a FIRE-MODEL staffing plan covering two postdocs and the PI to the Planning section of the repository and website.
+User provided a document titled `FIRE-MODEL Staffing Plan: Roles, 3-Year Timeline, Milestones, and Deliverables` and asked to add it to the planning section of the repository and website.
 
 ### Files and folders inspected
 - `docs/planning/`
@@ -238,7 +238,7 @@ Add a FIRE-MODEL staffing plan covering two postdocs and the PI to the Planning 
 - This page pairs naturally with the existing Gantt chart; a future refinement could add direct cross-links between the staffing plan, work plan, and Gantt page so responsibilities and schedule are easier to traverse together.
 
 ### Prompt
-Add an evaluation and success-criteria document to the Planning section of the repository and website.
+User provided a document titled `Evaluation and Success Criteria` and asked to add it to the planning section of the repository and website.
 
 ### Files and folders inspected
 - `docs/planning/`
@@ -258,7 +258,7 @@ Add an evaluation and success-criteria document to the Planning section of the r
 - This page now complements the staffing plan and work plan; a later pass could cross-link the success criteria to the specific milestones and deliverables that operationalize them.
 
 ### Prompt
-Refactor the repository-backed MkDocs site so it becomes a clearer front end to the existing long-form markdown documents, with shorter top-level navigation, section landing pages, and no orphaned important pages.
+User provided a full structural refactor brief beginning `Codex Prompt: Refactor the on_growth_and_form repo/site structure without rewriting content` and asked for a documentation-architecture refactor that would preserve long-form markdown, add short section landing pages, simplify top-level navigation, separate drafts from core material, and ensure there were no orphaned important pages.
 
 ### Files and folders inspected
 - `mkdocs.yml`
@@ -294,7 +294,7 @@ Refactor the repository-backed MkDocs site so it becomes a clearer front end to 
 - The current structure preserves both `project-overview/` and `research-program/` as distinct sections; if the authors later want tighter curation, that boundary may still warrant human judgment, but it is now navigable and explicit rather than hidden in the nav.
 
 ### Prompt
-Add a broader-impacts statement to the proposal planning section of the repository and website.
+User provided a document titled `Broader Impacts` and asked: "Here is another document to add to the proposal planning section. this is the broader impact statement".
 
 ### Files and folders inspected
 - `docs/planning/index.md`
@@ -311,6 +311,22 @@ Add a broader-impacts statement to the proposal planning section of the reposito
 
 ### Open questions and follow-up
 - The planning section now includes staffing, evaluation, and broader impacts; a later pass could cross-link these planning pages if the authors want a more explicit proposal assembly path.
+
+### Prompt
+Audit the prompt log and fill in any information that was not fully moved from the original prompts, keeping the prompt wording as verbatim as possible where the original text is available.
+
+### Files and folders inspected
+- `PROMPT_ACTION_LOG.md`
+
+### Actions taken
+- Revised the recent `### Prompt` entries from the current work session so they preserve more of the original user wording, document titles, and structural instructions instead of compressed one-line summaries.
+- Left the action, verification, and follow-up sections unchanged except where the prompt wording itself needed to be made more faithful.
+
+### Verification
+- Confirmed the updated log now preserves the original titles and asks more directly for the recent bibliography, methods, planning, broader impacts, and site-structure prompts.
+
+### Open questions and follow-up
+- Older entries from prior sessions may still contain compressed paraphrases where the exact original prompt text is not readily recoverable from the current conversation context; those would require a separate history-based audit if verbatim recovery is needed there too.
 
 ## 2026-03-12
 
@@ -1194,3 +1210,60 @@ Add a FIRE-MODEL proposal integration document to the repository and website, tr
 ### Open questions and follow-up
 - The integration document is now accessible, but later proposal passes may still want a draft-to-draft memo explaining exactly which current proposal sections absorb which labeled blocks.
 - The benchmark thresholds and acceptable metric ranges remain explicitly identified as unfinished and should be developed before submission prose claims them too concretely.
+
+## 2026-03-21
+
+### Prompt
+User asked: "try to fix all the md files that were distilled. try to give them all the full, undistilled content from the prompt whenever you can."
+
+### Files and folders inspected
+- `docs/data-infrastructure/fired.md`
+- `docs/data-infrastructure/cubedynamics.md`
+- `docs/data-infrastructure/fired-cubedynamics.md`
+- `background_context/systems_frameworks/fired_cubedynamics_event_based_earth_system_analysis.md`
+- `docs/project-overview/fire-model-briefing.md`
+- `funder/solicitation/fire_model_2026_briefing.md`
+- `docs/project-overview/rebid-context-pitch-scientific-program.md`
+- `proposal/narrative/fire_model_rebid_context_pitch_scientific_program.md`
+- `docs/research-program/deliverables.md`
+- `docs/research-program/users-impact.md`
+- `background_context/research_programs/wildfire_scaling_rationale_deliverables_users_impact.md`
+- `docs/models/generative-models.md`
+- `docs/theory/wildfire-scaling-hypothesis.md`
+- `PROMPT_ACTION_LOG.md`
+
+### Actions taken
+- Restored `docs/data-infrastructure/fired.md` from its longer in-repo source by replacing the abbreviated page with the full `FIRED` section from `background_context/systems_frameworks/fired_cubedynamics_event_based_earth_system_analysis.md`.
+- Restored `docs/data-infrastructure/cubedynamics.md` from the same source by replacing the abbreviated page with the full `CubeDynamics` section text.
+- Restored `docs/project-overview/fire-model-briefing.md` by replacing the shortened website version with the full content of `funder/solicitation/fire_model_2026_briefing.md`.
+- Restored `docs/project-overview/rebid-context-pitch-scientific-program.md` by replacing the shortened website version with the full content of `proposal/narrative/fire_model_rebid_context_pitch_scientific_program.md`, including the closing strategic takeaways and assumptions section.
+- Checked `docs/research-program/deliverables.md` and `docs/research-program/users-impact.md` against their longer source document and confirmed they already preserve the full text of their respective source sections rather than a shortened paraphrase.
+- Checked additional short pages such as `docs/models/generative-models.md` and `docs/theory/wildfire-scaling-hypothesis.md`; no exact longer in-repo source could be recovered, so they were left unchanged rather than expanded speculatively.
+
+### Verification
+- Compared the restored pages directly against their longer repository source documents.
+- Ran `python3 -m mkdocs build --strict --clean --site-dir dist`.
+
+### Open questions and follow-up
+- A few short overview pages remain concise because no exact longer source could be recovered from the repository or prompt log in this session; if their original prompt text is later available, they can be restored without inventing content.
+
+### Prompt
+User reported that there were "some white animated buttons on the home page that don't link to anything" and asked to fix them.
+
+### Files and folders inspected
+- `docs/index.md`
+- `docs/stylesheets/extra.css`
+- `mkdocs.yml`
+- `PROMPT_ACTION_LOG.md`
+
+### Actions taken
+- Identified that the homepage card grid was visually interactive but its card titles were plain text rather than links.
+- Updated `docs/index.md` so the four homepage cards now link to real destinations: the resubmission strategy document, wildfire scaling hypothesis, FIRED and CubeDynamics page, and funder materials page.
+- Left the existing hero buttons and styling in place because those controls were already linked correctly.
+
+### Verification
+- Ran `python3 -m mkdocs build --strict --clean --site-dir dist`.
+- Confirmed the site built successfully after the homepage card links were added.
+
+### Open questions and follow-up
+- If desired later, the homepage cards could also be converted into full-card links or explicit in-card buttons, but they now point to real pages in their current form.

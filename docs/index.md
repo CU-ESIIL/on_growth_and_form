@@ -19,25 +19,25 @@ This site documents a developing NSF wildfire-scaling research concept centered 
 
 <div class="grid cards" markdown>
 
-- **Strategy document**
+- [**Strategy document**](project-overview/review-resubmission-strategy.md)
 
   ---
 
   The resubmission plan now has a privileged landing page that summarizes the narrative shift, benchmark structure, deliverables, and acceptance criteria for the next FIRE-MODEL submission.
 
-- **Why Wildfire Scaling**
+- [**Why Wildfire Scaling**](theory/wildfire-scaling-hypothesis.md)
 
   ---
 
   The central question is whether wildfire growth exhibits reproducible geometric laws that link local spread physics to landscape-scale fire form.
 
-- **Why FIRED + CubeDynamics**
+- [**Why FIRED + CubeDynamics**](data-infrastructure/fired-cubedynamics.md)
 
   ---
 
   FIRED reconstructs fire events from burned pixels, and CubeDynamics provides the spatiotemporal analysis framework needed to study trajectories, scaling, and geometry.
 
-- **Where The Proposal Lives**
+- [**Where The Proposal Lives**](project-overview/funder-materials.md)
 
   ---
 
