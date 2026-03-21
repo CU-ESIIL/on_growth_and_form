@@ -6,6 +6,7 @@ This section contains materials related to staffing, evaluation, scheduling, and
 
 - [Staffing Plan](staffing-plan.md)
 - [Evaluation and Success Criteria](evaluation-success-criteria.md)
+- [Broader Impacts](broader-impacts.md)
 - [Gantt Chart](gantt_chart.md)
 
 ## Additional materials

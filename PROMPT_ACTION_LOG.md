@@ -293,6 +293,25 @@ Refactor the repository-backed MkDocs site so it becomes a clearer front end to 
 ### Open questions and follow-up
 - The current structure preserves both `project-overview/` and `research-program/` as distinct sections; if the authors later want tighter curation, that boundary may still warrant human judgment, but it is now navigable and explicit rather than hidden in the nav.
 
+### Prompt
+Add a broader-impacts statement to the proposal planning section of the repository and website.
+
+### Files and folders inspected
+- `docs/planning/index.md`
+- `mkdocs.yml`
+
+### Actions taken
+- Added `docs/planning/broader-impacts.md` as a planning page covering the Fire Lab platform, documentary and educational media, open science and training, integration across components, budget justification, and long-term impact.
+- Updated `docs/planning/index.md` so the broader-impacts page appears in the planning landing page.
+- Updated `mkdocs.yml` so the page appears in navigation as `Planning > Broader Impacts`.
+
+### Verification
+- Ran `python3 -m mkdocs build --strict --clean --site-dir dist`.
+- Confirmed the site built successfully with the new broader-impacts page and planning nav entry.
+
+### Open questions and follow-up
+- The planning section now includes staffing, evaluation, and broader impacts; a later pass could cross-link these planning pages if the authors want a more explicit proposal assembly path.
+
 ## 2026-03-12
 
 ### Prompt
