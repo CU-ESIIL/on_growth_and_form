@@ -7,3 +7,5 @@ Program-framing strategy memos that shape the rebid pitch, aims, and scientific 
 Cross-cutting narrative synthesis documents that consolidate arguments across theory, benchmarks, work plans, and deliverables should also live in `proposal/narrative/`, including `proposal/narrative/fire_model_proposal_integration_document.md`.
 
 Numbered narrative snapshots and draft-comparison memos should be stored in `proposal/narrative/drafts/` so major conceptual revisions remain auditable over time.
+
+Prism-exported PDF narrative drafts should be stored in `proposal/narrative/drafts/prism_pdf_exports/` so externally authored draft snapshots remain separated from the working Markdown source while still staying traceable within the proposal history.

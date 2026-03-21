@@ -1413,3 +1413,26 @@ User asked to download the NSF FIRE proposal call into the repo and, if possible
 ### Open questions and follow-up
 - The FIRE opportunity appears to be delivered by NSF as a live webpage rather than a standalone solicitation PDF at the provided URL, so the repo now stores the official HTML page for that call.
 - If desired, a next step would be to add a short repository note summarizing which sections of `nsf_pappg_24-1.pdf` most directly control this proposal's narrative, supplementary documents, and compliance checks.
+
+## 2026-03-21
+
+### Prompt
+User asked for a folder in the repo where Prism-exported PDF drafts can be dropped.
+
+### Files and folders inspected
+- `AGENTS.md`
+- `proposal/README.md`
+- `proposal/narrative/`
+- `proposal/narrative/drafts/`
+- `PROMPT_ACTION_LOG.md`
+
+### Actions taken
+- Added a dedicated folder for Prism PDF draft exports at `proposal/narrative/drafts/prism_pdf_exports/`.
+- Added `proposal/narrative/drafts/prism_pdf_exports/README.md` with usage guidance and filename examples.
+- Updated `proposal/README.md` to document that Prism-exported PDFs should be stored in the new folder.
+
+### Verification
+- Confirmed the new folder is nested under `proposal/narrative/drafts/`, which is the existing audit-oriented location for proposal draft snapshots.
+
+### Open questions and follow-up
+- If Prism exports end up covering multiple proposal components regularly, it may be useful to add subfolders later for sections such as project summary, full narrative, and review copies.
