@@ -1297,3 +1297,24 @@ User asked for a repo audit and direct implementation of an ESIIL-inspired MkDoc
 ### Open questions and follow-up
 - Browser-based site tests remain blocked until `playwright` is installable in the environment; once available, rerun `bash scripts/review_site.sh` for full website validation.
 - No browser screenshot artifact was captured because no browser screenshot tool was available in this session.
+
+### Prompt
+User reported the previous website restyle was unsatisfactory because CI failed in `tests/test_site.py`; they supplied the failing `bash scripts/review_site.sh --junitxml site-test-results.xml` output showing the homepage heading `On Growth and Form` was not visible to Playwright.
+
+### Files and folders inspected
+- `docs/index.md`
+- `dist/index.html`
+- `tests/test_site.py`
+- `scripts/review_site.sh`
+
+### Actions taken
+- Inspected the built homepage HTML and found that Markdown inside the custom hero/container HTML had not been rendered, leaving the literal `# On Growth and Form` text in the DOM and no visible `<h1>` for the homepage.
+- Rewrote `docs/index.md` as explicit HTML with front matter hiding the default page title so the designed hero now contains a real `<h1>` and real anchor elements while preserving the same homepage structure and content.
+- Rebuilt the site outputs after the homepage markup fix.
+
+### Verification
+- Ran `bash scripts/review_site.sh --junitxml site-test-results.xml`.
+- Confirmed the MkDocs build succeeded locally; pytest collection still fails in this environment because `playwright` is unavailable, but the rebuilt `dist/index.html` now contains `<h1>On Growth and Form</h1>` and no longer contains `<h1>Home</h1>`.
+
+### Open questions and follow-up
+- The homepage heading regression should now satisfy the CI failure the user reported, but a full local browser test still depends on an environment with Playwright installed.
