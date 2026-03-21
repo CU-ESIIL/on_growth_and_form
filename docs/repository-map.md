@@ -15,12 +15,15 @@ on_growth_and_form/
 │   ├── notes/
 │   └── pdfs/               # gitignored local library
 ├── docs/
+│   ├── archive/
 │   ├── data-infrastructure/
 │   ├── literature/
 │   ├── methods/
 │   ├── models/
+│   ├── planning/
 │   ├── project-overview/
 │   ├── research-program/
+│   ├── start-here/
 │   ├── theory/
 │   ├── assets/
 │   ├── drafts/
@@ -51,7 +54,11 @@ on_growth_and_form/
 
 ## Notes
 
-- The website under `docs/` is now organized around the project narrative: overview, theory, data, methods, models, research program, and literature.
+- The website under `docs/` is now organized around landing pages that route readers to the full long-form materials rather than replacing them with short summaries.
+- `docs/start-here/` provides entry points for repository navigation and workflow guidance.
+- `docs/project-overview/` carries proposal-facing context and funder alignment material.
+- `docs/research-program/` functions as the work-plan section of the site.
+- `docs/archive/` routes readers to retained draft and exploratory materials.
 - `funder/` is for the call, requirement tracking, and funder-oriented guides.
 - `background_context/` is grouped into program context, intellectual foundations, scaling/geometry, systems frameworks, and research-program notes.
 - `proposal/narrative/` holds active proposal strategy and integration documents, while `proposal/narrative/drafts/` preserves numbered draft snapshots and comparison memos.

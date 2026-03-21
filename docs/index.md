@@ -63,14 +63,16 @@ Wildfire science already has strong traditions in fire behavior physics and fire
 
 ## How the site is organized
 
-- `Strategy Document` is the current collaborator-facing memo for the FIRE-MODEL resubmission.
-- `Project Overview` keeps the funder, the call, and the proposal framing in view.
+- `Start Here` collects repository navigation, workflow guidance, and the main strategy memo.
+- `Proposal` keeps the funder, the call, and the proposal framing in view.
 - `Theory` develops the ideas around growth, form, scaling, and wildfire geometry.
 - `Data and Infrastructure` explains how FIRED, CubeDynamics, and satellite datasets make the work possible.
 - `Methods` translates those ideas into measurable analytical procedures.
 - `Models` asks how existing and simplified fire models relate to the scaling questions.
-- `Research Program` organizes the work into a multi-year proposal-ready structure.
+- `Work Plan` organizes the project into a multi-year proposal-ready structure.
 - `Literature` keeps the bibliography and conceptual literature map accessible.
+- `Planning` collects staffing, evaluation, and planning figures.
+- `Archive` keeps draft and exploratory materials reachable without mixing them into the main reader path.
 
 !!! note "Proposal-oriented by design"
     The repository favors reproducible notes, transparent structure, and explicit separation between funder requirements and scientific argument.

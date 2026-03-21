@@ -257,6 +257,42 @@ Add an evaluation and success-criteria document to the Planning section of the r
 ### Open questions and follow-up
 - This page now complements the staffing plan and work plan; a later pass could cross-link the success criteria to the specific milestones and deliverables that operationalize them.
 
+### Prompt
+Refactor the repository-backed MkDocs site so it becomes a clearer front end to the existing long-form markdown documents, with shorter top-level navigation, section landing pages, and no orphaned important pages.
+
+### Files and folders inspected
+- `mkdocs.yml`
+- `README.md`
+- `AGENTS.md`
+- `docs/`
+- `docs/index.md`
+- `docs/repository-map.md`
+- `docs/project-overview/index.md`
+- `docs/theory/index.md`
+- `docs/data-infrastructure/index.md`
+- `docs/methods/index.md`
+- `docs/models/index.md`
+- `docs/research-program/index.md`
+- `docs/literature/index.md`
+- `docs/drafts/index.md`
+- `docs/workflow.md`
+
+### Actions taken
+- Added `docs/start-here/index.md`, `docs/planning/index.md`, and `docs/archive/index.md` as structural landing pages for entry points, planning materials, and retained draft material.
+- Simplified and standardized the major section landing pages in `docs/project-overview/index.md`, `docs/theory/index.md`, `docs/data-infrastructure/index.md`, `docs/methods/index.md`, `docs/models/index.md`, `docs/research-program/index.md`, and `docs/literature/index.md` so they route readers to the underlying long-form documents instead of acting like mini-essays.
+- Refactored `mkdocs.yml` so the top-level navigation is shorter and more stable, while each major section still exposes its underlying pages as nested items under the section landing page.
+- Removed direct top-level nav clutter for `workflow.md`, `repository-map.md`, and draft pages by routing them through `Start Here` and `Archive`.
+- Updated `docs/index.md` so the homepage section list matches the new site structure.
+- Updated `docs/repository-map.md` so the documented `docs/` layout matches the refactored site structure.
+
+### Verification
+- Ran `python3 -m mkdocs build --strict --clean --site-dir dist`.
+- Confirmed the build succeeded.
+- Ran a reachability check comparing all `docs/**/*.md` files to `mkdocs.yml` navigation and confirmed there are zero orphaned docs pages.
+
+### Open questions and follow-up
+- The current structure preserves both `project-overview/` and `research-program/` as distinct sections; if the authors later want tighter curation, that boundary may still warrant human judgment, but it is now navigable and explicit rather than hidden in the nav.
+
 ## 2026-03-12
 
 ### Prompt

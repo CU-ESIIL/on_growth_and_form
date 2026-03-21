@@ -8,29 +8,32 @@ edit_uri: "edit/main/docs/"
 
 nav:
   - Home: index.md
-  - Strategy Document: project-overview/review-resubmission-strategy.md
-  - Project Overview:
+  - Start Here:
+      - Overview: start-here/index.md
+      - Strategy Document: project-overview/review-resubmission-strategy.md
+      - Proposal Workflow: workflow.md
+      - Repository Map: repository-map.md
+  - Proposal:
       - Overview: project-overview/index.md
+      - Resubmission Strategy Document: project-overview/review-resubmission-strategy.md
       - Funder Materials: project-overview/funder-materials.md
       - FIRE-MODEL Briefing: project-overview/fire-model-briefing.md
       - Requirements Checklist: project-overview/requirements-checklist.md
       - Program Context: project-overview/program-context.md
       - Causal History of Wildfire Modeling: project-overview/causal-history-wildfire-modeling.md
-      - Structured Response Plan: project-overview/review-resubmission-strategy.md
       - Rebid Context, Pitch, and Scientific Program: project-overview/rebid-context-pitch-scientific-program.md
   - Theory:
       - Overview: theory/index.md
       - On Growth and Form: theory/on-growth-and-form.md
       - Wildfire Scaling Hypothesis: theory/wildfire-scaling-hypothesis.md
-      - Scale-Conditioned WUI Geometry: theory/scale-conditioned-wui-geometry.md
       - Scaling Regimes in Fire Growth: theory/wildfire-scaling-regime-hypothesis.md
       - Open Questions: theory/wildfire-scaling-research-agenda.md
-      - Technical Background:
-          - Diffusion and 1/2 Scaling: theory/diffusion-half-scaling.md
-          - Non-1/2 Scaling Signatures: theory/non-half-scaling-signatures.md
-          - Wildfire Scaling and Dimensionality: theory/wildfire-scaling-dimensionality.md
-          - Superdiffusive Wildfire Perimeters: theory/superdiffusive-wildfire-perimeters.md
-  - Data and Infrastructure:
+      - Scale-Conditioned WUI Geometry: theory/scale-conditioned-wui-geometry.md
+      - Diffusion and 1/2 Scaling: theory/diffusion-half-scaling.md
+      - Non-1/2 Scaling Signatures: theory/non-half-scaling-signatures.md
+      - Wildfire Scaling and Dimensionality: theory/wildfire-scaling-dimensionality.md
+      - Superdiffusive Wildfire Perimeters: theory/superdiffusive-wildfire-perimeters.md
+  - Data & Infrastructure:
       - Overview: data-infrastructure/index.md
       - FIRED: data-infrastructure/fired.md
       - CubeDynamics: data-infrastructure/cubedynamics.md
@@ -53,32 +56,32 @@ nav:
       - Fire Modeling Frameworks: models/fire-modeling-frameworks.md
       - Generative Models: models/generative-models.md
       - Benchmarking Existing Fire Models: models/benchmarking-existing-fire-models.md
-  - Research Program:
+  - Work Plan:
       - Overview: research-program/index.md
       - Generative Theory of Fire: research-program/generative-theory-of-fire.md
       - Work Plan: research-program/work-plan.md
       - Gantt / Timeline: research-program/gantt-timeline.md
       - Deliverables: research-program/deliverables.md
       - Users and Impact: research-program/users-impact.md
-      - Rationale, Deliverables, and Impact: research-program/rationale-impact.md
+      - Rationale and Impact: research-program/rationale-impact.md
   - Literature:
       - Overview: literature/index.md
       - Bibliography: literature/bibliography.md
       - Literature Map: literature/literature-map.md
   - Planning:
+      - Overview: planning/index.md
       - Gantt Chart: planning/gantt_chart.md
-      - Evaluation and Success Criteria: planning/evaluation-success-criteria.md
       - Staffing Plan: planning/staffing-plan.md
+      - Evaluation and Success Criteria: planning/evaluation-success-criteria.md
       - Wildfire Modeling Phylogeny: planning/wildfire-modeling-phylogeny.md
-  - Drafts:
-      - Overview: drafts/index.md
+  - Archive:
+      - Overview: archive/index.md
+      - Drafts Overview: drafts/index.md
       - Draft 01 Summary: drafts/draft-01.md
       - Draft 02: drafts/draft-02.md
       - Draft 01 to Draft 02 Change Report: drafts/change-report.md
       - Proposal Integration Document: drafts/integration-document.md
       - Agenda: drafts/agenda.md
-  - Proposal Workflow: workflow.md
-  - Repository Map: repository-map.md
 
 theme:
   name: material
