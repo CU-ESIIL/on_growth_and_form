@@ -6,13 +6,75 @@ hide:
 <div class="ogf-home">
   <section class="ogf-hero">
     <div class="ogf-hero__inner">
-      <span class="ogf-eyebrow">NSF Proposal Workspace</span>
+      <span class="ogf-eyebrow">Wildfire growth, scaling, and form</span>
       <h1>On Growth and Form</h1>
-      <p>This site documents a developing NSF wildfire-scaling research concept centered on growth, form, scaling, geometry, and event-based Earth system analysis. It is designed to support proposal writing while also functioning as a coherent map of the project's scientific architecture.</p>
+      <p class="ogf-hero__statement">Wildfires do not only burn; they grow. This project asks whether that growth follows discoverable geometric and scaling laws—and whether learning those laws could change how wildfire models are built, tested, and trusted.</p>
+      <p>At stake is a scientific gap between ignition-scale fire behavior and broad fire-regime statistics. Satellite-derived event histories now make it possible to study the missing middle: how whole fires spread through space and time as evolving shapes embedded in weather, fuels, and landscape structure.</p>
       <div class="ogf-hero__links">
-        <a class="md-button md-button--primary" href="project-overview/review-resubmission-strategy/">Read the strategy document</a>
-        <a class="md-button" href="project-overview/">Project overview</a>
-        <a class="md-button" href="methods/">Theory and methods</a>
+        <a class="md-button md-button--primary" href="theory/">Understand the core idea</a>
+        <a class="md-button" href="project-overview/">Read the project framing</a>
+        <a class="md-button" href="research-program/">Review the research program</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="ogf-news ogf-news--tinted">
+    <div class="ogf-news__inner">
+      <div class="ogf-news__intro ogf-news__intro--left">
+        <span class="ogf-section-kicker">How to use this site</span>
+        <h2>Choose the path that fits why you are here</h2>
+        <p>This site is designed as a guided scientific argument with deep supporting material behind it. Start with one of the pathways below rather than trying to read the repository in order.</p>
+      </div>
+
+      <div class="ogf-card-grid ogf-card-grid--compact">
+        <article class="ogf-card ogf-card--plain">
+          <div class="ogf-card__body">
+            <span class="ogf-card__eyebrow">For reviewers</span>
+            <h3>See the proposal case first</h3>
+            <p>Start with the pages that explain the problem, the program fit, and the work plan.</p>
+            <ul>
+              <li><a href="project-overview/">Project Overview</a></li>
+              <li><a href="project-overview/program-context/">Program Context</a></li>
+              <li><a href="research-program/">Research Program</a></li>
+            </ul>
+          </div>
+        </article>
+        <article class="ogf-card ogf-card--plain">
+          <div class="ogf-card__body">
+            <span class="ogf-card__eyebrow">For collaborators</span>
+            <h3>Understand the workspace and decisions</h3>
+            <p>Use these pages to see how the proposal is organized, revised, and maintained.</p>
+            <ul>
+              <li><a href="repository-map/">Repository Map</a></li>
+              <li><a href="workflow/">Proposal Workflow</a></li>
+              <li><a href="project-overview/review-resubmission-strategy/">Resubmission Strategy</a></li>
+            </ul>
+          </div>
+        </article>
+        <article class="ogf-card ogf-card--plain">
+          <div class="ogf-card__body">
+            <span class="ogf-card__eyebrow">For theory readers</span>
+            <h3>Follow the conceptual argument</h3>
+            <p>These pages develop the geometric and scaling claims in long form.</p>
+            <ul>
+              <li><a href="theory/">Theory Overview</a></li>
+              <li><a href="theory/on-growth-and-form/">On Growth and Form</a></li>
+              <li><a href="theory/wildfire-scaling-hypothesis/">Wildfire Scaling Hypothesis</a></li>
+            </ul>
+          </div>
+        </article>
+        <article class="ogf-card ogf-card--plain">
+          <div class="ogf-card__body">
+            <span class="ogf-card__eyebrow">For technical readers</span>
+            <h3>Inspect the machinery behind the claim</h3>
+            <p>Go here for data systems, methods, and model architecture.</p>
+            <ul>
+              <li><a href="data-infrastructure/">Data and Infrastructure</a></li>
+              <li><a href="methods/">Methods</a></li>
+              <li><a href="models/">Models</a></li>
+            </ul>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -20,13 +82,13 @@ hide:
   <section class="ogf-band">
     <div class="ogf-band__inner">
       <div class="ogf-band__media">
-        <img src="assets/hero.jpg" alt="Wildfire landscape imagery supporting the On Growth and Form proposal workspace." />
+        <img src="assets/hero.jpg" alt="Wildfire landscape imagery introducing the scientific framing for On Growth and Form." />
       </div>
       <div class="ogf-band__content">
-        <h3>Project frame</h3>
-        <h2>What this project is</h2>
-        <p>The project asks whether wildfire growth can be understood as an emergent geometric process, with rough expanding fronts, fractal perimeter structure, and regime-specific scaling behavior. If those patterns are real, they would help connect wildfire science to broader theories of interface growth, percolation, and complex systems.</p>
-        <p>Wildfire science already has strong traditions in fire behavior physics and fire regime statistics. What remains less developed is the intermediate scale: how individual fires grow through space and time as geometric objects. Daily fire perimeters derived from satellite observations now make that question tractable.</p>
+        <span class="ogf-section-kicker">Project framing</span>
+        <h2>What this project is trying to show</h2>
+        <p>This project develops a theory of wildfire growth in which fire fronts are treated as evolving geometric objects rather than only as burn scars, ignition chains, or aggregate outcomes. The central question is whether perimeter roughness, spatial spread, and growth trajectories reveal lawful structure that can be measured, compared, and modeled across fire regimes.</p>
+        <p>If that structure is real, wildfire modeling gains a new middle layer between microscale process simulation and coarse statistical forecasting: a generative, event-based account of how fires actually take shape.</p>
       </div>
     </div>
   </section>
@@ -34,70 +96,109 @@ hide:
   <section class="ogf-band ogf-band--dark ogf-band--reverse">
     <div class="ogf-band__inner">
       <div class="ogf-band__content">
-        <h3>Scientific rationale</h3>
-        <h2>Why “On Growth and Form”</h2>
-        <p>The site takes its title from D'Arcy Wentworth Thompson's <em>On Growth and Form</em>, not as a historical ornament but as an intellectual starting point. Thompson argued that living form cannot be explained only by history or adaptation; it must also be understood through geometry, mechanics, and the constraints imposed by physical processes. This project extends that sensibility into wildfire science by asking whether fire growth also exhibits lawful large-scale form.</p>
-        <p>The <a href="project-overview/causal-history-wildfire-modeling/">Causal History of Wildfire Modeling</a> and the <a href="planning/wildfire-modeling-phylogeny/">Wildfire Modeling Phylogeny</a> together trace how this proposal builds from earlier modeling traditions while shifting attention toward event geometry, growth trajectories, and scaling diagnostics.</p>
+        <span class="ogf-section-kicker">Historical and causal story</span>
+        <h2>What came before, what is missing, and what this adds</h2>
+        <p>Wildfire science already has rich traditions in combustion physics, spread modeling, and fire-regime analysis. What has been less fully developed is the event-scale question: how a single fire grows through space and time as a patterned object whose form may encode mechanism.</p>
+        <p>The project's historical arc is explicit. The <a href="project-overview/causal-history-wildfire-modeling/">causal history of wildfire modeling</a> and the <a href="planning/wildfire-modeling-phylogeny/">wildfire modeling phylogeny</a> show why a geometry-first framework is not a rejection of prior traditions, but an attempt to connect them through measurable scaling signatures and better benchmark design.</p>
       </div>
       <div class="ogf-band__media">
-        <img src="assets/figures/wildfire_phylogeny_publication.png" alt="Conceptual phylogeny of wildfire modeling lineages used in project planning." />
-      </div>
-    </div>
-  </section>
-
-  <section class="ogf-band">
-    <div class="ogf-band__inner">
-      <div class="ogf-band__media">
-        <img src="assets/figures/fire_model_gantt_ESIIL_minimal.svg" alt="Project gantt and work-plan figure for the FIRE-MODEL proposal revision." />
-      </div>
-      <div class="ogf-band__content">
-        <h3>Data and execution</h3>
-        <h2>How FIRED and CubeDynamics support the work</h2>
-        <p><code>FIRED</code> reconstructs coherent wildfire events from burned-area observations, turning pixels into time-resolved fire histories. <code>CubeDynamics</code> provides the computational language for aligning those event histories with weather, vegetation, climate, and landscape data in a shared spatiotemporal analysis framework.</p>
-        <p>Together they make it possible to study wildfire growth as a measurable Earth system process rather than as an after-the-fact burn scar. The <a href="research-program/">research program</a>, <a href="methods/">methods sequence</a>, and <a href="data-infrastructure/">data and infrastructure pages</a> preserve the long-form proposal scaffolding behind that claim.</p>
+        <img src="assets/figures/wildfire_phylogeny_publication.png" alt="Conceptual phylogeny of wildfire modeling lineages used to orient the project's scientific contribution." />
       </div>
     </div>
   </section>
 
   <section class="ogf-news">
     <div class="ogf-news__inner">
-      <div class="ogf-news__intro">
-        <h2>Current working materials</h2>
-        <p>Use the site as an editorial workspace: the long-form documents remain the primary source for framing, requirements, methods, and execution planning.</p>
+      <div class="ogf-news__intro ogf-news__intro--left">
+        <span class="ogf-section-kicker">Guided pathways</span>
+        <h2>Four strong ways into the project</h2>
+        <p>These are the main entry points for first-time readers. Each path leads into long-form material without flattening the argument.</p>
       </div>
 
       <div class="ogf-card-grid">
         <article class="ogf-card">
-          <div class="ogf-card__image">
-            <img src="assets/hero.jpg" alt="Wildfire image introducing the resubmission strategy materials." />
-          </div>
           <div class="ogf-card__body">
-            <span class="ogf-card__eyebrow">Proposal</span>
-            <h3>Resubmission strategy</h3>
-            <p>The main collaborator-facing memo summarizes the narrative shift, benchmark structure, deliverables, and acceptance criteria for the next FIRE-MODEL submission.</p>
-            <p><a href="project-overview/review-resubmission-strategy/">Open the strategy document</a></p>
+            <span class="ogf-card__eyebrow">Reviewer path</span>
+            <h3>Read the proposal case</h3>
+            <p>See how the project addresses the FIRE-MODEL call, what scientific gap it targets, and how the work is staged for review.</p>
+            <p><a href="project-overview/">Read the project framing</a></p>
           </div>
         </article>
         <article class="ogf-card">
-          <div class="ogf-card__image">
-            <img src="assets/figures/wildfire_phylogeny_publication.png" alt="Wildfire modeling phylogeny figure previewing methods and theory materials." />
-          </div>
           <div class="ogf-card__body">
-            <span class="ogf-card__eyebrow">Methods</span>
-            <h3>Methods system</h3>
-            <p>Follow the measurement, model comparison, generative modeling, and synthetic validation sequence without collapsing the technical detail into a short landing-page summary.</p>
-            <p><a href="methods/">Browse the methods section</a></p>
+            <span class="ogf-card__eyebrow">Theory path</span>
+            <h3>Understand the geometric hypothesis</h3>
+            <p>Follow the argument that wildfire growth may exhibit regime-dependent form, scaling, and dimensional signatures.</p>
+            <p><a href="theory/">See the scientific framework</a></p>
           </div>
         </article>
         <article class="ogf-card">
-          <div class="ogf-card__image">
-            <img src="assets/figures/fire_model_gantt_ESIIL_minimal.svg" alt="Gantt chart previewing planning and work-plan materials." />
-          </div>
           <div class="ogf-card__body">
-            <span class="ogf-card__eyebrow">Planning</span>
-            <h3>Work plan and timeline</h3>
-            <p>Keep the execution logic, staffing, evaluation, and broader impacts notes connected to the proposal architecture rather than separated into standalone slideware.</p>
-            <p><a href="planning/">Review planning materials</a></p>
+            <span class="ogf-card__eyebrow">Technical path</span>
+            <h3>Explore methods and models</h3>
+            <p>Inspect how event reconstruction, diagnostics, comparison frameworks, and generative models support the central claim.</p>
+            <p><a href="methods/">Explore methods and models</a></p>
+          </div>
+        </article>
+        <article class="ogf-card">
+          <div class="ogf-card__body">
+            <span class="ogf-card__eyebrow">Execution path</span>
+            <h3>Review the work plan</h3>
+            <p>Trace the milestones, deliverables, users, and timeline that turn the concept into an executable research program.</p>
+            <p><a href="research-program/">Review the work plan</a></p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="ogf-news ogf-news--muted">
+    <div class="ogf-news__inner">
+      <div class="ogf-news__intro ogf-news__intro--left">
+        <span class="ogf-section-kicker">Deeper sections</span>
+        <h2>Where to go once you are oriented</h2>
+        <p>The site remains deep by design. These section entry points help readers move from framing into evidence, implementation, and supporting literature.</p>
+      </div>
+
+      <div class="ogf-card-grid">
+        <article class="ogf-card ogf-card--plain">
+          <div class="ogf-card__body">
+            <span class="ogf-card__eyebrow">Proposal framing</span>
+            <h3>Project Overview</h3>
+            <p>Program fit, proposal strategy, requirements, and the historical framing behind the submission.</p>
+            <p><a href="project-overview/">Read the overview</a></p>
+          </div>
+        </article>
+        <article class="ogf-card ogf-card--plain">
+          <div class="ogf-card__body">
+            <span class="ogf-card__eyebrow">Scientific background</span>
+            <h3>Theory</h3>
+            <p>The main conceptual arc from growth and form through scaling hypotheses, regime shifts, and open questions.</p>
+            <p><a href="theory/">Understand the theory sequence</a></p>
+          </div>
+        </article>
+        <article class="ogf-card ogf-card--plain">
+          <div class="ogf-card__body">
+            <span class="ogf-card__eyebrow">Technical method</span>
+            <h3>Data, Methods, and Models</h3>
+            <p>The event-reconstruction stack, measurement framework, validation logic, and modeling architecture.</p>
+            <p><a href="data-infrastructure/">See the technical foundation</a></p>
+          </div>
+        </article>
+        <article class="ogf-card ogf-card--plain">
+          <div class="ogf-card__body">
+            <span class="ogf-card__eyebrow">Planning and delivery</span>
+            <h3>Research Program</h3>
+            <p>The phased work plan, deliverables, audience, and rationale for why this project matters now.</p>
+            <p><a href="research-program/">Enter the research program</a></p>
+          </div>
+        </article>
+        <article class="ogf-card ogf-card--plain">
+          <div class="ogf-card__body">
+            <span class="ogf-card__eyebrow">Literature support</span>
+            <h3>Literature and references</h3>
+            <p>The bibliography and literature map that support the proposal's claims and conceptual positioning.</p>
+            <p><a href="literature/">Browse literature support</a></p>
           </div>
         </article>
       </div>
@@ -107,17 +208,16 @@ hide:
   <section class="ogf-callout">
     <div class="ogf-callout__inner">
       <div class="ogf-callout__panel ogf-callout__panel--accent">
-        <h2>Start here for the resubmission</h2>
-        <p>The <a href="project-overview/review-resubmission-strategy/">FIRE-MODEL Resubmission Strategy Document</a> is the primary shareable memo for collaborator alignment on the revision plan.</p>
-        <a class="md-button" href="https://github.com/CU-ESIIL/on_growth_and_form">Open repository on GitHub</a>
+        <h2>Why this matters</h2>
+        <p>If wildfire growth has measurable geometric regimes, fire modeling can move beyond asking only whether a model predicts outcomes and toward asking whether it reproduces the forms and transitions that real fires exhibit as they evolve.</p>
+        <a class="md-button" href="theory/wildfire-scaling-hypothesis/">Read the wildfire scaling hypothesis</a>
       </div>
       <div class="ogf-callout__panel">
-        <h2>How the site is organized</h2>
+        <h2>What is new here</h2>
         <ul>
-          <li><code>Start Here</code> collects repository navigation, workflow guidance, and the main strategy memo.</li>
-          <li><code>Proposal</code> keeps the funder, the call, and the proposal framing in view.</li>
-          <li><code>Theory</code>, <code>Methods</code>, and <code>Models</code> preserve the long-form scientific argument.</li>
-          <li><code>Work Plan</code>, <code>Planning</code>, and <code>Literature</code> retain execution details, evaluation, and citation support.</li>
+          <li>A geometry-first theory of wildfire growth tied to event-scale observations.</li>
+          <li>An explicit bridge from theory to benchmarks, methods, and deliverables.</li>
+          <li>A clearer distinction between proposal framing, scientific argument, technical method, planning, and archival workflow.</li>
         </ul>
       </div>
     </div>
