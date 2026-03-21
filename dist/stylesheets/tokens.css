@@ -1,0 +1,33 @@
+:root {
+  --brand-primary: #234A65;
+  --brand-accent: #42BCDC;
+  --brand-green: #007135;
+  --brand-green-light: #4FBF7C;
+  --text-main: #161A19;
+  --surface-muted: #E3E3E3;
+  --white: #FFFFFF;
+
+  --gradient-primary: linear-gradient(90deg, #234A65 0%, #007135 100%);
+  --gradient-secondary: linear-gradient(90deg, #42BCDC 0%, #4FBF7C 100%);
+
+  --md-primary-fg-color: var(--brand-primary);
+  --md-primary-fg-color--light: #2c5d80;
+  --md-primary-fg-color--dark: #173448;
+  --md-accent-fg-color: var(--brand-accent);
+  --md-accent-fg-color--transparent: rgba(66, 188, 220, 0.16);
+
+  --site-bg: #f5f7f7;
+  --surface-card: #f9fbfb;
+  --surface-panel: #edf1f2;
+  --surface-border: rgba(35, 74, 101, 0.14);
+  --surface-border-strong: rgba(35, 74, 101, 0.24);
+  --text-muted: rgba(22, 26, 25, 0.72);
+  --text-on-dark: rgba(255, 255, 255, 0.92);
+  --heading-font: Inter, "Source Sans 3", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --body-font: Inter, "Source Sans 3", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --shadow-soft: 0 1.25rem 2.8rem rgba(17, 39, 50, 0.08);
+  --shadow-panel: 0 1rem 2.1rem rgba(17, 39, 50, 0.06);
+  --section-max: 78rem;
+  --section-gutter: clamp(1.25rem, 3vw, 2.5rem);
+  --section-space: clamp(3.5rem, 7vw, 6rem);
+}

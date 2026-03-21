@@ -1,78 +1,125 @@
-<section class="ogf-hero" markdown>
+---
+hide:
+  - title
+---
 
-<span class="ogf-kicker">NSF Proposal Workspace</span>
+<div class="ogf-home">
+  <section class="ogf-hero">
+    <div class="ogf-hero__inner">
+      <span class="ogf-eyebrow">NSF Proposal Workspace</span>
+      <h1>On Growth and Form</h1>
+      <p>This site documents a developing NSF wildfire-scaling research concept centered on growth, form, scaling, geometry, and event-based Earth system analysis. It is designed to support proposal writing while also functioning as a coherent map of the project's scientific architecture.</p>
+      <div class="ogf-hero__links">
+        <a class="md-button md-button--primary" href="project-overview/review-resubmission-strategy/">Read the strategy document</a>
+        <a class="md-button" href="project-overview/">Project overview</a>
+        <a class="md-button" href="methods/">Theory and methods</a>
+      </div>
+    </div>
+  </section>
 
-# On Growth and Form
+  <section class="ogf-band">
+    <div class="ogf-band__inner">
+      <div class="ogf-band__media">
+        <img src="assets/hero.jpg" alt="Wildfire landscape imagery supporting the On Growth and Form proposal workspace." />
+      </div>
+      <div class="ogf-band__content">
+        <h3>Project frame</h3>
+        <h2>What this project is</h2>
+        <p>The project asks whether wildfire growth can be understood as an emergent geometric process, with rough expanding fronts, fractal perimeter structure, and regime-specific scaling behavior. If those patterns are real, they would help connect wildfire science to broader theories of interface growth, percolation, and complex systems.</p>
+        <p>Wildfire science already has strong traditions in fire behavior physics and fire regime statistics. What remains less developed is the intermediate scale: how individual fires grow through space and time as geometric objects. Daily fire perimeters derived from satellite observations now make that question tractable.</p>
+      </div>
+    </div>
+  </section>
 
-This site documents a developing NSF wildfire-scaling research concept centered on growth, form, scaling, geometry, and event-based Earth system analysis. It is designed to support proposal writing while also functioning as a coherent map of the project's scientific architecture.
+  <section class="ogf-band ogf-band--dark ogf-band--reverse">
+    <div class="ogf-band__inner">
+      <div class="ogf-band__content">
+        <h3>Scientific rationale</h3>
+        <h2>Why “On Growth and Form”</h2>
+        <p>The site takes its title from D'Arcy Wentworth Thompson's <em>On Growth and Form</em>, not as a historical ornament but as an intellectual starting point. Thompson argued that living form cannot be explained only by history or adaptation; it must also be understood through geometry, mechanics, and the constraints imposed by physical processes. This project extends that sensibility into wildfire science by asking whether fire growth also exhibits lawful large-scale form.</p>
+        <p>The <a href="project-overview/causal-history-wildfire-modeling/">Causal History of Wildfire Modeling</a> and the <a href="planning/wildfire-modeling-phylogeny/">Wildfire Modeling Phylogeny</a> together trace how this proposal builds from earlier modeling traditions while shifting attention toward event geometry, growth trajectories, and scaling diagnostics.</p>
+      </div>
+      <div class="ogf-band__media">
+        <img src="assets/figures/wildfire_phylogeny_publication.png" alt="Conceptual phylogeny of wildfire modeling lineages used in project planning." />
+      </div>
+    </div>
+  </section>
 
-[Strategy Document](project-overview/review-resubmission-strategy.md){ .md-button .md-button--primary .oasis-hover-button }
-[Project Overview](project-overview/index.md){ .md-button .ogf-button-secondary .oasis-hover-button }
-[Theory](theory/index.md){ .md-button .ogf-button-secondary .oasis-hover-button }
-[Research Program](research-program/index.md){ .md-button .ogf-button-secondary .oasis-hover-button }
-[Open Repository](https://github.com/CU-ESIIL/on_growth_and_form){ .md-button .ogf-button-secondary .oasis-hover-button }
+  <section class="ogf-band">
+    <div class="ogf-band__inner">
+      <div class="ogf-band__media">
+        <img src="assets/figures/fire_model_gantt_ESIIL_minimal.svg" alt="Project gantt and work-plan figure for the FIRE-MODEL proposal revision." />
+      </div>
+      <div class="ogf-band__content">
+        <h3>Data and execution</h3>
+        <h2>How FIRED and CubeDynamics support the work</h2>
+        <p><code>FIRED</code> reconstructs coherent wildfire events from burned-area observations, turning pixels into time-resolved fire histories. <code>CubeDynamics</code> provides the computational language for aligning those event histories with weather, vegetation, climate, and landscape data in a shared spatiotemporal analysis framework.</p>
+        <p>Together they make it possible to study wildfire growth as a measurable Earth system process rather than as an after-the-fact burn scar. The <a href="research-program/">research program</a>, <a href="methods/">methods sequence</a>, and <a href="data-infrastructure/">data and infrastructure pages</a> preserve the long-form proposal scaffolding behind that claim.</p>
+      </div>
+    </div>
+  </section>
 
-</section>
+  <section class="ogf-news">
+    <div class="ogf-news__inner">
+      <div class="ogf-news__intro">
+        <h2>Current working materials</h2>
+        <p>Use the site as an editorial workspace: the long-form documents remain the primary source for framing, requirements, methods, and execution planning.</p>
+      </div>
 
-!!! note "Start here for the resubmission"
-    The [FIRE-MODEL Resubmission Strategy Document](project-overview/review-resubmission-strategy.md) is now the primary shareable memo for collaborator alignment on the revision plan.
+      <div class="ogf-card-grid">
+        <article class="ogf-card">
+          <div class="ogf-card__image">
+            <img src="assets/hero.jpg" alt="Wildfire image introducing the resubmission strategy materials." />
+          </div>
+          <div class="ogf-card__body">
+            <span class="ogf-card__eyebrow">Proposal</span>
+            <h3>Resubmission strategy</h3>
+            <p>The main collaborator-facing memo summarizes the narrative shift, benchmark structure, deliverables, and acceptance criteria for the next FIRE-MODEL submission.</p>
+            <p><a href="project-overview/review-resubmission-strategy/">Open the strategy document</a></p>
+          </div>
+        </article>
+        <article class="ogf-card">
+          <div class="ogf-card__image">
+            <img src="assets/figures/wildfire_phylogeny_publication.png" alt="Wildfire modeling phylogeny figure previewing methods and theory materials." />
+          </div>
+          <div class="ogf-card__body">
+            <span class="ogf-card__eyebrow">Methods</span>
+            <h3>Methods system</h3>
+            <p>Follow the measurement, model comparison, generative modeling, and synthetic validation sequence without collapsing the technical detail into a short landing-page summary.</p>
+            <p><a href="methods/">Browse the methods section</a></p>
+          </div>
+        </article>
+        <article class="ogf-card">
+          <div class="ogf-card__image">
+            <img src="assets/figures/fire_model_gantt_ESIIL_minimal.svg" alt="Gantt chart previewing planning and work-plan materials." />
+          </div>
+          <div class="ogf-card__body">
+            <span class="ogf-card__eyebrow">Planning</span>
+            <h3>Work plan and timeline</h3>
+            <p>Keep the execution logic, staffing, evaluation, and broader impacts notes connected to the proposal architecture rather than separated into standalone slideware.</p>
+            <p><a href="planning/">Review planning materials</a></p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
-<div class="grid cards" markdown>
-
-- [**Strategy document**](project-overview/review-resubmission-strategy.md)
-
-  ---
-
-  The resubmission plan now has a privileged landing page that summarizes the narrative shift, benchmark structure, deliverables, and acceptance criteria for the next FIRE-MODEL submission.
-
-- [**Why Wildfire Scaling**](theory/wildfire-scaling-hypothesis.md)
-
-  ---
-
-  The central question is whether wildfire growth exhibits reproducible geometric laws that link local spread physics to landscape-scale fire form.
-
-- [**Why FIRED + CubeDynamics**](data-infrastructure/fired-cubedynamics.md)
-
-  ---
-
-  FIRED reconstructs fire events from burned pixels, and CubeDynamics provides the spatiotemporal analysis framework needed to study trajectories, scaling, and geometry.
-
-- [**Where The Proposal Lives**](project-overview/funder-materials.md)
-
-  ---
-
-  Funder-facing material remains separate from scientific background, so the project can stay grounded in the FIRE-MODEL call without confusing requirements with theory.
-
+  <section class="ogf-callout">
+    <div class="ogf-callout__inner">
+      <div class="ogf-callout__panel ogf-callout__panel--accent">
+        <h2>Start here for the resubmission</h2>
+        <p>The <a href="project-overview/review-resubmission-strategy/">FIRE-MODEL Resubmission Strategy Document</a> is the primary shareable memo for collaborator alignment on the revision plan.</p>
+        <a class="md-button" href="https://github.com/CU-ESIIL/on_growth_and_form">Open repository on GitHub</a>
+      </div>
+      <div class="ogf-callout__panel">
+        <h2>How the site is organized</h2>
+        <ul>
+          <li><code>Start Here</code> collects repository navigation, workflow guidance, and the main strategy memo.</li>
+          <li><code>Proposal</code> keeps the funder, the call, and the proposal framing in view.</li>
+          <li><code>Theory</code>, <code>Methods</code>, and <code>Models</code> preserve the long-form scientific argument.</li>
+          <li><code>Work Plan</code>, <code>Planning</code>, and <code>Literature</code> retain execution details, evaluation, and citation support.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 </div>
-
-## What this project is
-
-The project asks whether wildfire growth can be understood as an emergent geometric process, with rough expanding fronts, fractal perimeter structure, and regime-specific scaling behavior. If those patterns are real, they would help connect wildfire science to broader theories of interface growth, percolation, and complex systems.
-
-## Why "On Growth and Form"
-
-The site takes its title from D'Arcy Wentworth Thompson's *On Growth and Form*, not as a historical ornament but as an intellectual starting point. Thompson argued that living form cannot be explained only by history or adaptation; it must also be understood through geometry, mechanics, and the constraints imposed by physical processes. This project extends that sensibility into wildfire science by asking whether fire growth also exhibits lawful large-scale form.
-
-## Why this matters
-
-Wildfire science already has strong traditions in fire behavior physics and fire regime statistics. What remains less developed is the intermediate scale: how individual fires grow through space and time as geometric objects. Daily fire perimeters derived from satellite observations now make that question tractable.
-
-## How FIRED and CubeDynamics support the work
-
-`FIRED` reconstructs coherent wildfire events from burned-area observations, turning pixels into time-resolved fire histories. `CubeDynamics` provides the computational language for aligning those event histories with weather, vegetation, climate, and landscape data in a shared spatiotemporal analysis framework. Together they make it possible to study wildfire growth as a measurable Earth system process rather than as an after-the-fact burn scar.
-
-## How the site is organized
-
-- `Start Here` collects repository navigation, workflow guidance, and the main strategy memo.
-- `Proposal` keeps the funder, the call, and the proposal framing in view.
-- `Theory` develops the ideas around growth, form, scaling, and wildfire geometry.
-- `Data and Infrastructure` explains how FIRED, CubeDynamics, and satellite datasets make the work possible.
-- `Methods` translates those ideas into measurable analytical procedures.
-- `Models` asks how existing and simplified fire models relate to the scaling questions.
-- `Work Plan` organizes the project into a multi-year proposal-ready structure.
-- `Literature` keeps the bibliography and conceptual literature map accessible.
-- `Planning` collects staffing, evaluation, and planning figures.
-- `Archive` keeps draft and exploratory materials reachable without mixing them into the main reader path.
-
-!!! note "Proposal-oriented by design"
-    The repository favors reproducible notes, transparent structure, and explicit separation between funder requirements and scientific argument.
