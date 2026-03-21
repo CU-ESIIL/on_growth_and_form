@@ -1318,3 +1318,31 @@ User reported the previous website restyle was unsatisfactory because CI failed 
 
 ### Open questions and follow-up
 - The homepage heading regression should now satisfy the CI failure the user reported, but a full local browser test still depends on an environment with Playwright installed.
+
+### Prompt
+User asked for a targeted refinement of the ESIIL-inspired MkDocs restyle so the left sidebar becomes a compact supporting rail, the homepage hero and long-form content get substantially more breathing room, and responsive behavior no longer lets navigation crowd the main reading area.
+
+### Files and folders inspected
+- `AGENTS.md`
+- `mkdocs.yml`
+- `docs/index.md`
+- `docs/stylesheets/tokens.css`
+- `docs/stylesheets/extra.css`
+- `scripts/review_site.sh`
+- `tests/test_site.py`
+
+### Actions taken
+- Expanded the site shell and introduced dedicated layout tokens for shell width, prose width, sidebar rail width, homepage rail width, and desktop content gap in `docs/stylesheets/tokens.css`.
+- Rebalanced the MkDocs Material layout in `docs/stylesheets/extra.css` so desktop pages use a bounded navigation rail plus a dominant content column, with a wider gap, readable article width, and a homepage-specific narrower rail using `:has(.ogf-home)`.
+- Refined sidebar typography and structure in `docs/stylesheets/extra.css` with smaller section-label styling, cleaner nested indentation, improved group spacing, thin scrollbars, and safer wrapping for long navigation labels.
+- Increased homepage hero breathing room in `docs/stylesheets/extra.css` by enlarging outer padding, separating hero heading and paragraph width rules, widening paragraph measure, and improving CTA spacing.
+- Tightened responsive behavior in `docs/stylesheets/extra.css` by capping the drawer width on narrower screens and keeping article content full-width within a readable max-width.
+
+### Verification
+- Ran `python3 -m mkdocs build --strict --clean --site-dir dist` successfully.
+- Ran a small Python inspection against built output and stylesheet rules to confirm the new desktop grid allocation, homepage-specific rail sizing, hero text measure, drawer width cap, and presence of both homepage and inner-page content in `dist/`.
+- Ran `bash scripts/review_site.sh`; the MkDocs build succeeded, but `pytest` failed during collection because `playwright` is not installed in the environment.
+
+### Open questions and follow-up
+- The homepage-specific rail refinement relies on `:has(...)`; modern browsers support it, but if legacy browser support becomes important, this page-type distinction may need a template-level body class instead.
+- No browser screenshot artifact was captured because no browser screenshot tool was available in this session.
