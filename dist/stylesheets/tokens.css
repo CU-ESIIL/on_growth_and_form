@@ -27,7 +27,12 @@
   --body-font: Inter, "Source Sans 3", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --shadow-soft: 0 1.25rem 2.8rem rgba(17, 39, 50, 0.08);
   --shadow-panel: 0 1rem 2.1rem rgba(17, 39, 50, 0.06);
-  --section-max: 78rem;
-  --section-gutter: clamp(1.25rem, 3vw, 2.5rem);
+  --shell-max: 90rem;
+  --section-max: 84rem;
+  --content-max: 76ch;
+  --nav-rail-width: 16rem;
+  --nav-rail-width-home: 15rem;
+  --layout-gap: clamp(2rem, 3.5vw, 3.5rem);
+  --section-gutter: clamp(1.25rem, 3vw, 2.75rem);
   --section-space: clamp(3.5rem, 7vw, 6rem);
 }

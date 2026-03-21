@@ -1,5 +1,5 @@
 site_name: "On Growth and Form"
-site_description: "NSF proposal workspace for fire, growth, and form"
+site_description: "A guided scientific argument about wildfire growth, scaling, and form"
 site_url: "https://cu-esiil.github.io/on_growth_and_form/"
 
 repo_name: "CU-ESIIL/on_growth_and_form"
@@ -9,74 +9,74 @@ edit_uri: "edit/main/docs/"
 nav:
   - Home: index.md
   - Start Here:
-      - Overview: start-here/index.md
-      - Strategy Document: project-overview/review-resubmission-strategy.md
-      - Proposal Workflow: workflow.md
-      - Repository Map: repository-map.md
-  - Proposal:
-      - Overview: project-overview/index.md
-      - Resubmission Strategy Document: project-overview/review-resubmission-strategy.md
-      - Funder Materials: project-overview/funder-materials.md
-      - FIRE-MODEL Briefing: project-overview/fire-model-briefing.md
-      - Requirements Checklist: project-overview/requirements-checklist.md
-      - Program Context: project-overview/program-context.md
-      - Causal History of Wildfire Modeling: project-overview/causal-history-wildfire-modeling.md
-      - Rebid Context, Pitch, and Scientific Program: project-overview/rebid-context-pitch-scientific-program.md
-  - Theory:
-      - Overview: theory/index.md
+      - Welcome and Reader Guide: start-here/index.md
+      - Project Overview: project-overview/index.md
+      - Theory Overview: theory/index.md
+      - Research Program Overview: research-program/index.md
+  - Understand the Idea:
       - On Growth and Form: theory/on-growth-and-form.md
       - Wildfire Scaling Hypothesis: theory/wildfire-scaling-hypothesis.md
+      - Causal History of Wildfire Modeling: project-overview/causal-history-wildfire-modeling.md
       - Scaling Regimes in Fire Growth: theory/wildfire-scaling-regime-hypothesis.md
-      - Open Questions: theory/wildfire-scaling-research-agenda.md
+      - Open Questions and Research Agenda: theory/wildfire-scaling-research-agenda.md
+  - Scientific Framework:
+      - Theory Overview: theory/index.md
       - Scale-Conditioned WUI Geometry: theory/scale-conditioned-wui-geometry.md
       - Diffusion and 1/2 Scaling: theory/diffusion-half-scaling.md
       - Non-1/2 Scaling Signatures: theory/non-half-scaling-signatures.md
       - Wildfire Scaling and Dimensionality: theory/wildfire-scaling-dimensionality.md
       - Superdiffusive Wildfire Perimeters: theory/superdiffusive-wildfire-perimeters.md
-  - Data & Infrastructure:
-      - Overview: data-infrastructure/index.md
+  - Proposal and Strategy:
+      - Proposal Overview: project-overview/index.md
+      - Review and Resubmission Strategy: project-overview/review-resubmission-strategy.md
+      - Program Context: project-overview/program-context.md
+      - Rebid Context, Pitch, and Scientific Program: project-overview/rebid-context-pitch-scientific-program.md
+      - FIRE-MODEL Briefing: project-overview/fire-model-briefing.md
+      - Funder Materials: project-overview/funder-materials.md
+      - Requirements Checklist: project-overview/requirements-checklist.md
+  - Data, Methods, and Models:
+      - Data and Infrastructure Overview: data-infrastructure/index.md
+      - FIRED and CubeDynamics: data-infrastructure/fired-cubedynamics.md
       - FIRED: data-infrastructure/fired.md
       - CubeDynamics: data-infrastructure/cubedynamics.md
-      - FIRED and CubeDynamics: data-infrastructure/fired-cubedynamics.md
-      - Environmental Data Science Stack: data-infrastructure/environmental-data-science-stack.md
       - Satellite Fire Datasets: data-infrastructure/satellite-fire-datasets.md
-  - Methods:
-      - Overview: methods/index.md
+      - Environmental Data Science Stack: data-infrastructure/environmental-data-science-stack.md
+      - Methods Overview: methods/index.md
       - Fire Growth Trajectories: methods/fire-growth-trajectories.md
-      - "Method 1: Measurement, Validation, and Fire-Environment Coupling": methods/measurement-validation-framework.md
-      - "Method 1B: Evaluating Velocity as a Descriptor of Fire Spread": methods/velocity-as-fire-spread-descriptor.md
-      - "Method 1C: Model-Data Comparison and Scoring Framework": methods/model-data-comparison-scoring-framework.md
-      - "Method 2: Generative Modeling and Experimental Design": methods/generative-modeling-mechanism-testing.md
-      - "Method 3: Synthetic Validation, Uncertainty, and Identifiability": methods/synthetic-validation-uncertainty-identifiability.md
+      - Measurement, Validation, and Fire-Environment Coupling: methods/measurement-validation-framework.md
+      - Evaluating Velocity as a Descriptor of Fire Spread: methods/velocity-as-fire-spread-descriptor.md
+      - Model-Data Comparison and Scoring Framework: methods/model-data-comparison-scoring-framework.md
+      - Generative Modeling and Experimental Design: methods/generative-modeling-mechanism-testing.md
+      - Synthetic Validation, Uncertainty, and Identifiability: methods/synthetic-validation-uncertainty-identifiability.md
       - Scaling Diagnostics: methods/scaling-diagnostics.md
       - Fractal Dimension Estimation: methods/fractal-dimension-estimation.md
       - Scaling Collapse: methods/scaling-collapse.md
-  - Models:
-      - Overview: models/index.md
+      - Models Overview: models/index.md
       - Fire Modeling Frameworks: models/fire-modeling-frameworks.md
       - Generative Models: models/generative-models.md
       - Benchmarking Existing Fire Models: models/benchmarking-existing-fire-models.md
-  - Work Plan:
-      - Overview: research-program/index.md
-      - Generative Theory of Fire: research-program/generative-theory-of-fire.md
+  - Work Plan and Deliverables:
+      - Research Program Overview: research-program/index.md
       - Work Plan: research-program/work-plan.md
-      - Gantt / Timeline: research-program/gantt-timeline.md
       - Deliverables: research-program/deliverables.md
       - Users and Impact: research-program/users-impact.md
       - Rationale and Impact: research-program/rationale-impact.md
-  - Literature:
-      - Overview: literature/index.md
-      - Bibliography: literature/bibliography.md
-      - Literature Map: literature/literature-map.md
-  - Planning:
-      - Overview: planning/index.md
-      - Gantt Chart: planning/gantt_chart.md
+      - Generative Theory of Fire: research-program/generative-theory-of-fire.md
+      - Gantt / Timeline: research-program/gantt-timeline.md
+      - Planning Overview: planning/index.md
+      - Detailed Planning Gantt: planning/gantt_chart.md
       - Staffing Plan: planning/staffing-plan.md
       - Evaluation and Success Criteria: planning/evaluation-success-criteria.md
       - Broader Impacts: planning/broader-impacts.md
       - Wildfire Modeling Phylogeny: planning/wildfire-modeling-phylogeny.md
-  - Archive:
-      - Overview: archive/index.md
+  - Literature and References:
+      - Literature Overview: literature/index.md
+      - Literature Map: literature/literature-map.md
+      - Bibliography: literature/bibliography.md
+  - Repository and Workflow:
+      - Proposal Workflow: workflow.md
+      - Repository Map: repository-map.md
+      - Archive Overview: archive/index.md
       - Drafts Overview: drafts/index.md
       - Draft 01 Summary: drafts/draft-01.md
       - Draft 02: drafts/draft-02.md

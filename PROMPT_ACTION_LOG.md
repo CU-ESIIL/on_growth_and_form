@@ -1346,3 +1346,46 @@ User asked for a targeted refinement of the ESIIL-inspired MkDocs restyle so the
 ### Open questions and follow-up
 - The homepage-specific rail refinement relies on `:has(...)`; modern browsers support it, but if legacy browser support becomes important, this page-type distinction may need a template-level body class instead.
 - No browser screenshot artifact was captured because no browser screenshot tool was available in this session.
+
+## 2026-03-21
+
+### Prompt
+User asked for a human-centered refactor of the MkDocs website so it reads as a guided intellectual experience rather than a repository map, with a narrative homepage, clearer reader pathways, reorganized navigation, stronger section landing pages, lighter page-mode cues, and preserved long-form depth.
+
+### Files and folders inspected
+- `AGENTS.md`
+- `funder/solicitation/fire_model_2026_briefing.md`
+- `funder/review_criteria/fire_model_requirements_checklist.md`
+- `mkdocs.yml`
+- `docs/index.md`
+- `docs/start-here/index.md`
+- `docs/project-overview/index.md`
+- `docs/theory/index.md`
+- `docs/research-program/index.md`
+- `docs/data-infrastructure/index.md`
+- `docs/methods/index.md`
+- `docs/models/index.md`
+- `docs/planning/index.md`
+- `docs/literature/index.md`
+- `docs/archive/index.md`
+- `docs/workflow.md`
+- `docs/repository-map.md`
+- `docs/stylesheets/extra.css`
+- `scripts/review_site.sh`
+- `tests/test_site.py`
+
+### Actions taken
+- Rewrote the homepage to lead with the scientific idea, stakes, historical framing, guided reader pathways, and curated deeper-entry cards instead of workspace-first language.
+- Added an explicit `How to use this site` pathway block near the top of the homepage for reviewers, collaborators, theory readers, and technical readers.
+- Reorganized the MkDocs navigation around reader intent: start here, understand the idea, scientific framework, proposal and strategy, technical foundations, work plan and deliverables, literature, and repository workflow.
+- Reworked the top-level section landing pages to do real orientation work with page-type labels, section purpose, best starting pages, and recommended next steps.
+- Updated site styling to support the new hierarchy with softer navigation labels, section intro panels, page-type badges, and new homepage card variants.
+- Regenerated the built site under `dist/` after the documentation changes.
+
+### Verification
+- Ran `bash scripts/review_site.sh`; MkDocs built successfully, but pytest could not run because the local environment lacks the `playwright` Python package required by `tests/test_site.py`.
+- Ran `python3 -m mkdocs build --strict --clean --site-dir dist` after fixing navigation coverage; the site built successfully.
+
+### Open questions and follow-up
+- The homepage and section indexes are now much more reader-guided, but `workflow.md` and `repository-map.md` still remain intentionally repository-facing and could receive the same lighter-framing treatment in a future pass if desired.
+- If browser-container support becomes available later, a visual screenshot check would be useful because this change materially affects homepage presentation and information hierarchy.

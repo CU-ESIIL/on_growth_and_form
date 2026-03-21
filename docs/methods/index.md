@@ -1,18 +1,27 @@
-# Methods
+<div class="ogf-section-intro">
+  <span class="ogf-page-type">Technical method</span>
+  <h1>Methods</h1>
+  <p class="ogf-lead">This section develops the measurement, validation, benchmarking, and generative-model testing sequence that turns the central theory into something that can be evaluated rather than merely asserted.</p>
+</div>
 
-This section contains materials related to measurement, model comparison, generative modeling, and validation.
+## What this section is for
 
-## Core pages
+The methods pages answer a practical scientific question: if wildfire growth has meaningful geometric structure, how would we detect it, compare it, stress-test it, and decide whether a model captures it? The emphasis is on explicit diagnostics and benchmark logic rather than on a single algorithmic trick.
 
-- [Method 1: Measurement, Validation, and Fire-Environment Coupling](measurement-validation-framework.md)
-- [Method 1B: Evaluating Velocity as a Descriptor of Fire Spread](velocity-as-fire-spread-descriptor.md)
-- [Method 1C: Model-Data Comparison and Scoring Framework](model-data-comparison-scoring-framework.md)
-- [Method 2: Generative Modeling and Experimental Design](generative-modeling-mechanism-testing.md)
-- [Method 3: Synthetic Validation, Uncertainty, and Identifiability](synthetic-validation-uncertainty-identifiability.md)
+## Start with these pages
 
-## Additional materials
+- [Measurement, Validation, and Fire-Environment Coupling](measurement-validation-framework.md)
+- [Model-Data Comparison and Scoring Framework](model-data-comparison-scoring-framework.md)
+- [Generative Modeling and Experimental Design](generative-modeling-mechanism-testing.md)
+- [Synthetic Validation, Uncertainty, and Identifiability](synthetic-validation-uncertainty-identifiability.md)
 
-- [Fire Growth Trajectories](fire-growth-trajectories.md)
-- [Scaling Diagnostics](scaling-diagnostics.md)
-- [Fractal Dimension Estimation](fractal-dimension-estimation.md)
-- [Scaling Collapse](scaling-collapse.md)
+## Supporting methods
+
+- [Fire Growth Trajectories](fire-growth-trajectories.md) introduces the event-based measurement object.
+- [Velocity as a Descriptor of Fire Spread](velocity-as-fire-spread-descriptor.md), [Scaling Diagnostics](scaling-diagnostics.md), [Fractal Dimension Estimation](fractal-dimension-estimation.md), and [Scaling Collapse](scaling-collapse.md) provide focused diagnostics and interpretation tools.
+
+## Go next
+
+- [Understand the theory these methods test](../theory/index.md)
+- [Inspect the models these methods compare](../models/index.md)
+- [Review the broader research program](../research-program/index.md)

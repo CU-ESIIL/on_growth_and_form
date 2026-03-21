@@ -1,15 +1,20 @@
-# Archive
+<div class="ogf-section-intro">
+  <span class="ogf-page-type">Archive and drafting memory</span>
+  <h1>Archive</h1>
+  <p class="ogf-lead">This section preserves prior drafts, comparison memos, and integration documents so the project keeps its reasoning history instead of overwriting it.</p>
+</div>
 
-This section contains materials related to working drafts and exploratory notes.
+## What this section is for
 
-## Core pages
+The archive is not a first-stop reading path. It exists so collaborators can recover earlier wording, lost structure, and decisions that still matter for proposal quality and compliance.
+
+## Start with these pages
 
 - [Drafts Overview](../drafts/index.md)
-- [Draft 01 Summary](../drafts/draft-01.md)
-- [Draft 02](../drafts/draft-02.md)
 - [Draft 01 to Draft 02 Change Report](../drafts/change-report.md)
-
-## Additional materials
-
 - [Proposal Integration Document](../drafts/integration-document.md)
-- [Agenda](../drafts/agenda.md)
+
+## Go next
+
+- [Return to Start Here](../start-here/index.md)
+- [Return to the Project Overview](../project-overview/index.md)
