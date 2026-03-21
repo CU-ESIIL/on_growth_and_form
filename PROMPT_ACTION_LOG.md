@@ -1267,3 +1267,33 @@ User reported that there were "some white animated buttons on the home page that
 
 ### Open questions and follow-up
 - If desired later, the homepage cards could also be converted into full-card links or explicit in-card buttons, but they now point to real pages in their current form.
+
+## 2026-03-21
+
+### Prompt
+User asked for a repo audit and direct implementation of an ESIIL-inspired MkDocs website restyle, including a redesigned homepage with an editorial hero, alternating image-text bands, restrained institutional branding, and site-wide typography/button/layout updates while preserving long-form markdown content.
+
+### Files and folders inspected
+- `AGENTS.md`
+- `mkdocs.yml`
+- `docs/index.md`
+- `docs/stylesheets/extra.css`
+- `docs/overrides/partials/logo.html`
+- `docs/assets/`
+- `tests/test_site.py`
+- `scripts/review_site.sh`
+
+### Actions taken
+- Added centralized website brand tokens in `docs/stylesheets/tokens.css` and rewrote `docs/stylesheets/extra.css` to apply the blue/cyan/green visual system, updated typography hierarchy, flatter card treatments, rectangular buttons, cleaner header/footer styling, and stronger markdown page rhythm.
+- Refactored `docs/index.md` into a designed landing page with a full-width gradient hero, alternating split content bands, editorial card grid, and a compact resubmission callout while keeping the existing proposal content and links in long-form form.
+- Updated `mkdocs.yml` to load the new token stylesheet and changed `docs/overrides/partials/logo.html` so the site logo routes to the local homepage instead of the external ESIIL home page.
+
+### Verification
+- Ran `python3 -m mkdocs build --strict --clean --site-dir dist` successfully.
+- Confirmed the built homepage HTML includes the new hero, band, card, and stylesheet hooks.
+- Ran `bash scripts/review_site.sh`, which rebuilt successfully but failed in `pytest` because the environment does not currently have the `playwright` Python package available.
+- Tried `python3 -m pip install -r requirements-dev.txt`, but installation of `playwright>=1.52` failed behind the environment's proxy configuration.
+
+### Open questions and follow-up
+- Browser-based site tests remain blocked until `playwright` is installable in the environment; once available, rerun `bash scripts/review_site.sh` for full website validation.
+- No browser screenshot artifact was captured because no browser screenshot tool was available in this session.

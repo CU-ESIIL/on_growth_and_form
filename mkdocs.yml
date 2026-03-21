@@ -108,6 +108,7 @@ markdown_extensions:
       alternate_style: true
 
 extra_css:
+  - stylesheets/tokens.css
   - stylesheets/extra.css
 
 plugins:
