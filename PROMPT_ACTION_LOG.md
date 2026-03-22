@@ -1462,3 +1462,26 @@ User asked for a summary document covering each Prism-exported PDF added to `pro
 ### Open questions and follow-up
 - The current summary reconstructs content-visible changes only. A fuller AI-use transparency record would require a separate human-authored note describing what was asked of Prism during each drafting step.
 - The generic filenames make future auditing harder; renaming future exports with dates and section names would improve traceability.
+
+## 2026-03-21
+
+### Prompt
+User asked for a button on the homepage next to the strategy/framing links that takes readers to the most recent Prism PDF.
+
+### Files and folders inspected
+- `docs/index.md`
+- `docs/project-overview/index.md`
+- `mkdocs.yml`
+- `PROMPT_ACTION_LOG.md`
+
+### Actions taken
+- Added a homepage hero button in `docs/index.md` linking to the latest Prism draft currently in the repository: `proposal/narrative/drafts/prism_pdf_exports/main4.pdf`.
+- Used the GitHub file URL so the button works from the published MkDocs site without relocating the PDF artifact out of the proposal history folder.
+
+### Verification
+- Ran `bash scripts/review_site.sh`.
+- MkDocs built successfully into `dist/`.
+- The script's test step could not run because `pytest` is not installed in the local environment.
+
+### Open questions and follow-up
+- The homepage button currently points to `main4.pdf` as the latest Prism export. If newer exports are added later, the link will need to be updated unless a stable alias or redirect is introduced.
