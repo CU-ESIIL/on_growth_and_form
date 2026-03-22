@@ -17,7 +17,10 @@ This figure summarizes the FIRE-MODEL project as a coordinated effort linking pe
 This Gantt chart represents the FIRE-MODEL project across three dimensions: time, scientific progress, and team roles.
 
 **Time (x-axis):**
-The horizontal axis shows project months over a three-year timeline.
+The horizontal axis shows project months over a three-year timeline with quarter boundaries and year-level labels:
+- Year 1 - Detect
+- Year 2 - Explain
+- Year 3 - Apply
 
 **Rows (y-axis):**
 Each row represents a major component of the project, grouped into high-level phases:
@@ -27,12 +30,14 @@ Each row represents a major component of the project, grouped into high-level ph
 - Integration and evaluation
 - Outputs and dissemination
 
-**Background shading (benchmarks):**
-The background colors indicate the scientific stage of the project:
-- Setup: team formation and infrastructure
-- Measure: building empirical datasets and diagnostics
-- Test: evaluating structure, mechanisms, and models
-- Apply: producing tools, datasets, and synthesis outputs
+**Background shading (quarter emphasis):**
+The background colors indicate the dominant emphasis within each six-month block:
+- pipeline stability and measurement reliability
+- shared observables and the Benchmark 0 gate
+- model contrasts and transition testing
+- validation and sufficiency mapping
+- benchmark packaging and external user testing
+- release readiness, transfer, and synthesis
 
 **Bar colors (roles):**
 Each bar is colored by responsibility:
@@ -41,6 +46,9 @@ Each bar is colored by responsibility:
 - Teal: Postdoc 2 (generative modeling and simulation)
 - Muted tone: shared team efforts (papers, releases, synthesis)
 
+**Benchmark 0 gate:**
+The highlighted brown-outlined bar marks the formal Year 1 decision gate that compares single-law and multi-regime explanations using AIC/BIC, cross-validation, change-point analysis, and alignment against transport-demand transitions.
+
 **Bar length and position:**
 Bar length indicates duration of effort. Position shows when each activity occurs relative to others.
 
@@ -48,17 +56,13 @@ Bar length indicates duration of effort. Position shows when each activity occur
 
 ## How to Interpret This Figure
 
-The figure should be read from left to right as a scientific workflow:
+The figure should be read from left to right as a decision-gated scientific workflow:
 
-1. The project begins by establishing the team and building a validated dataset of wildfire trajectories.
-2. Measurement tools are developed to detect scaling behavior and regime structure.
-3. In parallel, generative models are constructed to reproduce observed dynamics.
-4. These models are systematically explored to identify mechanisms that produce observed patterns.
-5. Empirical and generative results are integrated to determine whether wildfire behavior is driven by intrinsic dynamics or external forcing.
-6. The resulting diagnostics are applied to evaluate existing fire models.
-7. The project concludes with open data releases, reusable tools, and synthesis publications.
+1. Year 1 emphasizes setup, data governance, event stabilization, trajectory assembly, QA/QC, observables, and Benchmark 0.
+2. Year 2 emphasizes model library buildout, controlled contrasts, regime detection, ablations, calibration audits, validation, and sufficiency mapping.
+3. Year 3 emphasizes benchmark packaging, external user testing, release readiness, onboarding, transfer, and synthesis reporting.
 
-This structure ensures that the project moves from observation → explanation → application in a coherent and testable way.
+This structure keeps scientific deliverables and benchmark infrastructure legible within one figure while preserving the proposal's Detect → Explain → Apply logic.
 
 ---
 

@@ -2,21 +2,20 @@
 
 This page highlights the temporal structure of the wildfire scaling program.
 
-## Four-phase sequence
+## Three-year sequence
 
-1. establish the measurement system
-2. identify the scaling regime
-3. test candidate mechanisms
-4. evaluate existing fire models and synthesize theory
+1. Year 1 / Detect: stabilize the pipeline, measurement system, and Benchmark 0 gate
+2. Year 2 / Explain: run comparative model tests, validation, and sufficiency mapping
+3. Year 3 / Apply: package the benchmark, support external users, and release the final toolkit
 
 ## Why the sequence matters
 
-The phases are intentionally ordered so that:
+The sequence is intentionally ordered so that:
 
-- data and trajectory reconstruction come first
-- scaling claims are established before mechanism arguments
-- mechanism tests precede model benchmarking
-- synthesis comes after both empirical and modeling work
+- pipeline stability and measurement reliability come before broad regime claims
+- Benchmark 0 explicitly gates the shift from Year 1 detection to Year 2 explanation
+- comparative model contrasts and validation precede public benchmark packaging
+- release, onboarding, transfer, and synthesis are concentrated in the Apply phase rather than treated as afterthoughts
 
 ## Relationship to the full work plan
 

@@ -5,6 +5,8 @@ import zlib
 from pathlib import Path
 from xml.sax.saxutils import escape
 
+from PIL import Image, ImageDraw, ImageFont
+
 try:  # Optional dependency path.
     import matplotlib.pyplot as plt
     from matplotlib.patches import Patch, Rectangle
@@ -20,24 +22,26 @@ SVG_PATH = OUTPUT_DIR / "fire_model_gantt_ESIIL_minimal.svg"
 # The SVG is repository-friendly for review and site rendering; the workflow also regenerates
 # both SVG and PNG inside GitHub so binary artifacts do not need to be attached to code review.
 
-WIDTH = 1800
-HEIGHT = 1120
-MARGIN_LEFT = 350
-MARGIN_RIGHT = 90
-MARGIN_TOP = 150
-MARGIN_BOTTOM = 180
+WIDTH = 2440
+HEIGHT = 1820
+MARGIN_LEFT = 860
+MARGIN_RIGHT = 100
+MARGIN_TOP = 270
+MARGIN_BOTTOM = 240
 CHART_WIDTH = WIDTH - MARGIN_LEFT - MARGIN_RIGHT
 CHART_HEIGHT = HEIGHT - MARGIN_TOP - MARGIN_BOTTOM
 TOTAL_MONTHS = 36
-ROW_HEIGHT = 52
-BAR_HEIGHT = 30
+ROW_HEIGHT = 42
+BAR_HEIGHT = 18
 MONTH_WIDTH = CHART_WIDTH / TOTAL_MONTHS
 
-PHASES = [
-    {"label": "Setup", "start": 1, "end": 6, "color": "#f7efe3"},
-    {"label": "Measure", "start": 7, "end": 18, "color": "#eef6ea"},
-    {"label": "Test", "start": 19, "end": 30, "color": "#eef3f9"},
-    {"label": "Apply", "start": 31, "end": 36, "color": "#f5eef9"},
+STAGE_BANDS = [
+    {"label": "Pipeline + reliability", "start": 1, "end": 6, "color": "#f7efe3"},
+    {"label": "Observables + Benchmark 0", "start": 7, "end": 12, "color": "#eef6ea"},
+    {"label": "Model contrasts", "start": 13, "end": 18, "color": "#eef3f9"},
+    {"label": "Validation + sufficiency", "start": 19, "end": 24, "color": "#eef1fb"},
+    {"label": "Packaging + user testing", "start": 25, "end": 30, "color": "#f4effa"},
+    {"label": "Release + transfer", "start": 31, "end": 36, "color": "#fbf1f4"},
 ]
 
 ROLE_COLORS = {
@@ -47,29 +51,59 @@ ROLE_COLORS = {
     "Shared": "#7b8794",
 }
 
-TASKS = [
-    ("Team and workflow setup", 1, 4, "Shared"),
-    ("Data governance and infrastructure", 2, 6, "PI"),
-    ("Wildfire trajectory assembly", 3, 12, "Postdoc 1"),
-    ("QA/QC and provenance checks", 5, 10, "Postdoc 1"),
-    ("Scaling diagnostics v1", 7, 9, "Postdoc 1"),
-    ("Minimal model hierarchy", 4, 10, "Postdoc 2"),
-    ("Shared observables and metadata", 6, 8, "PI"),
-    ("Regime detection and collapse tests", 13, 10, "Postdoc 1"),
-    ("Parameter sweeps and ablation tests", 14, 12, "Postdoc 2"),
-    ("Phase diagram synthesis", 20, 8, "PI"),
-    ("Empirical + generative integration", 19, 10, "PI"),
-    ("Benchmarking existing fire models", 25, 9, "PI"),
-    ("Toolkit, data, and code release", 28, 8, "Shared"),
-    ("Synthesis papers and reporting", 30, 7, "Shared"),
+GROUP_ORDER = [
+    "Team and workflow setup",
+    "Empirical data and diagnostics",
+    "Generative modeling",
+    "Integration and evaluation",
+    "Outputs and dissemination",
 ]
 
-GROUPS = [
-    ("Team and workflow setup", 0, 1),
-    ("Empirical data and diagnostics", 2, 4),
-    ("Generative modeling", 5, 5),
-    ("Integration and evaluation", 6, 11),
-    ("Outputs and dissemination", 12, 13),
+GROUP_DISPLAY = {
+    "Team and workflow setup": "Team / workflow",
+    "Empirical data and diagnostics": "Empirical diagnostics",
+    "Generative modeling": "Generative modeling",
+    "Integration and evaluation": "Integration / evaluation",
+    "Outputs and dissemination": "Outputs / dissemination",
+}
+
+FONT_REGULAR_PATH = Path("/System/Library/Fonts/Supplemental/Times New Roman.ttf")
+FONT_BOLD_PATH = Path("/System/Library/Fonts/Supplemental/Times New Roman Bold.ttf")
+FONT_STACK = "Times New Roman, Georgia, serif"
+
+TASKS = [
+    {"label": "Team and workflow setup", "start": 1, "end": 3, "role": "Shared", "group": "Team and workflow setup"},
+    {"label": "Data governance and infrastructure", "start": 1, "end": 4, "role": "PI", "group": "Team and workflow setup"},
+    {"label": "Event catalog stabilization", "start": 2, "end": 5, "role": "Postdoc 1", "group": "Empirical data and diagnostics"},
+    {"label": "Wildfire trajectory assembly", "start": 3, "end": 7, "role": "Postdoc 1", "group": "Empirical data and diagnostics"},
+    {"label": "QA/QC and provenance checks", "start": 4, "end": 8, "role": "Postdoc 1", "group": "Empirical data and diagnostics"},
+    {"label": "Metric-definition freeze", "start": 7, "end": 9, "role": "Shared", "group": "Empirical data and diagnostics"},
+    {"label": "Scaling diagnostics v1", "start": 7, "end": 10, "role": "Postdoc 1", "group": "Empirical data and diagnostics"},
+    {"label": "Shared observables and metadata", "start": 8, "end": 11, "role": "Shared", "group": "Empirical data and diagnostics"},
+    {"label": "Cross-region replication", "start": 10, "end": 12, "role": "Postdoc 1", "group": "Empirical data and diagnostics"},
+    {"label": "Initial comparison engine", "start": 8, "end": 12, "role": "Postdoc 2", "group": "Generative modeling"},
+    {"label": "Model library v1", "start": 13, "end": 16, "role": "Postdoc 2", "group": "Generative modeling"},
+    {"label": "Controlled model contrasts (M0-M3)", "start": 15, "end": 20, "role": "Postdoc 2", "group": "Generative modeling"},
+    {"label": "Ablation experiments", "start": 17, "end": 21, "role": "Postdoc 2", "group": "Generative modeling"},
+    {"label": "Parameter sweeps", "start": 16, "end": 21, "role": "Postdoc 2", "group": "Generative modeling"},
+    {"label": "Benchmark 0", "start": 10, "end": 12, "role": "Shared", "group": "Integration and evaluation", "gate": True},
+    {"label": "Regime detection and transition testing", "start": 13, "end": 18, "role": "Shared", "group": "Integration and evaluation"},
+    {"label": "Calibration audits across regimes", "start": 18, "end": 23, "role": "PI", "group": "Integration and evaluation"},
+    {"label": "Validation framework v1", "start": 19, "end": 24, "role": "Shared", "group": "Integration and evaluation"},
+    {"label": "Phase diagram synthesis", "start": 20, "end": 24, "role": "PI", "group": "Integration and evaluation"},
+    {"label": "Publication-ready comparison figures", "start": 21, "end": 24, "role": "Shared", "group": "Integration and evaluation"},
+    {"label": "Evidence-weighted sufficiency maps", "start": 22, "end": 24, "role": "PI", "group": "Integration and evaluation"},
+    {"label": "Empirical + generative integration", "start": 25, "end": 29, "role": "PI", "group": "Integration and evaluation"},
+    {"label": "Benchmarking existing and future fire models", "start": 25, "end": 31, "role": "Shared", "group": "Integration and evaluation"},
+    {"label": "External user testing", "start": 28, "end": 32, "role": "Shared", "group": "Integration and evaluation"},
+    {"label": "Final uncertainty-reporting templates", "start": 27, "end": 31, "role": "PI", "group": "Integration and evaluation"},
+    {"label": "Benchmark release engineering", "start": 29, "end": 34, "role": "Shared", "group": "Outputs and dissemination"},
+    {"label": "Public release readiness", "start": 31, "end": 34, "role": "Shared", "group": "Outputs and dissemination"},
+    {"label": "Toolkit, data, and code release", "start": 33, "end": 36, "role": "Shared", "group": "Outputs and dissemination"},
+    {"label": "Onboarding and support", "start": 33, "end": 36, "role": "Shared", "group": "Outputs and dissemination"},
+    {"label": "Transfer / handoff materials", "start": 34, "end": 36, "role": "PI", "group": "Outputs and dissemination"},
+    {"label": "Evidence book and mechanism synthesis", "start": 30, "end": 36, "role": "PI", "group": "Outputs and dissemination"},
+    {"label": "Synthesis papers and reporting", "start": 31, "end": 36, "role": "Shared", "group": "Outputs and dissemination"},
 ]
 
 FONT = {
@@ -125,70 +159,32 @@ class PNGCanvas:
     def __init__(self, width: int, height: int, background: str = "#ffffff") -> None:
         self.width = width
         self.height = height
-        color = hex_to_rgb(background)
-        self.pixels = bytearray(color * width * height)
+        self.image = Image.new("RGB", (width, height), background)
+        self.draw = ImageDraw.Draw(self.image)
+
+    def _font(self, size: int, bold: bool = False) -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
+        try:
+            path = FONT_BOLD_PATH if bold else FONT_REGULAR_PATH
+            return ImageFont.truetype(str(path), size=size)
+        except OSError:
+            return ImageFont.load_default()
 
     def fill_rect(self, x: int, y: int, w: int, h: int, color: str) -> None:
-        rgb = hex_to_rgb(color)
-        x0 = max(0, x)
-        y0 = max(0, y)
-        x1 = min(self.width, x + w)
-        y1 = min(self.height, y + h)
-        if x0 >= x1 or y0 >= y1:
+        if w <= 0 or h <= 0:
             return
-        for yy in range(y0, y1):
-            row = yy * self.width * 3
-            for xx in range(x0, x1):
-                idx = row + xx * 3
-                self.pixels[idx:idx + 3] = rgb
+        self.draw.rectangle([x, y, x + w, y + h], fill=color)
 
     def line(self, x0: int, y0: int, x1: int, y1: int, color: str, thickness: int = 1) -> None:
-        if x0 == x1:
-            self.fill_rect(x0 - thickness // 2, min(y0, y1), thickness, abs(y1 - y0) + 1, color)
-            return
-        if y0 == y1:
-            self.fill_rect(min(x0, x1), y0 - thickness // 2, abs(x1 - x0) + 1, thickness, color)
-            return
-        dx = abs(x1 - x0)
-        dy = -abs(y1 - y0)
-        sx = 1 if x0 < x1 else -1
-        sy = 1 if y0 < y1 else -1
-        err = dx + dy
-        while True:
-            self.fill_rect(x0 - thickness // 2, y0 - thickness // 2, thickness, thickness, color)
-            if x0 == x1 and y0 == y1:
-                break
-            e2 = 2 * err
-            if e2 >= dy:
-                err += dy
-                x0 += sx
-            if e2 <= dx:
-                err += dx
-                y0 += sy
+        self.draw.line([(x0, y0), (x1, y1)], fill=color, width=thickness)
 
-    def text(self, x: int, y: int, text: str, color: str, scale: int = 2) -> None:
-        cursor_x = x
-        for char in text.upper():
-            glyph = FONT.get(char, FONT[" "])
-            for row_idx, row in enumerate(glyph):
-                for col_idx, bit in enumerate(row):
-                    if bit == "1":
-                        self.fill_rect(cursor_x + col_idx * scale, y + row_idx * scale, scale, scale, color)
-            cursor_x += (len(glyph[0]) + 1) * scale
+    def rounded_rect(self, x: int, y: int, w: int, h: int, fill: str, outline: str | None = None, outline_width: int = 1, radius: int = 8) -> None:
+        self.draw.rounded_rectangle([x, y, x + w, y + h], radius=radius, fill=fill, outline=outline, width=outline_width)
+
+    def text(self, x: int, y: int, text: str, color: str, size: int = 16, bold: bool = False, anchor: str = "la") -> None:
+        self.draw.text((x, y), text, fill=color, font=self._font(size=size, bold=bold), anchor=anchor)
 
     def save(self, path: Path) -> None:
-        raw = bytearray()
-        stride = self.width * 3
-        for y in range(self.height):
-            raw.append(0)
-            start = y * stride
-            raw.extend(self.pixels[start:start + stride])
-        compressed = zlib.compress(bytes(raw), level=9)
-        png = bytearray(b"\x89PNG\r\n\x1a\n")
-        png.extend(chunk(b"IHDR", struct.pack(">IIBBBBB", self.width, self.height, 8, 2, 0, 0, 0)))
-        png.extend(chunk(b"IDAT", compressed))
-        png.extend(chunk(b"IEND", b""))
-        path.write_bytes(png)
+        self.image.save(path, format="PNG")
 
 
 class SVGCanvas:
@@ -209,7 +205,7 @@ class SVGCanvas:
 
     def text(self, x: float, y: float, text: str, fill: str, size: int, weight: str = "400", anchor: str = "start") -> None:
         self.elements.append(
-            f'<text x="{x:.2f}" y="{y:.2f}" fill="{fill}" font-family="Arial, Helvetica, sans-serif" font-size="{size}" font-weight="{weight}" text-anchor="{anchor}">{escape(text)}</text>'
+            f'<text x="{x:.2f}" y="{y:.2f}" fill="{fill}" font-family="{FONT_STACK}" font-size="{size}" font-weight="{weight}" text-anchor="{anchor}">{escape(text)}</text>'
         )
 
     def save(self, path: Path) -> None:
@@ -243,28 +239,46 @@ def row_to_y(row: int) -> float:
 
 
 
+def task_duration(task: dict[str, object]) -> int:
+    return int(task["end"]) - int(task["start"]) + 1
+
+
+
+def group_bounds() -> list[tuple[str, int, int]]:
+    bounds: list[tuple[str, int, int]] = []
+    for group in GROUP_ORDER:
+        indices = [idx for idx, task in enumerate(TASKS) if task["group"] == group]
+        if indices:
+            bounds.append((group, min(indices), max(indices)))
+    return bounds
+
+
+
 def draw_common(svg: SVGCanvas | None = None, png: PNGCanvas | None = None) -> None:
     total_rows = len(TASKS)
     chart_bottom = MARGIN_TOP + total_rows * ROW_HEIGHT
 
-    for phase in PHASES:
-        x = month_to_x(phase["start"])
-        w = (phase["end"] - phase["start"] + 1) * MONTH_WIDTH
+    for band in STAGE_BANDS:
+        x = month_to_x(band["start"])
+        w = (band["end"] - band["start"] + 1) * MONTH_WIDTH
         if svg:
-            svg.rect(x, MARGIN_TOP - 10, w, total_rows * ROW_HEIGHT + 20, phase["color"])
-            svg.text(x + 10, MARGIN_TOP - 20, phase["label"], "#4a5568", 22, "700")
+            svg.rect(x, MARGIN_TOP - 10, w, total_rows * ROW_HEIGHT + 20, band["color"])
+            svg.text(x + 10, MARGIN_TOP - 34, band["label"], "#4a5568", 13, "700")
         if png:
-            png.fill_rect(round(x), MARGIN_TOP - 10, round(w), total_rows * ROW_HEIGHT + 20, phase["color"])
-            png.text(round(x) + 10, MARGIN_TOP - 48, phase["label"], "#4a5568", scale=3)
+            png.fill_rect(round(x), MARGIN_TOP - 10, round(w), total_rows * ROW_HEIGHT + 20, band["color"])
+            png.text(round(x) + 10, MARGIN_TOP - 56, band["label"], "#4a5568", size=18, bold=True)
 
     for month in range(1, TOTAL_MONTHS + 1):
         x = month_to_x(month)
+        quarter_line = month == 1 or (month - 1) % 3 == 0
+        stroke = "#c3d0dc" if quarter_line else "#d9e2ec"
+        width = 1.6 if quarter_line else 1
         if svg:
-            svg.line(x, MARGIN_TOP, x, chart_bottom, "#d9e2ec", 1)
+            svg.line(x, MARGIN_TOP, x, chart_bottom, stroke, width)
             svg.text(x + MONTH_WIDTH / 2, chart_bottom + 26, str(month), "#4a5568", 12, anchor="middle")
         if png:
-            png.line(round(x), MARGIN_TOP, round(x), round(chart_bottom), "#d9e2ec", 1)
-            png.text(round(x + MONTH_WIDTH / 2) - 8, round(chart_bottom) + 18, str(month), "#4a5568", scale=2)
+            png.line(round(x), MARGIN_TOP, round(x), round(chart_bottom), stroke, 1 if not quarter_line else 2)
+            png.text(round(x + MONTH_WIDTH / 2), round(chart_bottom) + 26, str(month), "#4a5568", size=16, anchor="ma")
 
     for year_end in (12, 24, 36):
         x = month_to_x(year_end + 1)
@@ -273,104 +287,136 @@ def draw_common(svg: SVGCanvas | None = None, png: PNGCanvas | None = None) -> N
         if png:
             png.line(round(x), MARGIN_TOP - 10, round(x), round(chart_bottom), "#b9c6d3", 2)
 
-    year_specs = [(1, 12, "Year 1"), (13, 24, "Year 2"), (25, 36, "Year 3")]
+    year_specs = [
+        (1, 12, "Year 1 - Detect"),
+        (13, 24, "Year 2 - Explain"),
+        (25, 36, "Year 3 - Apply"),
+    ]
     for start, end, label in year_specs:
         center = (month_to_x(start) + month_to_x(end + 1)) / 2
         if svg:
-            svg.text(center, MARGIN_TOP - 48, label, "#2d3748", 22, "700", "middle")
+            svg.text(center, MARGIN_TOP - 86, label, "#2d3748", 24, "700", "middle")
         if png:
-            png.text(round(center) - 38, MARGIN_TOP - 90, label, "#2d3748", scale=3)
+            png.text(round(center), MARGIN_TOP - 104, label, "#2d3748", size=28, bold=True, anchor="ma")
 
-    for group_name, start_idx, end_idx in GROUPS:
+    for group_name, start_idx, end_idx in group_bounds():
         y = MARGIN_TOP + ((start_idx + end_idx + 1) / 2) * ROW_HEIGHT
         divider_y = MARGIN_TOP + (end_idx + 1) * ROW_HEIGHT
+        group_label = GROUP_DISPLAY[group_name]
         if svg:
-            svg.text(MARGIN_LEFT - 24, y, group_name, "#2d3748", 18, "700", "end")
+            svg.text(48, y, group_label, "#2d3748", 15, "700", "start")
             svg.line(MARGIN_LEFT, divider_y, WIDTH - MARGIN_RIGHT, divider_y, "#d6dde5", 1.5)
         if png:
-            png.text(20, round(y) - 12, group_name, "#2d3748", scale=2)
+            png.text(48, round(y), group_label, "#2d3748", size=20, bold=True, anchor="lm")
             png.line(MARGIN_LEFT, round(divider_y), WIDTH - MARGIN_RIGHT, round(divider_y), "#d6dde5", 1)
 
-    for row, (label, start, duration, role) in enumerate(TASKS):
+    for row, task in enumerate(TASKS):
+        label = str(task["label"])
+        start = int(task["start"])
+        end = int(task["end"])
+        role = str(task["role"])
         x = month_to_x(start) + 6
         y = row_to_y(row) + (ROW_HEIGHT - BAR_HEIGHT) / 2
-        w = duration * MONTH_WIDTH - 12
+        bar_height = BAR_HEIGHT + (4 if task.get("gate") else 0)
+        y -= (bar_height - BAR_HEIGHT) / 2
+        w = task_duration(task) * MONTH_WIDTH - 12
         color = ROLE_COLORS[role]
+        stroke = "#8b5e34" if task.get("gate") else "#ffffff"
+        stroke_width = 2.4 if task.get("gate") else 1.0
         if svg:
-            svg.rect(x, y, w, BAR_HEIGHT, color, stroke="#ffffff", stroke_width=1.5, rx=8)
-            svg.text(x + 10, y + 21, label, "#ffffff", 14, "700")
+            svg.text(MARGIN_LEFT - 18, y + bar_height * 0.72, label, "#243b53", 14, "400", "end")
+            svg.rect(x, y, w, bar_height, color, stroke=stroke, stroke_width=stroke_width, rx=8)
         if png:
-            png.fill_rect(round(x), round(y), round(w), BAR_HEIGHT, color)
-            png.text(round(x) + 8, round(y) + 8, label[: max(1, int((w - 16) // 12))], "#ffffff", scale=2)
+            png.text(MARGIN_LEFT - 18, round(y + bar_height * 0.7), label, "#243b53", size=18, anchor="rm")
+            png.rounded_rect(round(x), round(y), round(w), round(bar_height), color, outline=stroke if task.get("gate") else "#ffffff", outline_width=2 if task.get("gate") else 1, radius=8)
+            if task.get("gate"):
+                png.line(round(x), round(y), round(x + w), round(y), stroke, 2)
+                png.line(round(x), round(y + bar_height), round(x + w), round(y + bar_height), stroke, 2)
+                png.line(round(x), round(y), round(x), round(y + bar_height), stroke, 2)
+                png.line(round(x + w), round(y), round(x + w), round(y + bar_height), stroke, 2)
 
     title = "FIRE-MODEL Work Plan Gantt Chart"
-    subtitle = "ESIIL-style planning view linking roles, benchmarks, and deliverables across a 36-month project."
+    subtitle = "Decision-gated 36-month plan aligning Detect, Explain, and Apply workstreams with roles, benchmarks, and deliverables."
     if svg:
         svg.text(MARGIN_LEFT - 10, 56, title, "#1a202c", 36, "700")
         svg.text(MARGIN_LEFT - 10, 92, subtitle, "#4a5568", 18)
         svg.text((MARGIN_LEFT + WIDTH - MARGIN_RIGHT) / 2, HEIGHT - 38, "Project month", "#2d3748", 18, "700", "middle")
     if png:
-        png.text(MARGIN_LEFT - 8, 36, title, "#1a202c", scale=4)
-        png.text(MARGIN_LEFT - 8, 82, subtitle, "#4a5568", scale=2)
-        png.text(WIDTH // 2 - 70, HEIGHT - 58, "Project month", "#2d3748", scale=3)
+        png.text(MARGIN_LEFT - 8, 54, title, "#1a202c", size=44, bold=True)
+        png.text(MARGIN_LEFT - 8, 98, subtitle, "#4a5568", size=20)
+        png.text(WIDTH // 2, HEIGHT - 64, "Project month", "#2d3748", size=28, bold=True, anchor="ma")
 
-    legend_items = list(ROLE_COLORS.items()) + [(f"Benchmark: {phase['label']}", phase["color"]) for phase in PHASES]
+    legend_items = [{"label": label, "fill": color, "stroke": "none", "stroke_width": 0.8} for label, color in ROLE_COLORS.items()]
+    legend_items.append({"label": "Benchmark 0 gate", "fill": ROLE_COLORS["Shared"], "stroke": "#8b5e34", "stroke_width": 2.2})
     legend_x = MARGIN_LEFT
     legend_y = HEIGHT - 112
-    for idx, (label, color) in enumerate(legend_items):
-        x = legend_x + (idx % 4) * 350
-        y = legend_y + (idx // 4) * 42
+    for idx, item in enumerate(legend_items):
+        x = legend_x + (idx % 3) * 360
+        y = legend_y + (idx // 3) * 42
         if svg:
-            svg.rect(x, y, 24, 24, color, stroke="#cbd5e0", stroke_width=0.8, rx=3)
-            svg.text(x + 34, y + 18, label, "#2d3748", 15)
+            svg.rect(x, y, 24, 24, item["fill"], stroke=item["stroke"], stroke_width=item["stroke_width"], rx=3)
+            svg.text(x + 34, y + 18, str(item["label"]), "#2d3748", 15)
         if png:
-            png.fill_rect(x, y, 24, 24, color)
-            png.text(x + 34, y + 6, label, "#2d3748", scale=2)
+            png.rounded_rect(x, y, 24, 24, str(item["fill"]), outline=None if item["stroke"] == "none" else str(item["stroke"]), outline_width=2 if item["stroke"] != "none" else 1, radius=3)
+            png.text(x + 34, y + 16, str(item["label"]), "#2d3748", size=18, anchor="lm")
 
 
 
 def render_with_matplotlib() -> None:
-    fig, ax = plt.subplots(figsize=(16, 9))
+    fig, ax = plt.subplots(figsize=(18.5, 12))
     total_rows = len(TASKS)
     fig.patch.set_facecolor("white")
     ax.set_facecolor("white")
 
-    for phase in PHASES:
-        width = phase["end"] - phase["start"] + 1
-        ax.add_patch(Rectangle((phase["start"] - 0.5, -0.5), width, total_rows, facecolor=phase["color"], edgecolor="none", zorder=0))
-        ax.text(phase["start"] - 0.2, -0.9, phase["label"], fontsize=11, fontweight="bold", color="#4a5568", va="top")
+    for band in STAGE_BANDS:
+        width = band["end"] - band["start"] + 1
+        ax.add_patch(Rectangle((band["start"] - 0.5, -0.5), width, total_rows, facecolor=band["color"], edgecolor="none", zorder=0))
+        ax.text(band["start"] - 0.25, -0.95, band["label"], fontsize=9.5, fontweight="bold", color="#4a5568", va="top")
 
-    for row, (label, start, duration, role) in enumerate(TASKS):
-        ax.barh(row, duration, left=start - 0.5, height=0.62, color=ROLE_COLORS[role], edgecolor="white", linewidth=1.0, zorder=3)
-        ax.text(start - 0.2, row, label, ha="left", va="center", fontsize=9.5, color="white", zorder=4)
+    for row, task in enumerate(TASKS):
+        label = str(task["label"])
+        start = int(task["start"])
+        duration = task_duration(task)
+        role = str(task["role"])
+        edgecolor = "#8b5e34" if task.get("gate") else "white"
+        linewidth = 2.2 if task.get("gate") else 1.0
+        height = 0.74 if task.get("gate") else 0.56
+        ax.barh(row, duration, left=start - 0.5, height=height, color=ROLE_COLORS[role], edgecolor=edgecolor, linewidth=linewidth, zorder=3)
+        ax.text(-0.85, row, label, ha="right", va="center", fontsize=9.6, color="#243b53", zorder=4)
 
-    ax.set_xlim(-6.0, 36.5)
+    ax.set_xlim(-8.6, 36.5)
     ax.set_ylim(-1.2, total_rows - 0.4)
     ax.set_yticks(range(total_rows))
     ax.set_yticklabels([""] * total_rows)
     ax.invert_yaxis()
     ax.set_xticks(range(1, 37))
     ax.set_xticklabels([str(i) for i in range(1, 37)], fontsize=9)
-    ax.grid(axis="x", color="#d9e2ec", linewidth=0.8, alpha=0.9)
+    ax.grid(axis="x", color="#d9e2ec", linewidth=0.7, alpha=0.95)
     ax.set_axisbelow(True)
+    for quarter_start in (1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34):
+        ax.vlines(quarter_start - 0.5, -0.5, total_rows - 0.4, color="#c3d0dc", linewidth=1.2, zorder=1)
 
-    for year_start, year_end, label in [(1, 12, "Year 1"), (13, 24, "Year 2"), (25, 36, "Year 3")]:
+    for year_start, year_end, label in [
+        (1, 12, "Year 1 - Detect"),
+        (13, 24, "Year 2 - Explain"),
+        (25, 36, "Year 3 - Apply"),
+    ]:
         center = (year_start + year_end) / 2
-        ax.text(center, -1.05, label, ha="center", va="bottom", fontsize=11, fontweight="bold", color="#2d3748")
+        ax.text(center, -1.2, label, ha="center", va="bottom", fontsize=12.5, fontweight="bold", color="#2d3748")
         ax.vlines(year_end + 0.5, -0.5, total_rows - 0.4, color="#b9c6d3", linewidth=1.2, zorder=2)
 
-    for group_name, start_idx, end_idx in GROUPS:
+    for group_name, start_idx, end_idx in group_bounds():
         center = (start_idx + end_idx) / 2
-        ax.text(-5.2, center, group_name, ha="right", va="center", fontsize=10, fontweight="bold", color="#2d3748")
+        ax.text(-7.9, center, group_name, ha="left", va="center", fontsize=10.3, fontweight="bold", color="#2d3748")
         ax.hlines(end_idx + 0.5, 0.5, 36.5, color="#d6dde5", linewidth=1.1, zorder=1)
 
     ax.set_title("FIRE-MODEL Work Plan Gantt Chart", fontsize=20, fontweight="bold", loc="left", pad=22)
-    ax.text(-5.95, -1.85, "ESIIL-style planning view linking roles, benchmarks, and deliverables across a 36-month project.", fontsize=10.5, color="#4a5568", ha="left", va="bottom")
+    ax.text(-8.45, -1.88, "Decision-gated 36-month plan aligning Detect, Explain, and Apply workstreams with roles, benchmarks, and deliverables.", fontsize=10.2, color="#4a5568", ha="left", va="bottom")
     ax.set_xlabel("Project month", fontsize=11, fontweight="bold", color="#2d3748", labelpad=12)
 
     legend_handles = [Patch(facecolor=color, edgecolor="none", label=label) for label, color in ROLE_COLORS.items()]
-    phase_handles = [Patch(facecolor=phase["color"], edgecolor="none", label=f"Benchmark: {phase['label']}") for phase in PHASES]
-    ax.legend(handles=legend_handles + phase_handles, ncol=4, frameon=False, fontsize=9, loc="lower left", bbox_to_anchor=(0.0, -0.22))
+    legend_handles.append(Patch(facecolor=ROLE_COLORS["Shared"], edgecolor="#8b5e34", linewidth=2.0, label="Benchmark 0 gate"))
+    ax.legend(handles=legend_handles, ncol=3, frameon=False, fontsize=9.5, loc="lower left", bbox_to_anchor=(0.0, -0.2))
 
     for spine in ax.spines.values():
         spine.set_visible(False)

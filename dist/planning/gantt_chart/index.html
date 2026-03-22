@@ -2756,7 +2756,10 @@
 <h2 id="figure-legend">Figure Legend</h2>
 <p>This Gantt chart represents the FIRE-MODEL project across three dimensions: time, scientific progress, and team roles.</p>
 <p><strong>Time (x-axis):</strong>
-The horizontal axis shows project months over a three-year timeline.</p>
+The horizontal axis shows project months over a three-year timeline with quarter boundaries and year-level labels:
+- Year 1 - Detect
+- Year 2 - Explain
+- Year 3 - Apply</p>
 <p><strong>Rows (y-axis):</strong>
 Each row represents a major component of the project, grouped into high-level phases:
 - Team and workflow setup
@@ -2764,33 +2767,33 @@ Each row represents a major component of the project, grouped into high-level ph
 - Generative modeling
 - Integration and evaluation
 - Outputs and dissemination</p>
-<p><strong>Background shading (benchmarks):</strong>
-The background colors indicate the scientific stage of the project:
-- Setup: team formation and infrastructure
-- Measure: building empirical datasets and diagnostics
-- Test: evaluating structure, mechanisms, and models
-- Apply: producing tools, datasets, and synthesis outputs</p>
+<p><strong>Background shading (quarter emphasis):</strong>
+The background colors indicate the dominant emphasis within each six-month block:
+- pipeline stability and measurement reliability
+- shared observables and the Benchmark 0 gate
+- model contrasts and transition testing
+- validation and sufficiency mapping
+- benchmark packaging and external user testing
+- release readiness, transfer, and synthesis</p>
 <p><strong>Bar colors (roles):</strong>
 Each bar is colored by responsibility:
 - Blue: Principal Investigator (integration, evaluation, reporting)
 - Green: Postdoc 1 (empirical data and diagnostics)
 - Teal: Postdoc 2 (generative modeling and simulation)
 - Muted tone: shared team efforts (papers, releases, synthesis)</p>
+<p><strong>Benchmark 0 gate:</strong>
+The highlighted brown-outlined bar marks the formal Year 1 decision gate that compares single-law and multi-regime explanations using AIC/BIC, cross-validation, change-point analysis, and alignment against transport-demand transitions.</p>
 <p><strong>Bar length and position:</strong>
 Bar length indicates duration of effort. Position shows when each activity occurs relative to others.</p>
 <hr />
 <h2 id="how-to-interpret-this-figure">How to Interpret This Figure</h2>
-<p>The figure should be read from left to right as a scientific workflow:</p>
+<p>The figure should be read from left to right as a decision-gated scientific workflow:</p>
 <ol>
-<li>The project begins by establishing the team and building a validated dataset of wildfire trajectories.</li>
-<li>Measurement tools are developed to detect scaling behavior and regime structure.</li>
-<li>In parallel, generative models are constructed to reproduce observed dynamics.</li>
-<li>These models are systematically explored to identify mechanisms that produce observed patterns.</li>
-<li>Empirical and generative results are integrated to determine whether wildfire behavior is driven by intrinsic dynamics or external forcing.</li>
-<li>The resulting diagnostics are applied to evaluate existing fire models.</li>
-<li>The project concludes with open data releases, reusable tools, and synthesis publications.</li>
+<li>Year 1 emphasizes setup, data governance, event stabilization, trajectory assembly, QA/QC, observables, and Benchmark 0.</li>
+<li>Year 2 emphasizes model library buildout, controlled contrasts, regime detection, ablations, calibration audits, validation, and sufficiency mapping.</li>
+<li>Year 3 emphasizes benchmark packaging, external user testing, release readiness, onboarding, transfer, and synthesis reporting.</li>
 </ol>
-<p>This structure ensures that the project moves from observation → explanation → application in a coherent and testable way.</p>
+<p>This structure keeps scientific deliverables and benchmark infrastructure legible within one figure while preserving the proposal's Detect → Explain → Apply logic.</p>
 <hr />
 <h2 id="why-this-matters">Why This Matters</h2>
 <p>This framework provides:</p>

@@ -1485,3 +1485,84 @@ User asked for a button on the homepage next to the strategy/framing links that 
 
 ### Open questions and follow-up
 - The homepage button currently points to `main4.pdf` as the latest Prism export. If newer exports are added later, the link will need to be updated unless a stable alias or redirect is introduced.
+
+## 2026-03-22
+
+### Prompt
+User asked to update the FIRE-MODEL Gantt chart generator so the figure matches the current proposal draft's Work Plan, Milestones, and Deliverables logic, with no hand-editing of the exported chart and only minimal surrounding text changes.
+
+### Files and folders inspected
+- `AGENTS.md`
+- `scripts/generate_fire_model_gantt.py`
+- `docs/planning/gantt_chart.md`
+- `docs/research-program/gantt-timeline.md`
+- `docs/research-program/work-plan.md`
+- `docs/project-overview/review-resubmission-strategy.md`
+- `docs/planning/staffing-plan.md`
+- `docs/assets/figures/fire_model_gantt_ESIIL_minimal.svg`
+- `PROMPT_ACTION_LOG.md`
+
+### Actions taken
+- Confirmed that `scripts/generate_fire_model_gantt.py` is the sole source-of-truth generator for the FIRE-MODEL Gantt figure and that it writes outputs to `docs/assets/figures/fire_model_gantt_ESIIL_minimal.svg` and the gitignored PNG companion path.
+- Replaced the old hard-coded task list with proposal-aligned Year 1 / Detect, Year 2 / Explain, and Year 3 / Apply task definitions, including explicit `Benchmark 0`, stronger late-stage Apply tasks, and clearer separation among setup, empirical diagnostics, generative modeling, integration/evaluation, and dissemination.
+- Updated the chart's visual semantics in code: year labels now read `Year 1 - Detect`, `Year 2 - Explain`, and `Year 3 - Apply`; background bands now reflect six-month emphasis blocks aligned to the revised proposal logic; task labels are rendered at the left for readability; `Benchmark 0` is highlighted as a formal gate with a distinct outline.
+- Regenerated the chart asset from code, producing a new tracked SVG and a local PNG at the existing expected path.
+- Updated `docs/planning/gantt_chart.md` and `docs/research-program/gantt-timeline.md` only where the old chart legend/sequence language no longer matched the revised figure semantics.
+
+### Verification
+- Parsed the updated generator successfully with Python `ast`.
+- Re-ran the chart generation workflow and confirmed that the updated SVG contains the revised year labels, stage-band labels, and `Benchmark 0 gate` legend entry.
+- Ran `bash scripts/review_site.sh`; MkDocs rebuilt successfully into `dist/`, while the script's test step could not run because `pytest` is not installed in the local environment.
+
+### Open questions and follow-up
+- The tracked asset is the SVG; the PNG companion is intentionally gitignored in this repository, so the commit-visible figure change is the regenerated SVG plus the updated generator and website text.
+- The local environment's Matplotlib PNG export was unstable in the sandbox, so the repository-facing result relies on the regenerated SVG, which is the asset currently used by the website and is the publication-ready source in version control.
+
+## 2026-03-22
+
+### Prompt
+User noted that the updated Gantt chart still had overlapping text and asked for spacing cleanup.
+
+### Files and folders inspected
+- `scripts/generate_fire_model_gantt.py`
+- `docs/assets/figures/fire_model_gantt_ESIIL_minimal.svg`
+- `docs/assets/figures/fire_model_gantt_ESIIL_minimal.png`
+- `PROMPT_ACTION_LOG.md`
+
+### Actions taken
+- Increased figure height and top margin in the Gantt generator to create more vertical breathing room.
+- Shortened the stage-band labels so the top-of-chart text fits without crowding.
+- Moved the year labels higher above the chart and pushed the left-hand group labels farther away from the task labels.
+- Regenerated the chart assets from code after the spacing changes.
+
+### Verification
+- Inspected the regenerated PNG preview to confirm the major text collisions were reduced.
+- Ran `bash scripts/review_site.sh`; MkDocs rebuilt successfully into `dist/`, while the script's test step could not run because `pytest` is not installed in the local environment.
+
+### Open questions and follow-up
+- The pure-Python PNG fallback remains less polished than the tracked SVG, so the version-controlled website figure should still be judged primarily from the SVG output.
+
+## 2026-03-22
+
+### Prompt
+User pointed out that the left side of the updated Gantt chart still had overlapping text and asked for more vertical space plus a more NSF-style font.
+
+### Files and folders inspected
+- `scripts/generate_fire_model_gantt.py`
+- `docs/assets/figures/fire_model_gantt_ESIIL_minimal.svg`
+- `docs/assets/figures/fire_model_gantt_ESIIL_minimal.png`
+- `PROMPT_ACTION_LOG.md`
+
+### Actions taken
+- Increased the overall figure size, top margin, left margin, and row height in the Gantt generator to give the task and group labels more breathing room.
+- Shortened the displayed left-hand group labels to cleaner reviewer-facing forms such as `Team / workflow` and `Empirical diagnostics`.
+- Replaced the PNG fallback's bitmap text with Pillow-based rendering using local `Times New Roman` system fonts.
+- Updated the SVG font stack to a proposal-style serif stack based on `Times New Roman`.
+- Regenerated both SVG and PNG assets from code after the typography and spacing changes.
+
+### Verification
+- Inspected the regenerated PNG preview to confirm the left-side overlaps were substantially reduced and the typography was no longer bitmap-style.
+- Ran `bash scripts/review_site.sh`; MkDocs rebuilt successfully into `dist/`, while the script's test step could not run because `pytest` is not installed in the local environment.
+
+### Open questions and follow-up
+- The bottom legend/x-axis area could still be refined further if a later pass is desired, but the user-requested left-side spacing and font issues were addressed in this iteration.
