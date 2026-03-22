@@ -1436,3 +1436,29 @@ User asked for a folder in the repo where Prism-exported PDF drafts can be dropp
 
 ### Open questions and follow-up
 - If Prism exports end up covering multiple proposal components regularly, it may be useful to add subfolders later for sections such as project summary, full narrative, and review copies.
+
+## 2026-03-21
+
+### Prompt
+User asked for a summary document covering each Prism-exported PDF added to `proposal/narrative/drafts/prism_pdf_exports/` so future agents can understand what happened at each draft, with emphasis on transparency of AI use.
+
+### Files and folders inspected
+- `AGENTS.md`
+- `proposal/narrative/drafts/prism_pdf_exports/`
+- `proposal/narrative/drafts/prism_pdf_exports/README.md`
+- `PROMPT_ACTION_LOG.md`
+
+### Actions taken
+- Inspected the Prism PDF export folder and identified four exported drafts: `main.pdf`, `main-2.pdf`, `main 3.pdf`, and `main4.pdf`.
+- Installed the lightweight `pypdf` package temporarily into `/tmp/codex_pypdf` so the PDFs could be parsed locally without changing repository dependencies.
+- Extracted observable text, page counts, and modification-time ordering from each PDF.
+- Added `proposal/narrative/drafts/prism_pdf_exports/prism_pdf_draft_history_summary.md` with one summary entry per PDF, a chronology note, and explicit limits on what can and cannot be inferred about AI use from the exported PDFs alone.
+- Updated `proposal/narrative/drafts/prism_pdf_exports/README.md` to point future contributors to the draft-history summary.
+
+### Verification
+- Confirmed all four PDFs were readable with local extraction tooling.
+- Confirmed the summary document reflects the visible chronology and notes the absence of embedded prompt-level provenance in the PDF artifacts.
+
+### Open questions and follow-up
+- The current summary reconstructs content-visible changes only. A fuller AI-use transparency record would require a separate human-authored note describing what was asked of Prism during each drafting step.
+- The generic filenames make future auditing harder; renaming future exports with dates and section names would improve traceability.
