@@ -30,4 +30,5 @@ This section tracks major narrative drafts, the differences between them, and th
 - [Draft 02 text](draft-02.md)
 - [Draft 01 → Draft 02 change report](change-report.md)
 - [Proposal integration document](integration-document.md)
+- [Model Reconciliation Council](model-reconciliation-council.md)
 - [Draft review agenda](agenda.md)

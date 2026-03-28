@@ -1566,3 +1566,30 @@ User pointed out that the left side of the updated Gantt chart still had overlap
 
 ### Open questions and follow-up
 - The bottom legend/x-axis area could still be refined further if a later pass is desired, but the user-requested left-side spacing and font issues were addressed in this iteration.
+
+## 2026-03-28
+
+### Prompt
+User asked to add a new drafting document titled `Model Reconciliation Council` to the repository website, keep the provided text verbatim as a Markdown document, and place it in the drafting section so it can be injected into the current proposal draft.
+
+### Files and folders inspected
+- `AGENTS.md`
+- `mkdocs.yml`
+- `docs/drafts/index.md`
+- `docs/drafts/integration-document.md`
+- `docs/drafts/agenda.md`
+- `PROMPT_ACTION_LOG.md`
+- `scripts/review_site.sh`
+
+### Actions taken
+- Added `docs/drafts/model-reconciliation-council.md` as a new drafting page and preserved the user-provided body text as the page content.
+- Updated `docs/drafts/index.md` so the new page is visible from the drafts landing page.
+- Updated `mkdocs.yml` so the page appears in the website navigation under `Repository and Workflow > Drafts`.
+
+### Verification
+- Ran `bash scripts/review_site.sh`.
+- Confirmed MkDocs rebuilt the site successfully into `dist/`.
+- The script's test step could not run because `pytest` is not installed in the local environment.
+
+### Open questions and follow-up
+- Assumed the user's immediate need was website-visible drafting content rather than direct insertion into a proposal narrative file under `proposal/`; if desired, the next step is to identify the exact narrative section where this language should be integrated or adapted.
