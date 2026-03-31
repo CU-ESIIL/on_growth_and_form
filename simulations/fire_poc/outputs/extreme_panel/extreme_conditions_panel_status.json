@@ -1,0 +1,91 @@
+{
+  "forcing_source": "earth2studio_gefs",
+  "figure_path": "outputs/extreme_panel/figures/extreme_conditions_panel.png",
+  "scenario_statuses": [
+    {
+      "slug": "baseline",
+      "title": "Baseline",
+      "description": "Unmodified Earth2/GEFS forcing",
+      "benchmark_status": "run_completed_parser_not_implemented",
+      "case_dir": "/Users/tuff/Library/CloudStorage/OneDrive-UCB-O365/Documents/github/on_growth_and_form/simulations/fire_poc/outputs/extreme_panel/scenarios/baseline/case",
+      "forcing_summary": {
+        "n_steps": 5,
+        "duration_hours": 12.0,
+        "wind_speed_min_mps": 3.2130287135373807,
+        "wind_speed_max_mps": 5.531430524487931,
+        "temperature_min_c": 4.189086914062557,
+        "temperature_max_c": 15.011484375000009,
+        "relative_humidity_min_pct": 17.74740982055664,
+        "relative_humidity_max_pct": 38.100746154785156
+      }
+    },
+    {
+      "slug": "downburst",
+      "title": "Downburst Forcing",
+      "description": "Strong downward wind forcing with high surface coupling",
+      "benchmark_status": "run_completed_parser_not_implemented",
+      "case_dir": "/Users/tuff/Library/CloudStorage/OneDrive-UCB-O365/Documents/github/on_growth_and_form/simulations/fire_poc/outputs/extreme_panel/scenarios/downburst/case",
+      "forcing_summary": {
+        "n_steps": 5,
+        "duration_hours": 12.0,
+        "wind_speed_min_mps": 4.140358040819641,
+        "wind_speed_max_mps": 10.53167116240522,
+        "temperature_min_c": 8.189086914062557,
+        "temperature_max_c": 19.01148437500001,
+        "relative_humidity_min_pct": 12.778135070800781,
+        "relative_humidity_max_pct": 27.432537231445313
+      }
+    },
+    {
+      "slug": "directional_gusts",
+      "title": "Directional Gust Front",
+      "description": "Strong directional wind with repeated gust pulses",
+      "benchmark_status": "run_completed_parser_not_implemented",
+      "case_dir": "/Users/tuff/Library/CloudStorage/OneDrive-UCB-O365/Documents/github/on_growth_and_form/simulations/fire_poc/outputs/extreme_panel/scenarios/directional_gusts/case",
+      "forcing_summary": {
+        "n_steps": 5,
+        "duration_hours": 12.0,
+        "wind_speed_min_mps": 7.245626571434372,
+        "wind_speed_max_mps": 16.58738208078822,
+        "temperature_min_c": 7.689086914062557,
+        "temperature_max_c": 18.51148437500001,
+        "relative_humidity_min_pct": 12.068238677978517,
+        "relative_humidity_max_pct": 25.90850738525391
+      }
+    },
+    {
+      "slug": "light_dry_fuels",
+      "title": "Light Dry Fuels",
+      "description": "Open fine fuels with critically low dead-fuel moisture",
+      "benchmark_status": "run_completed_parser_not_implemented",
+      "case_dir": "/Users/tuff/Library/CloudStorage/OneDrive-UCB-O365/Documents/github/on_growth_and_form/simulations/fire_poc/outputs/extreme_panel/scenarios/light_dry_fuels/case",
+      "forcing_summary": {
+        "n_steps": 5,
+        "duration_hours": 12.0,
+        "wind_speed_min_mps": 4.337588763275464,
+        "wind_speed_max_mps": 7.467431208058707,
+        "temperature_min_c": 13.189086914062557,
+        "temperature_max_c": 24.01148437500001,
+        "relative_humidity_min_pct": 5.6791711425781255,
+        "relative_humidity_max_pct": 12.19223876953125
+      }
+    },
+    {
+      "slug": "compound_blowup",
+      "title": "Compound Blowup",
+      "description": "Downburst-like coupling, gusts, and light dry fine fuels together",
+      "benchmark_status": "run_completed_parser_not_implemented",
+      "case_dir": "/Users/tuff/Library/CloudStorage/OneDrive-UCB-O365/Documents/github/on_growth_and_form/simulations/fire_poc/outputs/extreme_panel/scenarios/compound_blowup/case",
+      "forcing_summary": {
+        "n_steps": 5,
+        "duration_hours": 12.0,
+        "wind_speed_min_mps": 9.315805591844192,
+        "wind_speed_max_mps": 23.69626011541174,
+        "temperature_min_c": 16.189086914062557,
+        "temperature_max_c": 27.01148437500001,
+        "relative_humidity_min_pct": 5.0,
+        "relative_humidity_max_pct": 9.144179077148436
+      }
+    }
+  ]
+}

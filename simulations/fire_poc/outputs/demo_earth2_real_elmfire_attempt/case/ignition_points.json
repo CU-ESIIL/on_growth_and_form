@@ -1,0 +1,11 @@
+{
+  "type": "point_ignition",
+  "description": "Inspectable ignition input for the proof of concept.",
+  "points": [
+    {
+      "x_m": 1200.0,
+      "y_m": 1200.0,
+      "time_hr": 0.0
+    }
+  ]
+}

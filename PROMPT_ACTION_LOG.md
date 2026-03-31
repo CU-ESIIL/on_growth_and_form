@@ -1593,3 +1593,453 @@ User asked to add a new drafting document titled `Model Reconciliation Council` 
 
 ### Open questions and follow-up
 - Assumed the user's immediate need was website-visible drafting content rather than direct insertion into a proposal narrative file under `proposal/`; if desired, the next step is to identify the exact narrative section where this language should be integrated or adapted.
+
+## 2026-03-30
+
+### Prompt
+User asked for a self-contained local-first proof of concept that compares an `ELMFIRE` benchmark scaffold against a regime-aware fire model, uses Earth2Studio GEFS weather when available, falls back cleanly to mock weather otherwise, keeps proposal-relevant output isolated so only the final figure would later be used, and remains runnable from both a Jupyter notebook and the command line on a Mac M3.
+
+### Files and folders inspected
+- `AGENTS.md`
+- `simulations/README.md`
+- `simulations/`
+- `PROMPT_ACTION_LOG.md`
+
+### Actions taken
+- Created a standalone project at `simulations/fire_poc/` with `pyproject.toml`, a project-specific `README.md`, notebook, `src/fire_poc/` package, and tests.
+- Implemented a shared forcing dataclass plus provider abstraction, including `MockEarth2Provider` and an `Earth2StudioGEFSProvider` that uses documented GEFS variable names and fails clearly when Earth2Studio is unavailable or the fetch step cannot complete.
+- Implemented an `ELMFIRE` case writer that generates GeoTIFF weather and fuels/topography inputs, writes `elmfire.data`, ignition metadata, and a `manifest.json`.
+- Implemented an `ELMFIRE` runner that distinguishes case writing from external execution, preserves logs when a command is supplied, and never claims a real run unless the executable actually completes.
+- Added a transparent pure-Python regime-aware comparison model, a proxy benchmark used only when the external benchmark does not run, comparison plotting, and a CLI.
+- Added a notebook `simulations/fire_poc/notebooks/elmfire_earth2_poc.ipynb` that mirrors the CLI workflow and runs with the mock provider.
+- Updated `simulations/README.md` so the repository-level simulations area points to the new self-contained proof of concept.
+
+### Verification
+- Ran `MPLBACKEND=Agg MPLCONFIGDIR=.mplcache python3 -m pytest -q tests` in `simulations/fire_poc/`; all 3 tests passed.
+- Ran `MPLBACKEND=Agg MPLCONFIGDIR=.mplcache PYTHONPATH=src python3 -m fire_poc.cli --provider mock --workdir outputs/demo`; the workflow completed, wrote the `ELMFIRE` case scaffold, and saved the comparison figure.
+- Confirmed generated artifacts under `simulations/fire_poc/outputs/demo/`, including `forcing.json`, `case/elmfire.data`, weather and fuels/topography GeoTIFFs, `case/manifest.json`, `pipeline_status.json`, and the final figure.
+- Ran `PYTHONPATH=src python3 -m fire_poc.cli --provider earth2 --workdir outputs/demo_earth2`; the workflow failed cleanly with a truthful error because `earth2studio` is not installed in the local environment.
+- Validated that `simulations/fire_poc/notebooks/elmfire_earth2_poc.ipynb` is well-formed JSON.
+
+### Open questions and follow-up
+- The Earth2Studio adapter is written against the documented `GEFS_FX` entry point, but it remains unexercised here because `earth2studio` is not installed locally.
+- No real `ELMFIRE` executable was available in this environment, so the verified boundary is full case generation plus proxy-figure production rather than external benchmark execution.
+- The proposal should treat the saved figure as a draft/generated artifact until reviewed and, if desired, copied into a proposal-facing figure location.
+
+### Prompt
+User asked: "can we install earth2studio?" and then asked to proceed with creating a separate compatible environment when the initial install failed in the existing Python 3.9 virtual environment.
+
+### Files and folders inspected
+- `simulations/fire_poc/`
+- `simulations/fire_poc/pyproject.toml`
+- `PROMPT_ACTION_LOG.md`
+
+### Actions taken
+- Confirmed that the existing project virtual environment used Python 3.9.6 and that `earth2studio` was not available there.
+- Created a separate project-local Python 3.12 environment at `simulations/fire_poc/.venv312` using `uv`.
+- Installed the project and optional `earth2` extra into that environment with `uv pip install --python .venv312/bin/python -e '.[earth2]'`.
+- Verified that `earth2studio` is now installed in the separate Python 3.12 environment.
+
+### Verification
+- Confirmed `.venv312/bin/python` points to a Python 3.12.8 interpreter managed by `uv`.
+- Ran `.venv312/bin/python -c "import earth2studio; print(earth2studio.__version__)"` and confirmed version `0.13.0`.
+
+### Open questions and follow-up
+- `earth2studio` is installed and importable in `.venv312`, but the workflow has not yet exercised a live GEFS fetch through the provider in this environment.
+- The original `.venv` remains on Python 3.9.6; the Earth2-enabled environment is now `.venv312`.
+
+### Prompt
+User asked to try the simulation with climate from Earth2.
+
+### Files and folders inspected
+- `simulations/fire_poc/src/fire_poc/earth2_provider.py`
+- `simulations/fire_poc/outputs/demo_earth2_live/`
+- `PROMPT_ACTION_LOG.md`
+
+### Actions taken
+- Ran the Earth2-backed workflow in `simulations/fire_poc/.venv312`.
+- Diagnosed and fixed three Earth2Studio integration issues in `earth2_provider.py`: timezone-aware `datetime` handling, unsupported 1-hour GEFS lead-time cadence, and longitude normalization for `0..360` GEFS grids versus negative west longitudes in the local domain config.
+- Added a conservative completed-cycle selection with a 6-hour lag to reduce missing-object fetches from the GEFS object store.
+- Re-ran the workflow successfully using `--provider earth2 --step-hours 3`.
+
+### Verification
+- Confirmed the Earth2-backed workflow completed and wrote outputs under `simulations/fire_poc/outputs/demo_earth2_live/`.
+- Confirmed `forcing.json` contains numeric Earth2Studio-derived forcing values rather than all-NaN outputs.
+- Confirmed the figure was written to `simulations/fire_poc/outputs/demo_earth2_live/figures/elmfire_vs_regime_model.png`.
+- The benchmark status remained `case-written-only`; no real `ELMFIRE` executable was run.
+
+### Open questions and follow-up
+- The current Earth2 integration reduces GEFS fields to a simple domain-mean series over a small idealized box; a later refinement could expose domain bounds and member choice as CLI parameters.
+- The Earth2-backed run still uses the proxy benchmark for plotting because no `ELMFIRE` executable was supplied.
+
+### Prompt
+User asked to "fix elmfire" after the Earth2-backed scaffold was working.
+
+### Files and folders inspected
+- `simulations/fire_poc/src/fire_poc/elmfire_case.py`
+- `simulations/fire_poc/src/fire_poc/elmfire_runner.py`
+- `simulations/fire_poc/tests/test_case_writer.py`
+- `simulations/fire_poc/outputs/demo_earth2_with_missing_elmfire/`
+- `PROMPT_ACTION_LOG.md`
+
+### Actions taken
+- Updated the ELMFIRE case writer to better match current ELMFIRE documentation by removing `.tif` suffixes from filenames in `elmfire.data`, converting wind speed rasters to mph, marking winds as `WS_AT_10M = .TRUE.`, and adding explicit `&COMPUTATIONAL_DOMAIN`, `&TIME_CONTROL`, `&SIMULATOR`, and `&OUTPUTS` namelist groups.
+- Added explicit outputs-directory creation and a small `run_elmfire.sh` helper script in each written case directory.
+- Hardened the runner so missing executables no longer crash the pipeline and instead return a truthful `run_failed_missing_executable` status with preserved stderr logging.
+- Re-ran the Earth2-backed workflow with `--elmfire-cmd elmfire` to test the new failure boundary.
+
+### Verification
+- Ran `MPLBACKEND=Agg MPLCONFIGDIR=.mplcache python3 -m pytest -q tests` in `simulations/fire_poc/`; all 3 tests passed after the case-writer and runner changes.
+- Ran the Earth2-backed workflow with `--elmfire-cmd elmfire`; the case was written successfully and the runner reported `run_failed_missing_executable` rather than crashing.
+- Confirmed the missing-executable reason in `simulations/fire_poc/outputs/demo_earth2_with_missing_elmfire/case/elmfire_stderr.log`.
+
+### Open questions and follow-up
+- The remaining blocker to a real ELMFIRE run on this Mac is environmental: no `elmfire` executable was found, and no local `gfortran` or `mpirun` toolchain was present in `PATH` during inspection.
+- If the user wants to continue toward a real benchmark run, the next step is to either point the workflow at an existing ELMFIRE executable/source tree or install the required local toolchain and build ELMFIRE.
+
+### Prompt
+User installed Homebrew and asked to continue bringing up the local ELMFIRE path on the Mac.
+
+### Files and folders inspected
+- `simulations/fire_poc/src/fire_poc/elmfire_case.py`
+- `simulations/fire_poc/src/fire_poc/elmfire_runner.py`
+- `simulations/fire_poc/README.md`
+- `simulations/elmfire_src/build/linux/make_gnu.sh`
+- `simulations/elmfire_src/build/linux/Makefile_elmfire`
+- `simulations/elmfire_src/tutorials/01-constant-wind/01-run.sh`
+- `simulations/elmfire_src/tutorials/02-transient-wind/elmfire.data.in`
+- `simulations/elmfire_src/build/source/elmfire_namelists.f90`
+- `simulations/elmfire_src/build/source/elmfire_init.f90`
+- `simulations/fire_poc/outputs/demo_earth2_real_elmfire_attempt4/`
+- `simulations/fire_poc/outputs/demo_earth2_real_elmfire_attempt5/`
+- `simulations/fire_poc/outputs/demo_earth2_real_elmfire_attempt6/`
+- `simulations/fire_poc/outputs/demo_earth2_real_elmfire_attempt7/`
+- `/tmp/e7/`
+- `/tmp/e8/`
+- `PROMPT_ACTION_LOG.md`
+
+### Actions taken
+- Installed Homebrew toolchain components needed for a local bring-up: `gcc`, `open-mpi`, and later `gdal`.
+- Cloned the upstream ELMFIRE source into `simulations/elmfire_src` and built the executable at `simulations/elmfire_src/build/linux/elmfire/elmfire`, working around a Linux-specific `-unroll` link issue by compiling without that flag on macOS.
+- Updated `elmfire_case.py` to create absolute-path case directories, add a scratch directory, align the namelists more closely with the upstream transient-wind tutorial, detect a macOS/Homebrew GDAL binary directory, and write `adj.tif` and `phi.tif` into the fuels/topography directory as static companion rasters.
+- Updated `elmfire_runner.py` so output-side errors from ELMFIRE and GDAL are treated as real run failures rather than mislabeled completions.
+- Ran repeated Earth2-backed real-ELMFIRE attempts to move the native boundary forward:
+  - initial attempts progressed from missing executable to accepted namelists,
+  - then to automatic `fuel_models.csv` creation,
+  - then through GDAL raster conversion after installing Homebrew GDAL,
+  - then through full raster ingestion and into ensemble execution when run from a short temporary path.
+- Updated `simulations/fire_poc/README.md` to document the verified Mac M3 state and the current macOS-native limitation.
+
+### Verification
+- Verified `gfortran` and `mpirun` were available from Homebrew after installation.
+- Verified Homebrew GDAL installed successfully and `gdal_translate` exists at `/opt/homebrew/bin/gdal_translate`.
+- Ran `source .venv312/bin/activate && python -m pytest -q tests` in `simulations/fire_poc/`; all 3 tests passed after the ELMFIRE scaffolding changes.
+- Verified the shortest successful native progression at `/tmp/e8/case/elmfire_stdout.log`: ELMFIRE completed weather/topography raster conversion, allocated shared memory, set up statistics arrays, and printed `ELMFIRE is running each ensemble member`.
+- Verified the corresponding failure boundary at `/tmp/e8/case/elmfire_stderr.log`: native crash with `SIGBUS` before any benchmark outputs were written.
+- Verified truthful pipeline status in `/tmp/e8/pipeline_status.json`: `benchmark_status` is `run_failed`, `benchmark_type` is `real ELMFIRE`, and `proxy_used_for_plotting` is `true`.
+
+### Open questions and follow-up
+- The remaining blocker appears to be a native macOS runtime issue inside ELMFIRE after startup rather than a case-format, GDAL, or weather-forcing issue.
+- A next debugging step would likely require either a Linux VM/container or deeper upstream-oriented debugging of the native crash on macOS.
+
+### Prompt
+User asked whether we could get ELMFIRE working.
+
+### Files and folders inspected
+- `simulations/fire_poc/src/fire_poc/elmfire_case.py`
+- `simulations/fire_poc/src/fire_poc/cli.py`
+- `simulations/fire_poc/src/fire_poc/config.py`
+- `simulations/fire_poc/src/fire_poc/mock_provider.py`
+- `simulations/fire_poc/src/fire_poc/forcing.py`
+- `simulations/fire_poc/src/fire_poc/elmfire_runner.py`
+- `simulations/elmfire_src/build/source/elmfire_subs.f90`
+- `/tmp/e8/`
+- `/tmp/e9/`
+- `/tmp/e10/`
+- `/tmp/e11/`
+- `/tmp/e12/`
+- `/tmp/e13/`
+- `simulations/fire_poc/outputs/earth2_real_repo/`
+- `simulations/fire_poc/README.md`
+- `PROMPT_ACTION_LOG.md`
+
+### Actions taken
+- Isolated the native crash by reproducing it with both Earth2-backed and mock-weather runs; confirmed it was not specific to Earth2Studio.
+- Used `lldb` on the built ELMFIRE executable and traced the `EXC_BAD_ACCESS`/`SIGBUS` to `__elmfire_subs_MOD_init` in `elmfire_subs.f90`, where the code dereferences fuel/topography arrays using ignition-derived indices.
+- Identified that the scaffold had been writing ignition coordinates as local offsets within the domain instead of absolute CRS coordinates expected by ELMFIRE.
+- Patched `elmfire_case.py` so `elmfire.data` writes absolute `X_IGN`/`Y_IGN` coordinates while preserving inspectable local and absolute ignition metadata in `ignition_points.json`.
+- Switched the ELMFIRE case-file directories in `elmfire.data` to self-contained relative paths (`./inputs`, `./outputs`, `./scratch`) so real runs work from inside the repo section without depending on long absolute paths.
+- Re-ran the simplest mock case and then the intended Earth2-backed case with the real ELMFIRE executable.
+- Updated `simulations/fire_poc/README.md` to reflect that the current proof-of-concept benchmark now runs successfully on the Mac for this case.
+
+### Verification
+- Ran `source .venv312/bin/activate && python -m pytest -q tests` in `simulations/fire_poc/`; all 3 tests passed after the ignition and relative-path fixes.
+- Verified the simplest real benchmark completed successfully in `/tmp/e12/case/elmfire_stdout.log` with `End of simulation reached successfully. Shutting down.` and wrote output files under `/tmp/e12/case/outputs/`.
+- Verified the Earth2-backed real benchmark also completed successfully in `/tmp/e13/case/elmfire_stdout.log` with no stderr output and output files under `/tmp/e13/case/outputs/`.
+- Verified the repo-contained Earth2-backed run completed successfully in `simulations/fire_poc/outputs/earth2_real_repo/case/elmfire_stdout.log`, with outputs written under `simulations/fire_poc/outputs/earth2_real_repo/case/outputs/`.
+- Verified truthful status in `simulations/fire_poc/outputs/earth2_real_repo/pipeline_status.json`: `benchmark_type` is `real ELMFIRE`, `benchmark_status` is `run_completed_parser_not_implemented`, and `proxy_used_for_plotting` is `false`.
+
+### Open questions and follow-up
+- The wrapper still does not parse ELMFIRE `.bil/.hdr` outputs, so the comparison figure can label a real benchmark run truthfully but does not yet ingest those outputs into the plotted perimeter/area comparison.
+- If proposal use needs direct ELMFIRE-derived plotted perimeters rather than truthful run-status distinction, the next step is to implement a small ENVI/BIL output parser.
+
+### Prompt
+User asked for a map of the time sequence of the simulation with all parameters labeled on the figure.
+
+### Files and folders inspected
+- `simulations/fire_poc/src/fire_poc/plotting.py`
+- `simulations/fire_poc/src/fire_poc/compare.py`
+- `simulations/fire_poc/src/fire_poc/cli.py`
+- `simulations/fire_poc/src/fire_poc/geometry.py`
+- `simulations/fire_poc/src/fire_poc/regime_model.py`
+- `simulations/fire_poc/outputs/earth2_real_repo/forcing.json`
+- `simulations/fire_poc/outputs/earth2_real_repo/case/outputs/fire_size_stats.csv`
+- `simulations/fire_poc/outputs/earth2_real_repo/case/outputs/time_of_arrival_0000001_0043830.hdr`
+- `simulations/fire_poc/outputs/earth2_real_repo/figures/`
+- `PROMPT_ACTION_LOG.md`
+
+### Actions taken
+- Added a small ELMFIRE output reader in `plotting.py` for ENVI/BIL time-of-arrival rasters and fire-size statistics.
+- Added a new labeled figure generator that creates a four-panel time-sequence arrival map plus a parameter panel summarizing forcing, domain settings, ignition, and final ELMFIRE metrics.
+- Updated the workflow in `compare.py` so a completed real ELMFIRE run automatically writes `elmfire_time_sequence_map.png`.
+- Updated the CLI in `cli.py` to print the new map figure path when available.
+- Re-ran the Earth2-backed real ELMFIRE workflow in `simulations/fire_poc/outputs/earth2_real_repo/` to generate the new figure.
+
+### Verification
+- Ran `source .venv312/bin/activate && python -m pytest -q tests` in `simulations/fire_poc/`; all 3 tests passed.
+- Verified the Earth2-backed run still completed successfully and wrote the new figure to `simulations/fire_poc/outputs/earth2_real_repo/figures/elmfire_time_sequence_map.png`.
+- Opened the generated image locally to confirm that the snapshot maps and parameter labels render clearly.
+
+### Open questions and follow-up
+- The time-sequence map currently uses the real ELMFIRE time-of-arrival raster and final summary CSV, but it does not yet reconstruct vector perimeters from the raster outputs.
+
+### Prompt
+User asked for a panel with time down the rows and different manifestations of extreme conditions across columns, then asked for more extreme wind-forcing, gust, and light-dry-fuel scenarios because the first panel looked too similar.
+
+### Files and folders inspected
+- `simulations/fire_poc/src/fire_poc/compare.py`
+- `simulations/fire_poc/src/fire_poc/plotting.py`
+- `simulations/fire_poc/src/fire_poc/cli.py`
+- `simulations/fire_poc/src/fire_poc/elmfire_case.py`
+- `simulations/fire_poc/outputs/extreme_panel/`
+- `PROMPT_ACTION_LOG.md`
+
+### Actions taken
+- Added an `extremes-panel` workflow mode to the CLI and comparison orchestration so the project can run multiple real ELMFIRE cases and assemble them into a single multi-column panel figure.
+- Implemented an initial extreme-conditions panel using Earth2-backed baseline forcing and scenario perturbations.
+- After the user asked for more dramatic contrasts, expanded the case writer to respect scenario metadata for ELMFIRE-side wind coupling and fuel/exposure structure, including `adj`/`phi` scaling, dead-fuel moisture offsets, fuel model code, and canopy/exposure settings.
+- Replaced the earlier mild scenarios with stronger, more distinct columns:
+  - `Baseline`
+  - `Downburst Forcing`
+  - `Directional Gust Front`
+  - `Light Dry Fuels`
+  - `Compound Blowup`
+- Re-ran the real Earth2-backed ELMFIRE panel in `simulations/fire_poc/outputs/extreme_panel/`.
+
+### Verification
+- Ran `source .venv312/bin/activate && python -m pytest -q tests` in `simulations/fire_poc/`; all 3 tests passed after the scenario and case-writer changes.
+- Verified the revised figure was written to `simulations/fire_poc/outputs/extreme_panel/figures/extreme_conditions_panel.png`.
+- Opened the generated panel image locally to confirm that the columns now separate clearly.
+- Verified scenario-level final areas from the ELMFIRE outputs:
+  - baseline: `26.2 ac`
+  - downburst: `474.1 ac`
+  - directional gusts: `350.3 ac`
+  - light dry fuels: `365.2 ac`
+  - compound blowup: `522.8 ac`
+
+### Open questions and follow-up
+- The `extreme_panel` folder still contains some older scenario subdirectories from the first pass; the current figure and status file reflect the newer stronger scenarios.
+- If needed for proposal messaging, the next refinement would be visual: shorter column labels, fewer header lines, or a more polished publication-style layout.
+
+### Prompt
+User asked to do all of the proposed panel refinements: enlarge the map domain, add smarter framing, and make the ELMFIRE perimeters rougher and less idealized.
+
+### Files and folders inspected
+- `simulations/fire_poc/src/fire_poc/elmfire_case.py`
+- `simulations/fire_poc/src/fire_poc/compare.py`
+- `simulations/fire_poc/src/fire_poc/plotting.py`
+- `simulations/fire_poc/tests/test_case_writer.py`
+- `simulations/fire_poc/README.md`
+- `simulations/fire_poc/outputs/extreme_panel/`
+- `PROMPT_ACTION_LOG.md`
+
+### Actions taken
+- Enlarged the extreme-panel common domain to `520 x 520` cells at `30 m` resolution with a larger ignition offset so the strongest scenarios have more downwind room.
+- Added deterministic spatial heterogeneity to the ELMFIRE case writer so weather exposure, dead-fuel moisture, canopy structure, slope, aspect, and terrain vary in scenario-specific ways instead of staying nearly uniform.
+- Tuned the extreme scenarios to use the new heterogeneity controls, especially for downburst corridors, directional gust streaks, and dry-fuel patchiness.
+- Updated the extreme-panel plotting so each column auto-frames the final burned extent while still preserving a common underlying simulation setup.
+- Added a regression check that verifies the case writer now produces spatially variable weather rasters when heterogeneity metadata is enabled.
+- Updated the `simulations/fire_poc/README.md` description of the extremes-panel workflow to reflect the larger domain, auto-framing, and rougher perimeters.
+
+### Verification
+- Ran `source .venv312/bin/activate && python -m pytest -q tests` in `simulations/fire_poc/`; all 3 tests passed.
+- Re-ran the real Earth2-backed ELMFIRE extremes panel with `python -m fire_poc.cli --mode extremes-panel --provider earth2 --step-hours 3 --elmfire-cmd /Users/tuff/Library/CloudStorage/OneDrive-UCB-O365/Documents/github/on_growth_and_form/simulations/elmfire_src/build/linux/elmfire/elmfire --workdir outputs/extreme_panel`.
+- Verified the regenerated panel at `simulations/fire_poc/outputs/extreme_panel/figures/extreme_conditions_panel.png` and confirmed the new columns are rougher and better framed.
+- Checked updated final burned areas from the ELMFIRE outputs:
+  - baseline: `36.0 ac`
+  - downburst: `1776.0 ac`
+  - directional gusts: `622.5 ac`
+  - light dry fuels: `821.3 ac`
+  - compound blowup: `7343.9 ac`
+
+### Open questions and follow-up
+- The compound blowup case is now framed by its burned extent rather than clipped by a fixed map window, but if the proposal figure should emphasize absolute common-domain scale instead, the next pass should use an even larger shared domain and shorter text labels.
+
+### Prompt
+User asked for a very detailed Markdown description of the full `fire_poc` workflow built today, including architecture, installed programs, settings, and build details, asked for that material to be added to the website, and also noted that some of the strong fire scenarios still seemed to need more actual simulation room rather than just better plotting.
+
+### Files and folders inspected
+- `PROMPT_ACTION_LOG.md`
+- `mkdocs.yml`
+- `docs/workflow.md`
+- `simulations/README.md`
+- `simulations/fire_poc/README.md`
+- `simulations/fire_poc/pyproject.toml`
+- `simulations/fire_poc/notebooks/elmfire_earth2_poc.ipynb`
+- `simulations/fire_poc/src/fire_poc/compare.py`
+- `simulations/fire_poc/src/fire_poc/earth2_provider.py`
+- `simulations/fire_poc/src/fire_poc/elmfire_case.py`
+- `simulations/fire_poc/src/fire_poc/elmfire_runner.py`
+- `simulations/fire_poc/src/fire_poc/mock_provider.py`
+- `simulations/fire_poc/src/fire_poc/plotting.py`
+- `simulations/fire_poc/src/fire_poc/regime_model.py`
+- `simulations/fire_poc/tests/test_case_writer.py`
+- `simulations/fire_poc/outputs/extreme_panel/`
+
+### Actions taken
+- Wrote a detailed repo-local workflow document at `simulations/fire_poc/WORKFLOW_BUILDOUT_2026-03-30.md` describing the architecture, environment split, Earth2Studio integration, ELMFIRE bring-up, current scenario design, installed tools, and proposal-facing outputs.
+- Added a website page at `docs/fire-poc-workflow.md` with the same buildout story and an architecture schematic, then linked it into the site navigation in `mkdocs.yml` and from `docs/workflow.md`.
+- Updated `simulations/README.md` so the simulations area points readers to the detailed `fire_poc` buildout document.
+- Increased the extreme-panel computational domain from `520 x 520` to `700 x 700` cells at `30 m` resolution and moved the ignition upwind within the domain so the strongest scenarios have more genuine runout room.
+- Fixed rerun hygiene in `elmfire_case.py` by clearing prior generated case artifacts before rewriting a scenario case.
+- Fixed output selection in `plotting.py` so repeated runs use the most recently modified matching output product rather than whichever filename sorts first alphabetically.
+- Re-ran the real Earth2-backed extreme-conditions panel after the larger-domain and fresh-case fixes.
+
+### Verification
+- Ran `source .venv312/bin/activate && MPLBACKEND=Agg MPLCONFIGDIR=.mplcache python -m pytest -q tests` in `simulations/fire_poc/`; all 3 tests passed.
+- Re-ran the real panel with `python -m fire_poc.cli --mode extremes-panel --provider earth2 --step-hours 3 --elmfire-cmd /Users/tuff/Library/CloudStorage/OneDrive-UCB-O365/Documents/github/on_growth_and_form/simulations/elmfire_src/build/linux/elmfire/elmfire --workdir outputs/extreme_panel`.
+- Verified the updated panel at `simulations/fire_poc/outputs/extreme_panel/figures/extreme_conditions_panel.png`.
+- Checked the final `time_of_arrival` rasters and confirmed that none of the five scenarios touched the top, bottom, left, or right computational boundary in the new run.
+- Verified updated final burned areas from the rerun:
+  - baseline: `14.0 ac`
+  - downburst: `1290.1 ac`
+  - directional gusts: `1011.7 ac`
+  - light dry fuels: `517.7 ac`
+  - compound blowup: `6449.2 ac`
+- Ran `bash scripts/review_site.sh`; the MkDocs build succeeded and regenerated `dist/`, but the script’s test phase could not run because `pytest` is not available in the root site-review environment.
+
+### Open questions and follow-up
+- The new domain and ignition placement removed direct contact with the computational boundary, but the proposal version of the panel may still benefit from a cleaner graphic layout with shorter headers and more map area.
+- The website page is detailed enough for build provenance, but if it becomes part of reviewer-facing narrative rather than collaborator-facing documentation, it will likely need a later pass that separates implementation detail from proposal messaging.
+
+### Prompt
+User noted that the ignition star in the extreme-conditions panel did not line up with the fire, then asked to add a final row showing scaling behavior as a log-log plot of perimeter-to-area ratio so the figure can indicate how close each case is to `1/2` versus `2/3` perimeter-area scaling.
+
+### Files and folders inspected
+- `simulations/fire_poc/src/fire_poc/plotting.py`
+- `simulations/fire_poc/src/fire_poc/elmfire_case.py`
+- `simulations/fire_poc/outputs/extreme_panel/scenarios/compound_blowup/case/ignition_points.json`
+- `simulations/fire_poc/outputs/extreme_panel/scenarios/compound_blowup/case/elmfire.data`
+- `simulations/fire_poc/outputs/extreme_panel/scenarios/compound_blowup/case/outputs/time_of_arrival_0000001_0043212.hdr`
+- `simulations/fire_poc/tests/`
+
+### Actions taken
+- Traced the ignition mismatch to a plotting-orientation bug rather than a simulation-input bug: ELMFIRE rasters are stored in top-origin image order, while the panel was drawing them as if row `0` were at the bottom of the map.
+- Fixed the plotting utilities so ENVI/BIL rasters are flipped into map orientation before plotting, which brings the ignition star and burned area back into the same coordinate frame.
+- Added a final scaling row to the extreme-conditions panel. Each scenario now includes a log-log subplot of `P/A` versus `A`, with reference slope lines corresponding to `P ~ A^(1/2)` and `P ~ A^(2/3)`, plus a fitted `beta` estimate for the scenario.
+- Added raster-based area/perimeter helpers so scaling metrics are computed directly from the burned masks at the snapshot times.
+- Added a new regression test in `simulations/fire_poc/tests/test_plotting_metrics.py` for the raster area/perimeter calculation.
+- Regenerated `simulations/fire_poc/outputs/extreme_panel/figures/extreme_conditions_panel.png` from the existing scenario outputs without rerunning ELMFIRE, and also regenerated the labeled `elmfire_time_sequence_map.png` from existing real-run outputs so the same orientation fix applies there.
+
+### Verification
+- Verified from the raster header and earliest positive `time_of_arrival` cell that the simulation ignition was already correct and the misalignment came from plotting orientation.
+- Ran `source .venv312/bin/activate && MPLBACKEND=Agg MPLCONFIGDIR=.mplcache python -m pytest -q tests` in `simulations/fire_poc/`; all 4 tests passed after adding the new plotting-metrics test.
+- Opened the regenerated `simulations/fire_poc/outputs/extreme_panel/figures/extreme_conditions_panel.png` and confirmed that the ignition star now sits on the fire origin in each scenario column and that the new bottom scaling row renders correctly.
+
+### Open questions and follow-up
+- The new scaling row is compact and readable, but if the panel is promoted into a polished proposal figure it may benefit from one more layout pass so the map rows and scaling row have slightly more breathing room.
+
+### Prompt
+User clarified that the scaling row should show log area versus log perimeter rather than log area versus perimeter-to-area ratio.
+
+### Files and folders inspected
+- `simulations/fire_poc/src/fire_poc/plotting.py`
+- `simulations/fire_poc/outputs/extreme_panel/`
+- `simulations/fire_poc/tests/`
+
+### Actions taken
+- Updated the extreme-panel scaling row in `plotting.py` so each scenario now plots `log(P)` versus `log(A)` directly.
+- Kept the fitted `beta` estimate and the `P ~ A^(1/2)` and `P ~ A^(2/3)` reference lines, but re-anchored those references in perimeter space rather than perimeter-to-area-ratio space.
+- Regenerated `simulations/fire_poc/outputs/extreme_panel/figures/extreme_conditions_panel.png` from the existing scenario outputs without rerunning ELMFIRE.
+
+### Verification
+- Ran `source .venv312/bin/activate && MPLBACKEND=Agg MPLCONFIGDIR=.mplcache python -m pytest -q tests` in `simulations/fire_poc/`; all 4 tests passed.
+- Opened the regenerated `simulations/fire_poc/outputs/extreme_panel/figures/extreme_conditions_panel.png` and confirmed that the bottom row now shows log area on the x-axis and log perimeter on the y-axis.
+
+### Open questions and follow-up
+- The bottom row is now conceptually cleaner, but if the panel is headed for proposal use it may still be worth enlarging the scaling row labels slightly so the slope comparison reads more easily in a PDF.
+
+### Prompt
+User asked to change the last-row axis labels so they explicitly say `log area` and `log perimeter` rather than mixing a `log-log` note on one axis with a plain quantity label on the other.
+
+### Files and folders inspected
+- `simulations/fire_poc/src/fire_poc/plotting.py`
+- `simulations/fire_poc/outputs/extreme_panel/`
+- `simulations/fire_poc/tests/`
+
+### Actions taken
+- Updated the extreme-panel scaling-row labels in `plotting.py` so the x-axis now reads `log Area (m^2)` and the y-axis reads `log Perimeter (m)`.
+- Regenerated `simulations/fire_poc/outputs/extreme_panel/figures/extreme_conditions_panel.png` from the existing scenario outputs without rerunning ELMFIRE.
+
+### Verification
+- Ran `source .venv312/bin/activate && MPLBACKEND=Agg MPLCONFIGDIR=.mplcache python -m pytest -q tests` in `simulations/fire_poc/`; all 4 tests passed.
+- Verified the regenerated panel was written successfully.
+
+### Open questions and follow-up
+- The labels are now explicit, but the next aesthetic pass could still enlarge the bottom-row text slightly for proposal readability.
+
+### Prompt
+User asked to update the documentation Markdown and the website so they reflect the latest state of the `fire_poc` workflow and to make sure the current extreme-conditions plot is actually present on the website.
+
+### Files and folders inspected
+- `simulations/fire_poc/WORKFLOW_BUILDOUT_2026-03-30.md`
+- `docs/fire-poc-workflow.md`
+- `docs/assets/figures/`
+- `dist/fire-poc-workflow/index.html`
+- `simulations/fire_poc/outputs/extreme_panel/figures/extreme_conditions_panel.png`
+
+### Actions taken
+- Updated `simulations/fire_poc/WORKFLOW_BUILDOUT_2026-03-30.md` to reflect the latest plotting and workflow state, including the ignition-alignment fix, the larger `700 x 700` domain, the fact that the current run no longer touches the computational boundary, the direct `log(P)` versus `log(A)` scaling row, and the latest final burned areas.
+- Updated `docs/fire-poc-workflow.md` with the same current-state information and added a dedicated “Current extreme panel” section describing the latest figure.
+- Copied the current figure from `simulations/fire_poc/outputs/extreme_panel/figures/extreme_conditions_panel.png` into the website asset tree at `docs/assets/figures/fire_poc_extreme_conditions_panel.png`.
+- Embedded that copied figure in the website page so the site serves the current panel directly rather than relying on an out-of-tree path.
+
+### Verification
+- Ran `bash scripts/review_site.sh`; the MkDocs build succeeded and regenerated `dist/`, but the script’s final `pytest` step still could not run because `pytest` is not installed in the root site-review environment.
+- Verified that `dist/assets/figures/fire_poc_extreme_conditions_panel.png` exists after the build.
+- Verified that `dist/fire-poc-workflow/index.html` exists and references the copied figure asset.
+
+### Open questions and follow-up
+- The website now serves the current panel, but if the figure continues to change frequently it may be worth adding a small note on the page indicating that the embedded image is a synchronized snapshot of the latest generated output rather than a separately maintained website-only graphic.
+
+### Prompt
+User asked to change the extreme-panel figure title to `ELMFIRE simulations with extreme weather that produce 1/2 scaling`.
+
+### Files and folders inspected
+- `simulations/fire_poc/src/fire_poc/compare.py`
+- `docs/fire-poc-workflow.md`
+- `simulations/fire_poc/outputs/extreme_panel/`
+- `docs/assets/figures/`
+
+### Actions taken
+- Updated the source title string in `simulations/fire_poc/src/fire_poc/compare.py` so future reruns of the extremes workflow will use `ELMFIRE simulations with extreme weather that produce 1/2 scaling`.
+- Updated the embedded-image alt text in `docs/fire-poc-workflow.md` to match the new title.
+- Regenerated `simulations/fire_poc/outputs/extreme_panel/figures/extreme_conditions_panel.png` from the existing scenario outputs using the new title.
+- Copied the refreshed figure into `docs/assets/figures/fire_poc_extreme_conditions_panel.png` so the website serves the updated version.
+
+### Verification
+- Ran `source .venv312/bin/activate && MPLBACKEND=Agg MPLCONFIGDIR=.mplcache python -m pytest -q tests` in `simulations/fire_poc/`; all 4 tests passed.
+- Ran `bash scripts/review_site.sh`; the MkDocs build succeeded and regenerated `dist/`, but the script’s final `pytest` step still could not run because `pytest` is not installed in the root site-review environment.
+
+### Open questions and follow-up
+- The new title is now synchronized between the generated panel and the website asset, but if the proposal framing changes again later it may be worth deciding whether this title should remain a figure-specific caption or become part of the broader website narrative text.

@@ -1,0 +1,10 @@
+{
+  "forcing_source": "earth2studio_gefs",
+  "benchmark_type": "real ELMFIRE",
+  "benchmark_status": "run_completed_parser_not_implemented",
+  "benchmark_message": "ELMFIRE executable completed, but no parser is implemented for output products yet.",
+  "figure_path": "outputs/earth2_real_repo/figures/elmfire_vs_regime_model.png",
+  "map_figure_path": "outputs/earth2_real_repo/figures/elmfire_time_sequence_map.png",
+  "case_dir": "/Users/tuff/Library/CloudStorage/OneDrive-UCB-O365/Documents/github/on_growth_and_form/simulations/fire_poc/outputs/earth2_real_repo/case",
+  "proxy_used_for_plotting": false
+}

@@ -1,0 +1,9 @@
+{
+  "forcing_source": "earth2studio_gefs",
+  "benchmark_type": "real ELMFIRE",
+  "benchmark_status": "run_failed",
+  "benchmark_message": "ELMFIRE executable did not complete successfully. Case artifacts and logs were preserved.",
+  "figure_path": "outputs/demo_earth2_real_elmfire_attempt6/figures/elmfire_vs_regime_model.png",
+  "case_dir": "/Users/tuff/Library/CloudStorage/OneDrive-UCB-O365/Documents/github/on_growth_and_form/simulations/fire_poc/outputs/demo_earth2_real_elmfire_attempt6/case",
+  "proxy_used_for_plotting": true
+}

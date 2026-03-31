@@ -1,0 +1,17 @@
+sh: /usr/bin/gdal_translate: No such file or directory
+Fortran runtime error: EXECUTE_COMMAND_LINE: Invalid command line
+
+Error termination. Backtrace:
+
+Could not print backtrace: executable file is not an executable
+
+Could not print backtrace: executable file is not an executable
+#0  0x106ade103
+#1  0x106adecd7
+#2  0x106adefdf
+#3  0x106c1afbf
+#4  0x106c1b157
+#5  0x106c1b297
+#6  0x104a214c7
+#7  0x104a4971b
+#8  0x104a4a267

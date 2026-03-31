@@ -1,0 +1,78 @@
+{
+  "time_hours": [
+    0.0,
+    3.0,
+    6.0,
+    9.0,
+    12.0
+  ],
+  "wind_speed_mps": [
+    4.140358040819641,
+    6.104754555721023,
+    10.53167116240522,
+    8.880438406893456,
+    6.637716629385516
+  ],
+  "wind_direction_deg_from": [
+    262.0,
+    262.0,
+    262.0,
+    262.0,
+    262.0
+  ],
+  "temperature_c": [
+    8.189086914062557,
+    12.890869140625057,
+    18.248437500000023,
+    19.01148437500001,
+    16.84302734375001
+  ],
+  "relative_humidity_pct": [
+    27.432537231445313,
+    19.177280364990235,
+    13.77001483154297,
+    12.778135070800781,
+    15.878670227050781
+  ],
+  "pressure_pa": [
+    72146.79062500001,
+    72141.203125,
+    72101.9875,
+    71987.74375000001,
+    71967.325
+  ],
+  "precipitation_mmhr": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "source_name": "earth2studio_gefs",
+  "metadata": {
+    "provider": "earth2",
+    "member": "gec00",
+    "init_time_utc": "2026-03-30T12:00:00",
+    "variables": [
+      "u10m",
+      "v10m",
+      "t2m",
+      "r2m",
+      "sp"
+    ],
+    "cycle_lag_hours": 6,
+    "scenario": "downburst",
+    "adj_scale": 2.8,
+    "phi_scale": 2.0,
+    "heterogeneity_strength": 0.35,
+    "gust_corridor_strength": 1.55,
+    "wind_streak_strength": 0.7,
+    "dryness_patch_strength": 0.45,
+    "canopy_patchiness_pct": 8,
+    "slope_variability_deg": 8.0,
+    "canopy_cover_pct": 5,
+    "canopy_height_x10_m": 1,
+    "canopy_base_height_x10_m": 0,
+    "canopy_bulk_density_x100": 2
+  }
+}

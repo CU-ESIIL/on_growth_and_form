@@ -1,0 +1,57 @@
+&INPUTS
+  FUELS_AND_TOPOGRAPHY_DIRECTORY = '/Users/tuff/Library/CloudStorage/OneDrive-UCB-O365/Documents/github/on_growth_and_form/simulations/fire_poc/outputs/demo_earth2_real_elmfire_attempt6/case/inputs/fuels_and_topography'
+  WEATHER_DIRECTORY = '/Users/tuff/Library/CloudStorage/OneDrive-UCB-O365/Documents/github/on_growth_and_form/simulations/fire_poc/outputs/demo_earth2_real_elmfire_attempt6/case/inputs/weather'
+  ASP_FILENAME = 'asp'
+  CBD_FILENAME = 'cbd'
+  CBH_FILENAME = 'cbh'
+  CC_FILENAME = 'cc'
+  CH_FILENAME = 'ch'
+  DEM_FILENAME = 'dem'
+  FBFM_FILENAME = 'fbfm40'
+  SLP_FILENAME = 'slp'
+  ADJ_FILENAME = 'adj'
+  PHI_FILENAME = 'phi'
+  DT_METEOROLOGY = 10800.0
+  WS_AT_10M = .TRUE.
+  WS_FILENAME = 'ws'
+  WD_FILENAME = 'wd'
+  M1_FILENAME = 'm1'
+  M10_FILENAME = 'm10'
+  M100_FILENAME = 'm100'
+  LH_MOISTURE_CONTENT = 90.0
+  LW_MOISTURE_CONTENT = 90.0
+/
+&OUTPUTS
+  OUTPUTS_DIRECTORY = '/Users/tuff/Library/CloudStorage/OneDrive-UCB-O365/Documents/github/on_growth_and_form/simulations/fire_poc/outputs/demo_earth2_real_elmfire_attempt6/case/outputs'
+  DTDUMP = 10800.0
+  DUMP_FLIN = .TRUE.
+  DUMP_SPREAD_RATE = .TRUE.
+  DUMP_TIME_OF_ARRIVAL = .TRUE.
+  CONVERT_TO_GEOTIFF = .FALSE.
+/
+&COMPUTATIONAL_DOMAIN
+  A_SRS = 'EPSG:32613'
+  COMPUTATIONAL_DOMAIN_CELLSIZE = 30.0
+  COMPUTATIONAL_DOMAIN_XLLCORNER = 500000.0
+  COMPUTATIONAL_DOMAIN_YLLCORNER = 4400000.0
+/
+&TIME_CONTROL
+  SIMULATION_DT = 5.0
+  TARGET_CFL = 0.2
+  SIMULATION_TSTOP = 43200.0
+/
+&MONTE_CARLO
+  NUM_METEOROLOGY_TIMES = 5
+/
+&SIMULATOR
+  NUM_IGNITIONS = 1
+  X_IGN(1) = 1200.0
+  Y_IGN(1) = 1200.0
+  T_IGN(1) = 0.0
+  WX_BILINEAR_INTERPOLATION = .FALSE.
+  WSMFEFF_LOW_MULT = 0.011364
+/
+&MISCELLANEOUS
+  PATH_TO_GDAL = '/usr/bin'
+  SCRATCH = '/Users/tuff/Library/CloudStorage/OneDrive-UCB-O365/Documents/github/on_growth_and_form/simulations/fire_poc/outputs/demo_earth2_real_elmfire_attempt6/case/scratch'
+/

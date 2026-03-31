@@ -1,0 +1,32 @@
+{
+  "event_settings": {
+    "nx": 80,
+    "ny": 80,
+    "cell_size_m": 30.0,
+    "crs": "EPSG:32613",
+    "ignition_xy_m": [
+      1200.0,
+      1200.0
+    ]
+  },
+  "weather_summary": {
+    "n_steps": 5,
+    "duration_hours": 12.0,
+    "wind_speed_min_mps": 3.2130287135373807,
+    "wind_speed_max_mps": 5.531430524487931,
+    "temperature_min_c": 12.189086914062557,
+    "temperature_max_c": 23.01148437500001,
+    "relative_humidity_min_pct": 9.761075401306153,
+    "relative_humidity_max_pct": 20.955410385131838
+  },
+  "forcing_source": "earth2studio_gefs",
+  "file_paths": {
+    "inputs_dir": "/Users/tuff/Library/CloudStorage/OneDrive-UCB-O365/Documents/github/on_growth_and_form/simulations/fire_poc/outputs/extreme_panel/scenarios/hot_dry/case/inputs",
+    "weather_dir": "/Users/tuff/Library/CloudStorage/OneDrive-UCB-O365/Documents/github/on_growth_and_form/simulations/fire_poc/outputs/extreme_panel/scenarios/hot_dry/case/inputs/weather",
+    "fuels_and_topography_dir": "/Users/tuff/Library/CloudStorage/OneDrive-UCB-O365/Documents/github/on_growth_and_form/simulations/fire_poc/outputs/extreme_panel/scenarios/hot_dry/case/inputs/fuels_and_topography",
+    "outputs_dir": "/Users/tuff/Library/CloudStorage/OneDrive-UCB-O365/Documents/github/on_growth_and_form/simulations/fire_poc/outputs/extreme_panel/scenarios/hot_dry/case/outputs",
+    "elmfire_data": "/Users/tuff/Library/CloudStorage/OneDrive-UCB-O365/Documents/github/on_growth_and_form/simulations/fire_poc/outputs/extreme_panel/scenarios/hot_dry/case/elmfire.data",
+    "ignition": "/Users/tuff/Library/CloudStorage/OneDrive-UCB-O365/Documents/github/on_growth_and_form/simulations/fire_poc/outputs/extreme_panel/scenarios/hot_dry/case/ignition_points.json",
+    "run_script": "/Users/tuff/Library/CloudStorage/OneDrive-UCB-O365/Documents/github/on_growth_and_form/simulations/fire_poc/outputs/extreme_panel/scenarios/hot_dry/case/run_elmfire.sh"
+  }
+}

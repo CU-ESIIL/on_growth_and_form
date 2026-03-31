@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fire-poc"
+version = "0.1.0"
+description = "Local-first proof of concept for comparing an ELMFIRE benchmark against a regime-aware fire model."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+  "numpy",
+  "matplotlib",
+  "rasterio",
+  "jupyter",
+  "pytest",
+]
+
+[project.optional-dependencies]
+earth2 = [
+  "earth2studio",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+

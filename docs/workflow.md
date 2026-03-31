@@ -59,6 +59,10 @@
 
 Keep text, scripts, parameter files, and notes in version control. Avoid committing article PDFs or bulky generated outputs unless there is a specific archival reason.
 
+## Detailed simulation buildout
+
+The repository now also includes a dedicated long-form page on the `fire_poc` benchmark scaffold and figure-generation workflow. Use [Fire POC Workflow Buildout](fire-poc-workflow.md) when you need the architecture, environment split, ELMFIRE bring-up history, and current runtime settings behind the proposal-supporting simulation figures.
+
 ## FIRE-MODEL-specific reminder
 
 - Treat `funder/solicitation/fire_model_2026_briefing.md` as a funder guide and orientation aid, not a substitute for the official NSF call.

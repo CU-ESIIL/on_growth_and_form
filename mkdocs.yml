@@ -75,6 +75,7 @@ nav:
       - Bibliography: literature/bibliography.md
   - Repository and Workflow:
       - Proposal Workflow: workflow.md
+      - Fire POC Workflow Buildout: fire-poc-workflow.md
       - Repository Map: repository-map.md
       - Archive Overview: archive/index.md
       - Drafts Overview: drafts/index.md

@@ -1,0 +1,14 @@
+ ELMFIRE 2025.1002
+ Reading &MISCELLANEOUS namelist group
+ Reading &INPUTS namelist group
+ Reading &OUTPUTS namelist group
+ Reading &COMPUTATIONAL_DOMAIN namelist group
+ Reading &TIME_CONTROL namelist group
+ Reading &SIMULATOR namelist group
+ Reading &WUI namelist group
+ Reading &CALIBRATION namelist group
+ Reading &SUPPRESSION namelist group
+ Reading &SPOTTING namelist group
+ Reading &SMOKE namelist group
+ Reading &MONTE_CARLO namelist group
+ Problem opening new fuel model table file in directory outputs/demo_earth2_real_elmfire_attempt5/case/inputs/fuels_and_topography//

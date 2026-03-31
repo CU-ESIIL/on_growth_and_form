@@ -1,0 +1,15 @@
+{
+  "type": "point_ignition",
+  "description": "Inspectable ignition input for the proof of concept.",
+  "points": [
+    {
+      "x_local_m": 5250.0,
+      "y_local_m": 15750.0,
+      "x_m": 5250.0,
+      "y_m": 15750.0,
+      "x_abs_m": 505250.0,
+      "y_abs_m": 4415750.0,
+      "time_hr": 0.0
+    }
+  ]
+}

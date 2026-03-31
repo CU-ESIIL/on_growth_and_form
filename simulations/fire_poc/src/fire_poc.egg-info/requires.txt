@@ -1,0 +1,8 @@
+numpy
+matplotlib
+rasterio
+jupyter
+pytest
+
+[earth2]
+earth2studio

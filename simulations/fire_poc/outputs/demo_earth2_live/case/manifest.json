@@ -1,0 +1,30 @@
+{
+  "event_settings": {
+    "nx": 80,
+    "ny": 80,
+    "cell_size_m": 30.0,
+    "crs": "EPSG:32613",
+    "ignition_xy_m": [
+      1200.0,
+      1200.0
+    ]
+  },
+  "weather_summary": {
+    "n_steps": 5,
+    "duration_hours": 12.0,
+    "wind_speed_min_mps": 3.2130287135373807,
+    "wind_speed_max_mps": 5.531430524487931,
+    "temperature_min_c": 4.189086914062557,
+    "temperature_max_c": 15.011484375000009,
+    "relative_humidity_min_pct": 17.74740982055664,
+    "relative_humidity_max_pct": 38.100746154785156
+  },
+  "forcing_source": "earth2studio_gefs",
+  "file_paths": {
+    "inputs_dir": "outputs/demo_earth2_live/case/inputs",
+    "weather_dir": "outputs/demo_earth2_live/case/inputs/weather",
+    "fuels_and_topography_dir": "outputs/demo_earth2_live/case/inputs/fuels_and_topography",
+    "elmfire_data": "outputs/demo_earth2_live/case/elmfire.data",
+    "ignition": "outputs/demo_earth2_live/case/ignition_points.json"
+  }
+}

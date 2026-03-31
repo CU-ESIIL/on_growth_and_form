@@ -1,0 +1,8 @@
+ ELMFIRE 2025.1002
+ Reading &MISCELLANEOUS namelist group
+ Reading &INPUTS namelist group
+ Reading &OUTPUTS namelist group
+ Reading &COMPUTATIONAL_DOMAIN namelist group
+ Reading &TIME_CONTROL namelist group
+ Reading &SIMULATOR namelist group
+ Error: Problem with namelist group &SIMULATOR.

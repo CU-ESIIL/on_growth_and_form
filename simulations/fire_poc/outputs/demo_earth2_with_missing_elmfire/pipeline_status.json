@@ -1,0 +1,9 @@
+{
+  "forcing_source": "earth2studio_gefs",
+  "benchmark_type": "case-written-only",
+  "benchmark_status": "run_failed_missing_executable",
+  "benchmark_message": "ELMFIRE case written, but the requested executable command was not found.",
+  "figure_path": "outputs/demo_earth2_with_missing_elmfire/figures/elmfire_vs_regime_model.png",
+  "case_dir": "outputs/demo_earth2_with_missing_elmfire/case",
+  "proxy_used_for_plotting": true
+}

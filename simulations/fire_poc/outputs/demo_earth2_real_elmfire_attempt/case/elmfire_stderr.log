@@ -1,0 +1,15 @@
+[UCB-H4K9PV34KC][[23595,0],0][btl_tcp_component.c:1021:mca_btl_tcp_component_create_listen] bind() failed: Operation not permitted (1)
+At line 106 of file ../../source/elmfire.f90 (unit = 5, file = 'stdin')
+Fortran runtime error: End of file
+
+Error termination. Backtrace:
+
+Could not print backtrace: executable file is not an executable
+#0  0x104856103
+#1  0x104856cd7
+#2  0x1048575a7
+#3  0x1049776f3
+#4  0x10497aedf
+#5  0x10497afc7
+#6  0x1027ddfbf
+#7  0x1027de267

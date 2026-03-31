@@ -1,0 +1,9 @@
+{
+  "forcing_source": "mock",
+  "benchmark_type": "case-written-only",
+  "benchmark_status": "case_written_run_skipped",
+  "benchmark_message": "ELMFIRE case written, run skipped because no executable command was provided.",
+  "figure_path": "outputs/demo/figures/elmfire_vs_regime_model.png",
+  "case_dir": "outputs/demo/case",
+  "proxy_used_for_plotting": true
+}
