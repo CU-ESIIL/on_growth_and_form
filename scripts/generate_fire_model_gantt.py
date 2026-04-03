@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import struct
+import sys
 import zlib
 from pathlib import Path
 from xml.sax.saxutils import escape
@@ -36,19 +37,21 @@ BAR_HEIGHT = 18
 MONTH_WIDTH = CHART_WIDTH / TOTAL_MONTHS
 
 STAGE_BANDS = [
-    {"label": "Pipeline + reliability", "start": 1, "end": 6, "color": "#f7efe3"},
-    {"label": "Observables + Benchmark 0", "start": 7, "end": 12, "color": "#eef6ea"},
-    {"label": "Model contrasts", "start": 13, "end": 18, "color": "#eef3f9"},
-    {"label": "Validation + sufficiency", "start": 19, "end": 24, "color": "#eef1fb"},
-    {"label": "Packaging + user testing", "start": 25, "end": 30, "color": "#f4effa"},
-    {"label": "Release + transfer", "start": 31, "end": 36, "color": "#fbf1f4"},
+    {"label": "Detect foundations", "start": 1, "end": 6, "color": "#f7efe3"},
+    {"label": "Detect diagnostics", "start": 7, "end": 12, "color": "#eef6ea"},
+    {"label": "Explain model build", "start": 13, "end": 18, "color": "#eef3f9"},
+    {"label": "Explain mechanisms", "start": 19, "end": 24, "color": "#eef1fb"},
+    {"label": "Apply prediction", "start": 25, "end": 30, "color": "#f4effa"},
+    {"label": "Apply release", "start": 31, "end": 36, "color": "#fbf1f4"},
 ]
 
 ROLE_COLORS = {
-    "PI": "#2b6cb0",
-    "Postdoc 1": "#2f855a",
-    "Postdoc 2": "#2c7a7b",
-    "Shared": "#7b8794",
+    "Principal Investigator (Ty Tuff, CU Boulder / ESIIL)": "#2b6cb0",
+    "Postdoctoral Researcher (Modeling Lead; TBD)": "#2c7a7b",
+    "Empirical Lead (Nayani Ilangakoon, CU Boulder/Earth Lab)": "#2f855a",
+    "Co-Investigator (Cibele Amaral, CU Boulder / ESIIL)": "#805ad5",
+    "Infrastructure Lead (TBD ESIIL software engineer)": "#718096",
+    "Science Communication and Design Lead (Impact Media Lab - subcontractor)": "#b83280",
 }
 
 GROUP_ORDER = [
@@ -72,38 +75,38 @@ FONT_BOLD_PATH = Path("/System/Library/Fonts/Supplemental/Times New Roman Bold.t
 FONT_STACK = "Times New Roman, Georgia, serif"
 
 TASKS = [
-    {"label": "Team and workflow setup", "start": 1, "end": 3, "role": "Shared", "group": "Team and workflow setup"},
-    {"label": "Data governance and infrastructure", "start": 1, "end": 4, "role": "PI", "group": "Team and workflow setup"},
-    {"label": "Event catalog stabilization", "start": 2, "end": 5, "role": "Postdoc 1", "group": "Empirical data and diagnostics"},
-    {"label": "Wildfire trajectory assembly", "start": 3, "end": 7, "role": "Postdoc 1", "group": "Empirical data and diagnostics"},
-    {"label": "QA/QC and provenance checks", "start": 4, "end": 8, "role": "Postdoc 1", "group": "Empirical data and diagnostics"},
-    {"label": "Metric-definition freeze", "start": 7, "end": 9, "role": "Shared", "group": "Empirical data and diagnostics"},
-    {"label": "Scaling diagnostics v1", "start": 7, "end": 10, "role": "Postdoc 1", "group": "Empirical data and diagnostics"},
-    {"label": "Shared observables and metadata", "start": 8, "end": 11, "role": "Shared", "group": "Empirical data and diagnostics"},
-    {"label": "Cross-region replication", "start": 10, "end": 12, "role": "Postdoc 1", "group": "Empirical data and diagnostics"},
-    {"label": "Initial comparison engine", "start": 8, "end": 12, "role": "Postdoc 2", "group": "Generative modeling"},
-    {"label": "Model library v1", "start": 13, "end": 16, "role": "Postdoc 2", "group": "Generative modeling"},
-    {"label": "Controlled model contrasts (M0-M3)", "start": 15, "end": 20, "role": "Postdoc 2", "group": "Generative modeling"},
-    {"label": "Ablation experiments", "start": 17, "end": 21, "role": "Postdoc 2", "group": "Generative modeling"},
-    {"label": "Parameter sweeps", "start": 16, "end": 21, "role": "Postdoc 2", "group": "Generative modeling"},
-    {"label": "Benchmark 0", "start": 10, "end": 12, "role": "Shared", "group": "Integration and evaluation", "gate": True},
-    {"label": "Regime detection and transition testing", "start": 13, "end": 18, "role": "Shared", "group": "Integration and evaluation"},
-    {"label": "Calibration audits across regimes", "start": 18, "end": 23, "role": "PI", "group": "Integration and evaluation"},
-    {"label": "Validation framework v1", "start": 19, "end": 24, "role": "Shared", "group": "Integration and evaluation"},
-    {"label": "Phase diagram synthesis", "start": 20, "end": 24, "role": "PI", "group": "Integration and evaluation"},
-    {"label": "Publication-ready comparison figures", "start": 21, "end": 24, "role": "Shared", "group": "Integration and evaluation"},
-    {"label": "Evidence-weighted sufficiency maps", "start": 22, "end": 24, "role": "PI", "group": "Integration and evaluation"},
-    {"label": "Empirical + generative integration", "start": 25, "end": 29, "role": "PI", "group": "Integration and evaluation"},
-    {"label": "Benchmarking existing and future fire models", "start": 25, "end": 31, "role": "Shared", "group": "Integration and evaluation"},
-    {"label": "External user testing", "start": 28, "end": 32, "role": "Shared", "group": "Integration and evaluation"},
-    {"label": "Final uncertainty-reporting templates", "start": 27, "end": 31, "role": "PI", "group": "Integration and evaluation"},
-    {"label": "Benchmark release engineering", "start": 29, "end": 34, "role": "Shared", "group": "Outputs and dissemination"},
-    {"label": "Public release readiness", "start": 31, "end": 34, "role": "Shared", "group": "Outputs and dissemination"},
-    {"label": "Toolkit, data, and code release", "start": 33, "end": 36, "role": "Shared", "group": "Outputs and dissemination"},
-    {"label": "Onboarding and support", "start": 33, "end": 36, "role": "Shared", "group": "Outputs and dissemination"},
-    {"label": "Transfer / handoff materials", "start": 34, "end": 36, "role": "PI", "group": "Outputs and dissemination"},
-    {"label": "Evidence book and mechanism synthesis", "start": 30, "end": 36, "role": "PI", "group": "Outputs and dissemination"},
-    {"label": "Synthesis papers and reporting", "start": 31, "end": 36, "role": "Shared", "group": "Outputs and dissemination"},
+    {"label": "Project onboarding and governance", "start": 1, "end": 3, "role": "Principal Investigator (Ty Tuff, CU Boulder / ESIIL)", "group": "Team and workflow setup"},
+    {"label": "Reproducible workflows, CI/CD, containers", "start": 1, "end": 36, "role": "Infrastructure Lead (TBD ESIIL software engineer)", "group": "Team and workflow setup"},
+    {"label": "Validation and uncertainty quantification", "start": 4, "end": 36, "role": "Co-Investigator (Cibele Amaral, CU Boulder / ESIIL)", "group": "Team and workflow setup"},
+    {"label": "Documentation and protocol maintenance", "start": 2, "end": 36, "role": "Infrastructure Lead (TBD ESIIL software engineer)", "group": "Team and workflow setup"},
+    {"label": "Reporting, synthesis, and dissemination", "start": 6, "end": 36, "role": "Principal Investigator (Ty Tuff, CU Boulder / ESIIL)", "group": "Team and workflow setup"},
+    {"label": "FIRED/GOFER/FEDS ingestion and harmonization", "start": 1, "end": 8, "role": "Empirical Lead (Nayani Ilangakoon, CU Boulder/Earth Lab)", "group": "Empirical data and diagnostics"},
+    {"label": "Unified time-resolved dataset assembly", "start": 3, "end": 12, "role": "Empirical Lead (Nayani Ilangakoon, CU Boulder/Earth Lab)", "group": "Empirical data and diagnostics"},
+    {"label": "Extract shared diagnostics A(t), P(t)", "start": 5, "end": 12, "role": "Co-Investigator (Cibele Amaral, CU Boulder / ESIIL)", "group": "Empirical data and diagnostics"},
+    {"label": "Estimate sigma = d(log P)/d(log A)", "start": 7, "end": 12, "role": "Co-Investigator (Cibele Amaral, CU Boulder / ESIIL)", "group": "Empirical data and diagnostics"},
+    {"label": "Transition detection pipeline", "start": 8, "end": 14, "role": "Principal Investigator (Ty Tuff, CU Boulder / ESIIL)", "group": "Empirical data and diagnostics"},
+    {"label": "Sensitivity: resolution, sampling, segmentation", "start": 9, "end": 16, "role": "Co-Investigator (Cibele Amaral, CU Boulder / ESIIL)", "group": "Empirical data and diagnostics"},
+    {"label": "Cross-dataset transition validation", "start": 10, "end": 18, "role": "Empirical Lead (Nayani Ilangakoon, CU Boulder/Earth Lab)", "group": "Empirical data and diagnostics"},
+    {"label": "Detection outputs inform model assignment", "start": 11, "end": 18, "role": "Principal Investigator (Ty Tuff, CU Boulder / ESIIL)", "group": "Empirical data and diagnostics"},
+    {"label": "Competing model implementation/harmonization (M0-M3)", "start": 13, "end": 20, "role": "Postdoctoral Researcher (Modeling Lead; TBD)", "group": "Generative modeling"},
+    {"label": "Regime-aware model assignment", "start": 15, "end": 24, "role": "Postdoctoral Researcher (Modeling Lead; TBD)", "group": "Generative modeling"},
+    {"label": "Shared diagnostic evaluation using A(t), P(t), sigma", "start": 14, "end": 24, "role": "Postdoctoral Researcher (Modeling Lead; TBD)", "group": "Generative modeling"},
+    {"label": "Structural, dynamical, outcome comparison", "start": 17, "end": 26, "role": "Postdoctoral Researcher (Modeling Lead; TBD)", "group": "Generative modeling"},
+    {"label": "Mechanism discrimination", "start": 19, "end": 27, "role": "Principal Investigator (Ty Tuff, CU Boulder / ESIIL)", "group": "Generative modeling"},
+    {"label": "Reproducible benchmark generation", "start": 20, "end": 30, "role": "Infrastructure Lead (TBD ESIIL software engineer)", "group": "Generative modeling"},
+    {"label": "Model Reconciliation Council prep", "start": 19, "end": 24, "role": "Principal Investigator (Ty Tuff, CU Boulder / ESIIL)", "group": "Integration and evaluation"},
+    {"label": "Model Reconciliation Council meeting 1", "start": 24, "end": 24, "role": "Principal Investigator (Ty Tuff, CU Boulder / ESIIL)", "group": "Integration and evaluation"},
+    {"label": "Reduced geometry-constrained model implementation", "start": 25, "end": 31, "role": "Postdoctoral Researcher (Modeling Lead; TBD)", "group": "Integration and evaluation"},
+    {"label": "Transition-aware gating", "start": 26, "end": 32, "role": "Postdoctoral Researcher (Modeling Lead; TBD)", "group": "Integration and evaluation"},
+    {"label": "beta(t) environmental driver integration", "start": 26, "end": 33, "role": "Co-Investigator (Cibele Amaral, CU Boulder / ESIIL)", "group": "Integration and evaluation"},
+    {"label": "Trajectory generation and predictive evaluation", "start": 28, "end": 35, "role": "Postdoctoral Researcher (Modeling Lead; TBD)", "group": "Integration and evaluation"},
+    {"label": "Comparative gain versus baselines", "start": 30, "end": 35, "role": "Principal Investigator (Ty Tuff, CU Boulder / ESIIL)", "group": "Integration and evaluation"},
+    {"label": "Operationalization and release workflows", "start": 30, "end": 36, "role": "Infrastructure Lead (TBD ESIIL software engineer)", "group": "Outputs and dissemination"},
+    {"label": "Fire Dynamics Explorer integration", "start": 31, "end": 36, "role": "Infrastructure Lead (TBD ESIIL software engineer)", "group": "Outputs and dissemination"},
+    {"label": "Public code, data, workflow release", "start": 33, "end": 36, "role": "Infrastructure Lead (TBD ESIIL software engineer)", "group": "Outputs and dissemination"},
+    {"label": "Model Reconciliation Council synthesis/final meeting", "start": 33, "end": 36, "role": "Principal Investigator (Ty Tuff, CU Boulder / ESIIL)", "group": "Outputs and dissemination"},
+    {"label": "User-facing translation and communication", "start": 24, "end": 36, "role": "Science Communication and Design Lead (Impact Media Lab - subcontractor)", "group": "Outputs and dissemination"},
+    {"label": "Documentary and explainer development", "start": 25, "end": 36, "role": "Science Communication and Design Lead (Impact Media Lab - subcontractor)", "group": "Outputs and dissemination"},
 ]
 
 FONT = {
@@ -336,7 +339,7 @@ def draw_common(svg: SVGCanvas | None = None, png: PNGCanvas | None = None) -> N
                 png.line(round(x + w), round(y), round(x + w), round(y + bar_height), stroke, 2)
 
     title = "FIRE-MODEL Work Plan Gantt Chart"
-    subtitle = "Decision-gated 36-month plan aligning Detect, Explain, and Apply workstreams with roles, benchmarks, and deliverables."
+    subtitle = "Overlapping 36-month Detect, Explain, Apply plan using shared diagnostics A(t), P(t), sigma."
     if svg:
         svg.text(MARGIN_LEFT - 10, 56, title, "#1a202c", 36, "700")
         svg.text(MARGIN_LEFT - 10, 92, subtitle, "#4a5568", 18)
@@ -347,18 +350,17 @@ def draw_common(svg: SVGCanvas | None = None, png: PNGCanvas | None = None) -> N
         png.text(WIDTH // 2, HEIGHT - 64, "Project month", "#2d3748", size=28, bold=True, anchor="ma")
 
     legend_items = [{"label": label, "fill": color, "stroke": "none", "stroke_width": 0.8} for label, color in ROLE_COLORS.items()]
-    legend_items.append({"label": "Benchmark 0 gate", "fill": ROLE_COLORS["Shared"], "stroke": "#8b5e34", "stroke_width": 2.2})
     legend_x = MARGIN_LEFT
-    legend_y = HEIGHT - 112
+    legend_y = HEIGHT - 184
     for idx, item in enumerate(legend_items):
-        x = legend_x + (idx % 3) * 360
-        y = legend_y + (idx // 3) * 42
+        x = legend_x
+        y = legend_y + idx * 28
         if svg:
             svg.rect(x, y, 24, 24, item["fill"], stroke=item["stroke"], stroke_width=item["stroke_width"], rx=3)
-            svg.text(x + 34, y + 18, str(item["label"]), "#2d3748", 15)
+            svg.text(x + 34, y + 17, str(item["label"]), "#2d3748", 13)
         if png:
             png.rounded_rect(x, y, 24, 24, str(item["fill"]), outline=None if item["stroke"] == "none" else str(item["stroke"]), outline_width=2 if item["stroke"] != "none" else 1, radius=3)
-            png.text(x + 34, y + 16, str(item["label"]), "#2d3748", size=18, anchor="lm")
+            png.text(x + 34, y + 16, str(item["label"]), "#2d3748", size=14, anchor="lm")
 
 
 
@@ -411,12 +413,11 @@ def render_with_matplotlib() -> None:
         ax.hlines(end_idx + 0.5, 0.5, 36.5, color="#d6dde5", linewidth=1.1, zorder=1)
 
     ax.set_title("FIRE-MODEL Work Plan Gantt Chart", fontsize=20, fontweight="bold", loc="left", pad=22)
-    ax.text(-8.45, -1.88, "Decision-gated 36-month plan aligning Detect, Explain, and Apply workstreams with roles, benchmarks, and deliverables.", fontsize=10.2, color="#4a5568", ha="left", va="bottom")
+    ax.text(-8.45, -1.88, "Overlapping 36-month Detect, Explain, Apply plan using shared diagnostics A(t), P(t), sigma.", fontsize=10.2, color="#4a5568", ha="left", va="bottom")
     ax.set_xlabel("Project month", fontsize=11, fontweight="bold", color="#2d3748", labelpad=12)
 
     legend_handles = [Patch(facecolor=color, edgecolor="none", label=label) for label, color in ROLE_COLORS.items()]
-    legend_handles.append(Patch(facecolor=ROLE_COLORS["Shared"], edgecolor="#8b5e34", linewidth=2.0, label="Benchmark 0 gate"))
-    ax.legend(handles=legend_handles, ncol=3, frameon=False, fontsize=9.5, loc="lower left", bbox_to_anchor=(0.0, -0.2))
+    ax.legend(handles=legend_handles, ncol=1, frameon=False, fontsize=8.2, loc="lower left", bbox_to_anchor=(0.0, -0.33))
 
     for spine in ax.spines.values():
         spine.set_visible(False)
@@ -440,7 +441,7 @@ def render_pure_python() -> None:
 
 def main() -> None:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    if plt is not None:
+    if plt is not None and "--matplotlib" in sys.argv:
         render_with_matplotlib()
         mode = "matplotlib"
     else:
