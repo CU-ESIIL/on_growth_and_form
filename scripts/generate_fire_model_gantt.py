@@ -6,7 +6,12 @@ import zlib
 from pathlib import Path
 from xml.sax.saxutils import escape
 
-from PIL import Image, ImageDraw, ImageFont
+try:  # Optional dependency path.
+    from PIL import Image, ImageDraw, ImageFont
+except ModuleNotFoundError:
+    Image = None
+    ImageDraw = None
+    ImageFont = None
 
 try:  # Optional dependency path.
     import matplotlib.pyplot as plt
@@ -160,6 +165,8 @@ FONT = {
 
 class PNGCanvas:
     def __init__(self, width: int, height: int, background: str = "#ffffff") -> None:
+        if Image is None or ImageDraw is None or ImageFont is None:
+            raise RuntimeError("Pillow is not installed; PNG rendering is unavailable.")
         self.width = width
         self.height = height
         self.image = Image.new("RGB", (width, height), background)
@@ -431,11 +438,12 @@ def render_with_matplotlib() -> None:
 
 
 def render_pure_python() -> None:
-    png = PNGCanvas(WIDTH, HEIGHT)
+    png = PNGCanvas(WIDTH, HEIGHT) if Image is not None else None
     svg = SVGCanvas(WIDTH, HEIGHT)
     draw_common(svg=svg, png=png)
     svg.save(SVG_PATH)
-    png.save(PNG_PATH)
+    if png is not None:
+        png.save(PNG_PATH)
 
 
 
@@ -447,8 +455,11 @@ def main() -> None:
     else:
         render_pure_python()
         mode = "pure-python fallback"
-    print(f"Saved {PNG_PATH}")
     print(f"Saved {SVG_PATH}")
+    if PNG_PATH.exists():
+        print(f"Saved {PNG_PATH}")
+    else:
+        print(f"Skipped {PNG_PATH} (Pillow not installed)")
     print(f"Renderer: {mode}")
 
 

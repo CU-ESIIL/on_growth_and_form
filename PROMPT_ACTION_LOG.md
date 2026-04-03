@@ -243,6 +243,23 @@ User asked to update the tracked Gantt wrapper (`docs/planning/gantt_chart.md`) 
 - The updated chart includes Model Reconciliation Council and Fire Dynamics Explorer rows because they were already part of proposal logic; if scope changes, those rows should be adjusted in both script and wrapper text together.
 
 ### Prompt
+User reported CI failure when running `python scripts/generate_fire_model_gantt.py` due to `ModuleNotFoundError: No module named 'PIL'` and asked for fixes.
+
+### Files and folders inspected
+- `scripts/generate_fire_model_gantt.py`
+
+### Actions taken
+- Made Pillow import optional in `scripts/generate_fire_model_gantt.py` to avoid hard failure when `PIL` is not installed.
+- Updated the pure-Python render path so SVG generation still succeeds without Pillow and PNG output is only attempted when Pillow is available.
+- Updated script status messaging to report when PNG output is skipped because Pillow is missing.
+
+### Verification
+- Ran `python3 scripts/generate_fire_model_gantt.py`; script completed successfully.
+
+### Open questions and follow-up
+- If CI requires PNG artifacts in environments without Pillow, either add Pillow to the CI environment or run the matplotlib renderer explicitly where dependencies are present.
+
+### Prompt
 User provided a document titled `FIRE-MODEL Staffing Plan: Roles, 3-Year Timeline, Milestones, and Deliverables` and asked to add it to the planning section of the repository and website.
 
 ### Files and folders inspected
