@@ -217,6 +217,48 @@ User provided a summary document titled `FIRE-MODEL Methods System: Narrative Su
 ### Open questions and follow-up
 - The core methods sequence is now clearer in titles and navigation; a useful future step would be to add short reciprocal cross-links at the top of each page so readers can move directly through the 1 -> 1B -> 1C -> 2 -> 3 pipeline.
 
+## 2026-04-03
+
+### Prompt
+User asked to update the tracked Gantt wrapper (`docs/planning/gantt_chart.md`) and underlying editable source for `docs/assets/figures/fire_model_gantt_ESIIL_minimal.svg` so the figure matches the current Detect/Explain/Apply proposal framing, current personnel labels, required year-specific workstreams, and cross-cutting overlap.
+
+### Files and folders inspected
+- `AGENTS.md`
+- `funder/solicitation/nsf_fire_fire_science_innovations_through_research_and_education.html`
+- `docs/planning/gantt_chart.md`
+- `scripts/generate_fire_model_gantt.py`
+- `docs/assets/figures/fire_model_gantt_ESIIL_minimal.svg`
+
+### Actions taken
+- Updated `scripts/generate_fire_model_gantt.py` as the editable source to replace outdated staging language and role keys, then rewrote task definitions to align with Detect/Explain/Apply logic and current personnel ownership.
+- Removed old benchmark-gate-oriented language from the chart generation pathway and updated the subtitle and legend to emphasize shared diagnostics `A(t)`, `P(t)`, and `sigma` plus overlapping workstreams.
+- Updated `docs/planning/gantt_chart.md` wrapper text, legend language, and interpretation notes so they match the current proposal framing and role labels.
+- Regenerated the tracked figure assets (`.svg` and `.png`) from the updated source script.
+
+### Verification
+- Ran `python3 scripts/generate_fire_model_gantt.py` to regenerate chart assets from source.
+- Ran `bash scripts/review_site.sh` to validate documentation/site-facing changes.
+
+### Open questions and follow-up
+- The updated chart includes Model Reconciliation Council and Fire Dynamics Explorer rows because they were already part of proposal logic; if scope changes, those rows should be adjusted in both script and wrapper text together.
+
+### Prompt
+User reported CI failure when running `python scripts/generate_fire_model_gantt.py` due to `ModuleNotFoundError: No module named 'PIL'` and asked for fixes.
+
+### Files and folders inspected
+- `scripts/generate_fire_model_gantt.py`
+
+### Actions taken
+- Made Pillow import optional in `scripts/generate_fire_model_gantt.py` to avoid hard failure when `PIL` is not installed.
+- Updated the pure-Python render path so SVG generation still succeeds without Pillow and PNG output is only attempted when Pillow is available.
+- Updated script status messaging to report when PNG output is skipped because Pillow is missing.
+
+### Verification
+- Ran `python3 scripts/generate_fire_model_gantt.py`; script completed successfully.
+
+### Open questions and follow-up
+- If CI requires PNG artifacts in environments without Pillow, either add Pillow to the CI environment or run the matplotlib renderer explicitly where dependencies are present.
+
 ### Prompt
 User provided a document titled `FIRE-MODEL Staffing Plan: Roles, 3-Year Timeline, Milestones, and Deliverables` and asked to add it to the planning section of the repository and website.
 
