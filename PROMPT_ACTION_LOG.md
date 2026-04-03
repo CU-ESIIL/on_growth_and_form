@@ -370,6 +370,51 @@ Audit the prompt log and fill in any information that was not fully moved from t
 ### Open questions and follow-up
 - Older entries from prior sessions may still contain compressed paraphrases where the exact original prompt text is not readily recoverable from the current conversation context; those would require a separate history-based audit if verbatim recovery is needed there too.
 
+### Prompt
+User asked: "the Gantt chart is a svg but I also need it in png".
+
+### Files and folders inspected
+- `AGENTS.md`
+- `.gitignore`
+- `scripts/generate_fire_model_gantt.py`
+- `docs/planning/gantt_chart.md`
+- `docs/assets/figures/`
+
+### Actions taken
+- Regenerated the FIRE-MODEL Gantt assets from source (`scripts/generate_fire_model_gantt.py`) to ensure the PNG and SVG are both current.
+- Removed the `.gitignore` rule that excluded `docs/assets/figures/fire_model_gantt_ESIIL_minimal.png` so the PNG can be tracked in the repository.
+- Added a direct PNG link to `docs/planning/gantt_chart.md` beneath the SVG embed to expose both formats in the planning page.
+
+### Verification
+- Ran `python scripts/generate_fire_model_gantt.py` and confirmed both SVG and PNG outputs were produced.
+- Ran `bash scripts/review_site.sh` after the documentation change.
+
+### Open questions and follow-up
+- If additional chart revisions are made, rerun the same generator script so the SVG and PNG remain synchronized.
+
+### Prompt
+User stated that binaries are not supported and requested the Gantt PNG be handled with GitHub in-repo generation rather than committing binary artifacts.
+
+### Files and folders inspected
+- `.gitignore`
+- `scripts/review_site.sh`
+- `.github/workflows/pages.yml`
+- `.github/workflows/website-checks.yml`
+- `docs/planning/gantt_chart.md`
+
+### Actions taken
+- Removed the tracked PNG (`docs/assets/figures/fire_model_gantt_ESIIL_minimal.png`) from git and restored ignore rules so the binary is generated, not versioned.
+- Updated `scripts/review_site.sh` to generate the FIRE-MODEL Gantt assets before MkDocs build and site tests.
+- Updated `.github/workflows/pages.yml` and `.github/workflows/website-checks.yml` to run `scripts/generate_fire_model_gantt.py` so the PNG exists in CI and GitHub Pages builds.
+- Kept the docs page PNG link in place, with the asset now produced by the generation step instead of committed binary storage.
+
+### Verification
+- Ran `python scripts/generate_fire_model_gantt.py` to confirm SVG/PNG generation.
+- Ran `bash scripts/review_site.sh`; MkDocs build passed and pytest collection failed due to missing local `playwright` dependency.
+
+### Open questions and follow-up
+- CI already installs Playwright in GitHub Actions, so local missing dependency should not affect GitHub-hosted checks.
+
 ## 2026-03-12
 
 ### Prompt

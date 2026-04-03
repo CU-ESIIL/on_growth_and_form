@@ -10,6 +10,8 @@ This figure summarizes the FIRE-MODEL project as a coordinated Detect -> Explain
 
 ![FIRE-MODEL Gantt Chart](../assets/figures/fire_model_gantt_ESIIL_minimal.svg)
 
+PNG version: [fire_model_gantt_ESIIL_minimal.png](../assets/figures/fire_model_gantt_ESIIL_minimal.png)
+
 ---
 
 ## Figure Legend

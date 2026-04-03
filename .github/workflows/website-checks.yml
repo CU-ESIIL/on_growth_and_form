@@ -33,6 +33,9 @@ jobs:
       - name: Generate wildfire phylogeny figure
         run: python scripts/figures/generate_wildfire_modeling_phylogeny.py
 
+      - name: Generate FIRE-MODEL Gantt assets
+        run: python scripts/generate_fire_model_gantt.py
+
       - name: Install Playwright browser
         run: python -m playwright install --with-deps chromium
 
