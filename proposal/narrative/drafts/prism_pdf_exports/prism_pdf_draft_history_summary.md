@@ -90,14 +90,47 @@ Visible changes relative to `main 3.pdf`:
 AI-use transparency note:
 This export should be treated as the latest visible AI-assisted draft artifact in this folder. It provides strong evidence of iterative Prism-mediated refinement, but not a complete provenance ledger of what the user asked Prism at each step.
 
+### 5. `main5.pdf`
+
+- File: `proposal/narrative/drafts/prism_pdf_exports/main5.pdf`
+- Observed modification time: `2026-04-03 04:35:05` (UTC)
+- Observed file size: `599,958 bytes`
+- Apparent role in sequence: interim Prism export added after `main4.pdf`
+
+Summary:
+This file appears in the same Prism-export sequence as the earlier `main*.pdf` drafts and should be treated as the immediate predecessor to `Project Description-8.pdf` in this repository snapshot.
+
+AI-use transparency note:
+As with the other Prism exports, this artifact documents AI-mediated drafting history but does not preserve prompt-level provenance in the PDF itself.
+
+### 6. `Project Description-8.pdf`
+
+- File: `proposal/narrative/drafts/prism_pdf_exports/Project Description-8.pdf`
+- Observed modification time: `2026-04-03 14:56:06` (UTC)
+- Observed file size: `4,952,633 bytes`
+- Apparent role in sequence: newest Prism-exported project description draft currently present
+
+Summary:
+`Project Description-8.pdf` is now the latest draft artifact in this folder and should be treated as the current Prism PDF baseline for future comparisons.
+
+Visible changes relative to `main5.pdf`:
+- The new export package is much larger (~8.25x by file size), indicating a materially different PDF production profile.
+- The file should now be considered the repository’s most recent Prism-exported narrative snapshot.
+- A content-level prose diff remains pending due local PDF text-extraction limitations in this environment; see `project_description_8_changes_from_main5.md` for traceable details and cautions.
+
+AI-use transparency note:
+This file extends the AI-assisted draft chain but still does not expose prompt-by-prompt generation/edit history.
+
 ## High-level progression across the Prism exports
 
-Across the four files, the visible progression is:
+Across the six files currently present, the visible progression is:
 
 1. A full-length NSF-oriented proposal skeleton with section targets and the core regime-transition idea already present.
 2. A denser revision that clarifies theory-first generative modeling and strengthens methodological decision logic.
 3. A major expansion that rewrites the opening around wildfire reorganization, mechanism discrimination, and explicit critique of single-process assumptions.
-4. A final visible elaboration that sharpens the geometry-as-constraint argument and makes the conceptual framing more forceful.
+4. A visible elaboration (`main4.pdf`) that sharpens the geometry-as-constraint argument and makes the conceptual framing more forceful.
+5. An additional interim Prism export (`main5.pdf`) that continues the recorded sequence and serves as the immediate predecessor artifact in the repository.
+6. A new latest export (`Project Description-8.pdf`) with a materially different PDF package profile and updated latest-draft status.
 
 ## Recommended use in this repository
 
