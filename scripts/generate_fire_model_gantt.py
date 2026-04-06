@@ -273,7 +273,7 @@ def draw_common(svg: SVGCanvas | None = None, png: PNGCanvas | None = None) -> N
         w = (band["end"] - band["start"] + 1) * MONTH_WIDTH
         if svg:
             svg.rect(x, MARGIN_TOP - 10, w, total_rows * ROW_HEIGHT + 20, band["color"])
-            svg.text(x + 10, MARGIN_TOP - 34, band["label"], "#4a5568", 13, "700")
+            svg.text(x + 10, MARGIN_TOP - 34, band["label"], "#4a5568", 16, "700")
         if png:
             png.fill_rect(round(x), MARGIN_TOP - 10, round(w), total_rows * ROW_HEIGHT + 20, band["color"])
             png.text(round(x) + 10, MARGIN_TOP - 56, band["label"], "#4a5568", size=18, bold=True)
@@ -285,7 +285,7 @@ def draw_common(svg: SVGCanvas | None = None, png: PNGCanvas | None = None) -> N
         width = 1.6 if quarter_line else 1
         if svg:
             svg.line(x, MARGIN_TOP, x, chart_bottom, stroke, width)
-            svg.text(x + MONTH_WIDTH / 2, chart_bottom + 26, str(month), "#4a5568", 12, anchor="middle")
+            svg.text(x + MONTH_WIDTH / 2, chart_bottom + 26, str(month), "#4a5568", 14, anchor="middle")
         if png:
             png.line(round(x), MARGIN_TOP, round(x), round(chart_bottom), stroke, 1 if not quarter_line else 2)
             png.text(round(x + MONTH_WIDTH / 2), round(chart_bottom) + 26, str(month), "#4a5568", size=16, anchor="ma")
@@ -305,7 +305,7 @@ def draw_common(svg: SVGCanvas | None = None, png: PNGCanvas | None = None) -> N
     for start, end, label in year_specs:
         center = (month_to_x(start) + month_to_x(end + 1)) / 2
         if svg:
-            svg.text(center, MARGIN_TOP - 86, label, "#2d3748", 24, "700", "middle")
+            svg.text(center, MARGIN_TOP - 86, label, "#2d3748", 28, "700", "middle")
         if png:
             png.text(round(center), MARGIN_TOP - 104, label, "#2d3748", size=28, bold=True, anchor="ma")
 
@@ -314,7 +314,7 @@ def draw_common(svg: SVGCanvas | None = None, png: PNGCanvas | None = None) -> N
         divider_y = MARGIN_TOP + (end_idx + 1) * ROW_HEIGHT
         group_label = GROUP_DISPLAY[group_name]
         if svg:
-            svg.text(48, y, group_label, "#2d3748", 15, "700", "start")
+            svg.text(48, y, group_label, "#2d3748", 18, "700", "start")
             svg.line(MARGIN_LEFT, divider_y, WIDTH - MARGIN_RIGHT, divider_y, "#d6dde5", 1.5)
         if png:
             png.text(48, round(y), group_label, "#2d3748", size=20, bold=True, anchor="lm")
@@ -334,7 +334,7 @@ def draw_common(svg: SVGCanvas | None = None, png: PNGCanvas | None = None) -> N
         stroke = "#8b5e34" if task.get("gate") else "#ffffff"
         stroke_width = 2.4 if task.get("gate") else 1.0
         if svg:
-            svg.text(MARGIN_LEFT - 18, y + bar_height * 0.72, label, "#243b53", 14, "400", "end")
+            svg.text(MARGIN_LEFT - 18, y + bar_height * 0.72, label, "#243b53", 17, "400", "end")
             svg.rect(x, y, w, bar_height, color, stroke=stroke, stroke_width=stroke_width, rx=8)
         if png:
             png.text(MARGIN_LEFT - 18, round(y + bar_height * 0.7), label, "#243b53", size=18, anchor="rm")
@@ -348,9 +348,9 @@ def draw_common(svg: SVGCanvas | None = None, png: PNGCanvas | None = None) -> N
     title = "FIRE-MODEL Work Plan Gantt Chart"
     subtitle = "Overlapping 36-month Detect, Explain, Apply plan using shared diagnostics A(t), P(t), sigma."
     if svg:
-        svg.text(MARGIN_LEFT - 10, 56, title, "#1a202c", 36, "700")
-        svg.text(MARGIN_LEFT - 10, 92, subtitle, "#4a5568", 18)
-        svg.text((MARGIN_LEFT + WIDTH - MARGIN_RIGHT) / 2, HEIGHT - 38, "Project month", "#2d3748", 18, "700", "middle")
+        svg.text(MARGIN_LEFT - 10, 56, title, "#1a202c", 40, "700")
+        svg.text(MARGIN_LEFT - 10, 92, subtitle, "#4a5568", 22)
+        svg.text((MARGIN_LEFT + WIDTH - MARGIN_RIGHT) / 2, HEIGHT - 38, "Project month", "#2d3748", 22, "700", "middle")
     if png:
         png.text(MARGIN_LEFT - 8, 54, title, "#1a202c", size=44, bold=True)
         png.text(MARGIN_LEFT - 8, 98, subtitle, "#4a5568", size=20)
@@ -364,7 +364,7 @@ def draw_common(svg: SVGCanvas | None = None, png: PNGCanvas | None = None) -> N
         y = legend_y + idx * 28
         if svg:
             svg.rect(x, y, 24, 24, item["fill"], stroke=item["stroke"], stroke_width=item["stroke_width"], rx=3)
-            svg.text(x + 34, y + 17, str(item["label"]), "#2d3748", 13)
+            svg.text(x + 34, y + 17, str(item["label"]), "#2d3748", 16)
         if png:
             png.rounded_rect(x, y, 24, 24, str(item["fill"]), outline=None if item["stroke"] == "none" else str(item["stroke"]), outline_width=2 if item["stroke"] != "none" else 1, radius=3)
             png.text(x + 34, y + 16, str(item["label"]), "#2d3748", size=14, anchor="lm")
@@ -380,7 +380,7 @@ def render_with_matplotlib() -> None:
     for band in STAGE_BANDS:
         width = band["end"] - band["start"] + 1
         ax.add_patch(Rectangle((band["start"] - 0.5, -0.5), width, total_rows, facecolor=band["color"], edgecolor="none", zorder=0))
-        ax.text(band["start"] - 0.25, -0.95, band["label"], fontsize=9.5, fontweight="bold", color="#4a5568", va="top")
+        ax.text(band["start"] - 0.25, -0.95, band["label"], fontsize=11.5, fontweight="bold", color="#4a5568", va="top")
 
     for row, task in enumerate(TASKS):
         label = str(task["label"])
@@ -391,7 +391,7 @@ def render_with_matplotlib() -> None:
         linewidth = 2.2 if task.get("gate") else 1.0
         height = 0.74 if task.get("gate") else 0.56
         ax.barh(row, duration, left=start - 0.5, height=height, color=ROLE_COLORS[role], edgecolor=edgecolor, linewidth=linewidth, zorder=3)
-        ax.text(-0.85, row, label, ha="right", va="center", fontsize=9.6, color="#243b53", zorder=4)
+        ax.text(-0.85, row, label, ha="right", va="center", fontsize=11.4, color="#243b53", zorder=4)
 
     ax.set_xlim(-8.6, 36.5)
     ax.set_ylim(-1.2, total_rows - 0.4)
@@ -399,7 +399,7 @@ def render_with_matplotlib() -> None:
     ax.set_yticklabels([""] * total_rows)
     ax.invert_yaxis()
     ax.set_xticks(range(1, 37))
-    ax.set_xticklabels([str(i) for i in range(1, 37)], fontsize=9)
+    ax.set_xticklabels([str(i) for i in range(1, 37)], fontsize=11)
     ax.grid(axis="x", color="#d9e2ec", linewidth=0.7, alpha=0.95)
     ax.set_axisbelow(True)
     for quarter_start in (1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34):
@@ -411,20 +411,20 @@ def render_with_matplotlib() -> None:
         (25, 36, "Year 3 - Apply"),
     ]:
         center = (year_start + year_end) / 2
-        ax.text(center, -1.2, label, ha="center", va="bottom", fontsize=12.5, fontweight="bold", color="#2d3748")
+        ax.text(center, -1.2, label, ha="center", va="bottom", fontsize=14.5, fontweight="bold", color="#2d3748")
         ax.vlines(year_end + 0.5, -0.5, total_rows - 0.4, color="#b9c6d3", linewidth=1.2, zorder=2)
 
     for group_name, start_idx, end_idx in group_bounds():
         center = (start_idx + end_idx) / 2
-        ax.text(-7.9, center, group_name, ha="left", va="center", fontsize=10.3, fontweight="bold", color="#2d3748")
+        ax.text(-7.9, center, group_name, ha="left", va="center", fontsize=12.3, fontweight="bold", color="#2d3748")
         ax.hlines(end_idx + 0.5, 0.5, 36.5, color="#d6dde5", linewidth=1.1, zorder=1)
 
-    ax.set_title("FIRE-MODEL Work Plan Gantt Chart", fontsize=20, fontweight="bold", loc="left", pad=22)
-    ax.text(-8.45, -1.88, "Overlapping 36-month Detect, Explain, Apply plan using shared diagnostics A(t), P(t), sigma.", fontsize=10.2, color="#4a5568", ha="left", va="bottom")
-    ax.set_xlabel("Project month", fontsize=11, fontweight="bold", color="#2d3748", labelpad=12)
+    ax.set_title("FIRE-MODEL Work Plan Gantt Chart", fontsize=24, fontweight="bold", loc="left", pad=22)
+    ax.text(-8.45, -1.88, "Overlapping 36-month Detect, Explain, Apply plan using shared diagnostics A(t), P(t), sigma.", fontsize=12.2, color="#4a5568", ha="left", va="bottom")
+    ax.set_xlabel("Project month", fontsize=13, fontweight="bold", color="#2d3748", labelpad=12)
 
     legend_handles = [Patch(facecolor=color, edgecolor="none", label=label) for label, color in ROLE_COLORS.items()]
-    ax.legend(handles=legend_handles, ncol=1, frameon=False, fontsize=8.2, loc="lower left", bbox_to_anchor=(0.0, -0.33))
+    ax.legend(handles=legend_handles, ncol=1, frameon=False, fontsize=10, loc="lower left", bbox_to_anchor=(0.0, -0.33))
 
     for spine in ax.spines.values():
         spine.set_visible(False)
