@@ -2132,42 +2132,21 @@ User asked to change the extreme-panel figure title to `ELMFIRE simulations with
 - The new title is now synchronized between the generated panel and the website asset, but if the proposal framing changes again later it may be worth deciding whether this title should remain a figure-specific caption or become part of the broader website narrative text.
 
 ### Prompt
-User asked to generate a draft-changes document for the newly added `Project Description-8.pdf`, log it as the most recent draft in the repository, and update the website so this draft is marked as most recent.
+User asked: "the text in the gantt chart is too small to read. can we make it bigger and print a new png".
 
 ### Files and folders inspected
-- `proposal/narrative/drafts/prism_pdf_exports/`
-- `proposal/narrative/drafts/on_growth_and_form_generative_theory_of_fire_draft_changes_01_to_02.md`
-- `proposal/narrative/drafts/prism_pdf_exports/prism_pdf_draft_history_summary.md`
-- `docs/drafts/`
-- `mkdocs.yml`
+- `scripts/generate_fire_model_gantt.py`
+- `docs/assets/figures/fire_model_gantt_ESIIL_minimal.svg`
+- `scripts/review_site.sh`
 
 ### Actions taken
-- Added `proposal/narrative/drafts/prism_pdf_exports/project_description_8_changes_from_main5.md` to track the latest draft transition from `main5.pdf` to `Project Description-8.pdf` with explicit assumptions and extraction limits.
-- Updated `proposal/narrative/drafts/prism_pdf_exports/prism_pdf_draft_history_summary.md` to include `main5.pdf` and `Project Description-8.pdf` and mark the new PDF as the latest artifact.
-- Added website pages `docs/drafts/draft-03-prism-pdf.md` and `docs/drafts/change-report-02-to-03.md` so the latest draft and its change memo are visible in the docs site.
-- Updated `docs/drafts/index.md` and `mkdocs.yml` navigation so the new draft and latest change report are linked from the Drafts section.
+- Increased text sizing in `scripts/generate_fire_model_gantt.py` for both renderer paths (pure-Python SVG/PNG and matplotlib) across stage headers, month labels, year labels, group labels, task labels, title/subtitle, x-axis label, and legend text.
+- Regenerated the FIRE-MODEL Gantt outputs by running `python3 scripts/generate_fire_model_gantt.py`, which produced a new readable PNG and synchronized SVG in `docs/assets/figures/`.
+- Ran the site review workflow script after website-asset changes, per repo policy.
 
 ### Verification
-- Ran `bash scripts/review_site.sh`; MkDocs build succeeded and regenerated `dist/`, but the script's `pytest` step failed because `pytest` is not installed in the root environment.
+- Ran `python3 scripts/generate_fire_model_gantt.py`; confirmed both `fire_model_gantt_ESIIL_minimal.svg` and `fire_model_gantt_ESIIL_minimal.png` were written.
+- Ran `bash scripts/review_site.sh`; MkDocs build succeeded, but pytest collection failed due missing `playwright` module in the current environment.
 
 ### Open questions and follow-up
-- A full prose-level diff for `Project Description-8.pdf` remains pending until robust PDF extraction/OCR tooling is available or the draft is exported in a diff-friendly text format.
-
-### Prompt
-User reported dissatisfaction with the previous commit/PR and asked for fixes based on review feedback, including handling the note that binary files are not supported.
-
-### Files and folders inspected
-- `dist/`
-- `PROMPT_ACTION_LOG.md`
-- recent git history and staged diff
-
-### Actions taken
-- Restored `dist/` to the previous commit state to remove broad generated-site churn and binary artifact updates from this change set.
-- Kept the source-of-truth documentation/proposal updates intact so the latest draft logging and website source content changes remain.
-- Prepared a follow-up cleanup commit focused on addressing review friction around generated/binary-heavy diffs.
-
-### Verification
-- Ran `git status --short` to confirm only intended cleanup changes remain staged for the follow-up commit.
-
-### Open questions and follow-up
-- If maintainers still want regenerated `dist/` outputs in PRs, we can re-add only the two new draft pages in `dist/drafts/` in a focused follow-up.
+- If desired, we can further increase figure canvas size and row height in a follow-up pass to preserve spacing while using even larger text.
