@@ -1,22 +1,21 @@
 # Gantt / Timeline
 
-This page highlights the temporal structure of the wildfire scaling program.
+This page highlights the temporal structure of the FIRE-MODEL program.
 
 ## Three-year sequence
 
-1. Year 1 / Detect: stabilize the pipeline, measurement system, and Benchmark 0 gate
-2. Year 2 / Explain: run comparative model tests, validation, and sufficiency mapping
-3. Year 3 / Apply: package the benchmark, support external users, and release the final toolkit
+1. **Year 1 / Verify:** build the unified event dataset, extract `A(t)` and `P(t)`, estimate `σ`, and validate transition-detection diagnostics.
+2. **Year 2 / Predict:** evaluate competing model structures in a shared diagnostic space and test regime-aware predictive gains.
+3. **Year 3 / Synthesis:** operationalize the reduced geometry-constrained model with transition-aware gating, then release and integrate outputs for users.
 
 ## Why the sequence matters
 
-The sequence is intentionally ordered so that:
+The sequence is intentionally structured so that:
 
-- pipeline stability and measurement reliability come before broad regime claims
-- Benchmark 0 explicitly gates the shift from Year 1 detection to Year 2 explanation
-- comparative model contrasts and validation precede public benchmark packaging
-- release, onboarding, transfer, and synthesis are concentrated in the Apply phase rather than treated as afterthoughts
+- observational verification and uncertainty-aware diagnostics establish the evidence base before model discrimination,
+- comparative benchmarks are completed before final synthesis decisions,
+- synthesis includes implementation, release, and user-facing integration rather than treating adoption as an afterthought.
 
 ## Relationship to the full work plan
 
-The detailed timeline table and narrative remain in [Work Plan](work-plan.md). This page exists to make the sequencing easy to absorb at a glance.
+The detailed timeline figure and narrative remain in [Work Plan](../planning/gantt_chart.md). This page exists to make the Verify/Predict/Synthesis sequencing easy to absorb at a glance.

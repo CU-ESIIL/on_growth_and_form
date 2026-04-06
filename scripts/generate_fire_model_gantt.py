@@ -1,467 +1,249 @@
 from __future__ import annotations
 
-import struct
-import sys
-import zlib
+"""Generate the proposal-ready FIRE-MODEL Gantt chart.
+
+Language source: repository proposal timeline language emphasizing
+"Year 1 — Verify", "Year 2 — Predict", and "Year 3 — Synthesis",
+with overlap across data, validation, modeling, and infrastructure tracks.
+"""
+
 from pathlib import Path
-from xml.sax.saxutils import escape
+import argparse
 
-try:  # Optional dependency path.
-    from PIL import Image, ImageDraw, ImageFont
-except ModuleNotFoundError:
-    Image = None
-    ImageDraw = None
-    ImageFont = None
-
-try:  # Optional dependency path.
-    import matplotlib.pyplot as plt
-    from matplotlib.patches import Patch, Rectangle
-except ModuleNotFoundError:  # Pure-Python fallback keeps the script runnable.
-    plt = None
-    Patch = None
-    Rectangle = None
-
+import matplotlib.pyplot as plt
+from matplotlib.lines import Line2D
 
 OUTPUT_DIR = Path(__file__).resolve().parents[1] / "docs" / "assets" / "figures"
-PNG_PATH = OUTPUT_DIR / "fire_model_gantt_ESIIL_minimal.png"
-SVG_PATH = OUTPUT_DIR / "fire_model_gantt_ESIIL_minimal.svg"
-# The SVG is repository-friendly for review and site rendering; the workflow also regenerates
-# both SVG and PNG inside GitHub so binary artifacts do not need to be attached to code review.
+BASENAME = "fire_model_gantt_verify_predict_synthesis"
+PNG_PATH = OUTPUT_DIR / f"{BASENAME}.png"
+PDF_PATH = OUTPUT_DIR / f"{BASENAME}.pdf"
+SVG_PATH = OUTPUT_DIR / f"{BASENAME}.svg"
 
-WIDTH = 2440
-HEIGHT = 1820
-MARGIN_LEFT = 860
-MARGIN_RIGHT = 100
-MARGIN_TOP = 270
-MARGIN_BOTTOM = 240
-CHART_WIDTH = WIDTH - MARGIN_LEFT - MARGIN_RIGHT
-CHART_HEIGHT = HEIGHT - MARGIN_TOP - MARGIN_BOTTOM
 TOTAL_MONTHS = 36
-ROW_HEIGHT = 42
-BAR_HEIGHT = 18
-MONTH_WIDTH = CHART_WIDTH / TOTAL_MONTHS
 
-STAGE_BANDS = [
-    {"label": "Detect foundations", "start": 1, "end": 6, "color": "#f7efe3"},
-    {"label": "Detect diagnostics", "start": 7, "end": 12, "color": "#eef6ea"},
-    {"label": "Explain model build", "start": 13, "end": 18, "color": "#eef3f9"},
-    {"label": "Explain mechanisms", "start": 19, "end": 24, "color": "#eef1fb"},
-    {"label": "Apply prediction", "start": 25, "end": 30, "color": "#f4effa"},
-    {"label": "Apply release", "start": 31, "end": 36, "color": "#fbf1f4"},
+PHASES = [
+    {"start": 1, "end": 12, "label": "Year 1 — Verify", "shade": "#f5f7fb"},
+    {"start": 13, "end": 24, "label": "Year 2 — Predict", "shade": "#f8f8f8"},
+    {"start": 25, "end": 36, "label": "Year 3 — Synthesis", "shade": "#f5f7fb"},
 ]
 
-ROLE_COLORS = {
-    "Principal Investigator (Ty Tuff, CU Boulder / ESIIL)": "#2b6cb0",
-    "Postdoctoral Researcher (Modeling Lead; TBD)": "#2c7a7b",
-    "Empirical Lead (Nayani Ilangakoon, CU Boulder/Earth Lab)": "#2f855a",
-    "Co-Investigator (Cibele Amaral, CU Boulder / ESIIL)": "#805ad5",
-    "Infrastructure Lead (TBD ESIIL software engineer)": "#718096",
-    "Science Communication and Design Lead (Impact Media Lab - subcontractor)": "#b83280",
+WORKSTREAM_COLORS = {
+    "Data and diagnostics": "#36658a",
+    "Empirical validation": "#2e7d5b",
+    "Comparative modeling": "#7a5195",
+    "Reduced model development": "#c06c4e",
+    "Infrastructure and reproducibility": "#5f6b7a",
+    "Synthesis, release, and adoption": "#9c4f70",
 }
 
-GROUP_ORDER = [
-    "Team and workflow setup",
-    "Empirical data and diagnostics",
-    "Generative modeling",
-    "Integration and evaluation",
-    "Outputs and dissemination",
-]
-
-GROUP_DISPLAY = {
-    "Team and workflow setup": "Team / workflow",
-    "Empirical data and diagnostics": "Empirical diagnostics",
-    "Generative modeling": "Generative modeling",
-    "Integration and evaluation": "Integration / evaluation",
-    "Outputs and dissemination": "Outputs / dissemination",
-}
-
-FONT_REGULAR_PATH = Path("/System/Library/Fonts/Supplemental/Times New Roman.ttf")
-FONT_BOLD_PATH = Path("/System/Library/Fonts/Supplemental/Times New Roman Bold.ttf")
-FONT_STACK = "Times New Roman, Georgia, serif"
-
+# Concise labels are intentional for NSF two-column readability.
 TASKS = [
-    {"label": "Project onboarding and governance", "start": 1, "end": 3, "role": "Principal Investigator (Ty Tuff, CU Boulder / ESIIL)", "group": "Team and workflow setup"},
-    {"label": "Reproducible workflows, CI/CD, containers", "start": 1, "end": 36, "role": "Infrastructure Lead (TBD ESIIL software engineer)", "group": "Team and workflow setup"},
-    {"label": "Validation and uncertainty quantification", "start": 4, "end": 36, "role": "Co-Investigator (Cibele Amaral, CU Boulder / ESIIL)", "group": "Team and workflow setup"},
-    {"label": "Documentation and protocol maintenance", "start": 2, "end": 36, "role": "Infrastructure Lead (TBD ESIIL software engineer)", "group": "Team and workflow setup"},
-    {"label": "Reporting, synthesis, and dissemination", "start": 6, "end": 36, "role": "Principal Investigator (Ty Tuff, CU Boulder / ESIIL)", "group": "Team and workflow setup"},
-    {"label": "FIRED/GOFER/FEDS ingestion and harmonization", "start": 1, "end": 8, "role": "Empirical Lead (Nayani Ilangakoon, CU Boulder/Earth Lab)", "group": "Empirical data and diagnostics"},
-    {"label": "Unified time-resolved dataset assembly", "start": 3, "end": 12, "role": "Empirical Lead (Nayani Ilangakoon, CU Boulder/Earth Lab)", "group": "Empirical data and diagnostics"},
-    {"label": "Extract shared diagnostics A(t), P(t)", "start": 5, "end": 12, "role": "Co-Investigator (Cibele Amaral, CU Boulder / ESIIL)", "group": "Empirical data and diagnostics"},
-    {"label": "Estimate sigma = d(log P)/d(log A)", "start": 7, "end": 12, "role": "Co-Investigator (Cibele Amaral, CU Boulder / ESIIL)", "group": "Empirical data and diagnostics"},
-    {"label": "Transition detection pipeline", "start": 8, "end": 14, "role": "Principal Investigator (Ty Tuff, CU Boulder / ESIIL)", "group": "Empirical data and diagnostics"},
-    {"label": "Sensitivity: resolution, sampling, segmentation", "start": 9, "end": 16, "role": "Co-Investigator (Cibele Amaral, CU Boulder / ESIIL)", "group": "Empirical data and diagnostics"},
-    {"label": "Cross-dataset transition validation", "start": 10, "end": 18, "role": "Empirical Lead (Nayani Ilangakoon, CU Boulder/Earth Lab)", "group": "Empirical data and diagnostics"},
-    {"label": "Detection outputs inform model assignment", "start": 11, "end": 18, "role": "Principal Investigator (Ty Tuff, CU Boulder / ESIIL)", "group": "Empirical data and diagnostics"},
-    {"label": "Competing model implementation/harmonization (M0-M3)", "start": 13, "end": 20, "role": "Postdoctoral Researcher (Modeling Lead; TBD)", "group": "Generative modeling"},
-    {"label": "Regime-aware model assignment", "start": 15, "end": 24, "role": "Postdoctoral Researcher (Modeling Lead; TBD)", "group": "Generative modeling"},
-    {"label": "Shared diagnostic evaluation using A(t), P(t), sigma", "start": 14, "end": 24, "role": "Postdoctoral Researcher (Modeling Lead; TBD)", "group": "Generative modeling"},
-    {"label": "Structural, dynamical, outcome comparison", "start": 17, "end": 26, "role": "Postdoctoral Researcher (Modeling Lead; TBD)", "group": "Generative modeling"},
-    {"label": "Mechanism discrimination", "start": 19, "end": 27, "role": "Principal Investigator (Ty Tuff, CU Boulder / ESIIL)", "group": "Generative modeling"},
-    {"label": "Reproducible benchmark generation", "start": 20, "end": 30, "role": "Infrastructure Lead (TBD ESIIL software engineer)", "group": "Generative modeling"},
-    {"label": "Model Reconciliation Council prep", "start": 19, "end": 24, "role": "Principal Investigator (Ty Tuff, CU Boulder / ESIIL)", "group": "Integration and evaluation"},
-    {"label": "Model Reconciliation Council meeting 1", "start": 24, "end": 24, "role": "Principal Investigator (Ty Tuff, CU Boulder / ESIIL)", "group": "Integration and evaluation"},
-    {"label": "Reduced geometry-constrained model implementation", "start": 25, "end": 31, "role": "Postdoctoral Researcher (Modeling Lead; TBD)", "group": "Integration and evaluation"},
-    {"label": "Transition-aware gating", "start": 26, "end": 32, "role": "Postdoctoral Researcher (Modeling Lead; TBD)", "group": "Integration and evaluation"},
-    {"label": "beta(t) environmental driver integration", "start": 26, "end": 33, "role": "Co-Investigator (Cibele Amaral, CU Boulder / ESIIL)", "group": "Integration and evaluation"},
-    {"label": "Trajectory generation and predictive evaluation", "start": 28, "end": 35, "role": "Postdoctoral Researcher (Modeling Lead; TBD)", "group": "Integration and evaluation"},
-    {"label": "Comparative gain versus baselines", "start": 30, "end": 35, "role": "Principal Investigator (Ty Tuff, CU Boulder / ESIIL)", "group": "Integration and evaluation"},
-    {"label": "Operationalization and release workflows", "start": 30, "end": 36, "role": "Infrastructure Lead (TBD ESIIL software engineer)", "group": "Outputs and dissemination"},
-    {"label": "Fire Dynamics Explorer integration", "start": 31, "end": 36, "role": "Infrastructure Lead (TBD ESIIL software engineer)", "group": "Outputs and dissemination"},
-    {"label": "Public code, data, workflow release", "start": 33, "end": 36, "role": "Infrastructure Lead (TBD ESIIL software engineer)", "group": "Outputs and dissemination"},
-    {"label": "Model Reconciliation Council synthesis/final meeting", "start": 33, "end": 36, "role": "Principal Investigator (Ty Tuff, CU Boulder / ESIIL)", "group": "Outputs and dissemination"},
-    {"label": "User-facing translation and communication", "start": 24, "end": 36, "role": "Science Communication and Design Lead (Impact Media Lab - subcontractor)", "group": "Outputs and dissemination"},
-    {"label": "Documentary and explainer development", "start": 25, "end": 36, "role": "Science Communication and Design Lead (Impact Media Lab - subcontractor)", "group": "Outputs and dissemination"},
+    ("Data and diagnostics", "Unified event dataset (QC)", 1, 10),
+    ("Data and diagnostics", "Extract A(t), P(t): FIRED/GOFER/FEDS", 2, 12),
+    ("Data and diagnostics", "Estimate σ = d(log P)/d(log A)", 5, 12),
+    ("Data and diagnostics", "Detect regime transitions", 7, 14),
+    ("Empirical validation", "Cross-dataset uncertainty propagation", 8, 20),
+    ("Empirical validation", "Resolution/processing sensitivity", 9, 22),
+    ("Empirical validation", "Validation and UQ (continuing)", 10, 36),
+    ("Comparative modeling", "Run competing models on shared events", 13, 24),
+    ("Comparative modeling", "Shared diagnostic space evaluation", 14, 26),
+    ("Comparative modeling", "Structural/dynamical/outcome metrics", 15, 27),
+    ("Comparative modeling", "Regime-aware predictive performance tests", 18, 30),
+    ("Reduced model development", "Reduced geometry-constrained model", 24, 33),
+    ("Reduced model development", "Transition-aware gating", 25, 34),
+    ("Reduced model development", "Integrate dA/dt = β(t) · A^(2/3)", 26, 35),
+    ("Reduced model development", "Validate A(t), P(t), σ trajectories", 28, 36),
+    ("Infrastructure and reproducibility", "Data ingestion and harmonization", 1, 36),
+    ("Infrastructure and reproducibility", "Reproducible code + containers", 1, 36),
+    ("Infrastructure and reproducibility", "Benchmark pipelines and stability tests", 12, 36),
+    ("Synthesis, release, and adoption", "Public release: code, data, workflows", 30, 36),
+    ("Synthesis, release, and adoption", "Fire Dynamics Explorer integration", 31, 36),
+    ("Synthesis, release, and adoption", "User-facing evaluation + scenarios", 32, 36),
 ]
 
-FONT = {
-    " ": ["00000", "00000", "00000", "00000", "00000", "00000", "00000"],
-    "-": ["00000", "00000", "00000", "11111", "00000", "00000", "00000"],
-    "/": ["00001", "00010", "00100", "01000", "10000", "00000", "00000"],
-    ":": ["00000", "00100", "00100", "00000", "00100", "00100", "00000"],
-    ".": ["00000", "00000", "00000", "00000", "00000", "00110", "00110"],
-    ",": ["00000", "00000", "00000", "00000", "00110", "00110", "00100"],
-    "+": ["00000", "00100", "00100", "11111", "00100", "00100", "00000"],
-    "(": ["00010", "00100", "01000", "01000", "01000", "00100", "00010"],
-    ")": ["01000", "00100", "00010", "00010", "00010", "00100", "01000"],
-    "0": ["01110", "10001", "10011", "10101", "11001", "10001", "01110"],
-    "1": ["00100", "01100", "00100", "00100", "00100", "00100", "01110"],
-    "2": ["01110", "10001", "00001", "00010", "00100", "01000", "11111"],
-    "3": ["11110", "00001", "00001", "01110", "00001", "00001", "11110"],
-    "4": ["00010", "00110", "01010", "10010", "11111", "00010", "00010"],
-    "5": ["11111", "10000", "10000", "11110", "00001", "00001", "11110"],
-    "6": ["01110", "10000", "10000", "11110", "10001", "10001", "01110"],
-    "7": ["11111", "00001", "00010", "00100", "01000", "01000", "01000"],
-    "8": ["01110", "10001", "10001", "01110", "10001", "10001", "01110"],
-    "9": ["01110", "10001", "10001", "01111", "00001", "00001", "01110"],
-    "A": ["01110", "10001", "10001", "11111", "10001", "10001", "10001"],
-    "B": ["11110", "10001", "10001", "11110", "10001", "10001", "11110"],
-    "C": ["01111", "10000", "10000", "10000", "10000", "10000", "01111"],
-    "D": ["11110", "10001", "10001", "10001", "10001", "10001", "11110"],
-    "E": ["11111", "10000", "10000", "11110", "10000", "10000", "11111"],
-    "F": ["11111", "10000", "10000", "11110", "10000", "10000", "10000"],
-    "G": ["01111", "10000", "10000", "10111", "10001", "10001", "01111"],
-    "H": ["10001", "10001", "10001", "11111", "10001", "10001", "10001"],
-    "I": ["01110", "00100", "00100", "00100", "00100", "00100", "01110"],
-    "J": ["00001", "00001", "00001", "00001", "10001", "10001", "01110"],
-    "K": ["10001", "10010", "10100", "11000", "10100", "10010", "10001"],
-    "L": ["10000", "10000", "10000", "10000", "10000", "10000", "11111"],
-    "M": ["10001", "11011", "10101", "10101", "10001", "10001", "10001"],
-    "N": ["10001", "11001", "10101", "10011", "10001", "10001", "10001"],
-    "O": ["01110", "10001", "10001", "10001", "10001", "10001", "01110"],
-    "P": ["11110", "10001", "10001", "11110", "10000", "10000", "10000"],
-    "Q": ["01110", "10001", "10001", "10001", "10101", "10010", "01101"],
-    "R": ["11110", "10001", "10001", "11110", "10100", "10010", "10001"],
-    "S": ["01111", "10000", "10000", "01110", "00001", "00001", "11110"],
-    "T": ["11111", "00100", "00100", "00100", "00100", "00100", "00100"],
-    "U": ["10001", "10001", "10001", "10001", "10001", "10001", "01110"],
-    "V": ["10001", "10001", "10001", "10001", "10001", "01010", "00100"],
-    "W": ["10001", "10001", "10001", "10101", "10101", "10101", "01010"],
-    "X": ["10001", "10001", "01010", "00100", "01010", "10001", "10001"],
-    "Y": ["10001", "10001", "01010", "00100", "00100", "00100", "00100"],
-    "Z": ["11111", "00001", "00010", "00100", "01000", "10000", "11111"],
-}
+MILESTONES = [
+    ("Unified event dataset complete", 10, "Data and diagnostics"),
+    ("Transition detection pipeline validated", 14, "Empirical validation"),
+    ("Cross-dataset uncertainty assessment complete", 20, "Empirical validation"),
+    ("Comparative benchmark complete", 24, "Comparative modeling"),
+    ("Model discrimination decision gate", 27, "Comparative modeling"),
+    ("Reduced generative model operational", 33, "Reduced model development"),
+    ("Public release of code and workflows", 35, "Synthesis, release, and adoption"),
+    ("Explorer integration complete", 36, "Synthesis, release, and adoption"),
+]
 
 
-class PNGCanvas:
-    def __init__(self, width: int, height: int, background: str = "#ffffff") -> None:
-        if Image is None or ImageDraw is None or ImageFont is None:
-            raise RuntimeError("Pillow is not installed; PNG rendering is unavailable.")
-        self.width = width
-        self.height = height
-        self.image = Image.new("RGB", (width, height), background)
-        self.draw = ImageDraw.Draw(self.image)
+def build_rows() -> tuple[list[dict[str, object]], dict[str, float]]:
+    rows: list[dict[str, object]] = []
+    group_centers: dict[str, float] = {}
+    y = 0.0
+    group_gap = 0.9
 
-    def _font(self, size: int, bold: bool = False) -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
-        try:
-            path = FONT_BOLD_PATH if bold else FONT_REGULAR_PATH
-            return ImageFont.truetype(str(path), size=size)
-        except OSError:
-            return ImageFont.load_default()
+    groups = list(WORKSTREAM_COLORS.keys())
+    for group in groups:
+        group_tasks = [t for t in TASKS if t[0] == group]
+        start_y = y
+        for _, label, start, end in group_tasks:
+            rows.append(
+                {
+                    "group": group,
+                    "label": label,
+                    "start": start,
+                    "duration": end - start + 1,
+                    "y": y,
+                }
+            )
+            y += 1.0
+        end_y = y - 1.0
+        group_centers[group] = (start_y + end_y) / 2
+        y += group_gap
 
-    def fill_rect(self, x: int, y: int, w: int, h: int, color: str) -> None:
-        if w <= 0 or h <= 0:
-            return
-        self.draw.rectangle([x, y, x + w, y + h], fill=color)
-
-    def line(self, x0: int, y0: int, x1: int, y1: int, color: str, thickness: int = 1) -> None:
-        self.draw.line([(x0, y0), (x1, y1)], fill=color, width=thickness)
-
-    def rounded_rect(self, x: int, y: int, w: int, h: int, fill: str, outline: str | None = None, outline_width: int = 1, radius: int = 8) -> None:
-        self.draw.rounded_rectangle([x, y, x + w, y + h], radius=radius, fill=fill, outline=outline, width=outline_width)
-
-    def text(self, x: int, y: int, text: str, color: str, size: int = 16, bold: bool = False, anchor: str = "la") -> None:
-        self.draw.text((x, y), text, fill=color, font=self._font(size=size, bold=bold), anchor=anchor)
-
-    def save(self, path: Path) -> None:
-        self.image.save(path, format="PNG")
+    return rows, group_centers
 
 
-class SVGCanvas:
-    def __init__(self, width: int, height: int, background: str = "#ffffff") -> None:
-        self.width = width
-        self.height = height
-        self.elements = [f'<rect width="100%" height="100%" fill="{background}"/>']
+def render_chart(write_png: bool = False, write_pdf: bool = False) -> None:
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    rows, group_centers = build_rows()
 
-    def rect(self, x: float, y: float, w: float, h: float, fill: str, stroke: str = "none", stroke_width: float = 0, rx: float = 0) -> None:
-        self.elements.append(
-            f'<rect x="{x:.2f}" y="{y:.2f}" width="{w:.2f}" height="{h:.2f}" fill="{fill}" stroke="{stroke}" stroke-width="{stroke_width}" rx="{rx}"/>'
+    fig, ax = plt.subplots(figsize=(18, 12.5))
+    fig.patch.set_facecolor("white")
+
+    max_y = max(row["y"] for row in rows) + 0.8
+
+    # Subtle year shading and headers.
+    for phase in PHASES:
+        ax.axvspan(phase["start"] - 0.5, phase["end"] + 0.5, color=phase["shade"], zorder=0)
+        center = (phase["start"] + phase["end"]) / 2
+        ax.text(
+            center,
+            -1.45,
+            phase["label"],
+            ha="center",
+            va="bottom",
+            fontsize=17,
+            fontweight="bold",
+            color="#1f2933",
         )
 
-    def line(self, x1: float, y1: float, x2: float, y2: float, stroke: str, stroke_width: float = 1) -> None:
-        self.elements.append(
-            f'<line x1="{x1:.2f}" y1="{y1:.2f}" x2="{x2:.2f}" y2="{y2:.2f}" stroke="{stroke}" stroke-width="{stroke_width}"/>'
-        )
-
-    def text(self, x: float, y: float, text: str, fill: str, size: int, weight: str = "400", anchor: str = "start") -> None:
-        self.elements.append(
-            f'<text x="{x:.2f}" y="{y:.2f}" fill="{fill}" font-family="{FONT_STACK}" font-size="{size}" font-weight="{weight}" text-anchor="{anchor}">{escape(text)}</text>'
-        )
-
-    def save(self, path: Path) -> None:
-        svg = (
-            f'<svg xmlns="http://www.w3.org/2000/svg" width="{self.width}" height="{self.height}" viewBox="0 0 {self.width} {self.height}">'
-            + "".join(self.elements)
-            + "</svg>"
-        )
-        path.write_text(svg)
-
-
-
-def chunk(tag: bytes, data: bytes) -> bytes:
-    return struct.pack(">I", len(data)) + tag + data + struct.pack(">I", zlib.crc32(tag + data) & 0xFFFFFFFF)
-
-
-
-def hex_to_rgb(value: str) -> bytes:
-    value = value.lstrip("#")
-    return bytes(int(value[i:i + 2], 16) for i in (0, 2, 4))
-
-
-
-def month_to_x(month: float) -> float:
-    return MARGIN_LEFT + (month - 1) * MONTH_WIDTH
-
-
-
-def row_to_y(row: int) -> float:
-    return MARGIN_TOP + row * ROW_HEIGHT
-
-
-
-def task_duration(task: dict[str, object]) -> int:
-    return int(task["end"]) - int(task["start"]) + 1
-
-
-
-def group_bounds() -> list[tuple[str, int, int]]:
-    bounds: list[tuple[str, int, int]] = []
-    for group in GROUP_ORDER:
-        indices = [idx for idx, task in enumerate(TASKS) if task["group"] == group]
-        if indices:
-            bounds.append((group, min(indices), max(indices)))
-    return bounds
-
-
-
-def draw_common(svg: SVGCanvas | None = None, png: PNGCanvas | None = None) -> None:
-    total_rows = len(TASKS)
-    chart_bottom = MARGIN_TOP + total_rows * ROW_HEIGHT
-
-    for band in STAGE_BANDS:
-        x = month_to_x(band["start"])
-        w = (band["end"] - band["start"] + 1) * MONTH_WIDTH
-        if svg:
-            svg.rect(x, MARGIN_TOP - 10, w, total_rows * ROW_HEIGHT + 20, band["color"])
-            svg.text(x + 10, MARGIN_TOP - 34, band["label"], "#4a5568", 16, "700")
-        if png:
-            png.fill_rect(round(x), MARGIN_TOP - 10, round(w), total_rows * ROW_HEIGHT + 20, band["color"])
-            png.text(round(x) + 10, MARGIN_TOP - 56, band["label"], "#4a5568", size=18, bold=True)
-
-    for month in range(1, TOTAL_MONTHS + 1):
-        x = month_to_x(month)
-        quarter_line = month == 1 or (month - 1) % 3 == 0
-        stroke = "#c3d0dc" if quarter_line else "#d9e2ec"
-        width = 1.6 if quarter_line else 1
-        if svg:
-            svg.line(x, MARGIN_TOP, x, chart_bottom, stroke, width)
-            svg.text(x + MONTH_WIDTH / 2, chart_bottom + 26, str(month), "#4a5568", 14, anchor="middle")
-        if png:
-            png.line(round(x), MARGIN_TOP, round(x), round(chart_bottom), stroke, 1 if not quarter_line else 2)
-            png.text(round(x + MONTH_WIDTH / 2), round(chart_bottom) + 26, str(month), "#4a5568", size=16, anchor="ma")
+    # Month grid with stronger quarter and year boundaries.
+    for m in range(1, TOTAL_MONTHS + 1):
+        lw = 1.2 if (m - 1) % 3 == 0 else 0.5
+        color = "#c7ced6" if (m - 1) % 3 == 0 else "#e5e9ee"
+        ax.vlines(m - 0.5, -0.5, max_y, color=color, linewidth=lw, zorder=1)
 
     for year_end in (12, 24, 36):
-        x = month_to_x(year_end + 1)
-        if svg:
-            svg.line(x, MARGIN_TOP - 10, x, chart_bottom, "#b9c6d3", 2)
-        if png:
-            png.line(round(x), MARGIN_TOP - 10, round(x), round(chart_bottom), "#b9c6d3", 2)
+        ax.vlines(year_end + 0.5, -1.7, max_y, color="#9aa5b1", linewidth=2.2, zorder=2)
 
-    year_specs = [
-        (1, 12, "Year 1 - Detect"),
-        (13, 24, "Year 2 - Explain"),
-        (25, 36, "Year 3 - Apply"),
-    ]
-    for start, end, label in year_specs:
-        center = (month_to_x(start) + month_to_x(end + 1)) / 2
-        if svg:
-            svg.text(center, MARGIN_TOP - 86, label, "#2d3748", 28, "700", "middle")
-        if png:
-            png.text(round(center), MARGIN_TOP - 104, label, "#2d3748", size=28, bold=True, anchor="ma")
+    # Task bars and labels.
+    for row in rows:
+        y = float(row["y"])
+        group = str(row["group"])
+        color = WORKSTREAM_COLORS[group]
+        ax.barh(
+            y,
+            float(row["duration"]),
+            left=float(row["start"]) - 0.5,
+            height=0.62,
+            color=color,
+            edgecolor="white",
+            linewidth=1.0,
+            zorder=3,
+        )
+        ax.text(
+            -10.1,
+            y,
+            str(row["label"]),
+            ha="left",
+            va="center",
+            fontsize=12.8,
+            color="#243b53",
+        )
 
-    for group_name, start_idx, end_idx in group_bounds():
-        y = MARGIN_TOP + ((start_idx + end_idx + 1) / 2) * ROW_HEIGHT
-        divider_y = MARGIN_TOP + (end_idx + 1) * ROW_HEIGHT
-        group_label = GROUP_DISPLAY[group_name]
-        if svg:
-            svg.text(48, y, group_label, "#2d3748", 18, "700", "start")
-            svg.line(MARGIN_LEFT, divider_y, WIDTH - MARGIN_RIGHT, divider_y, "#d6dde5", 1.5)
-        if png:
-            png.text(48, round(y), group_label, "#2d3748", size=20, bold=True, anchor="lm")
-            png.line(MARGIN_LEFT, round(divider_y), WIDTH - MARGIN_RIGHT, round(divider_y), "#d6dde5", 1)
+    # Group headers and separators.
+    for group, center_y in group_centers.items():
+        ax.text(
+            -20.2,
+            center_y,
+            group,
+            ha="left",
+            va="center",
+            fontsize=13.8,
+            fontweight="bold",
+            color="#1f2933",
+        )
 
-    for row, task in enumerate(TASKS):
-        label = str(task["label"])
-        start = int(task["start"])
-        end = int(task["end"])
-        role = str(task["role"])
-        x = month_to_x(start) + 6
-        y = row_to_y(row) + (ROW_HEIGHT - BAR_HEIGHT) / 2
-        bar_height = BAR_HEIGHT + (4 if task.get("gate") else 0)
-        y -= (bar_height - BAR_HEIGHT) / 2
-        w = task_duration(task) * MONTH_WIDTH - 12
-        color = ROLE_COLORS[role]
-        stroke = "#8b5e34" if task.get("gate") else "#ffffff"
-        stroke_width = 2.4 if task.get("gate") else 1.0
-        if svg:
-            svg.text(MARGIN_LEFT - 18, y + bar_height * 0.72, label, "#243b53", 17, "400", "end")
-            svg.rect(x, y, w, bar_height, color, stroke=stroke, stroke_width=stroke_width, rx=8)
-        if png:
-            png.text(MARGIN_LEFT - 18, round(y + bar_height * 0.7), label, "#243b53", size=18, anchor="rm")
-            png.rounded_rect(round(x), round(y), round(w), round(bar_height), color, outline=stroke if task.get("gate") else "#ffffff", outline_width=2 if task.get("gate") else 1, radius=8)
-            if task.get("gate"):
-                png.line(round(x), round(y), round(x + w), round(y), stroke, 2)
-                png.line(round(x), round(y + bar_height), round(x + w), round(y + bar_height), stroke, 2)
-                png.line(round(x), round(y), round(x), round(y + bar_height), stroke, 2)
-                png.line(round(x + w), round(y), round(x + w), round(y + bar_height), stroke, 2)
+    # Milestones as diamonds on the nearest workstream center.
+    for label, month, group in MILESTONES:
+        y = group_centers[group]
+        ax.scatter(
+            [month],
+            [y],
+            marker="D",
+            s=80,
+            color="#111827",
+            edgecolors="white",
+            linewidths=0.9,
+            zorder=6,
+        )
+        ax.text(month + 0.35, y - 0.33, label, fontsize=10.5, color="#334155", va="top")
+
+    ax.set_xlim(-21.0, 36.6)
+    ax.set_ylim(-2.0, max_y + 0.4)
+    ax.invert_yaxis()
+    ax.set_yticks([])
+
+    # Reduce x-label clutter: show quarterly ticks only.
+    quarter_ticks = [1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34]
+    ax.set_xticks(quarter_ticks)
+    ax.set_xticklabels([f"M{m}" for m in quarter_ticks], fontsize=12)
+    ax.set_xlabel("Project month (quarterly ticks)", fontsize=14, fontweight="bold")
 
     title = "FIRE-MODEL Work Plan Gantt Chart"
-    subtitle = "Overlapping 36-month Detect, Explain, Apply plan using shared diagnostics A(t), P(t), sigma."
-    if svg:
-        svg.text(MARGIN_LEFT - 10, 56, title, "#1a202c", 40, "700")
-        svg.text(MARGIN_LEFT - 10, 92, subtitle, "#4a5568", 22)
-        svg.text((MARGIN_LEFT + WIDTH - MARGIN_RIGHT) / 2, HEIGHT - 38, "Project month", "#2d3748", 22, "700", "middle")
-    if png:
-        png.text(MARGIN_LEFT - 8, 54, title, "#1a202c", size=44, bold=True)
-        png.text(MARGIN_LEFT - 8, 98, subtitle, "#4a5568", size=20)
-        png.text(WIDTH // 2, HEIGHT - 64, "Project month", "#2d3748", size=28, bold=True, anchor="ma")
-
-    legend_items = [{"label": label, "fill": color, "stroke": "none", "stroke_width": 0.8} for label, color in ROLE_COLORS.items()]
-    legend_x = MARGIN_LEFT
-    legend_y = HEIGHT - 184
-    for idx, item in enumerate(legend_items):
-        x = legend_x
-        y = legend_y + idx * 28
-        if svg:
-            svg.rect(x, y, 24, 24, item["fill"], stroke=item["stroke"], stroke_width=item["stroke_width"], rx=3)
-            svg.text(x + 34, y + 17, str(item["label"]), "#2d3748", 16)
-        if png:
-            png.rounded_rect(x, y, 24, 24, str(item["fill"]), outline=None if item["stroke"] == "none" else str(item["stroke"]), outline_width=2 if item["stroke"] != "none" else 1, radius=3)
-            png.text(x + 34, y + 16, str(item["label"]), "#2d3748", size=14, anchor="lm")
-
-
-
-def render_with_matplotlib() -> None:
-    fig, ax = plt.subplots(figsize=(18.5, 12))
-    total_rows = len(TASKS)
-    fig.patch.set_facecolor("white")
-    ax.set_facecolor("white")
-
-    for band in STAGE_BANDS:
-        width = band["end"] - band["start"] + 1
-        ax.add_patch(Rectangle((band["start"] - 0.5, -0.5), width, total_rows, facecolor=band["color"], edgecolor="none", zorder=0))
-        ax.text(band["start"] - 0.25, -0.95, band["label"], fontsize=11.5, fontweight="bold", color="#4a5568", va="top")
-
-    for row, task in enumerate(TASKS):
-        label = str(task["label"])
-        start = int(task["start"])
-        duration = task_duration(task)
-        role = str(task["role"])
-        edgecolor = "#8b5e34" if task.get("gate") else "white"
-        linewidth = 2.2 if task.get("gate") else 1.0
-        height = 0.74 if task.get("gate") else 0.56
-        ax.barh(row, duration, left=start - 0.5, height=height, color=ROLE_COLORS[role], edgecolor=edgecolor, linewidth=linewidth, zorder=3)
-        ax.text(-0.85, row, label, ha="right", va="center", fontsize=11.4, color="#243b53", zorder=4)
-
-    ax.set_xlim(-8.6, 36.5)
-    ax.set_ylim(-1.2, total_rows - 0.4)
-    ax.set_yticks(range(total_rows))
-    ax.set_yticklabels([""] * total_rows)
-    ax.invert_yaxis()
-    ax.set_xticks(range(1, 37))
-    ax.set_xticklabels([str(i) for i in range(1, 37)], fontsize=11)
-    ax.grid(axis="x", color="#d9e2ec", linewidth=0.7, alpha=0.95)
-    ax.set_axisbelow(True)
-    for quarter_start in (1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34):
-        ax.vlines(quarter_start - 0.5, -0.5, total_rows - 0.4, color="#c3d0dc", linewidth=1.2, zorder=1)
-
-    for year_start, year_end, label in [
-        (1, 12, "Year 1 - Detect"),
-        (13, 24, "Year 2 - Explain"),
-        (25, 36, "Year 3 - Apply"),
-    ]:
-        center = (year_start + year_end) / 2
-        ax.text(center, -1.2, label, ha="center", va="bottom", fontsize=14.5, fontweight="bold", color="#2d3748")
-        ax.vlines(year_end + 0.5, -0.5, total_rows - 0.4, color="#b9c6d3", linewidth=1.2, zorder=2)
-
-    for group_name, start_idx, end_idx in group_bounds():
-        center = (start_idx + end_idx) / 2
-        ax.text(-7.9, center, group_name, ha="left", va="center", fontsize=12.3, fontweight="bold", color="#2d3748")
-        ax.hlines(end_idx + 0.5, 0.5, 36.5, color="#d6dde5", linewidth=1.1, zorder=1)
-
-    ax.set_title("FIRE-MODEL Work Plan Gantt Chart", fontsize=24, fontweight="bold", loc="left", pad=22)
-    ax.text(-8.45, -1.88, "Overlapping 36-month Detect, Explain, Apply plan using shared diagnostics A(t), P(t), sigma.", fontsize=12.2, color="#4a5568", ha="left", va="bottom")
-    ax.set_xlabel("Project month", fontsize=13, fontweight="bold", color="#2d3748", labelpad=12)
-
-    legend_handles = [Patch(facecolor=color, edgecolor="none", label=label) for label, color in ROLE_COLORS.items()]
-    ax.legend(handles=legend_handles, ncol=1, frameon=False, fontsize=10, loc="lower left", bbox_to_anchor=(0.0, -0.33))
+    subtitle = "Three-track pipeline for Verify, Predict, and Synthesis"
+    ax.set_title(title, loc="left", fontsize=26, fontweight="bold", pad=24)
+    ax.text(-20.9, -2.28, subtitle, fontsize=14.5, color="#475569", va="top")
 
     for spine in ax.spines.values():
         spine.set_visible(False)
-    ax.tick_params(axis="y", length=0)
-    ax.tick_params(axis="x", colors="#4a5568")
+    ax.tick_params(axis="x", length=0, colors="#334155")
+
+    handles = [
+        Line2D([0], [0], marker="s", color="w", markerfacecolor=color, markersize=10, label=group)
+        for group, color in WORKSTREAM_COLORS.items()
+    ]
+    handles.append(
+        Line2D([0], [0], marker="D", color="w", markerfacecolor="#111827", markeredgecolor="white", markersize=8, label="Milestone")
+    )
+
+    ax.legend(
+        handles=handles,
+        frameon=False,
+        ncol=2,
+        fontsize=11.2,
+        loc="lower left",
+        bbox_to_anchor=(0.0, -0.23),
+        columnspacing=1.3,
+        handletextpad=0.5,
+    )
+
     plt.tight_layout()
-    fig.savefig(PNG_PATH, dpi=300, bbox_inches="tight")
     fig.savefig(SVG_PATH, bbox_inches="tight")
+    if write_png:
+        fig.savefig(PNG_PATH, dpi=450, bbox_inches="tight")
+    if write_pdf:
+        fig.savefig(PDF_PATH, bbox_inches="tight")
     plt.close(fig)
 
 
-
-def render_pure_python() -> None:
-    png = PNGCanvas(WIDTH, HEIGHT) if Image is not None else None
-    svg = SVGCanvas(WIDTH, HEIGHT)
-    draw_common(svg=svg, png=png)
-    svg.save(SVG_PATH)
-    if png is not None:
-        png.save(PNG_PATH)
-
-
-
-def main() -> None:
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    if plt is not None and "--matplotlib" in sys.argv:
-        render_with_matplotlib()
-        mode = "matplotlib"
-    else:
-        render_pure_python()
-        mode = "pure-python fallback"
-    print(f"Saved {SVG_PATH}")
-    if PNG_PATH.exists():
-        print(f"Saved {PNG_PATH}")
-    else:
-        print(f"Skipped {PNG_PATH} (Pillow not installed)")
-    print(f"Renderer: {mode}")
-
-
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description="Generate FIRE-MODEL Gantt chart assets.")
+    parser.add_argument("--all-formats", action="store_true", help="Also write high-DPI PNG and PDF in addition to SVG.")
+    args = parser.parse_args()
+
+    render_chart(write_png=args.all_formats, write_pdf=args.all_formats)
+    print(f"Saved {SVG_PATH}")
+    if args.all_formats:
+        print(f"Saved {PNG_PATH}")
+        print(f"Saved {PDF_PATH}")
+    else:
+        print("Skipped PNG/PDF (use --all-formats to generate print assets)")

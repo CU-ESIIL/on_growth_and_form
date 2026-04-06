@@ -2150,3 +2150,48 @@ User asked: "the text in the gantt chart is too small to read. can we make it bi
 
 ### Open questions and follow-up
 - If desired, we can further increase figure canvas size and row height in a follow-up pass to preserve spacing while using even larger text.
+
+## 2026-04-06
+
+### Prompt
+User asked to update the existing FIRE-MODEL Gantt chart to match current proposal language (Verify/Predict/Synthesis), improve legibility for two-column NSF PDF insertion, preserve overlapping workstreams, and include major milestone markers.
+
+### Files and folders inspected
+- `scripts/generate_fire_model_gantt.py`
+- `docs/planning/gantt_chart.md`
+- `docs/research-program/gantt-timeline.md`
+- `scripts/review_site.sh`
+
+### Actions taken
+- Reworked `scripts/generate_fire_model_gantt.py` to produce a publication-ready chart with larger typography, expanded left margin, grouped workstreams, quarterly month ticks, year shading, Verify/Predict/Synthesis headings, and milestone diamonds.
+- Updated task language to align with current proposal logic (A(t), P(t), σ diagnostics; competing model evaluation; reduced geometry-constrained synthesis).
+- Added output generation in vector and raster formats: SVG, PDF, and high-DPI PNG under `docs/assets/figures/` using the new base name `fire_model_gantt_verify_predict_synthesis`.
+- Updated `docs/planning/gantt_chart.md` to embed the new figure and revise legend language to Verify/Predict/Synthesis.
+- Updated `docs/research-program/gantt-timeline.md` to remove Detect/Explain/Apply framing and align timeline wording with current proposal language.
+
+### Verification
+- Ran `python3 scripts/generate_fire_model_gantt.py` and confirmed new SVG/PDF/PNG outputs were written.
+- Ran `bash scripts/review_site.sh`; MkDocs build succeeded, while pytest site checks failed during collection because `playwright` is unavailable in the environment.
+
+### Open questions and follow-up
+- Milestone wording is concise for readability; proposal leads may want final wording polish for names such as "Model discrimination decision gate" and "Public release of code and workflows" before final submission packaging.
+
+### Prompt
+User indicated the previous Gantt update was unsatisfactory and requested follow-up addressing review comments, with additional instruction indicating binary files are not supported.
+
+### Files and folders inspected
+- `scripts/generate_fire_model_gantt.py`
+- `docs/planning/gantt_chart.md`
+- `docs/assets/figures/`
+
+### Actions taken
+- Updated `scripts/generate_fire_model_gantt.py` so SVG remains the default checked-in output and binary `PNG/PDF` generation is now opt-in via `--all-formats`.
+- Removed checked-in binary assets `docs/assets/figures/fire_model_gantt_verify_predict_synthesis.png` and `.pdf` from version control to satisfy the binary-file constraint while preserving reproducible generation.
+- Updated `docs/planning/gantt_chart.md` to reference the SVG as the primary asset and document the command to regenerate print assets on demand.
+- Regenerated the SVG with the updated script defaults.
+
+### Verification
+- Ran `python3 scripts/generate_fire_model_gantt.py`; confirmed SVG was written and PNG/PDF were intentionally skipped unless `--all-formats` is passed.
+
+### Open questions and follow-up
+- If submission packaging requires repository-tracked raster/vector print binaries, this binary-file policy will need explicit exception guidance.

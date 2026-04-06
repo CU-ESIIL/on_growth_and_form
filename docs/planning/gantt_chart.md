@@ -2,83 +2,54 @@
 
 ## Overview
 
-This figure summarizes the FIRE-MODEL project as a coordinated Detect -> Explain -> Apply program over 36 months. It links team roles, shared diagnostics, model comparison, and application-oriented release work in one timeline.
+This figure summarizes the FIRE-MODEL project as an overlapping **Verify → Predict → Synthesis** program over 36 months. It emphasizes legibility for proposal insertion and aligns task language with the current proposal timeline.
 
 ---
 
 ## Gantt Chart
 
-![FIRE-MODEL Gantt Chart](../assets/figures/fire_model_gantt_ESIIL_minimal.svg)
+![FIRE-MODEL Work Plan Gantt Chart](../assets/figures/fire_model_gantt_verify_predict_synthesis.svg)
 
-PNG version: [fire_model_gantt_ESIIL_minimal.png](../assets/figures/fire_model_gantt_ESIIL_minimal.png)
+- Primary checked-in asset: [fire_model_gantt_verify_predict_synthesis.svg](../assets/figures/fire_model_gantt_verify_predict_synthesis.svg)
+- To regenerate print assets (PNG/PDF), run: `python3 scripts/generate_fire_model_gantt.py --all-formats`
 
 ---
 
 ## Figure Legend
 
-This Gantt chart represents the FIRE-MODEL project across time, scientific logic, and role ownership.
+**Time framing (x-axis)**
+- Year 1 — **Verify**
+- Year 2 — **Predict**
+- Year 3 — **Synthesis**
 
-**Time (x-axis)**  
-The horizontal axis shows project months over three years:
-- Year 1 = Detect
-- Year 2 = Explain
-- Year 3 = Apply
+**Core logic reflected in tasks**
+- **Verify:** observational detection of regime transitions from `A(t)`, `P(t)`, and `σ`.
+- **Predict:** comparative evaluation of competing structural assumptions in a shared diagnostic space.
+- **Synthesis:** reduced geometry-constrained model, transition-aware gating, release, and user-facing deployment.
 
-**Rows (y-axis)**  
-Each row represents a major component of the project, grouped into high-level phases:
-- Team and workflow setup
-- Empirical data and diagnostics
-- Generative modeling
-- Integration and evaluation
-- Outputs and dissemination
+**Workstreams shown**
+- Data and diagnostics
+- Empirical validation
+- Comparative modeling
+- Reduced model development
+- Infrastructure and reproducibility
+- Synthesis, release, and adoption
 
-**Background shading (half-year emphasis)**  
-The background colors indicate the dominant emphasis in each six-month block:
-- Detect foundations
-- Detect diagnostics
-- Explain model build
-- Explain mechanisms
-- Apply prediction
-- Apply release
-
-**Bar colors (roles)**  
-Each bar is colored by responsibility:
-- Principal Investigator (Ty Tuff, CU Boulder / ESIIL)
-- Postdoctoral Researcher (Modeling Lead; TBD)
-- Empirical Lead (Nayani Ilangakoon, CU Boulder/Earth Lab)
-- Co-Investigator (Cibele Amaral, CU Boulder / ESIIL)
-- Infrastructure Lead (TBD ESIIL software engineer)
-- Science Communication and Design Lead (Impact Media Lab - subcontractor)
-
-**Bar length and position**  
-Bar length indicates duration of effort. Position shows when each activity occurs relative to others.
+**Milestones shown as diamonds**
+- Unified event dataset complete
+- Transition detection pipeline validated
+- Cross-dataset uncertainty assessment complete
+- Comparative benchmark complete
+- Model discrimination decision gate
+- Reduced generative model operational
+- Public release of code and workflows
+- Explorer integration complete
 
 ---
 
-## How to Interpret This Figure
+## Notes on interpretation
 
-The figure should be read from left to right as an overlapping scientific workflow:
-
-1. **Detect (Year 1):** FIRED/GOFER/FEDS harmonization, unified time-resolved event data, extraction of `A(t)` and `P(t)`, estimation of `sigma = d(log P)/d(log A)`, transition detection, sensitivity checks, and cross-dataset validation.
-2. **Explain (Year 2):** harmonization of competing models (`M0-M3`), regime-aware model assignment, shared diagnostic evaluation using `A(t)`, `P(t)`, and `sigma`, structural and dynamical comparison, mechanism discrimination, and reproducible benchmark generation.
-3. **Apply (Year 3):** reduced geometry-constrained modeling, transition-aware gating, `beta(t)` integration, trajectory prediction and comparative gain analysis, operationalization, Fire Dynamics Explorer integration, public release, and synthesis products.
-
-Key logic represented in the overlap:
-- Workstreams overlap by design.
-- Detection informs model assignment.
-- Model comparison identifies required mechanisms.
-- Application integrates these constraints into a predictive system.
-- Validation, reproducibility, documentation, and communication continue across years.
-
----
-
-## Why This Matters
-
-This framework provides:
-
-- A consistent workflow for wildfire event diagnostics
-- A testable mechanism-discrimination program in Year 2
-- A transition-aware predictive system in Year 3
-- Reusable public code, data, workflows, and communication products
-
-The Gantt chart makes explicit how these outcomes are achieved through coordinated empirical, theoretical, and computational work.
+- Workstreams overlap by design rather than proceeding as a strict sequence.
+- Data ingestion, validation, and uncertainty quantification continue across the full timeline.
+- Model development begins in Year 2 and extends into Year 3.
+- Infrastructure and reproducibility support all phases and culminate in release and Fire Dynamics Explorer integration.
