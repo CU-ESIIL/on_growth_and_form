@@ -2195,3 +2195,24 @@ User indicated the previous Gantt update was unsatisfactory and requested follow
 
 ### Open questions and follow-up
 - If submission packaging requires repository-tracked raster/vector print binaries, this binary-file policy will need explicit exception guidance.
+
+### Prompt
+User reported CI failure running `python scripts/generate_fire_model_gantt.py` due to missing `matplotlib` and requested follow-up fixes.
+
+### Files and folders inspected
+- `scripts/generate_fire_model_gantt.py`
+- `scripts/review_site.sh`
+
+### Actions taken
+- Refactored `scripts/generate_fire_model_gantt.py` to support dependency-free default execution:
+  - Added optional Matplotlib import guarded by `ModuleNotFoundError`.
+  - Added a pure-Python SVG renderer (`render_svg_fallback`) used automatically when Matplotlib is unavailable.
+  - Kept Matplotlib renderer for high-fidelity output and optional PNG/PDF generation via `--all-formats`.
+- Ensured default command `python3 scripts/generate_fire_model_gantt.py` succeeds and writes the SVG even in environments without Matplotlib.
+
+### Verification
+- Ran `python3 scripts/generate_fire_model_gantt.py`; command succeeded and wrote `docs/assets/figures/fire_model_gantt_verify_predict_synthesis.svg`.
+- Ran `bash scripts/review_site.sh`; MkDocs build succeeded, and pytest collection still failed due to missing `playwright` in the environment.
+
+### Open questions and follow-up
+- If CI also needs PNG/PDF artifacts in environments without Matplotlib, a non-Matplotlib raster/vector fallback would need to be added.
