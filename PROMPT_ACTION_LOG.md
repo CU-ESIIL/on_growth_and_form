@@ -2286,3 +2286,29 @@ User reported the prior PR was unsatisfactory and requested follow-up, with expl
 
 ### Open questions and follow-up
 - If proposal packaging still needs binary exports, generate them locally at submission time from `scripts/generate_fire_model_gantt.py --all-formats` without committing binaries.
+
+### Prompt
+User said left-side text still overlaps in the Gantt chart and requested a PNG in the same folder, with the note that binaries cannot be committed and PNG generation should happen after the PR.
+
+### Files and folders inspected
+- `scripts/generate_fire_model_gantt.py`
+- `docs/assets/figures/fire_model_gantt_verify_predict_synthesis.svg`
+- `scripts/review_site.sh`
+- `PROMPT_ACTION_LOG.md`
+
+### Actions taken
+- Adjusted label layout spacing in `scripts/generate_fire_model_gantt.py` to reduce left-column collisions:
+  - moved workstream labels further left and slightly reduced their font size,
+  - moved task labels rightward to increase separation from workstream labels,
+  - shifted chart start/end x-coordinates in SVG fallback to preserve spacing,
+  - widened Matplotlib x-limits and repositioned subtitle anchor to match the new left margin.
+- Regenerated `docs/assets/figures/fire_model_gantt_verify_predict_synthesis.svg` using `python scripts/generate_fire_model_gantt.py`.
+- Kept PNG generation as a post-PR/manual step (no binary commit), consistent with repository policy.
+- Ran the required site review workflow after website-facing asset updates.
+
+### Verification
+- Ran `python scripts/generate_fire_model_gantt.py`; SVG regenerated successfully.
+- Ran `bash scripts/review_site.sh`; MkDocs site build succeeded, pytest collection failed due to missing `playwright` module in this environment.
+
+### Open questions and follow-up
+- After merge, run `python scripts/generate_fire_model_gantt.py --all-formats` locally to generate PNG/PDF in `docs/assets/figures/` without committing binaries.

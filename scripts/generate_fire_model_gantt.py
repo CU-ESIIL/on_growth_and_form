@@ -104,10 +104,10 @@ def build_rows() -> tuple[list[dict[str, object]], dict[str, float]]:
 def render_svg_fallback() -> None:
     rows, group_centers = build_rows()
     width, height = 3300, 2200
-    left_label_x = 70
-    task_label_x = 720
-    chart_x0 = 1260
-    chart_x1 = 2620
+    left_label_x = 60
+    task_label_x = 790
+    chart_x0 = 1340
+    chart_x1 = 2660
     milestone_text_x = 2800
     chart_w = chart_x1 - chart_x0
     top = 240
@@ -160,7 +160,7 @@ def render_svg_fallback() -> None:
 
     # Group labels
     for group, y0 in group_centers.items():
-        parts.append(f'<text x="{left_label_x}" y="{row_y(y0)+37:.1f}" font-size="29" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#1f2933">{escape(group)}</text>')
+        parts.append(f'<text x="{left_label_x}" y="{row_y(y0)+37:.1f}" font-size="28" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#1f2933">{escape(group)}</text>')
 
     # Milestones with right-column labels and leader lines (staggered)
     for idx, (label, month, group) in enumerate(MILESTONES):
@@ -214,10 +214,10 @@ def render_chart_matplotlib(write_png: bool, write_pdf: bool) -> None:
         y = float(row["y"])
         group = str(row["group"])
         ax.barh(y, float(row["duration"]), left=float(row["start"]) - 0.5, height=0.78, color=WORKSTREAM_COLORS[group], edgecolor="white", linewidth=1.0, zorder=3)
-        ax.text(-13.8, y, str(row["label"]), ha="left", va="center", fontsize=15.2, color="#243b53")
+        ax.text(-14.7, y, str(row["label"]), ha="left", va="center", fontsize=15.2, color="#243b53")
 
     for group, center_y in group_centers.items():
-        ax.text(-26.8, center_y, group, ha="left", va="center", fontsize=16.2, fontweight="bold", color="#1f2933")
+        ax.text(-30.6, center_y, group, ha="left", va="center", fontsize=15.6, fontweight="bold", color="#1f2933")
 
     milestone_text_x = 40.2
     for idx, (label, month, group) in enumerate(MILESTONES):
@@ -227,7 +227,7 @@ def render_chart_matplotlib(write_png: bool, write_pdf: bool) -> None:
         ax.plot([month + 0.15, milestone_text_x - 0.22], [y, label_y], color="#64748b", linewidth=1.0, zorder=5)
         ax.text(milestone_text_x, label_y, label, fontsize=11.8, color="#334155", va="center", ha="left")
 
-    ax.set_xlim(-28.4, 44.9)
+    ax.set_xlim(-33.2, 44.9)
     ax.set_ylim(-2.5, max_y + 0.6)
     ax.invert_yaxis()
     ax.set_yticks([])
@@ -236,7 +236,7 @@ def render_chart_matplotlib(write_png: bool, write_pdf: bool) -> None:
     ax.set_xticklabels([f"M{m}" for m in quarter_ticks], fontsize=13)
     ax.set_xlabel("Project month (quarterly ticks)", fontsize=15, fontweight="bold")
     ax.set_title("FIRE-MODEL Work Plan Gantt Chart", loc="left", fontsize=30, fontweight="bold", pad=26)
-    ax.text(-28.0, -2.95, "Three-track pipeline for Verify, Predict, and Synthesis", fontsize=16, color="#475569", va="top")
+    ax.text(-32.8, -2.95, "Three-track pipeline for Verify, Predict, and Synthesis", fontsize=16, color="#475569", va="top")
 
     for spine in ax.spines.values():
         spine.set_visible(False)
