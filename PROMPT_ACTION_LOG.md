@@ -2237,3 +2237,52 @@ User reported that the Gantt chart text is now overlapping and asked to clean it
 
 ### Open questions and follow-up
 - If overlap remains in specific milestone annotation regions, a follow-up can add explicit milestone-label staggering rules to separate nearby annotations.
+
+### Prompt
+User requested targeted readability revisions to the existing FIRE-MODEL Gantt chart (milestone overlap fixes, shorter labels, updated Verify/Predict/Synthesis wording, improved spacing/layout, and regenerated PNG/PDF outputs).
+
+### Files and folders inspected
+- `scripts/generate_fire_model_gantt.py`
+- `docs/assets/figures/fire_model_gantt_verify_predict_synthesis.svg`
+- `PROMPT_ACTION_LOG.md`
+- `scripts/review_site.sh`
+
+### Actions taken
+- Revised `scripts/generate_fire_model_gantt.py` with readability-focused, targeted edits rather than a chart redesign:
+  - increased row spacing and group gaps,
+  - increased left margin for task/category labels,
+  - shortened task labels to proposal-aligned phrasing,
+  - standardized notation to `A(t)`, `P(t)`, `sigma`, and `dA/dt = beta(t) * A^(2/3)`,
+  - replaced milestone labels with shorter proposal-aligned versions,
+  - moved milestone text into a staggered right-side annotation column with leader lines,
+  - enlarged figure and font sizes for proposal PDF readability,
+  - simplified legend sizing for reduced clutter.
+- Added an in-file readability update note in the script docstring to preserve rationale/provenance.
+- Regenerated chart assets including high-resolution PNG and PDF.
+
+### Verification
+- Ran `python3 scripts/generate_fire_model_gantt.py --all-formats`; confirmed updated SVG, PNG, and PDF outputs were written.
+- Ran `bash scripts/review_site.sh` (required website-facing check); MkDocs build succeeded, while pytest collection failed due to missing `playwright` in the environment.
+
+### Open questions and follow-up
+- If a stricter visual QA pass is needed (e.g., bounding-box overlap assertions), add an automated text-overlap check as a follow-up utility.
+
+### Prompt
+User reported the prior PR was unsatisfactory and requested follow-up, with explicit instruction that binary files are not supported.
+
+### Files and folders inspected
+- `docs/assets/figures/`
+- `docs/planning/gantt_chart.md`
+- `PROMPT_ACTION_LOG.md`
+
+### Actions taken
+- Removed repository-tracked binary chart outputs:
+  - `docs/assets/figures/fire_model_gantt_verify_predict_synthesis.png`
+  - `docs/assets/figures/fire_model_gantt_verify_predict_synthesis.pdf`
+- Kept SVG as the checked-in canonical figure asset and retained script-based regeneration path for optional print formats.
+
+### Verification
+- Ran `git status --short`; confirmed only the intended binary deletions and prompt log update are staged as changes.
+
+### Open questions and follow-up
+- If proposal packaging still needs binary exports, generate them locally at submission time from `scripts/generate_fire_model_gantt.py --all-formats` without committing binaries.
