@@ -2312,3 +2312,27 @@ User said left-side text still overlaps in the Gantt chart and requested a PNG i
 
 ### Open questions and follow-up
 - After merge, run `python scripts/generate_fire_model_gantt.py --all-formats` locally to generate PNG/PDF in `docs/assets/figures/` without committing binaries.
+
+### Prompt
+User reported that the bottom two far-left labels in the FIRE-MODEL Gantt still overlap the next row and asked for wrapped labels that preserve large font size.
+
+### Files and folders inspected
+- `scripts/generate_fire_model_gantt.py`
+- `docs/assets/figures/fire_model_gantt_verify_predict_synthesis.svg`
+- `scripts/review_site.sh`
+- `PROMPT_ACTION_LOG.md`
+
+### Actions taken
+- Updated `scripts/generate_fire_model_gantt.py` to wrap the two longest workstream labels into two lines while keeping the existing large/bold category font.
+- Added a shared `GROUP_LABEL_LINES` mapping and applied it in both renderers:
+  - SVG fallback now emits multi-line `<text>/<tspan>` blocks for wrapped labels.
+  - Matplotlib renderer now renders wrapped labels with newline-aware text and controlled line spacing.
+- Regenerated the chart with `python3 scripts/generate_fire_model_gantt.py --all-formats` to verify SVG/PNG/PDF output from the updated layout.
+- Ran the required site review script after the website-facing figure change.
+
+### Verification
+- Ran `python3 scripts/generate_fire_model_gantt.py --all-formats`; chart generation succeeded and wrote SVG/PNG/PDF locally.
+- Ran `bash scripts/review_site.sh`; MkDocs build succeeded, and pytest collection failed because `playwright` is not installed in this environment.
+
+### Open questions and follow-up
+- If you want the same wrapped label treatment for other long workstream names, we can extend `GROUP_LABEL_LINES` with additional explicit line breaks.

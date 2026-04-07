@@ -48,6 +48,11 @@ WORKSTREAM_COLORS = {
     "Synthesis, release, and adoption": "#9c4f70",
 }
 
+GROUP_LABEL_LINES = {
+    "Infrastructure and reproducibility": ["Infrastructure and", "reproducibility"],
+    "Synthesis, release, and adoption": ["Synthesis, release,", "and adoption"],
+}
+
 TASKS = [
     ("Data and diagnostics", "Unified event dataset", 1, 10),
     ("Data and diagnostics", "Extract A(t), P(t)", 2, 12),
@@ -158,9 +163,22 @@ def render_svg_fallback() -> None:
         parts.append(f'<rect x="{x+2:.1f}" y="{y+((row_h-bar_h)/2):.1f}" width="{max(2,w-4):.1f}" height="{bar_h}" rx="8" fill="{color}" stroke="#ffffff" stroke-width="1"/>')
         parts.append(f'<text x="{task_label_x}" y="{y+37:.1f}" font-size="28" font-family="Arial, Helvetica, sans-serif" fill="#243b53">{escape(str(row["label"]))}</text>')
 
-    # Group labels
+    # Group labels (wrapped for long labels to preserve large font and avoid overlap)
     for group, y0 in group_centers.items():
-        parts.append(f'<text x="{left_label_x}" y="{row_y(y0)+37:.1f}" font-size="28" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#1f2933">{escape(group)}</text>')
+        lines = GROUP_LABEL_LINES.get(group, [group])
+        if len(lines) == 1:
+            parts.append(f'<text x="{left_label_x}" y="{row_y(y0)+37:.1f}" font-size="28" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#1f2933">{escape(group)}</text>')
+            continue
+
+        line_gap = 26
+        text_top_y = row_y(y0) + 24 - ((len(lines) - 1) * line_gap) / 2
+        parts.append(
+            f'<text x="{left_label_x}" y="{text_top_y:.1f}" font-size="28" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#1f2933">'
+        )
+        for idx, line in enumerate(lines):
+            dy = 0 if idx == 0 else line_gap
+            parts.append(f'<tspan x="{left_label_x}" dy="{dy}">{escape(line)}</tspan>')
+        parts.append("</text>")
 
     # Milestones with right-column labels and leader lines (staggered)
     for idx, (label, month, group) in enumerate(MILESTONES):
@@ -217,7 +235,18 @@ def render_chart_matplotlib(write_png: bool, write_pdf: bool) -> None:
         ax.text(-14.7, y, str(row["label"]), ha="left", va="center", fontsize=15.2, color="#243b53")
 
     for group, center_y in group_centers.items():
-        ax.text(-30.6, center_y, group, ha="left", va="center", fontsize=15.6, fontweight="bold", color="#1f2933")
+        wrapped = "\n".join(GROUP_LABEL_LINES.get(group, [group]))
+        ax.text(
+            -30.6,
+            center_y,
+            wrapped,
+            ha="left",
+            va="center",
+            fontsize=15.6,
+            fontweight="bold",
+            color="#1f2933",
+            linespacing=1.0,
+        )
 
     milestone_text_x = 40.2
     for idx, (label, month, group) in enumerate(MILESTONES):
