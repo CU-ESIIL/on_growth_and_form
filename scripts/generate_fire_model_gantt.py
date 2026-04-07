@@ -25,6 +25,8 @@ PDF_PATH = OUTPUT_DIR / f"{BASENAME}.pdf"
 SVG_PATH = OUTPUT_DIR / f"{BASENAME}.svg"
 
 TOTAL_MONTHS = 36
+ROW_STEP = 1.25
+GROUP_GAP = 1.2
 
 PHASES = [
     {"start": 1, "end": 12, "label": "Year 1 — Verify", "shade": "#f5f7fb"},
@@ -81,16 +83,15 @@ def build_rows() -> tuple[list[dict[str, object]], dict[str, float]]:
     rows: list[dict[str, object]] = []
     group_centers: dict[str, float] = {}
     y = 0.0
-    group_gap = 0.9
 
     for group in WORKSTREAM_COLORS:
         group_tasks = [t for t in TASKS if t[0] == group]
         start_y = y
         for _, label, start, end in group_tasks:
             rows.append({"group": group, "label": label, "start": start, "duration": end - start + 1, "y": y})
-            y += 1.0
-        group_centers[group] = (start_y + y - 1.0) / 2
-        y += group_gap
+            y += ROW_STEP
+        group_centers[group] = (start_y + y - ROW_STEP) / 2
+        y += GROUP_GAP
 
     return rows, group_centers
 
@@ -104,8 +105,8 @@ def render_svg_fallback() -> None:
     chart_x1 = 2700
     chart_w = chart_x1 - chart_x0
     top = 220
-    row_h = 54
-    bar_h = 28
+    row_h = 52
+    bar_h = 30
     max_y = max(float(r["y"]) for r in rows) + 0.8
 
     def month_x(month: float) -> float:
@@ -149,11 +150,11 @@ def render_svg_fallback() -> None:
         w = (dur / TOTAL_MONTHS) * chart_w
         color = WORKSTREAM_COLORS[str(row["group"])]
         parts.append(f'<rect x="{x+2:.1f}" y="{y+((row_h-bar_h)/2):.1f}" width="{max(2,w-4):.1f}" height="{bar_h}" rx="8" fill="{color}" stroke="#ffffff" stroke-width="1"/>')
-        parts.append(f'<text x="{task_label_x}" y="{y+36:.1f}" font-size="23" font-family="Arial, Helvetica, sans-serif" fill="#243b53">{escape(str(row["label"]))}</text>')
+        parts.append(f'<text x="{task_label_x}" y="{y+36:.1f}" font-size="26" font-family="Arial, Helvetica, sans-serif" fill="#243b53">{escape(str(row["label"]))}</text>')
 
     # Group labels
     for group, y0 in group_centers.items():
-        parts.append(f'<text x="{left_label_x}" y="{row_y(y0)+36:.1f}" font-size="25" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#1f2933">{escape(group)}</text>')
+        parts.append(f'<text x="{left_label_x}" y="{row_y(y0)+36:.1f}" font-size="27" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#1f2933">{escape(group)}</text>')
 
     # Milestones as diamonds
     for label, month, group in MILESTONES:
@@ -185,7 +186,7 @@ def render_svg_fallback() -> None:
 
 def render_chart_matplotlib(write_png: bool, write_pdf: bool) -> None:
     rows, group_centers = build_rows()
-    fig, ax = plt.subplots(figsize=(18, 12.5))
+    fig, ax = plt.subplots(figsize=(19.5, 14.5))
     max_y = max(row["y"] for row in rows) + 0.8
 
     for phase in PHASES:
@@ -204,11 +205,11 @@ def render_chart_matplotlib(write_png: bool, write_pdf: bool) -> None:
     for row in rows:
         y = float(row["y"])
         group = str(row["group"])
-        ax.barh(y, float(row["duration"]), left=float(row["start"]) - 0.5, height=0.62, color=WORKSTREAM_COLORS[group], edgecolor="white", linewidth=1.0, zorder=3)
-        ax.text(-10.1, y, str(row["label"]), ha="left", va="center", fontsize=12.8, color="#243b53")
+        ax.barh(y, float(row["duration"]), left=float(row["start"]) - 0.5, height=0.72, color=WORKSTREAM_COLORS[group], edgecolor="white", linewidth=1.0, zorder=3)
+        ax.text(-10.1, y, str(row["label"]), ha="left", va="center", fontsize=14.2, color="#243b53")
 
     for group, center_y in group_centers.items():
-        ax.text(-20.2, center_y, group, ha="left", va="center", fontsize=13.8, fontweight="bold", color="#1f2933")
+        ax.text(-20.2, center_y, group, ha="left", va="center", fontsize=15.2, fontweight="bold", color="#1f2933")
 
     for label, month, group in MILESTONES:
         y = group_centers[group]
