@@ -5,6 +5,11 @@ from __future__ import annotations
 Default behavior is dependency-free (pure-Python SVG generation) so CI can run
 without Matplotlib. Optional PNG/PDF export is available with --all-formats when
 Matplotlib is installed.
+
+Readability update (2026-04-07):
+- increased row/category spacing and margins for proposal-scale legibility,
+- shortened task/milestone wording to match current Verify/Predict/Synthesis language,
+- moved milestone labels into a staggered right-side annotation column with leader lines.
 """
 
 import argparse
@@ -25,8 +30,8 @@ PDF_PATH = OUTPUT_DIR / f"{BASENAME}.pdf"
 SVG_PATH = OUTPUT_DIR / f"{BASENAME}.svg"
 
 TOTAL_MONTHS = 36
-ROW_STEP = 1.25
-GROUP_GAP = 1.2
+ROW_STEP = 1.55
+GROUP_GAP = 1.6
 
 PHASES = [
     {"start": 1, "end": 12, "label": "Year 1 — Verify", "shade": "#f5f7fb"},
@@ -44,37 +49,37 @@ WORKSTREAM_COLORS = {
 }
 
 TASKS = [
-    ("Data and diagnostics", "Unified event dataset (QC)", 1, 10),
-    ("Data and diagnostics", "Extract A(t), P(t): FIRED/GOFER/FEDS", 2, 12),
-    ("Data and diagnostics", "Estimate σ = d(log P)/d(log A)", 5, 12),
-    ("Data and diagnostics", "Detect regime transitions", 7, 14),
-    ("Empirical validation", "Cross-dataset uncertainty propagation", 8, 20),
-    ("Empirical validation", "Resolution/processing sensitivity", 9, 22),
-    ("Empirical validation", "Validation and UQ (continuing)", 10, 36),
-    ("Comparative modeling", "Run competing models on shared events", 13, 24),
-    ("Comparative modeling", "Shared diagnostic space evaluation", 14, 26),
-    ("Comparative modeling", "Structural/dynamical/outcome metrics", 15, 27),
-    ("Comparative modeling", "Regime-aware predictive performance tests", 18, 30),
-    ("Reduced model development", "Reduced geometry-constrained model", 24, 33),
+    ("Data and diagnostics", "Unified event dataset", 1, 10),
+    ("Data and diagnostics", "Extract A(t), P(t)", 2, 12),
+    ("Data and diagnostics", "Estimate sigma", 5, 12),
+    ("Data and diagnostics", "Detect transitions", 7, 14),
+    ("Empirical validation", "Cross-dataset UQ", 8, 20),
+    ("Empirical validation", "Resolution sensitivity", 9, 22),
+    ("Empirical validation", "Validation and UQ", 10, 36),
+    ("Comparative modeling", "Shared event benchmarks", 13, 24),
+    ("Comparative modeling", "Diagnostic space evaluation", 14, 26),
+    ("Comparative modeling", "Structural and outcome metrics", 15, 27),
+    ("Comparative modeling", "Regime-aware performance", 18, 30),
+    ("Reduced model development", "Reduced geometry model", 24, 33),
     ("Reduced model development", "Transition-aware gating", 25, 34),
-    ("Reduced model development", "Integrate dA/dt = β(t) · A^(2/3)", 26, 35),
-    ("Reduced model development", "Validate A(t), P(t), σ trajectories", 28, 36),
-    ("Infrastructure and reproducibility", "Data ingestion and harmonization", 1, 36),
-    ("Infrastructure and reproducibility", "Reproducible code + containers", 1, 36),
-    ("Infrastructure and reproducibility", "Benchmark pipelines and stability tests", 12, 36),
-    ("Synthesis, release, and adoption", "Public release: code, data, workflows", 30, 36),
-    ("Synthesis, release, and adoption", "Fire Dynamics Explorer integration", 31, 36),
-    ("Synthesis, release, and adoption", "User-facing evaluation + scenarios", 32, 36),
+    ("Reduced model development", "Integrate dA/dt = beta(t) * A^(2/3)", 26, 35),
+    ("Reduced model development", "Validate A(t), P(t), sigma", 28, 36),
+    ("Infrastructure and reproducibility", "Data harmonization", 1, 36),
+    ("Infrastructure and reproducibility", "Reproducible code and containers", 1, 36),
+    ("Infrastructure and reproducibility", "Benchmark pipelines", 12, 36),
+    ("Synthesis, release, and adoption", "Public release", 30, 36),
+    ("Synthesis, release, and adoption", "Explorer integration", 31, 36),
+    ("Synthesis, release, and adoption", "User evaluation and scenarios", 32, 36),
 ]
 
 MILESTONES = [
-    ("Unified event dataset complete", 10, "Data and diagnostics"),
-    ("Transition detection pipeline validated", 14, "Empirical validation"),
-    ("Cross-dataset uncertainty assessment complete", 20, "Empirical validation"),
+    ("Unified dataset complete", 10, "Data and diagnostics"),
+    ("Transition detection validated", 14, "Empirical validation"),
+    ("Cross-dataset UQ complete", 20, "Empirical validation"),
     ("Comparative benchmark complete", 24, "Comparative modeling"),
-    ("Model discrimination decision gate", 27, "Comparative modeling"),
-    ("Reduced generative model operational", 33, "Reduced model development"),
-    ("Public release of code and workflows", 35, "Synthesis, release, and adoption"),
+    ("Model discrimination gate", 27, "Comparative modeling"),
+    ("Reduced model operational", 33, "Reduced model development"),
+    ("Public release complete", 35, "Synthesis, release, and adoption"),
     ("Explorer integration complete", 36, "Synthesis, release, and adoption"),
 ]
 
@@ -98,14 +103,15 @@ def build_rows() -> tuple[list[dict[str, object]], dict[str, float]]:
 
 def render_svg_fallback() -> None:
     rows, group_centers = build_rows()
-    width, height = 2800, 1800
+    width, height = 3300, 2200
     left_label_x = 70
-    task_label_x = 560
-    chart_x0 = 1080
-    chart_x1 = 2700
+    task_label_x = 720
+    chart_x0 = 1260
+    chart_x1 = 2620
+    milestone_text_x = 2800
     chart_w = chart_x1 - chart_x0
-    top = 220
-    row_h = 52
+    top = 240
+    row_h = 58
     bar_h = 30
     max_y = max(float(r["y"]) for r in rows) + 0.8
 
@@ -150,20 +156,22 @@ def render_svg_fallback() -> None:
         w = (dur / TOTAL_MONTHS) * chart_w
         color = WORKSTREAM_COLORS[str(row["group"])]
         parts.append(f'<rect x="{x+2:.1f}" y="{y+((row_h-bar_h)/2):.1f}" width="{max(2,w-4):.1f}" height="{bar_h}" rx="8" fill="{color}" stroke="#ffffff" stroke-width="1"/>')
-        parts.append(f'<text x="{task_label_x}" y="{y+36:.1f}" font-size="26" font-family="Arial, Helvetica, sans-serif" fill="#243b53">{escape(str(row["label"]))}</text>')
+        parts.append(f'<text x="{task_label_x}" y="{y+37:.1f}" font-size="28" font-family="Arial, Helvetica, sans-serif" fill="#243b53">{escape(str(row["label"]))}</text>')
 
     # Group labels
     for group, y0 in group_centers.items():
-        parts.append(f'<text x="{left_label_x}" y="{row_y(y0)+36:.1f}" font-size="27" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#1f2933">{escape(group)}</text>')
+        parts.append(f'<text x="{left_label_x}" y="{row_y(y0)+37:.1f}" font-size="29" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#1f2933">{escape(group)}</text>')
 
-    # Milestones as diamonds
-    for label, month, group in MILESTONES:
+    # Milestones with right-column labels and leader lines (staggered)
+    for idx, (label, month, group) in enumerate(MILESTONES):
         x = month_x(month)
         y = row_y(group_centers[group]) + row_h / 2
+        y_text = top + 24 + idx * 60
         d = 10
         pts = f"{x:.1f},{y-d:.1f} {x+d:.1f},{y:.1f} {x:.1f},{y+d:.1f} {x-d:.1f},{y:.1f}"
         parts.append(f'<polygon points="{pts}" fill="#111827" stroke="#ffffff" stroke-width="1.5"/>')
-        parts.append(f'<text x="{x+18:.1f}" y="{y-8:.1f}" font-size="18" font-family="Arial, Helvetica, sans-serif" fill="#334155">{escape(label)}</text>')
+        parts.append(f'<line x1="{x+12:.1f}" y1="{y:.1f}" x2="{milestone_text_x-14:.1f}" y2="{y_text-6:.1f}" stroke="#64748b" stroke-width="1.4"/>')
+        parts.append(f'<text x="{milestone_text_x:.1f}" y="{y_text:.1f}" font-size="22" font-family="Arial, Helvetica, sans-serif" fill="#334155">{escape(label)}</text>')
 
     # X-axis labels (quarterly)
     for m in [1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34]:
@@ -178,7 +186,7 @@ def render_svg_fallback() -> None:
         x = lx + col * 540
         y = ly + row * 34
         parts.append(f'<rect x="{x}" y="{y-16}" width="18" height="18" fill="{color}"/>')
-        parts.append(f'<text x="{x+28}" y="{y-1}" font-size="18" font-family="Arial, Helvetica, sans-serif" fill="#1f2933">{escape(group)}</text>')
+        parts.append(f'<text x="{x+28}" y="{y-1}" font-size="17" font-family="Arial, Helvetica, sans-serif" fill="#1f2933">{escape(group)}</text>')
 
     parts.append('</svg>')
     SVG_PATH.write_text("\n".join(parts), encoding="utf-8")
@@ -186,13 +194,13 @@ def render_svg_fallback() -> None:
 
 def render_chart_matplotlib(write_png: bool, write_pdf: bool) -> None:
     rows, group_centers = build_rows()
-    fig, ax = plt.subplots(figsize=(19.5, 14.5))
+    fig, ax = plt.subplots(figsize=(21.0, 16.5))
     max_y = max(row["y"] for row in rows) + 0.8
 
     for phase in PHASES:
         ax.axvspan(phase["start"] - 0.5, phase["end"] + 0.5, color=phase["shade"], zorder=0)
         center = (phase["start"] + phase["end"]) / 2
-        ax.text(center, -1.45, phase["label"], ha="center", va="bottom", fontsize=17, fontweight="bold", color="#1f2933")
+        ax.text(center, -2.0, phase["label"], ha="center", va="bottom", fontsize=19, fontweight="bold", color="#1f2933")
 
     for m in range(1, TOTAL_MONTHS + 1):
         lw = 1.2 if (m - 1) % 3 == 0 else 0.5
@@ -205,35 +213,38 @@ def render_chart_matplotlib(write_png: bool, write_pdf: bool) -> None:
     for row in rows:
         y = float(row["y"])
         group = str(row["group"])
-        ax.barh(y, float(row["duration"]), left=float(row["start"]) - 0.5, height=0.72, color=WORKSTREAM_COLORS[group], edgecolor="white", linewidth=1.0, zorder=3)
-        ax.text(-10.1, y, str(row["label"]), ha="left", va="center", fontsize=14.2, color="#243b53")
+        ax.barh(y, float(row["duration"]), left=float(row["start"]) - 0.5, height=0.78, color=WORKSTREAM_COLORS[group], edgecolor="white", linewidth=1.0, zorder=3)
+        ax.text(-13.8, y, str(row["label"]), ha="left", va="center", fontsize=15.2, color="#243b53")
 
     for group, center_y in group_centers.items():
-        ax.text(-20.2, center_y, group, ha="left", va="center", fontsize=15.2, fontweight="bold", color="#1f2933")
+        ax.text(-26.8, center_y, group, ha="left", va="center", fontsize=16.2, fontweight="bold", color="#1f2933")
 
-    for label, month, group in MILESTONES:
+    milestone_text_x = 40.2
+    for idx, (label, month, group) in enumerate(MILESTONES):
         y = group_centers[group]
         ax.scatter([month], [y], marker="D", s=80, color="#111827", edgecolors="white", linewidths=0.9, zorder=6)
-        ax.text(month + 0.35, y - 0.33, label, fontsize=10.5, color="#334155", va="top")
+        label_y = -0.3 + idx * 0.78
+        ax.plot([month + 0.15, milestone_text_x - 0.22], [y, label_y], color="#64748b", linewidth=1.0, zorder=5)
+        ax.text(milestone_text_x, label_y, label, fontsize=11.8, color="#334155", va="center", ha="left")
 
-    ax.set_xlim(-21.0, 36.6)
-    ax.set_ylim(-2.0, max_y + 0.4)
+    ax.set_xlim(-28.4, 44.9)
+    ax.set_ylim(-2.5, max_y + 0.6)
     ax.invert_yaxis()
     ax.set_yticks([])
     quarter_ticks = [1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34]
     ax.set_xticks(quarter_ticks)
-    ax.set_xticklabels([f"M{m}" for m in quarter_ticks], fontsize=12)
-    ax.set_xlabel("Project month (quarterly ticks)", fontsize=14, fontweight="bold")
-    ax.set_title("FIRE-MODEL Work Plan Gantt Chart", loc="left", fontsize=26, fontweight="bold", pad=24)
-    ax.text(-20.9, -2.28, "Three-track pipeline for Verify, Predict, and Synthesis", fontsize=14.5, color="#475569", va="top")
+    ax.set_xticklabels([f"M{m}" for m in quarter_ticks], fontsize=13)
+    ax.set_xlabel("Project month (quarterly ticks)", fontsize=15, fontweight="bold")
+    ax.set_title("FIRE-MODEL Work Plan Gantt Chart", loc="left", fontsize=30, fontweight="bold", pad=26)
+    ax.text(-28.0, -2.95, "Three-track pipeline for Verify, Predict, and Synthesis", fontsize=16, color="#475569", va="top")
 
     for spine in ax.spines.values():
         spine.set_visible(False)
     ax.tick_params(axis="x", length=0, colors="#334155")
 
-    handles = [Line2D([0], [0], marker="s", color="w", markerfacecolor=color, markersize=10, label=group) for group, color in WORKSTREAM_COLORS.items()]
+    handles = [Line2D([0], [0], marker="s", color="w", markerfacecolor=color, markersize=8, label=group) for group, color in WORKSTREAM_COLORS.items()]
     handles.append(Line2D([0], [0], marker="D", color="w", markerfacecolor="#111827", markeredgecolor="white", markersize=8, label="Milestone"))
-    ax.legend(handles=handles, frameon=False, ncol=2, fontsize=11.2, loc="lower left", bbox_to_anchor=(0.0, -0.23), columnspacing=1.3, handletextpad=0.5)
+    ax.legend(handles=handles, frameon=False, ncol=2, fontsize=10.5, loc="lower left", bbox_to_anchor=(0.0, -0.22), columnspacing=1.1, handletextpad=0.45)
 
     plt.tight_layout()
     fig.savefig(SVG_PATH, bbox_inches="tight")
