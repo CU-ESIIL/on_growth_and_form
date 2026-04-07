@@ -2216,3 +2216,24 @@ User reported CI failure running `python scripts/generate_fire_model_gantt.py` d
 
 ### Open questions and follow-up
 - If CI also needs PNG/PDF artifacts in environments without Matplotlib, a non-Matplotlib raster/vector fallback would need to be added.
+
+### Prompt
+User reported that the Gantt chart text is now overlapping and asked to clean it up so text is larger while avoiding overlaps.
+
+### Files and folders inspected
+- `scripts/generate_fire_model_gantt.py`
+- `docs/assets/figures/fire_model_gantt_verify_predict_synthesis.svg`
+- `scripts/review_site.sh`
+
+### Actions taken
+- Updated `scripts/generate_fire_model_gantt.py` row spacing controls by introducing `ROW_STEP` and `GROUP_GAP` constants and increasing both so task rows are spaced farther apart.
+- Increased label font sizes for task labels and workstream labels while simultaneously increasing figure dimensions and bar height in the Matplotlib renderer to preserve readability without collisions.
+- Regenerated `docs/assets/figures/fire_model_gantt_verify_predict_synthesis.svg` using the updated layout logic.
+- Ran the required website review script after modifying website-facing assets.
+
+### Verification
+- Ran `python3 scripts/generate_fire_model_gantt.py`; SVG regenerated successfully.
+- Ran `bash scripts/review_site.sh`; MkDocs build succeeded, while pytest collection failed because `playwright` is not installed in this environment.
+
+### Open questions and follow-up
+- If overlap remains in specific milestone annotation regions, a follow-up can add explicit milestone-label staggering rules to separate nearby annotations.
